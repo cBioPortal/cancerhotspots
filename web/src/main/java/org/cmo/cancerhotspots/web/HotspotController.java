@@ -26,7 +26,7 @@ public class HotspotController
         this.hotspotMutationService = hotspotMutationService;
     }
 
-    @RequestMapping(value = "/hotspots/all",
+    @RequestMapping(value = "/hotspots",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
     public List<HotspotMutation> getAllHotspotMutations()

@@ -62,23 +62,25 @@ public class MapConversion implements Conversion<String, Map<String, Integer>>
 
         StringBuilder out = new StringBuilder();
 
-        // TODO implement a proper revert function
-//        for (String word : input) {
-//            if (word == null || word.trim().isEmpty()) {
-//                continue;
-//            }
-//            if (out.length() > 0) {
-//                out.append(separator);
-//            }
-//            if (toUpperCase) {
-//                word = word.toUpperCase();
-//            }
-//            out.append(word.trim());
-//        }
-//
-//        if (out.length() == 0) {
-//            return null;
-//        }
+        for (String key : input.keySet()) {
+            Integer value = input.get(key);
+            if (value == null)
+            {
+                continue;
+            }
+
+            if (out.length() > 0) {
+                out.append(itemSeparator);
+            }
+
+            out.append(key);
+            out.append(mappingSeparator);
+            out.append(value);
+        }
+
+        if (out.length() == 0) {
+            return null;
+        }
 
         return out.toString();
     }
