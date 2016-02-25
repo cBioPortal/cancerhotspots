@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Cancer Hotspots</title>
+
+    <!-- lib css -->
+    <link href="lib/css/datatables.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- lib js -->
+    <script type="text/javascript" src="lib/js/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="lib/js/datatables.min.js"></script>
+    <script type="text/javascript" src="lib/js/underscore-min.js"></script>
+
+    <!-- src js -->
+    <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
+    <script type="text/javascript" src="src/js/view/HotspotTableView.js"></script>
+    <script type="text/javascript" src="src/js/main.js"></script>
 </head>
 <body>
-    Cancer Hotspots...
+    <div id="main_view">
+        <!-- contents of this table should be populated after data retrieval -->
+        <table id="hotspots_table" class="display" width="100%"></table>
+    </div>
 </body>
+
+<!-- TODO underscore templates -->
+
 </html>
