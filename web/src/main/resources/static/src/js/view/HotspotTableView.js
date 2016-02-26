@@ -3,6 +3,8 @@ function HotspotTableView(options)
     var _defaultOpts = {
         // default target DOM element
         el: "#hotspots_table",
+        // no data by default, must be provided by the client
+        data: {},
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -13,16 +15,22 @@ function HotspotTableView(options)
             });
 
             return view.join("<br>");
+        },
+        // default rendering function for map data structure
+        noWrapRender: function(data) {
+            var templateFn = _.template($("#no_text_wrap").html());
+            return templateFn({text: data});
         }
     };
 
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
-    function render(data)
+    function render()
     {
         var dataTableOpts = {
-            data: data,
+            //sDom: "pftil",
+            data: _options.data,
             columns: [
                 {title: "Hugo Symbol",
                     data: "hugoSymbol"},
@@ -33,8 +41,9 @@ function HotspotTableView(options)
                 {title: "Variant Amino Acid",
                     data: "variantAminoAcid",
                     render: _options.mapRender},
-                {title: "Q-value",
-                    data: "qValue"},
+                {title: _options.noWrapRender("Q-value"),
+                    data: "qValue",
+                    render: _options.noWrapRender},
                 {title: "Tumor Count",
                     data: "tumorCount"},
                 {title: "Tumor Type Count",
