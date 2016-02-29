@@ -6,6 +6,7 @@
 
     <!-- lib css -->
     <link href="lib/css/datatables.min.css" type="text/css" rel="stylesheet" />
+    <link href="lib/css/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
 
     <!-- source css -->
     <link href="src/css/hotspots.css" type="text/css" rel="stylesheet" />
@@ -14,10 +15,13 @@
     <script type="text/javascript" src="lib/js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="lib/js/datatables.min.js"></script>
     <script type="text/javascript" src="lib/js/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="lib/js/cbio-util.js"></script>
 
     <!-- src js -->
     <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
     <script type="text/javascript" src="src/js/view/HotspotTableView.js"></script>
+    <script type="text/javascript" src="src/js/view/TumorTypeCompositionView.js"></script>
     <script type="text/javascript" src="src/js/main.js"></script>
 
 
@@ -33,12 +37,22 @@
     <div id="main_view">
         <h3 class="center-align">Statistically Significant Hotspot Mutations</h3>
         <!-- contents of this table should be populated after data retrieval -->
-        <table id="hotspots_table" class="display" width="100%"></table>
+        <table id="hotspots_table" class="display compact" width="100%"></table>
     </div>
 </body>
 
 <!-- underscore templates -->
 <script type="text/template" id="no_text_wrap">
     <span class="no-text-wrap">{{text}}</span>
+</script>
+
+<script type="text/template" id="samples_column">
+    <span class="qtipped-text">{{tumorCount}}</span>
+</script>
+
+<script type="text/template" id="tumor_type_composition">
+    <div class="center-align"><b>{{tumorCount}}</b> total sample(s)
+        with <b>{{tumorTypeCount}}</b> distinct tumor type(s)</div>
+    <table class="tumor-type-composition display compact" width="100%"></table>
 </script>
 </html>
