@@ -5,3 +5,16 @@
 .no-text-wrap {
     white-space: nowrap;
 }
+
+body {
+    font-size: 14px;
+}
+
+.default-plain-text {
+    font-family: "DejaVu Sans", Georgia, serif;
+    font-size: 1.0em;
+}
+
+.cancer-hotspots-tooltip {
+    font-size: 0.9em;
+}
