@@ -47,6 +47,8 @@ function HotspotTableView(options)
         el: "#hotspots_table",
         // no data by default, must be provided by the client
         data: {},
+        // delay amount before applying the user entered filter query
+        filteringDelay: 500,
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -115,7 +117,7 @@ function HotspotTableView(options)
     function render()
     {
         var dataTableOpts = {
-            //sDom: "pftil",
+            sDom: '<"hotspot-table-controls"f>ti',
             data: _options.data,
             paging: false,
             scrollY: "600px",
@@ -140,7 +142,31 @@ function HotspotTableView(options)
                     createdCell: _options.tumorTypePostRender},
                 {title: "Validation Level [a]",
                     data: "validationLevel"}
-            ]
+            ],
+            initComplete: function(settings) {
+                var dataTable = this;
+
+                // add a delay to the filter
+                if (_options.filteringDelay > 0)
+                {
+                    dataTable.fnSetFilteringDelay(_options.filteringDelay);
+
+                    // alternative method for filter delaying
+                    // (https://datatables.net/reference/api/%24.fn.dataTable.util.throttle%28%29)
+
+                    //var search = $.fn.dataTable.util.throttle(
+                    //    function (val) {
+                    //        dataTable.search(val).draw();
+                    //    },
+                    //    _options.filteringDelay
+                    //);
+                    //
+                    //$('.hotspot-table-controls input').off('keyup search input')
+                    //    .on('keyup search input', function () {
+                    //    search(this.value);
+                    //});
+                }
+            }
         };
 
         $(_options.el).DataTable(dataTableOpts);

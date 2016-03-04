@@ -168,6 +168,7 @@ function StackedBar(options)
 
     /**
      * Draws the text for the given svg group (and rectangle).
+     * Returns null if the text does not fit into the rectangle.
      *
      * @param label     text contents
      * @param group     target svg group to append the text
@@ -177,6 +178,12 @@ function StackedBar(options)
      */
     function drawStackText(label, group, width, x)
     {
+        // do not add the text if the width is less than the threshold value
+        if (_options.threshold > width)
+        {
+            return null;
+        }
+
         x = x || 0.0;
 
         var xText = x + width/2;
@@ -202,13 +209,6 @@ function StackedBar(options)
             .attr("x", xText)
             .attr("y", 2*height/3)
             .attr("class", "stacked-bar-text");
-
-        // remove the text if the width is less than the threshold value
-        if (_options.threshold > width)
-        {
-            text.remove();
-            text = null;
-        }
 
         return text;
     }
