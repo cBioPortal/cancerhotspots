@@ -27,20 +27,30 @@ public class SignificantHotspotMutationService implements HotspotMutationService
     @Value("${significant.hotspot.uri}")
     public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
 
+    private List<HotspotMutation> cache;
+
     public List<HotspotMutation> getAllHotspotMutations()
     {
-        BeanListProcessor<HotspotMutation> rowProcessor =
-            new BeanListProcessor<HotspotMutation>(HotspotMutation.class);
+        // parse the input file only once, and save the result in the cache
+        if (this.cache == null ||
+            this.cache.size() == 0)
+        {
+            BeanListProcessor<HotspotMutation> rowProcessor =
+                new BeanListProcessor<HotspotMutation>(HotspotMutation.class);
 
-        CsvParserSettings parserSettings = new CsvParserSettings();
-        parserSettings.setHeaderExtractionEnabled(true);
-        parserSettings.getFormat().setDelimiter('\t');
-        parserSettings.setRowProcessor(rowProcessor);
+            CsvParserSettings parserSettings = new CsvParserSettings();
+            parserSettings.setHeaderExtractionEnabled(true);
+            parserSettings.getFormat().setDelimiter('\t');
+            parserSettings.setRowProcessor(rowProcessor);
 
-        CsvParser parser = new CsvParser(parserSettings);
-        parser.parse(getReader(hotspotMutationUri));
+            CsvParser parser = new CsvParser(parserSettings);
+            parser.parse(getReader(hotspotMutationUri));
 
-        return rowProcessor.getBeans();
+            // cache retrieved beans
+            this.cache = rowProcessor.getBeans();
+        }
+
+        return this.cache;
     }
 
     /**
