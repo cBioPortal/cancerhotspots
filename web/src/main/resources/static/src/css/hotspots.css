@@ -8,10 +8,10 @@
 
 body {
     font-size: 14px;
+    font-family: "DejaVu Sans", Georgia, serif;
 }
 
 .default-plain-text {
-    font-family: "DejaVu Sans", Georgia, serif;
     font-size: 1.0em;
 }
 
