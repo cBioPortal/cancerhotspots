@@ -11,7 +11,7 @@ function HotspotTableView(options)
         };
     }
 
-    function tumorTypeTooltipOpts(colData, viewOpts)
+    function tooltipOpts(colData, viewOpts)
     {
         var tooltipOpts = defaultTooltipOpts();
 
@@ -23,16 +23,17 @@ function HotspotTableView(options)
                 var defaultViewOpts = {
                     el: $(this).find('.qtip-content'),
                     colData: colData,
-                    data: tableData,
-                    order: [[0 , "asc" ]]
+                    data: tableData
                 };
 
-                _.each(_.pairs(colData.composition), function(pair) {
-                    tableData.push({tumorType: pair[0], count: pair[1]});
+                var map = colData.composition || colData;
+
+                _.each(_.pairs(map), function(pair) {
+                    tableData.push({type: pair[0], count: pair[1]});
                 });
 
                 var opts = jQuery.extend(true, {}, defaultViewOpts, viewOpts);
-                var tableView = new TumorTypeCompositionView(opts);
+                var tableView = new CompositionView(opts);
 
                 tableView.render()
             }
@@ -74,10 +75,37 @@ function HotspotTableView(options)
                 composition: row["tumorTypeComposition"]
             };
         },
-        tumorTypeCompositionTip: function (td, cellData, rowData, row, col) {
-            var viewOpts = {};
+        variantRender: function (data) {
+            var templateFn = _.template($("#basic_content").html());
+            return templateFn({value: _.size(data)});
+        },
+        variantPostRender: function (td, cellData, rowData, row, col) {
+            var target = $(td).find(".basic-content");
+            target.empty();
+
+            var stackedBar = new StackedBar({
+                el: target
+            });
+
+            stackedBar.init(cellData);
+
+            var viewOpts = {
+                templateId: '#variant_composition',
+                dataTableTarget: ".variant-composition",
+                columns: [
+                    {title: "Variant",
+                        data: "type"},
+                    {title: "Count",
+                        data: "count"}
+                ]
+            };
+
+            cbio.util.addTargetedQTip(target.find('svg'),
+                                      tooltipOpts(cellData, viewOpts));
+        },
+        tumorTypePostRender: function (td, cellData, rowData, row, col) {
             cbio.util.addTargetedQTip($(td).find(".qtipped-text"),
-                                      tumorTypeTooltipOpts(cellData));
+                                      tooltipOpts(cellData));
         }
     };
 
@@ -101,14 +129,15 @@ function HotspotTableView(options)
                 //    data: "altCommonCodonUsage"},
                 {title: "Variant Amino Acid",
                     data: "variantAminoAcid",
-                    render: _options.mapRender},
+                    render: _options.variantRender,
+                    createdCell: _options.variantPostRender},
                 {title: _options.noWrapRender("Q-value"),
                     data: "qValue",
                     render: _options.noWrapRender},
                 {title: "Sample Count",
                     data: _options.sampleData,
                     render: _options.sampleRender,
-                    createdCell: _options.tumorTypeCompositionTip},
+                    createdCell: _options.tumorTypePostRender},
                 {title: "Validation Level [a]",
                     data: "validationLevel"}
             ]

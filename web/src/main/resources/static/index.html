@@ -12,16 +12,18 @@
     <link href="src/css/hotspots.css" type="text/css" rel="stylesheet" />
 
     <!-- lib js -->
+    <script type="text/javascript" src="lib/js/underscore-min.js"></script>
     <script type="text/javascript" src="lib/js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="lib/js/datatables.min.js"></script>
-    <script type="text/javascript" src="lib/js/underscore-min.js"></script>
     <script type="text/javascript" src="lib/js/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="lib/js/d3.min.js"></script>
     <script type="text/javascript" src="lib/js/cbio-util.js"></script>
 
     <!-- src js -->
     <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
+    <script type="text/javascript" src="src/js/component/StackedBar.js"></script>
     <script type="text/javascript" src="src/js/view/HotspotTableView.js"></script>
-    <script type="text/javascript" src="src/js/view/TumorTypeCompositionView.js"></script>
+    <script type="text/javascript" src="src/js/view/CompositionView.js"></script>
     <script type="text/javascript" src="src/js/main.js"></script>
 
 
@@ -37,7 +39,7 @@
     <div id="main_view">
         <h3 class="center-align">Statistically Significant Hotspot Mutations</h3>
         <!-- contents of this table should be populated after data retrieval -->
-        <table id="hotspots_table" class="display compact" width="100%"></table>
+        <table id="hotspots_table" class="display compact center-align" width="100%"></table>
     </div>
 </body>
 
@@ -50,9 +52,17 @@
     <span class="qtipped-text">{{tumorCount}}</span>
 </script>
 
+<script type="text/template" id="basic_content">
+    <div class="basic-content">{{value}}</div>
+</script>
+
 <script type="text/template" id="tumor_type_composition">
     <div class="center-align"><b>{{tumorCount}}</b> total sample(s)
         with <b>{{tumorTypeCount}}</b> distinct tumor type(s)</div>
-    <table class="tumor-type-composition display compact" width="100%"></table>
+    <table class="tumor-type-composition display compact center-align" width="100%"></table>
+</script>
+
+<script type="text/template" id="variant_composition">
+    <table class="variant-composition display compact center-align" width="100%"></table>
 </script>
 </html>
