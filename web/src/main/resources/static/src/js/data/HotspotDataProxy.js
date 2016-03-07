@@ -41,7 +41,7 @@ function HotspotDataProxy(options)
     function getAllHotspots(callback)
     {
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts("hotspots", {}, callback));
+        $.ajax(ProxyUtils.ajaxOpts("api/hotspots", {}, callback));
     }
 
     this.getAllHotspots = getAllHotspots;

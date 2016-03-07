@@ -40,11 +40,15 @@ function VariantDataProxy(options)
 {
     function getTumorTypeComposition(hugoSymbol, aminoAcidChange, callback)
     {
-        // TODO use actual post params
-        var url = "variants/" + hugoSymbol + "/" + aminoAcidChange;
+        var url = "api/variants";
+
+        var data = {
+            hugoSymbol: hugoSymbol,
+            aminoAcidChanges: aminoAcidChange
+        };
 
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(url, {}, callback));
+        $.ajax(ProxyUtils.ajaxOpts(url, data, callback));
     }
 
     this.getTumorTypeComposition = getTumorTypeComposition;
