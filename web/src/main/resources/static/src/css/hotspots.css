@@ -1,0 +1,20 @@
+.center-align {
+    text-align: center;
+}
+
+.no-text-wrap {
+    white-space: nowrap;
+}
+
+body {
+    font-size: 14px;
+    font-family: "DejaVu Sans", Georgia, serif;
+}
+
+.default-plain-text {
+    font-size: 1.0em;
+}
+
+.cancer-hotspots-tooltip {
+    font-size: 0.8em;
+}
