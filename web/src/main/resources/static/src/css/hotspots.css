@@ -33,3 +33,35 @@ div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
     margin: auto;
 }
+
+/* A little bit of theme tweaking */
+section {
+    padding: 40px;
+}
+header {
+    background-color: #b84d45;
+}
+section.stressed {
+    background: #dff0d8;
+}
+section.stressed a,
+section.stressed a:hover,
+section.stressed a:focus,
+section.stressed a:active,
+section.stressed a.active {
+    outline: 0;
+    color: #2c3e50;
+}
+hr.star-light:after, hr.star-primary:after {
+    background-color: inherit;
+    content: "\f140"
+}
+#about hr.star-primary:after {
+    background: #dff0d8;
+}
+#explore hr.star-primary:after {
+    background: #fff;
+}
+header hr.star-light:after {
+    background-color: #b84d45;
+}

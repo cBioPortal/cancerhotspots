@@ -122,7 +122,7 @@ function HotspotTableView(options)
             sDom: '<".left-align"i>ft',
             data: _options.data,
             paging: false,
-            scrollY: "600px",
+            scrollY: "500px",
             scrollCollapse: true,
             columns: [
                 {title: "Hugo Symbol",
