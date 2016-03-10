@@ -1,5 +1,10 @@
-.center-align {
+.center-align, .center-align th {
     text-align: center;
+}
+
+.left-align {
+    float: left;
+    text-align: left;
 }
 
 .no-text-wrap {

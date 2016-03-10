@@ -94,6 +94,7 @@ function HotspotTableView(options)
             var viewOpts = {
                 templateId: '#variant_composition',
                 dataTableTarget: ".variant-composition",
+                paging: false,
                 columns: [
                     {title: "Variant",
                         data: "type"},
@@ -117,7 +118,8 @@ function HotspotTableView(options)
     function render()
     {
         var dataTableOpts = {
-            sDom: '<"hotspot-table-controls"f>ti',
+            //sDom: '<"hotspot-table-controls"f>ti',
+            sDom: '<".left-align"i>ft<".custom-info">',
             data: _options.data,
             paging: false,
             scrollY: "600px",

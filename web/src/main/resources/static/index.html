@@ -5,14 +5,11 @@
     <title>Cancer Hotspots</title>
 
     <!-- lib css -->
-    <link href="lib/css/datatables.min.css" type="text/css" rel="stylesheet" />
-    <link href="lib/css/dataTables.foundation.min.css" type="text/css" rel="stylesheet" />
-    <link href="lib/css/dataTables.jqueryui.min.css" type="text/css" rel="stylesheet" />
-    <link href="lib/css/dataTables.bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
-    <link href="lib/css/jquery.dataTables_themeroller.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="lib/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+    <link href="lib/css/dataTables.bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <!--link href="lib/css/dataTables.jqueryui.min.css" type="text/css" rel="stylesheet" />
+    <link href="lib/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" /-->
 
     <!-- source css -->
     <link href="src/css/hotspots.css" type="text/css" rel="stylesheet" />
@@ -20,7 +17,7 @@
     <!-- lib js -->
     <script type="text/javascript" src="lib/js/underscore-min.js"></script>
     <script type="text/javascript" src="lib/js/jquery-2.2.1.min.js"></script>
-    <script type="text/javascript" src="lib/js/datatables.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="lib/js/dataTables.fnSetFilteringDelay.js"></script>
     <script type="text/javascript" src="lib/js/jquery.qtip.min.js"></script>
@@ -48,7 +45,9 @@
     <div id="main_view" class="default-plain-text">
         <h3 class="center-align">Statistically Significant Hotspot Mutations</h3>
         <!-- contents of this table should be populated after data retrieval -->
-        <table id="hotspots_table" class="display compact center-align" width="100%"></table>
+        <table id="hotspots_table"
+               class="display compact center-align table table-condensed table-striped table-hover"
+               width="100%"></table>
     </div>
 </body>
 
@@ -68,10 +67,12 @@
 <script type="text/template" id="tumor_type_composition">
     <div class="center-align"><b>{{tumorCount}}</b> total sample(s)
         with <b>{{tumorTypeCount}}</b> distinct tumor type(s)</div>
-    <table class="tumor-type-composition display compact center-align" width="100%"></table>
+    <table class="tumor-type-composition display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
 </script>
 
 <script type="text/template" id="variant_composition">
-    <table class="variant-composition display compact center-align" width="100%"></table>
+    <table class="variant-composition display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
 </script>
 </html>
