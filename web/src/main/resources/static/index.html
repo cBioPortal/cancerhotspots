@@ -42,16 +42,22 @@
     </script>
 </head>
 <body>
-    <div id="main_view" class="default-plain-text">
-        <h3 class="center-align">Statistically Significant Hotspot Mutations</h3>
-        <!-- contents of this table should be populated after data retrieval -->
-        <table id="hotspots_table"
-               class="display compact center-align table table-condensed table-striped table-hover"
-               width="100%"></table>
-    </div>
+    <div id="main_content" class="default-plain-text"></div>
 </body>
 
 <!-- underscore templates -->
+<script type="text/template" id="main_view">
+    <h3 class="center-align">Statistically Significant Hotspot Mutations</h3>
+    <!-- contents of this table should be populated after data retrieval -->
+    <table id="hotspots_table"
+           class="display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
+    <div class="table-hover-info">
+        <sup><b>&#8224;</b></sup>
+        Mouse over <b>Variant Amino Acid</b> and <b>Sample Count</b> values for more information
+    </div>
+</script>
+
 <script type="text/template" id="no_text_wrap">
     <span class="no-text-wrap">{{text}}</span>
 </script>
