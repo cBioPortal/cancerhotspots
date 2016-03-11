@@ -94,6 +94,7 @@ function HotspotTableView(options)
             var viewOpts = {
                 templateId: '#variant_composition',
                 dataTableTarget: ".variant-composition",
+                paging: false,
                 columns: [
                     {title: "Variant",
                         data: "type"},
@@ -117,10 +118,11 @@ function HotspotTableView(options)
     function render()
     {
         var dataTableOpts = {
-            sDom: '<"hotspot-table-controls"f>ti',
+            //sDom: '<"hotspot-table-controls"f>ti',
+            sDom: '<".left-align"i>ft',
             data: _options.data,
             paging: false,
-            scrollY: "600px",
+            scrollY: "500px",
             scrollCollapse: true,
             columns: [
                 {title: "Hugo Symbol",
@@ -129,14 +131,14 @@ function HotspotTableView(options)
                     data: "codon"},
                 //{title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
-                {title: "Variant Amino Acid",
+                {title: "Variant Amino Acid <sup>&#8224;</sup>",
                     data: "variantAminoAcid",
                     render: _options.variantRender,
                     createdCell: _options.variantPostRender},
                 {title: _options.noWrapRender("Q-value"),
                     data: "qValue",
                     render: _options.noWrapRender},
-                {title: "Sample Count",
+                {title: "Sample Count <sup>&#8224;</sup>",
                     data: _options.sampleData,
                     render: _options.sampleRender,
                     createdCell: _options.tumorTypePostRender},

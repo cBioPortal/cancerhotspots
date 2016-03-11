@@ -10,6 +10,7 @@ function CompositionView(options)
         colData: {},
         // default ordering
         order: [[1 , "desc" ]],
+        paging: true,
         columns: [
             {title: "Tumor Type",
                 data: "type"},
@@ -32,7 +33,8 @@ function CompositionView(options)
         $(_options.el).html(templateFn(_options.colData));
 
         var dataTableOpts = {
-            sDom: "stp",
+            sDom: 'st<"composition-paginate"p>',
+            paging: _options.paging,
             data: _options.data,
             order: _options.order,
             columns: _options.columns
