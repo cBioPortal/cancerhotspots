@@ -120,7 +120,6 @@ function HotspotTableView(options)
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
             sDom: '<".left-align"i>ft',
-            data: _options.data,
             paging: false,
             scrollY: "500px",
             scrollCollapse: true,
@@ -170,6 +169,15 @@ function HotspotTableView(options)
                 }
             }
         };
+
+        if (_.isFunction(_options.ajax))
+        {
+            dataTableOpts.ajax = _options.ajax;
+        }
+        else
+        {
+            dataTableOpts.data = _options.data;
+        }
 
         $(_options.el).DataTable(dataTableOpts);
     }
