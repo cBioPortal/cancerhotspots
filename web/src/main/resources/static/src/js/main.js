@@ -29,7 +29,11 @@ $(document).ready(function() {
                 var proxy = new HotspotDataProxy();
 
                 proxy.getAllHotspots(function(hotspotData) {
-                    callback({data: hotspotData});
+                    // defer rendering of the table a few miliseconds
+                    // for a smoother rendering of the loader
+                    setTimeout(function(){
+                        callback({data: hotspotData});
+                    }, 500);
                 });
             }
         });
