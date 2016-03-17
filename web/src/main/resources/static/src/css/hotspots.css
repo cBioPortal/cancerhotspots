@@ -42,7 +42,7 @@ header {
     background-color: #b84d45;
 }
 section.stressed {
-    background: #dff0d8;
+    background-color: #dff0d8;
 }
 section.stressed a,
 section.stressed a:hover,
@@ -57,10 +57,10 @@ hr.star-light:after, hr.star-primary:after {
     content: "\f140"
 }
 #about hr.star-primary:after {
-    background: #dff0d8;
+    background-color: #dff0d8;
 }
 #explore hr.star-primary:after {
-    background: #fff;
+    background-color: #fff;
 }
 header hr.star-light:after {
     background-color: #b84d45;
