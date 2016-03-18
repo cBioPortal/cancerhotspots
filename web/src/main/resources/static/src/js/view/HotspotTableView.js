@@ -163,7 +163,7 @@ function HotspotTableView(options)
             scrollY: "500px",
             scrollCollapse: true,
             language: {
-                loadingRecords: '<img src="../../../lib/images/loader.gif"> Loading...'
+                loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
             columns: [
                 {title: "Hugo Symbol",
