@@ -125,7 +125,34 @@ function HotspotTableView(options)
             target.empty();
 
             var stackedBar = new StackedBar({
-                el: target
+                el: target,
+                // assign a fixed color for each amino acid value
+                colors: {
+                    "A": "#3366cc",
+                    "R": "#dc3912",
+                    "N": "#dc3912",
+                    "D": "#ff9900",
+                    "B": "#109618",
+                    "C": "#990099",
+                    "E": "#0099c6",
+                    "Q": "#dd4477",
+                    "Z": "#66aa00",
+                    "G": "#b82e2e",
+                    "H": "#316395",
+                    "I": "#994499",
+                    "L": "#22aa99",
+                    "K": "#aaaa11",
+                    "M": "#6633cc",
+                    "F": "#e67300",
+                    "P": "#8b0707",
+                    "S": "#651067",
+                    "T": "#329262",
+                    "W": "#5574a6",
+                    "Y": "#3b3eac",
+                    "V": "#b77322",
+                    "X": "#16d620",
+                    "*": "#090303"
+                }
             });
 
             stackedBar.init(cellData);
