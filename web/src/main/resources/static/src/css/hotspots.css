@@ -60,6 +60,13 @@ body {
     margin-top: 10px;
 }
 
+.variant-cell {
+    color: #ffffff;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
