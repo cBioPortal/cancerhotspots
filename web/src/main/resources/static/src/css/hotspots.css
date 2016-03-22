@@ -39,6 +39,11 @@
     text-align: left;
 }
 
+.right-align {
+    float: right;
+    text-align: right;
+}
+
 .no-text-wrap {
     white-space: nowrap;
 }
