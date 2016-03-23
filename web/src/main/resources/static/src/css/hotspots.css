@@ -60,6 +60,10 @@ body {
     margin-top: 10px;
 }
 
+.about-citation {
+    font-style: italic;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
