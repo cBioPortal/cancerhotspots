@@ -158,13 +158,55 @@ function HotspotTableView(options)
     {
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
-            sDom: '<".left-align"i>ft',
+            //dom: '<".left-align"i>ft<".right-align"B>',
+            //dom: "<'row'<'col-sm-2'B><'col-sm-6 center-align'i><'col-sm-4'f>>t",
+            dom: "<'row'<'col-sm-8 custom-title'><'col-sm-4'f>>t" +
+                 "<'row'<'col-sm-8'i><'col-sm-4 right-align'B>>",
             paging: false,
             scrollY: "500px",
             scrollCollapse: true,
             language: {
                 loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
+            buttons: [{
+                text: "Download",
+                className: "btn-sm",
+                action: function(e, dt, node, config) {
+                    // get the file data (formatted by 'fnCellRender' function)
+                    //var content = this.fnGetTableData(oConfig);
+                    var columns = [
+                        {title: "Hugo Symbol",
+                            data: "hugoSymbol"},
+                        {title: "Codon",
+                            data: "codon"},
+                        //{title: "Alt Common Codon Usage *",
+                        //    data: "altCommonCodonUsage"},
+                        {title: "Variant Amino Acid",
+                            data: "variantAminoAcid"},
+                        {title: "Q-value",
+                            data: "qValue"},
+                        {title: "Sample Count",
+                            data: "tumorCount"},
+                        {title: "Tumor Type Composition",
+                            data: "tumorTypeComposition"}
+                        //{title: "Validation Level [a]",
+                        //    data: "validationLevel"}
+                    ];
+
+                    var dataUtils = new DataUtils(columns);
+                    var content = dataUtils.stringify(dt.rows({filter: 'applied'}).data());
+
+                    var downloadOpts = {
+                        filename: "cancer_hotspots.txt",
+                        contentType: "text/plain;charset=utf-8",
+                        preProcess: false
+                    };
+
+                    // send download request with filename & file content info
+                    cbio.download.initDownload(content, downloadOpts);
+
+                }
+            }],
             columns: [
                 {title: "Hugo Symbol",
                     data: "hugoSymbol"},
