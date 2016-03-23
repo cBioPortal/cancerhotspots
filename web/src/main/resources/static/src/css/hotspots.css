@@ -69,6 +69,16 @@ body {
     font-style: italic;
 }
 
+.single-residue-title {
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.table-button-group {
+    padding-top: 8px;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
