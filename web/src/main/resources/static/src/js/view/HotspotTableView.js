@@ -218,6 +218,7 @@ function HotspotTableView(options)
             language: {
                 loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
+            order: [[3 , "asc" ], [4, "desc"]],
             buttons: [{
                 text: "Download",
                 className: "btn-sm",
