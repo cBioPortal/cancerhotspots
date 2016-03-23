@@ -188,9 +188,9 @@ function HotspotTableView(options)
                         {title: "Sample Count",
                             data: "tumorCount"},
                         {title: "Tumor Type Composition",
-                            data: "tumorTypeComposition"},
-                        {title: "Validation Level [a]",
-                            data: "validationLevel"}
+                            data: "tumorTypeComposition"}
+                        //{title: "Validation Level [a]",
+                        //    data: "validationLevel"}
                     ];
 
                     var dataUtils = new DataUtils(columns);
