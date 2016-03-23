@@ -48,7 +48,7 @@ function CompositionView(options)
         data: {},
         colData: {},
         // default ordering
-        order: [[1 , "desc" ]],
+        order: [[1 , "desc" ], [0, "asc"]],
         paging: true,
         columns: [
             {title: "Tumor Type",
