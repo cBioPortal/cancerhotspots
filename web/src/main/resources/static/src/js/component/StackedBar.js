@@ -150,15 +150,16 @@ function StackedBar(options)
         var dataArray = _.pairs(model);
 
         dataArray.sort(function (a, b) {
-            if (a[1] === b[1])
-            {
+            if (a[1] === b[1]) {
                 // sort alphabetically (a-z)
-                return a[0] > b[0];
+                if (a[0] > b[0])
+                    return 1;
+                else
+                    return -1;
             }
-            else
-            {
+            else {
                 // sort descending
-                return a[1] < b[1];
+                return (b[1] - a[1]) || -1;
             }
         });
 

@@ -39,6 +39,11 @@
     text-align: left;
 }
 
+.right-align {
+    float: right;
+    text-align: right;
+}
+
 .no-text-wrap {
     white-space: nowrap;
 }
@@ -65,6 +70,20 @@ body {
     font-weight: bold;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.about-citation {
+    font-style: italic;
+}
+
+.single-residue-title {
+    padding-top: 8px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.table-button-group {
+    padding-top: 8px;
 }
 
 /* This is to center paging buttons */
