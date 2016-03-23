@@ -44,6 +44,8 @@ function StackedBar(options)
         elHeight: 20, // height of the container
         barHeight: 20,
         rectBorderColor: "#666666",
+        defaultColor: "#ebebeb",
+        // an array or a map of colors
         colors: ["#3366cc","#dc3912","#ff9900","#109618",
             "#990099","#0099c6","#dd4477","#66aa00",
             "#b82e2e","#316395","#994499","#22aa99",
@@ -166,9 +168,18 @@ function StackedBar(options)
             var value = pair[1];
 
             var width = scaleFn(value);
+            var color = _options.defaultColor;
 
-            // assign a different color to each stack
-            var color = _options.colors[idx % _options.colors.length];
+            // assign a different color to each rectangle
+
+            if (_.isObject(_options.colors))
+            {
+                color = _options.colors[key] || _options.colors.defaultColor;
+            }
+            else if (_.isArray(_options.colors))
+            {
+                color = _options.colors[idx % _options.colors.length];
+            }
 
             // draw a line (instead of a rectangle) for a gap
             //if (segment.type == LINE)

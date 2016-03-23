@@ -88,6 +88,32 @@ function HotspotTableView(options)
         data: {},
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
+        variantColors: {
+            "A": "#3366cc",
+            "R": "#dc3912",
+            "N": "#dc3912",
+            "D": "#ff9900",
+            "B": "#109618",
+            "C": "#990099",
+            "E": "#0099c6",
+            "Q": "#dd4477",
+            "Z": "#66aa00",
+            "G": "#b82e2e",
+            "H": "#316395",
+            "I": "#994499",
+            "L": "#22aa99",
+            "K": "#aaaa11",
+            "M": "#6633cc",
+            "F": "#e67300",
+            "P": "#8b0707",
+            "S": "#651067",
+            "T": "#329262",
+            "W": "#5574a6",
+            "Y": "#3b3eac",
+            "V": "#b77322",
+            "X": "#16d620",
+            "*": "#090303"
+        },
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -116,16 +142,38 @@ function HotspotTableView(options)
                 composition: row["tumorTypeComposition"]
             };
         },
-        variantRender: function (data) {
+        variantRender: function(data) {
             var templateFn = _.template($("#basic_content").html());
             return templateFn({value: _.size(data)});
         },
-        variantPostRender: function (td, cellData, rowData, row, col) {
+        variantTipRender: function(data)
+        {
+            if (_options.variantColors[data.toString().trim().toUpperCase()] != null)
+            {
+                var templateFn = _.template($("#variant_cell").html());
+                return templateFn({value: data});
+            }
+            else
+            {
+                return data;
+            }
+        },
+        variantTipPostRender: function(td, cellData, rowData, row, col) {
+            var bgColor = _options.variantColors[cellData.toString().trim().toUpperCase()];
+
+            if (bgColor != null)
+            {
+                $(td).find(".variant-cell").css({"background-color": bgColor});
+            }
+        },
+        variantPostRender: function(td, cellData, rowData, row, col) {
             var target = $(td).find(".basic-content");
             target.empty();
 
             var stackedBar = new StackedBar({
-                el: target
+                el: target,
+                // assign a fixed color for each amino acid value
+                colors: _options.variantColors
             });
 
             stackedBar.init(cellData);
@@ -136,7 +184,9 @@ function HotspotTableView(options)
                 paging: false,
                 columns: [
                     {title: "Variant",
-                        data: "type"},
+                        data: "type",
+                        render: _options.variantTipRender,
+                        createdCell: _options.variantTipPostRender},
                     {title: "Count",
                         data: "count"}
                 ]
