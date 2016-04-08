@@ -33,13 +33,13 @@
 package org.cmo.cancerhotspots.web;
 
 import org.cmo.cancerhotspots.domain.HotspotMutation;
+import org.cmo.cancerhotspots.domain.VariantComposition;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
+import org.cmo.cancerhotspots.service.VariantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,11 +51,14 @@ import java.util.List;
 public class HotspotController
 {
     private final HotspotMutationService hotspotMutationService;
+    private final VariantService variantService;
 
     @Autowired
-    public HotspotController(HotspotMutationService hotspotMutationService)
+    public HotspotController(HotspotMutationService hotspotMutationService,
+        VariantService variantService)
     {
         this.hotspotMutationService = hotspotMutationService;
+        this.variantService = variantService;
     }
 
     @RequestMapping(value = "/hotspots",
@@ -64,5 +67,46 @@ public class HotspotController
     public List<HotspotMutation> getAllHotspotMutations()
     {
         return hotspotMutationService.getAllHotspotMutations();
+    }
+
+    @RequestMapping(value = "/variants/{aminoAcidChanges}",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public List<VariantComposition> getVariants(@PathVariable List<String> aminoAcidChanges)
+    {
+        List<VariantComposition> variants = new LinkedList<>();
+
+        for (String aminoAcidChange : aminoAcidChanges)
+        {
+            VariantComposition variantComposition = variantService.getVariantComposition(aminoAcidChange);
+
+            if (variantComposition != null)
+            {
+                variants.add(variantComposition);
+            }
+        }
+
+        return variants;
+    }
+
+    @RequestMapping(value = "/variants/{hugoSymbol}/{aminoAcidChanges}",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public List<VariantComposition> getVariants(@PathVariable String hugoSymbol,
+        @PathVariable List<String> aminoAcidChanges)
+    {
+        List<VariantComposition> variants = new LinkedList<>();
+
+        for (String aminoAcidChange : aminoAcidChanges)
+        {
+            VariantComposition variantComposition = variantService.getVariantComposition(hugoSymbol, aminoAcidChange);
+
+            if (variantComposition != null)
+            {
+                variants.add(variantComposition);
+            }
+        }
+
+        return variants;
     }
 }
