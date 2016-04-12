@@ -45,10 +45,13 @@
 
     <!-- src js -->
     <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
+    <script type="text/javascript" src="src/js/data/VariantDataProxy.js"></script>
     <script type="text/javascript" src="src/js/component/StackedBar.js"></script>
     <script type="text/javascript" src="src/js/view/HotspotTableView.js"></script>
     <script type="text/javascript" src="src/js/view/CompositionView.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/ViewUtils.js"></script>
     <script type="text/javascript" src="src/js/main.js"></script>
 
 
@@ -234,6 +237,10 @@
 
 <script type="text/template" id="variant_cell">
     <span class="variant-cell">{{value}}</span>
+</script>
+
+<script type="text/template" id="variant_composition_cell">
+    <span class="variant-tumor-type-composition-cell"><img src="lib/images/loader.gif"></span>
 </script>
 
 <script type="text/template" id="variant_composition">

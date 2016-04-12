@@ -88,32 +88,8 @@ function HotspotTableView(options)
         data: {},
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
-        variantColors: {
-            "A": "#3366cc",
-            "R": "#dc3912",
-            "N": "#dc3912",
-            "D": "#ff9900",
-            "B": "#109618",
-            "C": "#990099",
-            "E": "#0099c6",
-            "Q": "#dd4477",
-            "Z": "#66aa00",
-            "G": "#b82e2e",
-            "H": "#316395",
-            "I": "#994499",
-            "L": "#22aa99",
-            "K": "#aaaa11",
-            "M": "#6633cc",
-            "F": "#e67300",
-            "P": "#8b0707",
-            "S": "#651067",
-            "T": "#329262",
-            "W": "#5574a6",
-            "Y": "#3b3eac",
-            "V": "#b77322",
-            "X": "#16d620",
-            "*": "#090303"
-        },
+        variantColors: ViewUtils.getDefaultVariantColors(),
+        tumorColors: ViewUtils.getDefaultTumorTypeColors(),
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -166,6 +142,34 @@ function HotspotTableView(options)
                 $(td).find(".variant-cell").css({"background-color": bgColor});
             }
         },
+        variantTipCompositionRender: function(data)
+        {
+            var templateFn = _.template($("#variant_composition_cell").html());
+            return templateFn();
+        },
+        variantTipCompositionPostRender: function(td, cellData, rowData, row, col) {
+            var proxy = new VariantDataProxy();
+            var gene = cellData.hugoSymbol;
+            var aaChange = cellData.codon + rowData.type;
+
+            proxy.getTumorTypeComposition(gene, aaChange, function(compositionData) {
+                var target = $(td).find(".variant-tumor-type-composition-cell");
+                target.empty();
+
+                var stackedBar = new StackedBar({
+                    el: target,
+                    // assign a fixed color for each tumor type
+                    colors: _options.tumorColors
+                });
+
+                if (compositionData.length > 0)
+                {
+                    stackedBar.init(compositionData[0].tumorTypeComposition);
+                }
+            });
+
+            //$(td).find(".variant-tumor-type-composition-cell").css({"background-color": bgColor});
+        },
         variantPostRender: function(td, cellData, rowData, row, col) {
             var target = $(td).find(".basic-content");
             target.empty();
@@ -188,7 +192,16 @@ function HotspotTableView(options)
                         render: _options.variantTipRender,
                         createdCell: _options.variantTipPostRender},
                     {title: "Count",
-                        data: "count"}
+                        data: "count"},
+                    {title: "Composition",
+                        data: function() {
+                            return {
+                                hugoSymbol: rowData.hugoSymbol,
+                                codon: rowData.codon
+                            }
+                        },
+                        render: _options.variantTipCompositionRender,
+                        createdCell: _options.variantTipCompositionPostRender}
                 ]
             };
 

@@ -175,6 +175,11 @@ function StackedBar(options)
             if (_.isObject(_options.colors))
             {
                 color = _options.colors[key] || _options.colors.defaultColor;
+
+                if (_options.colors[key] == null)
+                {
+                    console.log("[warning] no color mapping for: " + key);
+                }
             }
             else if (_.isArray(_options.colors))
             {

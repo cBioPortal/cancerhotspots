@@ -31,18 +31,27 @@
  */
 
 /**
- * Designed to retrieve hotspots data from server.
  *
- * @param options   proxy options
  * @author Selcuk Onur Sumer
  */
-function HotspotDataProxy(options)
+var ProxyUtils = (function()
 {
-    function getAllHotspots(callback)
+    function ajaxOpts(url, data, callback)
     {
-        // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts("hotspots", {}, callback));
+        return {
+            type: "POST",
+            url: url,
+            data: data,
+            success: callback,
+            error: function() {
+                console.log("Error retrieving data for: " + url);
+                callback([]);
+            },
+            dataType: "json"
+        };
     }
 
-    this.getAllHotspots = getAllHotspots;
-}
+    return {
+        ajaxOpts: ajaxOpts
+    };
+})();
