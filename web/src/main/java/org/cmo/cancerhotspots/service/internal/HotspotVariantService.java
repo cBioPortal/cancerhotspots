@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,8 +29,12 @@ public class HotspotVariantService implements VariantService
     public HotspotVariantService(MutationAnnotationService mafService)
     {
         this.mafService = mafService;
-        this.variantCacheByAAChange = constructVariantCacheByAAChange();
         this.variantCacheByGeneAndAAChange = constructVariantCacheByGeneAndAAChange();
+
+        // TODO disable for now to reduce memory usage
+        // technically we should use database for such large data
+        //this.variantCacheByAAChange = constructVariantCacheByAAChange();
+        this.variantCacheByAAChange = Collections.emptyMap();
     }
 
     @Override
