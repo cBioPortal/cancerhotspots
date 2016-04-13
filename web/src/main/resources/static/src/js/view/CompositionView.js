@@ -39,6 +39,8 @@
  */
 function CompositionView(options)
 {
+    var _dataTable = null;
+
     var _defaultOpts = {
         // default target DOM element
         el: '#tumor_type_composition_view',
@@ -49,9 +51,11 @@ function CompositionView(options)
         colData: {},
         // default ordering
         order: [[1 , "desc" ], [0, "asc"]],
-        paging: true,
+        paging: false,
+        scrollY: "300px",
+        scrollCollapse: true,
         columns: [
-            {title: "Tumor Type",
+            {title: "Cancer Type",
                 data: "type"},
             {title: "Count",
                 data: "count"}
@@ -72,15 +76,18 @@ function CompositionView(options)
         $(_options.el).html(templateFn(_options.colData));
 
         var dataTableOpts = {
-            sDom: 'st<"composition-paginate"p>',
+            dom: 'st<"composition-paginate"p>',
             paging: _options.paging,
+            scrollY: _options.scrollY,
+            scrollCollapse: _options.scrollCollapse,
             data: _options.data,
             order: _options.order,
             columns: _options.columns
         };
 
-        $(_options.el).find(_options.dataTableTarget).DataTable(dataTableOpts);
+        _dataTable = $(_options.el).find(_options.dataTableTarget).DataTable(dataTableOpts);
     }
 
     this.render = render;
+    this.getDataTable = function() {return _dataTable};
 }

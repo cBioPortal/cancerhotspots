@@ -230,7 +230,7 @@
 
 <script type="text/template" id="tumor_type_composition">
     <div class="center-align"><b>{{tumorCount}}</b> total sample(s)
-        with <b>{{tumorTypeCount}}</b> distinct tumor type(s)</div>
+        with <b>{{tumorTypeCount}}</b> distinct cancer type(s)</div>
     <table class="tumor-type-composition display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
 </script>
@@ -239,8 +239,17 @@
     <span class="variant-cell">{{value}}</span>
 </script>
 
-<script type="text/template" id="variant_composition_cell">
-    <span class="variant-tumor-type-composition-cell"><img src="lib/images/loader.gif"></span>
+<script type="text/template" id="variant_count_cell">
+    <table>
+        <tr>
+            <td>
+                <span class="variant-tumor-type-composition"><img src="lib/images/loader.gif"></span>
+            </td>
+            <td>
+                <span class="variant-count">{{value}}</span>
+            </td>
+        </tr>
+    </table>
 </script>
 
 <script type="text/template" id="variant_composition">

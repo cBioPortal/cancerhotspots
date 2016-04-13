@@ -57,6 +57,7 @@ function StackedBar(options)
         rectBorderWidth: 0.5,
         rectOpacity: 1,
         threshold: 10,
+        disableText: false,
         font: "sans-serif",   // font of the text
         fontColor: "#FFFFFF", // font color of the text
         fontSize: "12px",     // font size of the text
@@ -234,7 +235,9 @@ function StackedBar(options)
     function drawStackText(label, group, width, x)
     {
         // do not add the text if the width is less than the threshold value
-        if (_options.threshold > width)
+        // or text is disabled
+        if (_options.disableText ||
+            _options.threshold > width)
         {
             return null;
         }
