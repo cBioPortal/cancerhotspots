@@ -51,12 +51,39 @@ function CompositionView(options)
         colData: {},
         // default ordering
         order: [[1 , "desc" ], [0, "asc"]],
+        //dom: 't<"composition-paginate"p>',
+        //dom: "<'row'<'col-sm-12 composition-view-filter'f>>t",
+        dom: "<'composition-view-filter'f>t",
         paging: false,
         scrollY: "300px",
         scrollCollapse: true,
         columns: [
             {title: "Cancer Type",
-                data: "type"},
+                data: "type",
+                render: function(data) {
+                    var name = ViewUtils.getTumorTypeNames()[
+                        data.toString().trim().toLowerCase()];
+
+                    if (name)
+                    {
+                        var templateFn = _.template($("#tumor_type_cell").html());
+                        return templateFn({value: name});
+                    }
+                    else
+                    {
+                        return data;
+                    }
+                },
+                createdCell: function(td, cellData, rowData, row, col) {
+                    var color = ViewUtils.getDefaultTumorTypeColors()[
+                        cellData.toString().trim().toLowerCase()];
+
+                    if (color != null)
+                    {
+                        $(td).find(".tumor-type-color").css({"background-color": color});
+                    }
+                }
+            },
             {title: "Count",
                 data: "count"}
         ],
@@ -76,7 +103,7 @@ function CompositionView(options)
         $(_options.el).html(templateFn(_options.colData));
 
         var dataTableOpts = {
-            dom: 'st<"composition-paginate"p>',
+            dom: _options.dom,
             paging: _options.paging,
             scrollY: _options.scrollY,
             scrollCollapse: _options.scrollCollapse,

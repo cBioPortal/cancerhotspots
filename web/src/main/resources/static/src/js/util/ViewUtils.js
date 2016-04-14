@@ -35,42 +35,58 @@
  * @author Selcuk Onur Sumer
  */
 var ViewUtils = (function() {
+
     var _tumorType = {
-        "acc": {color: "purple"},
-        "blca": {color: "yellow"},
-        "brca": {color: "hotpink"},
-        "cesc": {color: "teal"},
-        "chol": {color: "green"},
-        "coad": {color: "saddlebrown"},
-        "coadread": {color: "saddlebrown"},
-        "dlbc": {color: "limegreen"},
-        "esca": {color: "lightskyblue"},
-        "gbm": {color: "gray"},
-        "hnsc": {color: "darkred"},
-        "kich": {color: "orange"},
-        "kirc": {color: "orange"},
-        "kirp": {color: "orange"},
-        "laml": {color: "orange"},
-        "lgg": {color: "gray"},
-        "lihc": {color: "mediumseagreen"},
-        "luad": {color: "gainsboro"},
-        "lusc": {color: "gainsboro"},
-        "meso": {color: "blue"},
-        "ov": {color: "lightblue"},
-        "paad": {color: "purple"},
-        "pcpg": {color: "gray"},
-        "prad": {color: "cyan"},
-        "read": {color: "saddlebrown"},
-        "sarc": {color: "lightyellow"},
-        "skcm": {color: "black"},
-        "stad": {color: "lightskyblue"},
-        "stes": {color: "lightskyblue"},
-        "tgct": {color: "red"},
-        "thca": {color: "teal"},
-        "thym": {color: "purple"},
-        "ucec": {color: "peachpuff"},
-        "ucs": {color: "peachpuff"},
-        "uvm": {color: "green"}
+        "all": {color: "", name: ""},
+        "acc": {color: "purple", name: "Adrenocortical Carcinoma"},
+        "acyc": {color: "darkred", name: "Adenoid Cystic Carcinoma"},
+        "blca": {color: "yellow", name: "Bladder Urothelial Carcinoma"},
+        "brca": {color: "hotpink", name: "Invasive Breast Carcinoma"},
+        "cesc": {color: "teal", name: "Cervical Squamous Cell Carcinoma"},
+        "chol": {color: "green", name: "Cholangiocarcinoma"},
+        "cll": {color: "lightsalmon", name: "Chronic Lymphocytic Leukemia"},
+        "coad": {color: "saddlebrown", name: "Colon Adenocarcinoma"},
+        "coadread": {color: "saddlebrown", name: "Colorectal Adenocarcinoma"},
+        "cscc": {color: "black", name: "Cutaneous Squamous Cell Carcinoma"},
+        "dlbc": {color: "limegreen", name: "Diffuse Large B-Cell Lymphoma"},
+        "esca": {color: "lightskyblue", name: "Esophageal Adenocarcinoma"},
+        "gbc": {color: "green", name: "Gallbladder Cancer"},
+        "gbm": {color: "gray", name: "Glioblastoma Multiforme"},
+        "hgg": {color: "gray", name: "High-Grade Glioma"},
+        "hnsc": {color: "darkred", name: "Head and Neck Squamous Cell Carcinoma"},
+        "kich": {color: "orange", name: ""},
+        "kirc": {color: "orange", name: ""},
+        "kirp": {color: "orange", name: ""},
+        "laml": {color: "orange", name: ""},
+        "lgg": {color: "gray", name: "Low-Grade Glioma"},
+        "lihc": {color: "mediumseagreen", name: ""},
+        "luad": {color: "gainsboro", name: "Lung Adenocarcinoma"},
+        "lusc": {color: "gainsboro", name: "Lung Squamous Cell Carcinoma"},
+        "lusm": {color: "", name: ""},
+        "lymbc": {color: "", name: ""},
+        "mbl": {color: "gray", name: "Medulloblastoma"},
+        "mcl": {color: "limegreen", name: "Mantle Cell Lymphoma"},
+        "mds": {color: "lightsalmon", name: "Myelodysplasia"},
+        "meso": {color: "blue", name: ""},
+        "mmyl": {color: "", name: ""},
+        "nbl": {color: "gray", name: "Neuroblastoma"},
+        "npc": {color: "darkred", name: "Nasopharyngeal Carcinoma"},
+        "ov": {color: "lightblue", name: "Ovarian Cancer"},
+        "paad": {color: "purple", name: "Pancreatic Adenocarcinoma"},
+        "pcpg": {color: "gray", name: "Miscellaneous Neuroepithelial Tumor"}, // ?
+        "pias": {color: "", name: ""},
+        "prad": {color: "cyan", name: "Prostate Adenocarcinoma"},
+        "read": {color: "saddlebrown", name: "Rectal Adenocarcinoma"},
+        "sarc": {color: "lightyellow", name: "Soft Tissue"}, // ?
+        "skcm": {color: "black", name: "Cutaneous Melanoma"},
+        "stad": {color: "lightskyblue", name: "Stomach Adenocarcinoma"},
+        "stes": {color: "lightskyblue", name: "Esophagus / Stomach"}, // ?
+        "tgct": {color: "lightyellow", name: "Tenosynovial Giant Cell Tumor Diffuse Type"},
+        "thca": {color: "teal", name: ""},
+        "thym": {color: "purple", name: "Thymoma"},
+        "ucec": {color: "peachpuff", name: "Endometrial Carcinoma"},
+        "ucs": {color: "peachpuff", name: "Uterine Carcinosarcoma / Uterine Malignant Mixed Mullerian Tumor"},
+        "uvm": {color: "green", name: "Uveal Melanoma"}
     };
 
     var _variantType = {
@@ -122,7 +138,19 @@ var ViewUtils = (function() {
         return map;
     }
 
+    function getTumorTypeNames()
+    {
+        var map = {};
+
+        _.each(_.keys(_tumorType), function (key) {
+            map[key] = _tumorType[key].name;
+        });
+
+        return map;
+    }
+
     return {
+        getTumorTypeNames: getTumorTypeNames,
         getDefaultTumorTypeColors: getDefaultTumorTypeColors,
         getDefaultVariantColors: getDefaultVariantColors
     };

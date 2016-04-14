@@ -59,7 +59,7 @@ body {
 
 .cancer-hotspots-tooltip {
     font-size: 0.8em;
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .table-hover-info {
@@ -78,6 +78,23 @@ body {
     height: 50%;
 }
 
+.tumor-type-composition td {
+    text-align: left;
+}
+
+.composition-view-filter input {
+    height: 22px;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.tumor-type-color {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+
 .about-citation {
     font-style: italic;
 }
@@ -90,6 +107,10 @@ body {
 
 .table-button-group {
     padding-top: 8px;
+}
+
+.tumor-type-composition-info {
+    margin-bottom: 5px;
 }
 
 /* This is to center paging buttons */

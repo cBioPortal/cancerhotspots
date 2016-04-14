@@ -229,7 +229,7 @@
 </script>
 
 <script type="text/template" id="tumor_type_composition">
-    <div class="center-align"><b>{{tumorCount}}</b> total sample(s)
+    <div class="center-align tumor-type-composition-info"><b>{{tumorCount}}</b> total sample(s)
         with <b>{{tumorTypeCount}}</b> distinct cancer type(s)</div>
     <table class="tumor-type-composition display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
@@ -237,6 +237,13 @@
 
 <script type="text/template" id="variant_cell">
     <span class="variant-cell">{{value}}</span>
+</script>
+
+<script type="text/template" id="tumor_type_cell">
+    <span class="tumor-type-cell">
+        <span class="tumor-type-color"></span>
+        <span class="tumor-type-name">{{value}}</span>
+    </span>
 </script>
 
 <script type="text/template" id="variant_count_cell">

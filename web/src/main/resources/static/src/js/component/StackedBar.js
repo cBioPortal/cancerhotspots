@@ -177,7 +177,8 @@ function StackedBar(options)
             {
                 color = _options.colors[key] || _options.colors.defaultColor;
 
-                if (_options.colors[key] == null)
+                if (_options.colors[key] == null ||
+                    _options.colors[key].length === 0)
                 {
                     console.log("[warning] no color mapping for: " + key);
                 }

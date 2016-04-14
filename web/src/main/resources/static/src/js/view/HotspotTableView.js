@@ -207,6 +207,7 @@ function HotspotTableView(options)
             var viewOpts = {
                 templateId: '#variant_composition',
                 dataTableTarget: ".variant-composition",
+                dom: "t",
                 columns: [
                     {title: "Variant",
                         data: "type",
