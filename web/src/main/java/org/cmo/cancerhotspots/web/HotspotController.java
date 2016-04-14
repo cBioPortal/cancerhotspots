@@ -109,4 +109,14 @@ public class HotspotController
 
         return variants;
     }
+
+    @RequestMapping(value = "/create/variants",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public String createVariants()
+    {
+        variantService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
+
+        return "variant file creation initialized";
+    }
 }
