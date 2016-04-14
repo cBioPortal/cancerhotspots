@@ -136,7 +136,9 @@ section.stressed a.active {
 }
 hr.star-light:after, hr.star-primary:after {
     background-color: inherit;
-    content: "\f140"
+    /*content: "\f140"*/
+    font-family: icomoon;
+    content: "\e666"
 }
 #about hr.star-primary:after {
     background-color: #dff0d8;
