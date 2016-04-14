@@ -36,57 +36,89 @@
  */
 var ViewUtils = (function() {
 
-    var _tumorType = {
-        "all": {color: "", name: ""},
+    var _legacyToOncotree = {
+        mmyl: "mm",
+        coadread: "coadread",
+        gbm: "gbm",
+        thca: "thyroid",
+        hnsc: "headneck",
+        skcm: "skcm",
+        hgg: "difg", // ?
+        lgg: "encg", // ?
+        luad: "luad",
+        kirp: "prcc",
+        paad: "paad",
+        brca: "brca",
+        npc: "npc",
+        esca: "esca",
+        ucs: "ucs",
+        blca: "blca",
+        laml: "aml",
+        ov: "hgsoc",
+        lihc: "hcc",
+        prad: "prad",
+        stad: "stad",
+        ucec: "ucec",
+        cesc: "cesc",
+        mds: "mds",
+        acc: "acc",
+        lusc: "lusc",
+        mbl: "lusc",
+        kirc: "ccrcc",
+        acyc: "acyc",
+        cll: "cll",
+        kich: "ccrcc",
+        gbc: "gbc",
+        lusm: "sclc",
+        cscc: "cscc",
+        pias: "past",
+        dlbc: "dlbcl",
+        lymbc: "bl",
+        nbl: "nbl",
+        mcl: "mcl",
+        all: "all"
+    };
+
+    var _oncotree = {
+        "all": {color: "orange", name: "Acute Lymphoid Leukemia"},
         "acc": {color: "purple", name: "Adrenocortical Carcinoma"},
         "acyc": {color: "darkred", name: "Adenoid Cystic Carcinoma"},
         "blca": {color: "yellow", name: "Bladder Urothelial Carcinoma"},
         "brca": {color: "hotpink", name: "Invasive Breast Carcinoma"},
         "cesc": {color: "teal", name: "Cervical Squamous Cell Carcinoma"},
-        "chol": {color: "green", name: "Cholangiocarcinoma"},
         "cll": {color: "lightsalmon", name: "Chronic Lymphocytic Leukemia"},
-        "coad": {color: "saddlebrown", name: "Colon Adenocarcinoma"},
         "coadread": {color: "saddlebrown", name: "Colorectal Adenocarcinoma"},
         "cscc": {color: "black", name: "Cutaneous Squamous Cell Carcinoma"},
-        "dlbc": {color: "limegreen", name: "Diffuse Large B-Cell Lymphoma"},
+        "dlbcl": {color: "limegreen", name: "Diffuse Large B-Cell Lymphoma"},
         "esca": {color: "lightskyblue", name: "Esophageal Adenocarcinoma"},
         "gbc": {color: "green", name: "Gallbladder Cancer"},
         "gbm": {color: "gray", name: "Glioblastoma Multiforme"},
-        "hgg": {color: "gray", name: "High-Grade Glioma"},
-        "hnsc": {color: "darkred", name: "Head and Neck Squamous Cell Carcinoma"},
-        "kich": {color: "orange", name: ""},
-        "kirc": {color: "orange", name: ""},
-        "kirp": {color: "orange", name: ""},
-        "laml": {color: "orange", name: ""},
-        "lgg": {color: "gray", name: "Low-Grade Glioma"},
-        "lihc": {color: "mediumseagreen", name: ""},
+        "difg": {color: "gray", name: "Diffuse Glioma"},
+        "headneck": {color: "darkred", name: "Head and Neck Carcinoma"},
+        "ccrcc": {color: "orange", name: "Renal Clear Cell Carcinoma"},
+        "prcc": {color: "orange", name: "Papillary Renal Cell Carcinoma"},
+        "aml": {color: "orange", name: "Acute Myeloid Leukemia"},
+        "encg": {color: "gray", name: "Encapsulated Glioma"},
+        "hcc": {color: "mediumseagreen", name: "Hepatocellular Carcinoma"},
         "luad": {color: "gainsboro", name: "Lung Adenocarcinoma"},
         "lusc": {color: "gainsboro", name: "Lung Squamous Cell Carcinoma"},
-        "lusm": {color: "", name: ""},
-        "lymbc": {color: "", name: ""},
+        "sclc": {color: "gainsboro", name: "Small Cell Lung Cancer"},
+        "bl": {color: "limegreen", name: "Burkitt Lymphoma"},
         "mbl": {color: "gray", name: "Medulloblastoma"},
         "mcl": {color: "limegreen", name: "Mantle Cell Lymphoma"},
         "mds": {color: "lightsalmon", name: "Myelodysplasia"},
-        "meso": {color: "blue", name: ""},
-        "mmyl": {color: "", name: ""},
+        "mm": {color: "lightsalmon", name: "Multiple Myeloma"},
         "nbl": {color: "gray", name: "Neuroblastoma"},
         "npc": {color: "darkred", name: "Nasopharyngeal Carcinoma"},
-        "ov": {color: "lightblue", name: "Ovarian Cancer"},
+        "hgsoc": {color: "lightblue", name: "High-Grade Serous Ovarian Cancer"},
         "paad": {color: "purple", name: "Pancreatic Adenocarcinoma"},
-        "pcpg": {color: "gray", name: "Miscellaneous Neuroepithelial Tumor"}, // ?
-        "pias": {color: "", name: ""},
+        "past": {color: "gray", name: "Pilocytic Astrocytoma"},
         "prad": {color: "cyan", name: "Prostate Adenocarcinoma"},
-        "read": {color: "saddlebrown", name: "Rectal Adenocarcinoma"},
-        "sarc": {color: "lightyellow", name: "Soft Tissue"}, // ?
         "skcm": {color: "black", name: "Cutaneous Melanoma"},
         "stad": {color: "lightskyblue", name: "Stomach Adenocarcinoma"},
-        "stes": {color: "lightskyblue", name: "Esophagus / Stomach"}, // ?
-        "tgct": {color: "lightyellow", name: "Tenosynovial Giant Cell Tumor Diffuse Type"},
-        "thca": {color: "teal", name: ""},
-        "thym": {color: "purple", name: "Thymoma"},
+        "thyroid": {color: "teal", name: "Thyroid Cancer"}, // ?
         "ucec": {color: "peachpuff", name: "Endometrial Carcinoma"},
-        "ucs": {color: "peachpuff", name: "Uterine Carcinosarcoma / Uterine Malignant Mixed Mullerian Tumor"},
-        "uvm": {color: "green", name: "Uveal Melanoma"}
+        "ucs": {color: "peachpuff", name: "Uterine Carcinosarcoma / Uterine Malignant Mixed Mullerian Tumor"}
     };
 
     var _variantType = {
@@ -120,8 +152,11 @@ var ViewUtils = (function() {
     {
         var map = {};
 
-        _.each(_.keys(_tumorType), function (key) {
-            map[key] = _tumorType[key].color;
+        _.each(_.keys(_legacyToOncotree), function (legacyKey) {
+            var oncoKey = _legacyToOncotree[legacyKey];
+            if (_oncotree[oncoKey] != null) {
+                map[legacyKey] = _oncotree[oncoKey].color;
+            }
         });
 
         return map;
@@ -142,8 +177,11 @@ var ViewUtils = (function() {
     {
         var map = {};
 
-        _.each(_.keys(_tumorType), function (key) {
-            map[key] = _tumorType[key].name;
+        _.each(_.keys(_legacyToOncotree), function (legacyKey) {
+            var oncoKey = _legacyToOncotree[legacyKey];
+            if (_oncotree[oncoKey] != null) {
+                map[legacyKey] = _oncotree[oncoKey].name;
+            }
         });
 
         return map;
