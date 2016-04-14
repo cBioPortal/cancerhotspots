@@ -120,11 +120,8 @@ div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
 }
 
 /* A little bit of theme tweaking */
-section {
-    padding: 40px;
-}
 header {
-    background-color: #b84d45;
+    background-color: #c84e23;
 }
 section.stressed {
     background-color: #dff0d8;
@@ -148,5 +145,5 @@ hr.star-light:after, hr.star-primary:after {
     background-color: #fff;
 }
 header hr.star-light:after {
-    background-color: #b84d45;
+    background-color: #c84e23;
 }
