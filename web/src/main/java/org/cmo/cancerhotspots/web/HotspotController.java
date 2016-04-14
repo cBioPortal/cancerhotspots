@@ -35,6 +35,7 @@ package org.cmo.cancerhotspots.web;
 import org.cmo.cancerhotspots.domain.HotspotMutation;
 import org.cmo.cancerhotspots.domain.VariantComposition;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
+import org.cmo.cancerhotspots.service.VariantDataImportService;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,13 +53,16 @@ public class HotspotController
 {
     private final HotspotMutationService hotspotMutationService;
     private final VariantService variantService;
+    private final VariantDataImportService variantImportService;
 
     @Autowired
     public HotspotController(HotspotMutationService hotspotMutationService,
-        VariantService variantService)
+        VariantService variantService,
+        VariantDataImportService variantImportService)
     {
         this.hotspotMutationService = hotspotMutationService;
         this.variantService = variantService;
+        this.variantImportService = variantImportService;
     }
 
     @RequestMapping(value = "/hotspots",
@@ -115,8 +119,16 @@ public class HotspotController
         produces = "application/json")
     public String createVariants()
     {
-        variantService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
+        variantImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
 
         return "variant file creation initialized";
+    }
+
+    @RequestMapping(value = "/variants",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public List<VariantComposition> getAllVariants()
+    {
+        return variantService.getAllVariantCompositions();
     }
 }

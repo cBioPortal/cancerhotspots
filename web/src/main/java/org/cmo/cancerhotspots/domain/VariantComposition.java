@@ -1,5 +1,9 @@
 package org.cmo.cancerhotspots.domain;
 
+import com.univocity.parsers.annotations.Convert;
+import com.univocity.parsers.annotations.Parsed;
+import com.univocity.parsers.annotations.Trim;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -8,11 +12,22 @@ import java.util.Map;
  */
 public class VariantComposition
 {
+    @Trim
+    @Parsed(field = "Reference_Amino_Acid")
     private String referenceAminoAcid;
+
+    @Trim
+    @Parsed(field = "Variant_Amino_Acid")
     private String variantAminoAcid;
+
+    @Trim
+    @Parsed(field = "Amino_Acid_Position")
     private Integer aminoAcidPosition;
 
     // tumor type composition as <tumor type, count> pairs
+    @Trim
+    @Convert(conversionClass = MapConversion.class)
+    @Parsed(field = "Tumor_Type_Composition")
     private Map<String, Integer> tumorTypeComposition;
 
     public VariantComposition()

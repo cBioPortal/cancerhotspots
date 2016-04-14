@@ -12,5 +12,5 @@ public interface VariantService
 {
     VariantComposition getVariantComposition(String aminoAcidChange);
     VariantComposition getVariantComposition(String hugoSymbol, String aminoAcidChange);
-    void createVariantFile(List<HotspotMutation> hotspotMutations);
+    List<VariantComposition> getAllVariantCompositions();
 }
