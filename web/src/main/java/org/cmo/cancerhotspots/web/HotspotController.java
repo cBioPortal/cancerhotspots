@@ -73,9 +73,13 @@ public class HotspotController
         return hotspotMutationService.getAllHotspotMutations();
     }
 
-    @RequestMapping(value = "/variants/{aminoAcidChanges}",
-        method = {RequestMethod.GET, RequestMethod.POST},
-        produces = "application/json")
+
+    // TODO API disabled for now, enable if needed
+    // -- after implementing corresponding service method properly!
+
+//    @RequestMapping(value = "/variants/{aminoAcidChanges}",
+//        method = {RequestMethod.GET, RequestMethod.POST},
+//        produces = "application/json")
     public List<VariantComposition> getVariants(@PathVariable List<String> aminoAcidChanges)
     {
         List<VariantComposition> variants = new LinkedList<>();

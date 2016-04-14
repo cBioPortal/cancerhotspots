@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +34,7 @@ public class HotspotVariantDataImportService implements VariantDataImportService
 
     // cache of <amino acid change, variant> pairs
     private Map<String, VariantComposition> variantCacheByAAChange;
+    // cache of <hugo symbol + amino acid change, variant> pairs
     private Map<String, VariantComposition> variantCacheByGeneAndAAChange;
 
     private MutationAnnotationService mafService;
