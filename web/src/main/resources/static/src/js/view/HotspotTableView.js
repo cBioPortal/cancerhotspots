@@ -185,7 +185,8 @@ function HotspotTableView(options)
                     };
 
                     stackedBar.init(tumorTypeComposition);
-                    cbio.util.addTargetedQTip(target.find('svg'),
+
+                    cbio.util.addTargetedQTip($(td).find(".variant-count-cell-content"),
                                               tooltipOpts(tooltipData));
                 }
             });
