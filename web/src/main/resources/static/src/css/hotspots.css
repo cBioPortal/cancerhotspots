@@ -30,6 +30,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+table.center-align {
+    margin: auto;
+}
+
 .center-align, .center-align th {
     text-align: center;
 }
@@ -95,7 +99,7 @@ body {
     margin-right: 5px;
 }
 
-.about-citation {
+.about-citation, .header-citation {
     font-style: italic;
 }
 
@@ -122,6 +126,14 @@ div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
 /* A little bit of theme tweaking */
 header {
     background-color: #c84e23;
+}
+header a,
+header a:hover,
+header a:focus,
+header a:active,
+header a.active {
+    outline: 0;
+    color: #ffffff;
 }
 section.stressed {
     background-color: #dff0d8;
