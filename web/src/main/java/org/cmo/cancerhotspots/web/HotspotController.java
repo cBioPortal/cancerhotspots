@@ -38,8 +38,13 @@ import org.cmo.cancerhotspots.service.HotspotMutationService;
 import org.cmo.cancerhotspots.service.VariantDataImportService;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -134,5 +139,13 @@ public class HotspotController
     public List<VariantComposition> getAllVariants()
     {
         return variantService.getAllVariantCompositions();
+    }
+
+    @RequestMapping(value = "/download/{filename}",
+        method = {RequestMethod.GET, RequestMethod.POST})
+    public InputStreamResource downloadFile(@PathVariable String filename) throws IOException
+    {
+        Resource resource = new ClassPathResource("data/" + filename + ".txt");
+        return new InputStreamResource(resource.getInputStream());
     }
 }
