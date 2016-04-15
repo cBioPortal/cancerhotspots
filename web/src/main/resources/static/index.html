@@ -1,10 +1,11 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Cancer Hotspots</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="src/images/favicon.ico" type="image/x-icon"/>
 
     <!-- lib css -->
     <link href="lib/css/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
@@ -16,10 +17,12 @@
     <!--link href="lib/css/dataTables.jqueryui.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" /-->
     <link href="lib/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/css/icomoon.css" rel="stylesheet">
     <link href="lib/css/freelancer.css" rel="stylesheet">
 
     <!-- source css -->
-    <link href="src/css/hotspots.css" type="text/css" rel="stylesheet" />
+    <link href="src/css/oncokb.css" type="text/css" rel="stylesheet"/>
+    <link href="src/css/hotspots.css" type="text/css" rel="stylesheet"/>
 
     <!-- lib js -->
     <script type="text/javascript" src="lib/js/underscore-min.js"></script>
@@ -45,10 +48,13 @@
 
     <!-- src js -->
     <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
+    <script type="text/javascript" src="src/js/data/VariantDataProxy.js"></script>
     <script type="text/javascript" src="src/js/component/StackedBar.js"></script>
     <script type="text/javascript" src="src/js/view/HotspotTableView.js"></script>
     <script type="text/javascript" src="src/js/view/CompositionView.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/ViewUtils.js"></script>
     <script type="text/javascript" src="src/js/main.js"></script>
 
 
@@ -61,61 +67,73 @@
     </script>
 </head>
 <body id="page-top" class="index">
+<div class="wrapper">
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#page-top">Cancer Hotspots</a>
+    <div class="navbar navbar-inverse navbar-fixed-top page-scroll" role="navigation">
+        <div class="container nav-container">
+            <div class="navbar-header">
+                <div data-toggle="collapse" data-target=".navbar-collapse" class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <b>Menu</b>
+                </div>
+                <a class="navbar-brand" href="#page-top"><span class="hotspot-fire"></span>Cancer Hotspots</a>
             </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
                     <li class="page-scroll">
-                        <a href="#explore">Explore</a>
+                        <a href="#home">Home</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#about">About</a>
                     </li>
+                    <li class="page-scroll">
+                        <!--a href="#">Download</a-->
+                        <a href="files/hotspots.xls" target="_blank">Download</a>
+                    </li>
                 </ul>
+                <div class="pull-right">
+                </div>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
-    </nav>
+        <div class="subNavWrapper">
+            <div class="container">
+                <div class="subNav">
+                    <div class="pull-left subNav-sxn-1">
+                        A resource for statistically significant mutations in cancer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Header -->
-    <header>
+
+    <!--header>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-text">
                         <span class="name">Cancer Hotspots</span>
                         <hr class="star-light">
-                        <span class="skills">A resource for statistically significant mutations in cancer</span>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </header-->
 
-    <section id="explore">
-        <div>
+    <section id="home">
+        <div class="container">
             <div class="row">
-                <!--div class="col-lg-12 text-center">
-                    <h2>Single Residue Hotspot Mutations</h2>
-                    <hr class="star-primary">
-                </div-->
+                <p><span class="skills">
+                    Single residue mutation hotspots identified in 11,119 tumor samples
+                    by the algorithm described in
+                    [<span class="header-citation"><a
+                        href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
+                </span></p>
             </div>
             <div id="main_content" class="default-plain-text"></div>
         </div>
@@ -125,14 +143,60 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Single residue hotspots were identified with an algorithm by
+                    <p>
+                        This resource is maintained by the Kravis Center for Molecular Oncology
+                        at Memorial Sloan Kettering Cancer Center.
+                        It provides information about statistically significantly
+                        recurrent mutations identified in large scale cancer genomics data.
+                    </p>
+                    <p>
+                        With this initial release, we make available the single residue hotspots
+                        identified in 11,119 tumor samples with the algorithm described by:
                         <span class="about-citation">
                             <a href="http://www.nature.com/nbt/journal/v34/n2/full/nbt.3391.html">Chang et al.,
-                            Identifying recurrent mutations in cancer reveals widespread lineage diversity and mutational specificity.
-                            Nature Biotechnology 34, 155–163 (2016).</a>
+                                Identifying recurrent mutations in cancer reveals widespread lineage diversity and
+                                mutational specificity.
+                                Nature Biotechnology 34, 155–163 (2016).</a>
                             <a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011"
                                class="pubmed-link"><img src="lib/images/PubMed.png"></a>
                         </span>
+                    </p>
+                    <p>
+                        Look for future updates on a larger sample size, as well as
+                        results from new methods to detect recurrent mutations.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h4>Contributors</h4>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3">
+                    <table class="center-align about-lab-table">
+                        <thead>
+                            <tr><th>Taylor Lab</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Matthew Chang</td></tr>
+                            <tr><td>Barry Taylor</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-3">
+                    <table class="center-align about-lab-table">
+                        <thead>
+                            <tr><th>Schultz Lab</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jianjiong Gao</td></tr>
+                            <tr><td>Selcuk Onur Sumer</td></tr>
+                            <tr><td>Hongxin Zhang</td></tr>
+                            <tr><td>Nikolaus Schultz</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!--div class="row">
@@ -154,52 +218,79 @@
             </div-->
         </div>
     </section>
+</div>
 
-    <footer class="text-center">
-        <!--div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>...<br>...</p>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About Cancer Hotspots</h3>
-                        <p>...</p>
-                    </div>
-                </div>
-            </div>
-        </div-->
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; CancerHotspots.org 2016
-                    </div>
-                </div>
+<div class="footer">
+    <div class="container">
+        <div class="row footer-row-1">
+            <div class="">
+                <a href="http://mskcc.org" class="">MSKCC <i class="fa fa-external-link"></i></a>
+                <a href="http://cmo.mskcc.org" class="">CMO <i class="fa fa-external-link"></i></a>
+                <a href="http://cbioportal.org" class="">cBioPortal <i class="fa fa-external-link"></i></a>
             </div>
         </div>
-    </footer>
+        <div class="row footer-row-2">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <div class="">
+                    <a href="#about" class="">About</a>
+                    <a href="mailto:team@cbio.mskcc.org" target="_top">Contact us</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 mskcc-footer-logo0-wrapper">
+                <span><img src="lib/images/MSKLogo_fff.png" class="mskcc-footer-logo"></span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <span>© 2016 Memorial Sloan Kettering Cancer Center</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<footer class="text-center">-->
+<!--div class="footer-above">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col col-md-4">
+                <h3>Location</h3>
+                <p>...<br>...</p>
+            </div>
+            <div class="footer-col col-md-4">
+                <h3>Around the Web</h3>
+                <ul class="list-inline">
+                    <li>
+                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-col col-md-4">
+                <h3>About Cancer Hotspots</h3>
+                <p>...</p>
+            </div>
+        </div>
+    </div>
+</div-->
+<!--<div class="footer-below">-->
+<!--<div class="container">-->
+<!--<div class="row">-->
+<!--<div class="col-lg-12">-->
+<!--Copyright &copy; CancerHotspots.org 2016-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</footer>-->
 </body>
 
 <!-- underscore templates -->
@@ -207,10 +298,10 @@
     <table id="hotspots_table"
            class="display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
-    <div class="table-hover-info">
+    <!--div class="table-hover-info">
         <sup><b>&#8224;</b></sup>
         Mouse over <b>Variant Amino Acid</b> and <b>Sample Count</b> values for more information
-    </div>
+    </div-->
 </script>
 
 <script type="text/template" id="no_text_wrap">
@@ -226,14 +317,35 @@
 </script>
 
 <script type="text/template" id="tumor_type_composition">
-    <div class="center-align"><b>{{tumorCount}}</b> total sample(s)
-        with <b>{{tumorTypeCount}}</b> distinct tumor type(s)</div>
+    <div class="center-align tumor-type-composition-info"><b>{{tumorCount}}</b> total sample(s)
+        with <b>{{tumorTypeCount}}</b> distinct cancer type(s)
+    </div>
     <table class="tumor-type-composition display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
 </script>
 
 <script type="text/template" id="variant_cell">
     <span class="variant-cell">{{value}}</span>
+</script>
+
+<script type="text/template" id="tumor_type_cell">
+    <span class="tumor-type-cell">
+        <span class="tumor-type-color"></span>
+        <span class="tumor-type-name">{{value}}</span>
+    </span>
+</script>
+
+<script type="text/template" id="variant_count_cell">
+    <table class="variant-count-cell-content">
+        <tr>
+            <td>
+                <span class="variant-tumor-type-composition"><img src="lib/images/loader.gif"></span>
+            </td>
+            <td>
+                <span class="variant-count">{{value}}</span>
+            </td>
+        </tr>
+    </table>
 </script>
 
 <script type="text/template" id="variant_composition">
@@ -243,6 +355,13 @@
 
 <script type="text/template" id="single_residue_title">
     <span class="table-custom-title">Single Residue Hotspot Mutations</span>
+</script>
+
+<script type="text/template" id="table_hover_info">
+    <div class="table-hover-info">
+        <sup><b>&#8224;</b></sup>
+        Mouse over <b>Variant Amino Acid</b> and <b>Sample Count</b> values for more information
+    </div>
 </script>
 
 </html>

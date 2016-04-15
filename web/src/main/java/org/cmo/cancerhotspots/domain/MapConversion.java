@@ -105,11 +105,11 @@ public class MapConversion implements Conversion<String, Map<String, Integer>>
             }
 
             if (out.length() > 0) {
-                out.append(itemSeparator);
+                out.append(itemSeparator.replaceAll("\\\\", ""));
             }
 
             out.append(key);
-            out.append(mappingSeparator);
+            out.append(mappingSeparator.replaceAll("\\\\", ""));
             out.append(value);
         }
 

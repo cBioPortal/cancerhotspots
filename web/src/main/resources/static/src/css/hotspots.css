@@ -30,6 +30,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+.hotspot-fire:after {
+    display: inline-block;
+    position: relative;
+    padding-right: 0.25em;
+    background-color: inherit;
+    font-size: 1.25em;
+    font-family: icomoon;
+    content: "\e666";
+    color: #FF9900
+}
+
+table.center-align {
+    margin: auto;
+}
+
 .center-align, .center-align th {
     text-align: center;
 }
@@ -59,6 +74,7 @@ body {
 
 .cancer-hotspots-tooltip {
     font-size: 0.8em;
+    max-width: 300px;
 }
 
 .table-hover-info {
@@ -72,7 +88,29 @@ body {
     padding-right: 10px;
 }
 
-.about-citation {
+.variant-tumor-type-composition-cell img {
+    width: auto;
+    height: 50%;
+}
+
+.tumor-type-composition td {
+    text-align: left;
+}
+
+.composition-view-filter input {
+    height: 22px;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.tumor-type-color {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+
+.about-citation, .header-citation {
     font-style: italic;
 }
 
@@ -86,6 +124,15 @@ body {
     padding-top: 8px;
 }
 
+.tumor-type-composition-info {
+    margin-bottom: 5px;
+}
+
+.footer .footer-row-2 {
+    line-height: 20px;
+    padding-top: 10px;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
@@ -93,26 +140,34 @@ div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
 }
 
 /* A little bit of theme tweaking */
-section {
-    padding: 40px;
-}
 header {
-    background-color: #b84d45;
+    background-color: #c84e23;
+}
+header a,
+header a:hover,
+header a:focus,
+header a:active,
+header a.active {
+    outline: 0;
+    color: #ffffff;
 }
 section.stressed {
     background-color: #dff0d8;
 }
-section.stressed a,
-section.stressed a:hover,
-section.stressed a:focus,
-section.stressed a:active,
-section.stressed a.active {
+section a,
+section a:hover,
+section a:focus,
+section a:active,
+section a.active {
     outline: 0;
     color: #2c3e50;
 }
 hr.star-light:after, hr.star-primary:after {
     background-color: inherit;
-    content: "\f140"
+    /*content: "\f140"*/
+    font-family: icomoon;
+    content: "\e666";
+    color: #FF9900;
 }
 #about hr.star-primary:after {
     background-color: #dff0d8;
@@ -121,5 +176,8 @@ hr.star-light:after, hr.star-primary:after {
     background-color: #fff;
 }
 header hr.star-light:after {
-    background-color: #b84d45;
+    background-color: #c84e23;
+}
+section {
+    padding: 50px;
 }

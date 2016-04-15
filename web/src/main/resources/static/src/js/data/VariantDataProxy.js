@@ -36,13 +36,17 @@
  * @param options   proxy options
  * @author Selcuk Onur Sumer
  */
-function HotspotDataProxy(options)
+function VariantDataProxy(options)
 {
-    function getAllHotspots(callback)
+    function getTumorTypeComposition(hugoSymbol, aminoAcidChange, callback)
     {
+        // TODO use actual post params
+        var url = "variants/" + hugoSymbol + "/" + aminoAcidChange;
+
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts("hotspots", {}, callback));
+        $.ajax(ProxyUtils.ajaxOpts(url, {}, callback));
     }
 
-    this.getAllHotspots = getAllHotspots;
+    this.getTumorTypeComposition = getTumorTypeComposition;
 }
+

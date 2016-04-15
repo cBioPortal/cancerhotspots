@@ -74,7 +74,13 @@ function HotspotTableView(options)
                 var opts = jQuery.extend(true, {}, defaultViewOpts, viewOpts);
                 var tableView = new CompositionView(opts);
 
-                tableView.render()
+                tableView.render();
+
+                // this is a workaround for the misaligned table headers
+                // due to the scroll bar feature
+                setTimeout(function() {
+                    tableView.getDataTable().columns.adjust();
+                }, 0);
             }
         };
 
@@ -88,32 +94,10 @@ function HotspotTableView(options)
         data: {},
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
-        variantColors: {
-            "A": "#3366cc",
-            "R": "#dc3912",
-            "N": "#dc3912",
-            "D": "#ff9900",
-            "B": "#109618",
-            "C": "#990099",
-            "E": "#0099c6",
-            "Q": "#dd4477",
-            "Z": "#66aa00",
-            "G": "#b82e2e",
-            "H": "#316395",
-            "I": "#994499",
-            "L": "#22aa99",
-            "K": "#aaaa11",
-            "M": "#6633cc",
-            "F": "#e67300",
-            "P": "#8b0707",
-            "S": "#651067",
-            "T": "#329262",
-            "W": "#5574a6",
-            "Y": "#3b3eac",
-            "V": "#b77322",
-            "X": "#16d620",
-            "*": "#090303"
-        },
+        variantColors: ViewUtils.getDefaultVariantColors(),
+        tumorColors: ViewUtils.getDefaultTumorTypeColors(),
+        tooltipStackHeight: 14,
+        tooltipStackRange: [4, 150],
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -166,6 +150,49 @@ function HotspotTableView(options)
                 $(td).find(".variant-cell").css({"background-color": bgColor});
             }
         },
+        variantTipCountRender: function(data)
+        {
+            var templateFn = _.template($("#variant_count_cell").html());
+            return templateFn({value: data.count});
+        },
+        variantTipCountPostRender: function(td, cellData, rowData, row, col) {
+            var proxy = new VariantDataProxy();
+            var gene = cellData.hugoSymbol;
+            var aaChange = cellData.codon + rowData.type;
+            var helper = cellData.variantHelper;
+
+            proxy.getTumorTypeComposition(gene, aaChange, function(compositionData) {
+                var target = $(td).find(".variant-tumor-type-composition");
+                target.empty();
+
+                if (compositionData.length > 0)
+                {
+                    var stackedBar = new StackedBar({
+                        el: target,
+                        // assign a fixed color for each tumor type
+                        elWidth: helper.scaleFn(rowData.count),
+                        elHeight: _options.tooltipStackHeight,
+                        disableText: true,
+                        colors: _options.tumorColors
+                    });
+
+                    var tumorTypeComposition = compositionData[0]["tumorTypeComposition"];
+
+                    var tooltipData = {
+                        tumorCount: rowData.count,
+                        tumorTypeCount: _.size(tumorTypeComposition),
+                        composition: tumorTypeComposition
+                    };
+
+                    stackedBar.init(tumorTypeComposition);
+
+                    cbio.util.addTargetedQTip($(td).find(".variant-count-cell-content"),
+                                              tooltipOpts(tooltipData));
+                }
+            });
+
+            //$(td).find(".variant-tumor-type-composition-cell").css({"background-color": bgColor});
+        },
         variantPostRender: function(td, cellData, rowData, row, col) {
             var target = $(td).find(".basic-content");
             target.empty();
@@ -181,14 +208,23 @@ function HotspotTableView(options)
             var viewOpts = {
                 templateId: '#variant_composition',
                 dataTableTarget: ".variant-composition",
-                paging: false,
+                dom: "t",
                 columns: [
                     {title: "Variant",
                         data: "type",
                         render: _options.variantTipRender,
                         createdCell: _options.variantTipPostRender},
                     {title: "Count",
-                        data: "count"}
+                        data: function(data) {
+                            return {
+                                count: data.count,
+                                hugoSymbol: rowData.hugoSymbol,
+                                codon: rowData.codon,
+                                variantHelper: variantHelper(cellData)
+                            }
+                        },
+                        render: _options.variantTipCountRender,
+                        createdCell: _options.variantTipCountPostRender}
                 ]
             };
 
@@ -204,13 +240,27 @@ function HotspotTableView(options)
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
+    function variantHelper(variantAminoAcid)
+    {
+        var values = _.values(variantAminoAcid);
+        var max = _.max(values);
+        var min = _.min(values);
+        var scaleFn = d3.scale.linear()
+            .domain([min, max])
+            .range(_options.tooltipStackRange);
+
+        return {
+            scaleFn: scaleFn
+        }
+    }
+
     function render()
     {
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
             //dom: "<'row'<'col-sm-2'B><'col-sm-6 center-align'i><'col-sm-4'f>>t",
-            dom: "<'row'<'col-sm-8 single-residue-title'><'col-sm-4'f>>t" +
+            dom: "<'row'<'col-sm-8 hotspot-table-title'><'col-sm-4'f>>t" +
                  "<'row'<'col-sm-8'i><'col-sm-4 right-align table-button-group'B>>",
             paging: false,
             scrollY: "500px",
@@ -316,8 +366,11 @@ function HotspotTableView(options)
 
         $(_options.el).DataTable(dataTableOpts);
 
-        $("div.single-residue-title").html(
-            _.template($("#single_residue_title").html())({}));
+        //$("div.single-residue-title").html(
+        //    _.template($("#single_residue_title").html())({}));
+
+        $("div.hotspot-table-title").html(
+            _.template($("#table_hover_info").html())({}));
     }
 
     this.render = render;

@@ -39,6 +39,8 @@
  */
 function CompositionView(options)
 {
+    var _dataTable = null;
+
     var _defaultOpts = {
         // default target DOM element
         el: '#tumor_type_composition_view',
@@ -49,10 +51,39 @@ function CompositionView(options)
         colData: {},
         // default ordering
         order: [[1 , "desc" ], [0, "asc"]],
-        paging: true,
+        //dom: 't<"composition-paginate"p>',
+        //dom: "<'row'<'col-sm-12 composition-view-filter'f>>t",
+        dom: "<'composition-view-filter'f>t",
+        paging: false,
+        scrollY: "300px",
+        scrollCollapse: true,
         columns: [
-            {title: "Tumor Type",
-                data: "type"},
+            {title: "Cancer Type",
+                data: "type",
+                render: function(data) {
+                    var name = ViewUtils.getTumorTypeNames()[
+                        data.toString().trim().toLowerCase()];
+
+                    if (name)
+                    {
+                        var templateFn = _.template($("#tumor_type_cell").html());
+                        return templateFn({value: name});
+                    }
+                    else
+                    {
+                        return data;
+                    }
+                },
+                createdCell: function(td, cellData, rowData, row, col) {
+                    var color = ViewUtils.getDefaultTumorTypeColors()[
+                        cellData.toString().trim().toLowerCase()];
+
+                    if (color != null)
+                    {
+                        $(td).find(".tumor-type-color").css({"background-color": color});
+                    }
+                }
+            },
             {title: "Count",
                 data: "count"}
         ],
@@ -72,15 +103,18 @@ function CompositionView(options)
         $(_options.el).html(templateFn(_options.colData));
 
         var dataTableOpts = {
-            sDom: 'st<"composition-paginate"p>',
+            dom: _options.dom,
             paging: _options.paging,
+            scrollY: _options.scrollY,
+            scrollCollapse: _options.scrollCollapse,
             data: _options.data,
             order: _options.order,
             columns: _options.columns
         };
 
-        $(_options.el).find(_options.dataTableTarget).DataTable(dataTableOpts);
+        _dataTable = $(_options.el).find(_options.dataTableTarget).DataTable(dataTableOpts);
     }
 
     this.render = render;
+    this.getDataTable = function() {return _dataTable};
 }

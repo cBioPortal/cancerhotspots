@@ -33,13 +33,19 @@
 package org.cmo.cancerhotspots.web;
 
 import org.cmo.cancerhotspots.domain.HotspotMutation;
+import org.cmo.cancerhotspots.domain.VariantComposition;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
+import org.cmo.cancerhotspots.service.VariantDataImportService;
+import org.cmo.cancerhotspots.service.VariantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,11 +57,17 @@ import java.util.List;
 public class HotspotController
 {
     private final HotspotMutationService hotspotMutationService;
+    private final VariantService variantService;
+    private final VariantDataImportService variantImportService;
 
     @Autowired
-    public HotspotController(HotspotMutationService hotspotMutationService)
+    public HotspotController(HotspotMutationService hotspotMutationService,
+        VariantService variantService,
+        VariantDataImportService variantImportService)
     {
         this.hotspotMutationService = hotspotMutationService;
+        this.variantService = variantService;
+        this.variantImportService = variantImportService;
     }
 
     @RequestMapping(value = "/hotspots",
@@ -64,5 +76,77 @@ public class HotspotController
     public List<HotspotMutation> getAllHotspotMutations()
     {
         return hotspotMutationService.getAllHotspotMutations();
+    }
+
+
+    // TODO API disabled for now, enable if needed
+    // -- after implementing corresponding service method properly!
+
+//    @RequestMapping(value = "/variants/{aminoAcidChanges}",
+//        method = {RequestMethod.GET, RequestMethod.POST},
+//        produces = "application/json")
+    public List<VariantComposition> getVariants(@PathVariable List<String> aminoAcidChanges)
+    {
+        List<VariantComposition> variants = new LinkedList<>();
+
+        for (String aminoAcidChange : aminoAcidChanges)
+        {
+            VariantComposition variantComposition = variantService.getVariantComposition(aminoAcidChange);
+
+            if (variantComposition != null)
+            {
+                variants.add(variantComposition);
+            }
+        }
+
+        return variants;
+    }
+
+    @RequestMapping(value = "/variants/{hugoSymbol}/{aminoAcidChanges}",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public List<VariantComposition> getVariants(@PathVariable String hugoSymbol,
+        @PathVariable List<String> aminoAcidChanges)
+    {
+        List<VariantComposition> variants = new LinkedList<>();
+
+        for (String aminoAcidChange : aminoAcidChanges)
+        {
+            VariantComposition variantComposition = variantService.getVariantComposition(hugoSymbol, aminoAcidChange);
+
+            if (variantComposition != null)
+            {
+                variants.add(variantComposition);
+            }
+        }
+
+        return variants;
+    }
+
+    @RequestMapping(value = "/variants",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public List<VariantComposition> getAllVariants()
+    {
+        return variantService.getAllVariantCompositions();
+    }
+
+    // TODO move restricted controllers to an admin controller class and enable after adding security
+//    @RequestMapping(value = "/create/variants",
+//        method = {RequestMethod.GET, RequestMethod.POST},
+//        produces = "application/json")
+    public String createVariants()
+    {
+        variantImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
+
+        return "variant file creation initialized";
+    }
+
+//    @RequestMapping(value = "/download/{filename}",
+//        method = {RequestMethod.GET, RequestMethod.POST})
+    public InputStreamResource downloadFile(@PathVariable String filename) throws IOException
+    {
+        Resource resource = new ClassPathResource("data/" + filename + ".txt");
+        return new InputStreamResource(resource.getInputStream());
     }
 }
