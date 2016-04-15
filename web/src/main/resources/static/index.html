@@ -69,7 +69,7 @@
 <body id="page-top" class="index">
 <div class="wrapper">
     <!-- Navigation -->
-    <div class="navbar navbar-inverse navbar-fixed-top page-scroll" class="" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top page-scroll" role="navigation">
         <div class="container nav-container">
             <div class="navbar-header">
                 <div data-toggle="collapse" data-target=".navbar-collapse" class="menu-toggle">
@@ -81,7 +81,7 @@
                     <span></span>
                     <b>Menu</b>
                 </div>
-                <a class="navbar-brand" href="#page-top">Cancer Hotspots</a>
+                <a class="navbar-brand" href="#page-top"><span class="hotspot-fire"></span>Cancer Hotspots</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -93,7 +93,7 @@
                     </li>
                     <li class="page-scroll">
                         <!--a href="#">Download</a-->
-                        <a href="download/significant_hotspot_mutations.txt" target="_blank">Download</a>
+                        <a href="files/hotspots.xls" target="_blank">Download</a>
                     </li>
                 </ul>
                 <div class="pull-right">
@@ -112,33 +112,28 @@
     </div>
 
 
-    <header>
+    <!--header>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-text">
-                        <!--span class="name">Cancer Hotspots</span-->
-                        <h1>Cancer Hotspots</h1>
+                        <span class="name">Cancer Hotspots</span>
                         <hr class="star-light">
-                        <span class="skills">
-                            Single residue mutation hotspots identified in xx,xxx tumor samples
-                            by the algorithm described in
-                            [<span class="header-citation"><a
-                                href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
-                        </span>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </header-->
 
     <section id="home">
         <div class="container">
             <div class="row">
-                <!--div class="col-lg-12 text-center">
-                    <h2>Single Residue Hotspot Mutations</h2>
-                    <hr class="star-primary">
-                </div-->
+                <p><span class="skills">
+                    Single residue mutation hotspots identified in 11,119 tumor samples
+                    by the algorithm described in
+                    [<span class="header-citation"><a
+                        href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
+                </span></p>
             </div>
             <div id="main_content" class="default-plain-text"></div>
         </div>
@@ -156,7 +151,7 @@
                     </p>
                     <p>
                         With this initial release, we make available the single residue hotspots
-                        identified in xx,xxx tumor samples with the algorithm described by:
+                        identified in 11,119 tumor samples with the algorithm described by:
                         <span class="about-citation">
                             <a href="http://www.nature.com/nbt/journal/v34/n2/full/nbt.3391.html">Chang et al.,
                                 Identifying recurrent mutations in cancer reveals widespread lineage diversity and
@@ -179,7 +174,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 center-align">
+                <div class="col-md-3 col-md-offset-3">
                     <table class="center-align about-lab-table">
                         <thead>
                             <tr><th>Taylor Lab</th></tr>
@@ -190,13 +185,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <table class="center-align about-lab-table">
-                        <tr>
+                        <thead>
                             <tr><th>Schultz Lab</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>Matthew Chang</td></tr>
                             <tr><td>Jianjiong Gao</td></tr>
                             <tr><td>Selcuk Onur Sumer</td></tr>
                             <tr><td>Hongxin Zhang</td></tr>
@@ -304,10 +298,10 @@
     <table id="hotspots_table"
            class="display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
-    <div class="table-hover-info">
+    <!--div class="table-hover-info">
         <sup><b>&#8224;</b></sup>
         Mouse over <b>Variant Amino Acid</b> and <b>Sample Count</b> values for more information
-    </div>
+    </div-->
 </script>
 
 <script type="text/template" id="no_text_wrap">
@@ -361,6 +355,13 @@
 
 <script type="text/template" id="single_residue_title">
     <span class="table-custom-title">Single Residue Hotspot Mutations</span>
+</script>
+
+<script type="text/template" id="table_hover_info">
+    <div class="table-hover-info">
+        <sup><b>&#8224;</b></sup>
+        Mouse over <b>Variant Amino Acid</b> and <b>Sample Count</b> values for more information
+    </div>
 </script>
 
 </html>

@@ -260,7 +260,7 @@ function HotspotTableView(options)
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
             //dom: "<'row'<'col-sm-2'B><'col-sm-6 center-align'i><'col-sm-4'f>>t",
-            dom: "<'row'<'col-sm-8 single-residue-title'><'col-sm-4'f>>t" +
+            dom: "<'row'<'col-sm-8 hotspot-table-title'><'col-sm-4'f>>t" +
                  "<'row'<'col-sm-8'i><'col-sm-4 right-align table-button-group'B>>",
             paging: false,
             scrollY: "500px",
@@ -366,8 +366,11 @@ function HotspotTableView(options)
 
         $(_options.el).DataTable(dataTableOpts);
 
-        $("div.single-residue-title").html(
-            _.template($("#single_residue_title").html())({}));
+        //$("div.single-residue-title").html(
+        //    _.template($("#single_residue_title").html())({}));
+
+        $("div.hotspot-table-title").html(
+            _.template($("#table_hover_info").html())({}));
     }
 
     this.render = render;
