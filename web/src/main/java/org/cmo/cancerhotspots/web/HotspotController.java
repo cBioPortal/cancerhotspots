@@ -123,16 +123,6 @@ public class HotspotController
         return variants;
     }
 
-    @RequestMapping(value = "/create/variants",
-        method = {RequestMethod.GET, RequestMethod.POST},
-        produces = "application/json")
-    public String createVariants()
-    {
-        variantImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
-
-        return "variant file creation initialized";
-    }
-
     @RequestMapping(value = "/variants",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
@@ -141,8 +131,19 @@ public class HotspotController
         return variantService.getAllVariantCompositions();
     }
 
-    @RequestMapping(value = "/download/{filename}",
-        method = {RequestMethod.GET, RequestMethod.POST})
+    // TODO move restricted controllers to an admin controller class and enable after adding security
+//    @RequestMapping(value = "/create/variants",
+//        method = {RequestMethod.GET, RequestMethod.POST},
+//        produces = "application/json")
+    public String createVariants()
+    {
+        variantImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
+
+        return "variant file creation initialized";
+    }
+
+//    @RequestMapping(value = "/download/{filename}",
+//        method = {RequestMethod.GET, RequestMethod.POST})
     public InputStreamResource downloadFile(@PathVariable String filename) throws IOException
     {
         Resource resource = new ClassPathResource("data/" + filename + ".txt");
