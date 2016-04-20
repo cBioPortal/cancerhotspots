@@ -1,10 +1,8 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import com.univocity.parsers.conversions.Conversion;
-import org.cmo.cancerhotspots.domain.HotspotMutation;
-import org.cmo.cancerhotspots.domain.MapConversion;
-import org.cmo.cancerhotspots.domain.MutationAnnotation;
-import org.cmo.cancerhotspots.domain.VariantComposition;
+import com.univocity.parsers.common.processor.BeanWriterProcessor;
+import com.univocity.parsers.tsv.TsvWriter;
+import org.cmo.cancerhotspots.domain.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.VariantDataImportService;
 import org.cmo.cancerhotspots.util.FileIO;
@@ -13,8 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,20 +73,11 @@ public class HotspotVariantDataImportService implements VariantDataImportService
             this.variantCacheByGeneAndAAChange = constructVariantCacheByGeneAndAAChange();
         }
 
-        Writer writer = FileIO.getWriter(variantFileUri);
+        TsvWriter writer = FileIO.initTsvWriter(
+            new BeanWriterProcessor<>(VariantComposition.class),
+            FileIO.getWriter(variantFileUri));
 
-        // TODO use CSV parser to write the data!
-        Conversion<String, Map<String, Integer>> conversion = new MapConversion();
-
-        try {
-            writer.write("Hugo_Symbol\t" +
-                         "Reference_Amino_Acid\t" +
-                         "Amino_Acid_Position\t" +
-                         "Variant_Amino_Acid\t" +
-                         "Tumor_Type_Composition\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writer.writeHeaders();
 
         for (HotspotMutation mutation : hotspotMutations)
         {
@@ -107,23 +94,11 @@ public class HotspotVariantDataImportService implements VariantDataImportService
                     continue;
                 }
 
-                try {
-                    writer.write(mutation.getHugoSymbol() + "\t" +
-                                 composition.getReferenceAminoAcid() + "\t" +
-                                 composition.getAminoAcidPosition() + "\t" +
-                                 composition.getVariantAminoAcid() + "\t" +
-                                 conversion.revert(composition.getTumorTypeComposition()) + "\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                writer.processRecord(composition);
             }
         }
 
-        try {
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writer.close();
     }
 
     private Map<String, VariantComposition> constructVariantCacheByGeneAndAAChange()
@@ -138,7 +113,8 @@ public class HotspotVariantDataImportService implements VariantDataImportService
                               annotation.getVariantAminoAcid();
 
             String key = (annotation.getHugoSymbol() + "_" + aaChange).toUpperCase();
-            this.updateVariant(variantCache, key, annotation);
+            VariantComposition composition = this.updateVariant(variantCache, key, annotation);
+            composition.setHugoSymbol(annotation.getHugoSymbol());
         }
 
         return variantCache;
@@ -162,9 +138,9 @@ public class HotspotVariantDataImportService implements VariantDataImportService
         return variantCache;
     }
 
-    private void updateVariant(Map<String, VariantComposition> variantCache,
+    private VariantComposition updateVariant(Map<String, VariantComposition> variantCache,
         String key,
-        MutationAnnotation annotation )
+        MutationAnnotation annotation)
     {
         VariantComposition variantComposition = variantCache.get(key);
 
@@ -181,5 +157,7 @@ public class HotspotVariantDataImportService implements VariantDataImportService
         }
 
         variantComposition.updateTumorTypeComposition(annotation.getTumorType());
+
+        return variantComposition;
     }
 }
