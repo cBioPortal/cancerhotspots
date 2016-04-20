@@ -1,8 +1,11 @@
 package org.cmo.cancerhotspots.util;
 
 import com.univocity.parsers.common.processor.BeanListProcessor;
+import com.univocity.parsers.common.processor.BeanWriterProcessor;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
+import com.univocity.parsers.tsv.TsvWriter;
+import com.univocity.parsers.tsv.TsvWriterSettings;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
@@ -78,5 +81,12 @@ public class FileIO
         parserSettings.setRowProcessor(rowProcessor);
 
         return new CsvParser(parserSettings);
+    }
+
+    public static TsvWriter initTsvWriter(BeanWriterProcessor<?> beanProcessor, Writer writer)
+    {
+        TsvWriterSettings settings = new TsvWriterSettings();
+        settings.setRowWriterProcessor(beanProcessor);
+        return new TsvWriter(writer, settings);
     }
 }

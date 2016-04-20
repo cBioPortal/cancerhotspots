@@ -2,7 +2,6 @@ package org.cmo.cancerhotspots.service.internal;
 
 import com.univocity.parsers.common.processor.BeanListProcessor;
 import com.univocity.parsers.csv.CsvParser;
-import org.cmo.cancerhotspots.domain.HotspotVariantComposition;
 import org.cmo.cancerhotspots.domain.VariantComposition;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.cmo.cancerhotspots.util.FileIO;
@@ -27,7 +26,7 @@ public class HotspotVariantService implements VariantService
         this.variantFileUri = variantFileUri;
     }
 
-    private List<HotspotVariantComposition> variantCache;
+    private List<VariantComposition> variantCache;
 
     // cache of <amino acid change, variant> pairs
     private Map<String, VariantComposition> variantCacheByAAChange;
@@ -64,8 +63,8 @@ public class HotspotVariantService implements VariantService
         if (this.variantCache == null ||
             this.variantCache.size() == 0)
         {
-            BeanListProcessor<HotspotVariantComposition> rowProcessor =
-                new BeanListProcessor<>(HotspotVariantComposition.class);
+            BeanListProcessor<VariantComposition> rowProcessor =
+                new BeanListProcessor<>(VariantComposition.class);
 
             CsvParser variantParser = FileIO.initCsvParser(rowProcessor);
             variantParser.parse(FileIO.getReader(variantFileUri));
@@ -90,7 +89,7 @@ public class HotspotVariantService implements VariantService
 
         Map<String, VariantComposition> variantCache = new HashMap<>();
 
-        for (HotspotVariantComposition variant : this.variantCache)
+        for (VariantComposition variant : this.variantCache)
         {
             String aaChange = variant.getReferenceAminoAcid() +
                               variant.getAminoAcidPosition() +
@@ -116,7 +115,7 @@ public class HotspotVariantService implements VariantService
         // TODO this is not accurate! we need to combine all gene specific info
         // together into one VariantComposition instance...
 
-        for (HotspotVariantComposition variant : this.variantCache)
+        for (VariantComposition variant : this.variantCache)
         {
             String aaChange = variant.getReferenceAminoAcid() +
                               variant.getAminoAcidPosition() +

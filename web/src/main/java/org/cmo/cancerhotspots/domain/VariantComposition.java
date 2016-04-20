@@ -13,6 +13,10 @@ import java.util.Map;
 public class VariantComposition
 {
     @Trim
+    @Parsed(field = "Hugo_Symbol")
+    private String hugoSymbol;
+
+    @Trim
     @Parsed(field = "Reference_Amino_Acid")
     private String referenceAminoAcid;
 
@@ -33,6 +37,16 @@ public class VariantComposition
     public VariantComposition()
     {
         this.tumorTypeComposition = new LinkedHashMap<>();
+    }
+
+    public String getHugoSymbol()
+    {
+        return hugoSymbol;
+    }
+
+    public void setHugoSymbol(String hugoSymbol)
+    {
+        this.hugoSymbol = hugoSymbol;
     }
 
     public void setTumorTypeComposition(Map<String, Integer> tumorTypeComposition)
