@@ -32,6 +32,10 @@
 
 package org.cmo.cancerhotspots.web;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.cmo.cancerhotspots.domain.HotspotMutation;
 import org.cmo.cancerhotspots.domain.VariantComposition;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
@@ -53,23 +57,28 @@ import java.util.List;
  */
 @RestController // shorthand for @Controller, @ResponseBody
 @CrossOrigin(origins="*") // allow all cross-domain requests
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api")
 public class HotspotController
 {
     private final HotspotMutationService hotspotMutationService;
     private final VariantService variantService;
-    private final VariantDataImportService variantImportService;
 
     @Autowired
     public HotspotController(HotspotMutationService hotspotMutationService,
-        VariantService variantService,
-        VariantDataImportService variantImportService)
+        VariantService variantService)
     {
         this.hotspotMutationService = hotspotMutationService;
         this.variantService = variantService;
-        this.variantImportService = variantImportService;
     }
 
+    @ApiOperation(value = "get all hotspot mutations",
+        nickname = "getAllHotspotMutations")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = HotspotMutation.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
     @RequestMapping(value = "/hotspots",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
@@ -82,10 +91,22 @@ public class HotspotController
     // TODO API disabled for now, enable if needed
     // -- after implementing corresponding service method properly!
 
+//    @ApiOperation(value = "get variant tumor type compositions",
+//        nickname = "getVariantsByAminoAcidChange")
+//    @ApiResponses(value = {
+//        @ApiResponse(code = 200, message = "Success",
+//            response = VariantComposition.class,
+//            responseContainer = "List"),
+//        @ApiResponse(code = 400, message = "Bad Request")
+//    })
 //    @RequestMapping(value = "/variants/{aminoAcidChanges}",
 //        method = {RequestMethod.GET, RequestMethod.POST},
 //        produces = "application/json")
-    public List<VariantComposition> getVariants(@PathVariable List<String> aminoAcidChanges)
+    public List<VariantComposition> getVariants(
+        @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
+            required = true,
+            allowMultiple = true)
+        @RequestParam List<String> aminoAcidChanges)
     {
         List<VariantComposition> variants = new LinkedList<>();
 
@@ -102,10 +123,24 @@ public class HotspotController
         return variants;
     }
 
+    @ApiOperation(value = "get variant tumor type compositions",
+        nickname = "getVariantsByHugoSymbolAndAminoAcidChange")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = VariantComposition.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
     @RequestMapping(value = "/variants/{hugoSymbol}/{aminoAcidChanges}",
-        method = {RequestMethod.GET, RequestMethod.POST},
+        method = {RequestMethod.GET},
         produces = "application/json")
-    public List<VariantComposition> getVariants(@PathVariable String hugoSymbol,
+    public List<VariantComposition> getVariants(
+        @ApiParam(value = "Hugo gene symbol, for example BRAF",
+            required = true)
+        @PathVariable String hugoSymbol,
+        @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
+            required = true,
+            allowMultiple = true)
         @PathVariable List<String> aminoAcidChanges)
     {
         List<VariantComposition> variants = new LinkedList<>();
@@ -123,23 +158,56 @@ public class HotspotController
         return variants;
     }
 
+    @ApiOperation(value = "get variant tumor type compositions",
+        nickname = "postVariants")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = VariantComposition.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
     @RequestMapping(value = "/variants",
-        method = {RequestMethod.GET, RequestMethod.POST},
+        method = {RequestMethod.POST},
+        produces = "application/json")
+    public List<VariantComposition> postVariants(
+        @ApiParam(value = "Hugo gene symbol, for example BRAF",
+            required = false)
+        @RequestParam(required = false)
+        String hugoSymbol,
+        @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
+            required = false,
+            allowMultiple = true)
+        @RequestParam(required = false)
+        List<String> aminoAcidChanges)
+    {
+        if (aminoAcidChanges == null)
+        {
+            return getAllVariants();
+        }
+        else if (hugoSymbol == null)
+        {
+            return getVariants(aminoAcidChanges);
+        }
+        else
+        {
+            return getVariants(hugoSymbol, aminoAcidChanges);
+        }
+    }
+
+    @ApiOperation(value = "get all variant tumor type composition",
+        nickname = "getAllVariants")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = VariantComposition.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/variants",
+        method = {RequestMethod.GET},
         produces = "application/json")
     public List<VariantComposition> getAllVariants()
     {
         return variantService.getAllVariantCompositions();
-    }
-
-    // TODO move restricted controllers to an admin controller class and enable after adding security
-//    @RequestMapping(value = "/create/variants",
-//        method = {RequestMethod.GET, RequestMethod.POST},
-//        produces = "application/json")
-    public String createVariants()
-    {
-        variantImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
-
-        return "variant file creation initialized";
     }
 
 //    @RequestMapping(value = "/download/{filename}",
