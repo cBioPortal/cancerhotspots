@@ -30,6 +30,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+.container {
+    width: 90%;
+}
+
+@media (max-width: 919px) and (min-width: 768px) {
+    .mskcc-logo {
+        display: block;
+    }
+    .mskcc-icon {
+        display: none;
+    }
+    .container {
+        width: 99%;
+    }
+}
+
 .hotspot-fire:after {
     display: inline-block;
     position: relative;
@@ -39,6 +55,20 @@
     font-family: icomoon;
     content: "\e666";
     color: #FF9900
+}
+
+.navbar-header {
+    text-transform: none;
+}
+
+.nav>li>a {
+    padding-left: 8px;
+    padding-right: 8px;
+    text-transform: none;
+}
+
+.mskcc-logo, .mskcc-icon {
+    padding: 8px 0;
 }
 
 table.center-align {
@@ -114,6 +144,14 @@ body {
     font-style: italic;
 }
 
+.contributor-list {
+    padding-bottom: 16px;
+}
+
+table.about-lab-table {
+    margin-bottom: 16px;
+}
+
 .single-residue-title {
     padding-top: 8px;
     font-weight: bold;
@@ -179,5 +217,5 @@ header hr.star-light:after {
     background-color: #c84e23;
 }
 section {
-    padding: 50px;
+    padding: 40px 10px;
 }

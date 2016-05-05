@@ -1,5 +1,30 @@
+@media (max-width: 767px) {
+    .mskcc-logo {
+        display: none;
+    }
 
-@media (max-width: 993px) {
+    .mskcc-icon {
+        display: none;
+    }
+}
+@media (min-width: 920px) {
+    .mskcc-logo {
+        display: block;
+    }
+    .mskcc-icon {
+        display: none;
+    }
+}
+@media (max-width: 919px) and (min-width: 768px) {
+    .mskcc-logo {
+        display: none;
+    }
+    .mskcc-icon {
+        display: block;
+    }
+}
+
+@media (max-width: 992px) {
     .wrapper {
         margin: 0 auto -200px;
         padding: 0 0 200px
@@ -8,8 +33,6 @@
     .footer {
         height: 220px
     }
-}
-@media (max-width: 993px){
 }
 
 @media (min-width: 993px) {
@@ -44,7 +67,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .subNav.navbar-fixed-top {
         top: 0
     }
@@ -256,6 +279,11 @@ body {
 
 .footer .mskcc-footer-logo, .footer .mskcc-footer-logo0-wrapper {
     height: 50px
+}
+
+.mskcc-logo, .mskcc-icon {
+    height: 60px;
+    padding: 5px 0;
 }
 
 .navbar-collapse {
