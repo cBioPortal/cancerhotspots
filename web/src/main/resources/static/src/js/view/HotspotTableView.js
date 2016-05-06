@@ -169,10 +169,10 @@ function HotspotTableView(options)
                 {
                     var stackedBar = new StackedBar({
                         el: target,
-                        // assign a fixed color for each tumor type
                         elWidth: helper.scaleFn(rowData.count),
                         elHeight: _options.tooltipStackHeight,
                         disableText: true,
+                        // assign a fixed color for each tumor type
                         colors: _options.tumorColors
                     });
 
@@ -244,14 +244,13 @@ function HotspotTableView(options)
     {
         var values = _.values(variantAminoAcid);
         var max = _.max(values);
-        var min = _.min(values);
         var scaleFn = d3.scale.linear()
-            .domain([min, max])
+            .domain([0, max])
             .range(_options.tooltipStackRange);
 
         return {
             scaleFn: scaleFn
-        }
+        };
     }
 
     function render()
