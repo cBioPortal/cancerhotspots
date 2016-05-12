@@ -33,6 +33,7 @@
 package org.cmo.cancerhotspots.domain;
 
 import com.univocity.parsers.conversions.*;
+import org.cmo.cancerhotspots.util.Config;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,14 +48,14 @@ public class MapConversion implements Conversion<String, Map<String, Integer>>
     private final String mappingSeparator;
 
     public MapConversion(String... args) {
-        String itemSeparator = "\\|";
-        String mappingSeparator = ":";
+        String itemSeparator = Config.ITEM_SEPARATOR;
+        String mappingSeparator = Config.MAPPING_SEPARATOR;
 
-        if (args.length == 1) {
+        if (args.length > 0) {
             itemSeparator = args[0];
         }
 
-        if (args.length == 2) {
+        if (args.length > 1) {
             mappingSeparator = args[1];
         }
 

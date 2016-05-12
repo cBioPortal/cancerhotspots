@@ -41,6 +41,7 @@ import org.cmo.cancerhotspots.domain.VariantComposition;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
 import org.cmo.cancerhotspots.service.VariantDataImportService;
 import org.cmo.cancerhotspots.service.VariantService;
+import org.cmo.cancerhotspots.service.internal.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
@@ -62,13 +63,16 @@ public class HotspotController
 {
     private final HotspotMutationService hotspotMutationService;
     private final VariantService variantService;
+    private final ConfigurationService configService;
 
     @Autowired
     public HotspotController(HotspotMutationService hotspotMutationService,
-        VariantService variantService)
+        VariantService variantService,
+        ConfigurationService configService)
     {
         this.hotspotMutationService = hotspotMutationService;
         this.variantService = variantService;
+        this.configService = configService;
     }
 
     @ApiOperation(value = "get all hotspot mutations",
