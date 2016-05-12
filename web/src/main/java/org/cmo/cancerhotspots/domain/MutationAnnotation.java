@@ -28,6 +28,14 @@ public class MutationAnnotation
     @Parsed(field = "TUMORTYPE")
     private String tumorType;
 
+    @Trim
+    @Parsed(field = "Amino_Acid_Change")
+    private String aminoAcidChange;
+
+    @Trim
+    @Parsed(field = "Variant_Classification")
+    private String variantClassification;
+
     public String getHugoSymbol()
     {
         return hugoSymbol;
@@ -76,5 +84,25 @@ public class MutationAnnotation
     public void setTumorType(String tumorType)
     {
         this.tumorType = tumorType;
+    }
+
+    public String getAminoAcidChange()
+    {
+        return aminoAcidChange;
+    }
+
+    public void setAminoAcidChange(String aminoAcidChange)
+    {
+        this.aminoAcidChange = aminoAcidChange;
+    }
+
+    public String getVariantClassification()
+    {
+        return variantClassification;
+    }
+
+    public void setVariantClassification(String variantClassification)
+    {
+        this.variantClassification = variantClassification;
     }
 }
