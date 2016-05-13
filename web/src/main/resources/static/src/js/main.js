@@ -79,6 +79,9 @@ $(document).ready(function() {
         tableView.render();
     }
 
+    // TODO initial AJAX call to determine which data fields are available
+    // this way we can hide/show columns when we initialize the data table
+
     //initWithData();
     initWithAjax();
 });

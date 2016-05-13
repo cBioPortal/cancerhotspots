@@ -267,7 +267,7 @@ function HotspotTableView(options)
             language: {
                 loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
-            order: [[3 , "asc" ], [4, "desc"]],
+            order: [[3 , "asc" ], [4, "asc"], [5, "desc"]],
             buttons: [{
                 text: "Download",
                 className: "btn-sm",
@@ -285,6 +285,8 @@ function HotspotTableView(options)
                             data: "variantAminoAcid"},
                         {title: "Q-value",
                             data: "qValue"},
+                        {title: "P-value",
+                            data: "pValue"},
                         {title: "Sample Count",
                             data: "tumorCount"},
                         {title: "Tumor Type Composition",
@@ -304,7 +306,6 @@ function HotspotTableView(options)
 
                     // send download request with filename & file content info
                     cbio.download.initDownload(content, downloadOpts);
-
                 }
             }],
             columns: [
@@ -320,6 +321,9 @@ function HotspotTableView(options)
                     createdCell: _options.variantPostRender},
                 {title: _options.noWrapRender("Q-value"),
                     data: "qValue",
+                    render: _options.noWrapRender},
+                {title: _options.noWrapRender("P-value"),
+                    data: "pValue",
                     render: _options.noWrapRender},
                 {title: "Sample Count <sup>&#8224;</sup>",
                     data: _options.sampleData,
