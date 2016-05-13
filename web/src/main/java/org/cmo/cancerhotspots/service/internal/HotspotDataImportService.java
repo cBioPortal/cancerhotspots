@@ -238,7 +238,8 @@ public class HotspotDataImportService implements DataImportService
             variantCache.put(key, tumorTypeComposition);
         }
 
-        tumorTypeComposition.updateTumorTypeComposition(annotation.getTumorType());
+        tumorTypeComposition.updateTumorTypeComposition(
+            this.stripTumorType(annotation.getTumorType()));
 
         return tumorTypeComposition;
     }
@@ -267,6 +268,13 @@ public class HotspotDataImportService implements DataImportService
         return variantComposition;
     }
 
+	/**
+     * Creates a codon string by using the reference amino acid
+     * and amino acid position values of the given annotation.
+     *
+     * @param annotation mutation annotation instance
+     * @return codon string
+     */
     private String extractCodon(MutationAnnotation annotation)
     {
         String codon = null;
@@ -279,5 +287,22 @@ public class HotspotDataImportService implements DataImportService
         }
 
         return codon;
+    }
+
+	/**
+     * Removes the part after the underscore character fot
+     * the given tumor type value.
+     *
+     * @param tumorType tumor type value
+     * @return basic tumor type value
+     */
+    private String stripTumorType(String tumorType)
+    {
+        if (tumorType == null || tumorType.length() == 0)
+        {
+            return tumorType;
+        }
+
+        return tumorType.split("_")[0];
     }
 }
