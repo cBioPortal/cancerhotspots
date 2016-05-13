@@ -66,6 +66,10 @@ public class HotspotMutation
     private String qValue;
 
     @Trim
+    @Parsed(field = "P-value")
+    private String pValue;
+
+    @Trim
     @Parsed(field = "Tumor Count")
     private Integer tumorCount;
 
@@ -127,7 +131,7 @@ public class HotspotMutation
         this.variantAminoAcid = variantAminoAcid;
     }
 
-    @ApiModelProperty(value = "Q-value", required = true)
+    @ApiModelProperty(value = "Q-value", required = false)
     public String getqValue()
     {
         return qValue;
@@ -136,6 +140,17 @@ public class HotspotMutation
     public void setqValue(String qValue)
     {
         this.qValue = qValue;
+    }
+
+    @ApiModelProperty(value = "P-value", required = false)
+    public String getpValue()
+    {
+        return pValue;
+    }
+
+    public void setpValue(String pValue)
+    {
+        this.pValue = pValue;
     }
 
     @ApiModelProperty(value = "Number of Tumors", required = true)
@@ -149,7 +164,7 @@ public class HotspotMutation
         this.tumorCount = tumorCount;
     }
 
-    @ApiModelProperty(value = "Number of Distinct Tumor Types", required = true)
+    @ApiModelProperty(value = "Number of Distinct Tumor Types", required = false)
     public Integer getTumorTypeCount()
     {
         return tumorTypeCount;

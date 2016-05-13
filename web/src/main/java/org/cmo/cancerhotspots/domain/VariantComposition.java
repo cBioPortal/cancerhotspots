@@ -1,9 +1,5 @@
 package org.cmo.cancerhotspots.domain;
 
-import com.univocity.parsers.annotations.Convert;
-import com.univocity.parsers.annotations.Parsed;
-import com.univocity.parsers.annotations.Trim;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -12,31 +8,19 @@ import java.util.Map;
  */
 public class VariantComposition
 {
-    @Trim
-    @Parsed(field = "Hugo_Symbol")
     private String hugoSymbol;
 
-    @Trim
-    @Parsed(field = "Reference_Amino_Acid")
     private String referenceAminoAcid;
 
-    @Trim
-    @Parsed(field = "Variant_Amino_Acid")
-    private String variantAminoAcid;
+    private String codon;
 
-    @Trim
-    @Parsed(field = "Amino_Acid_Position")
     private Integer aminoAcidPosition;
 
-    // tumor type composition as <tumor type, count> pairs
-    @Trim
-    @Convert(conversionClass = MapConversion.class)
-    @Parsed(field = "Tumor_Type_Composition")
-    private Map<String, Integer> tumorTypeComposition;
+    private Map<String, Integer> variantComposition;
 
     public VariantComposition()
     {
-        this.tumorTypeComposition = new LinkedHashMap<>();
+        this.variantComposition = new LinkedHashMap<>();
     }
 
     public String getHugoSymbol()
@@ -49,11 +33,6 @@ public class VariantComposition
         this.hugoSymbol = hugoSymbol;
     }
 
-    public void setTumorTypeComposition(Map<String, Integer> tumorTypeComposition)
-    {
-        this.tumorTypeComposition = tumorTypeComposition;
-    }
-
     public String getReferenceAminoAcid()
     {
         return referenceAminoAcid;
@@ -64,14 +43,14 @@ public class VariantComposition
         this.referenceAminoAcid = referenceAminoAcid;
     }
 
-    public String getVariantAminoAcid()
+    public String getCodon()
     {
-        return variantAminoAcid;
+        return codon;
     }
 
-    public void setVariantAminoAcid(String variantAminoAcid)
+    public void setCodon(String codon)
     {
-        this.variantAminoAcid = variantAminoAcid;
+        this.codon = codon;
     }
 
     public Integer getAminoAcidPosition()
@@ -84,21 +63,21 @@ public class VariantComposition
         this.aminoAcidPosition = aminoAcidPosition;
     }
 
-    public Map<String, Integer> getTumorTypeComposition()
+    public Map<String, Integer> getVariantComposition()
     {
-        return tumorTypeComposition;
+        return variantComposition;
     }
 
-    public void updateTumorTypeComposition(String tumorType)
+    public void updateVariantComposition(String variant)
     {
-        String key = tumorType.toLowerCase();
-        Integer count = tumorTypeComposition.get(key);
+        String key = variant.toUpperCase();
+        Integer count = variantComposition.get(key);
 
         if (count == null)
         {
             count = 0;
         }
 
-        tumorTypeComposition.put(key, count + 1);
+        variantComposition.put(key, count + 1);
     }
 }

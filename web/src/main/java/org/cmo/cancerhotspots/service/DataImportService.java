@@ -7,7 +7,9 @@ import java.util.List;
 /**
  * @author Selcuk Onur Sumer
  */
-public interface VariantDataImportService
+public interface DataImportService
 {
     void createVariantFile(List<HotspotMutation> hotspotMutations);
+    void createHotspotFile(List<HotspotMutation> hotspotMutations);
+    void generateVariantComposition(List<HotspotMutation> hotspotMutations);
 }

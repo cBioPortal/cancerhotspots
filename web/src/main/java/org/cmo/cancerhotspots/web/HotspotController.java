@@ -37,16 +37,14 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.cmo.cancerhotspots.domain.HotspotMutation;
-import org.cmo.cancerhotspots.domain.VariantComposition;
+import org.cmo.cancerhotspots.domain.TumorTypeComposition;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
-import org.cmo.cancerhotspots.service.VariantDataImportService;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.cmo.cancerhotspots.service.internal.ConfigurationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -106,21 +104,21 @@ public class HotspotController
 //    @RequestMapping(value = "/variants/{aminoAcidChanges}",
 //        method = {RequestMethod.GET, RequestMethod.POST},
 //        produces = "application/json")
-    public List<VariantComposition> getVariants(
+    public List<TumorTypeComposition> getVariants(
         @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
             required = true,
             allowMultiple = true)
         @RequestParam List<String> aminoAcidChanges)
     {
-        List<VariantComposition> variants = new LinkedList<>();
+        List<TumorTypeComposition> variants = new LinkedList<>();
 
         for (String aminoAcidChange : aminoAcidChanges)
         {
-            VariantComposition variantComposition = variantService.getVariantComposition(aminoAcidChange);
+            TumorTypeComposition tumorTypeComposition = variantService.getVariantComposition(aminoAcidChange);
 
-            if (variantComposition != null)
+            if (tumorTypeComposition != null)
             {
-                variants.add(variantComposition);
+                variants.add(tumorTypeComposition);
             }
         }
 
@@ -131,14 +129,14 @@ public class HotspotController
         nickname = "getVariantsByHugoSymbolAndAminoAcidChange")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success",
-            response = VariantComposition.class,
+            response = TumorTypeComposition.class,
             responseContainer = "List"),
         @ApiResponse(code = 400, message = "Bad Request")
     })
     @RequestMapping(value = "/variants/{hugoSymbol}/{aminoAcidChanges}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<VariantComposition> getVariants(
+    public List<TumorTypeComposition> getVariants(
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = true)
         @PathVariable String hugoSymbol,
@@ -147,15 +145,16 @@ public class HotspotController
             allowMultiple = true)
         @PathVariable List<String> aminoAcidChanges)
     {
-        List<VariantComposition> variants = new LinkedList<>();
+        List<TumorTypeComposition> variants = new LinkedList<>();
 
         for (String aminoAcidChange : aminoAcidChanges)
         {
-            VariantComposition variantComposition = variantService.getVariantComposition(hugoSymbol, aminoAcidChange);
+            TumorTypeComposition
+                tumorTypeComposition = variantService.getVariantComposition(hugoSymbol, aminoAcidChange);
 
-            if (variantComposition != null)
+            if (tumorTypeComposition != null)
             {
-                variants.add(variantComposition);
+                variants.add(tumorTypeComposition);
             }
         }
 
@@ -166,14 +165,14 @@ public class HotspotController
         nickname = "postVariants")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success",
-            response = VariantComposition.class,
+            response = TumorTypeComposition.class,
             responseContainer = "List"),
         @ApiResponse(code = 400, message = "Bad Request")
     })
     @RequestMapping(value = "/variants",
         method = {RequestMethod.POST},
         produces = "application/json")
-    public List<VariantComposition> postVariants(
+    public List<TumorTypeComposition> postVariants(
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = false)
         @RequestParam(required = false)
@@ -202,14 +201,14 @@ public class HotspotController
         nickname = "getAllVariants")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success",
-            response = VariantComposition.class,
+            response = TumorTypeComposition.class,
             responseContainer = "List"),
         @ApiResponse(code = 400, message = "Bad Request")
     })
     @RequestMapping(value = "/variants",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<VariantComposition> getAllVariants()
+    public List<TumorTypeComposition> getAllVariants()
     {
         return variantService.getAllVariantCompositions();
     }

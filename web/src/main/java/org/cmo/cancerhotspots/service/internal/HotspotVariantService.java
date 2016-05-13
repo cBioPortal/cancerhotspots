@@ -2,7 +2,7 @@ package org.cmo.cancerhotspots.service.internal;
 
 import com.univocity.parsers.common.processor.BeanListProcessor;
 import com.univocity.parsers.csv.CsvParser;
-import org.cmo.cancerhotspots.domain.VariantComposition;
+import org.cmo.cancerhotspots.domain.TumorTypeComposition;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.cmo.cancerhotspots.util.FileIO;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,15 +26,15 @@ public class HotspotVariantService implements VariantService
         this.variantFileUri = variantFileUri;
     }
 
-    private List<VariantComposition> variantCache;
+    private List<TumorTypeComposition> variantCache;
 
     // cache of <amino acid change, variant> pairs
-    private Map<String, VariantComposition> variantCacheByAAChange;
+    private Map<String, TumorTypeComposition> variantCacheByAAChange;
     // cache of <hugo symbol + amino acid change, variant> pairs
-    private Map<String, VariantComposition> variantCacheByGeneAndAAChange;
+    private Map<String, TumorTypeComposition> variantCacheByGeneAndAAChange;
 
     @Override
-    public VariantComposition getVariantComposition(String aminoAcidChange)
+    public TumorTypeComposition getVariantComposition(String aminoAcidChange)
     {
         if (this.variantCacheByAAChange == null)
         {
@@ -45,7 +45,7 @@ public class HotspotVariantService implements VariantService
     }
 
     @Override
-    public VariantComposition getVariantComposition(String hugoSymbol, String aminoAcidChange)
+    public TumorTypeComposition getVariantComposition(String hugoSymbol, String aminoAcidChange)
     {
         if (this.variantCacheByGeneAndAAChange == null)
         {
@@ -57,14 +57,14 @@ public class HotspotVariantService implements VariantService
     }
 
     @Override
-    public List<VariantComposition> getAllVariantCompositions()
+    public List<TumorTypeComposition> getAllVariantCompositions()
     {
         // parse the input file only once, and save the result in the hotspot cache
         if (this.variantCache == null ||
             this.variantCache.size() == 0)
         {
-            BeanListProcessor<VariantComposition> rowProcessor =
-                new BeanListProcessor<>(VariantComposition.class);
+            BeanListProcessor<TumorTypeComposition> rowProcessor =
+                new BeanListProcessor<>(TumorTypeComposition.class);
 
             CsvParser variantParser = FileIO.initCsvParser(rowProcessor);
             variantParser.parse(FileIO.getReader(variantFileUri));
@@ -73,13 +73,13 @@ public class HotspotVariantService implements VariantService
             this.variantCache = rowProcessor.getBeans();
         }
 
-        List<VariantComposition> variantCompositions = new ArrayList<>(variantCache.size());
-        variantCompositions.addAll(variantCache);
+        List<TumorTypeComposition> tumorTypeCompositions = new ArrayList<>(variantCache.size());
+        tumorTypeCompositions.addAll(variantCache);
 
-        return variantCompositions;
+        return tumorTypeCompositions;
     }
 
-    private Map<String, VariantComposition> constructVariantCacheByGeneAndAAChange()
+    private Map<String, TumorTypeComposition> constructVariantCacheByGeneAndAAChange()
     {
         if (this.variantCache == null ||
             this.variantCache.size() == 0)
@@ -87,9 +87,9 @@ public class HotspotVariantService implements VariantService
             getAllVariantCompositions();
         }
 
-        Map<String, VariantComposition> variantCache = new HashMap<>();
+        Map<String, TumorTypeComposition> variantCache = new HashMap<>();
 
-        for (VariantComposition variant : this.variantCache)
+        for (TumorTypeComposition variant : this.variantCache)
         {
             String aaChange = variant.getReferenceAminoAcid() +
                               variant.getAminoAcidPosition() +
@@ -102,7 +102,7 @@ public class HotspotVariantService implements VariantService
         return variantCache;
     }
 
-    private Map<String, VariantComposition> constructVariantCacheByAAChange()
+    private Map<String, TumorTypeComposition> constructVariantCacheByAAChange()
     {
         if (this.variantCache == null ||
             this.variantCache.size() == 0)
@@ -110,12 +110,12 @@ public class HotspotVariantService implements VariantService
             getAllVariantCompositions();
         }
 
-        Map<String, VariantComposition> variantCache = new HashMap<>();
+        Map<String, TumorTypeComposition> variantCache = new HashMap<>();
 
         // TODO this is not accurate! we need to combine all gene specific info
         // together into one VariantComposition instance...
 
-        for (VariantComposition variant : this.variantCache)
+        for (TumorTypeComposition variant : this.variantCache)
         {
             String aaChange = variant.getReferenceAminoAcid() +
                               variant.getAminoAcidPosition() +
