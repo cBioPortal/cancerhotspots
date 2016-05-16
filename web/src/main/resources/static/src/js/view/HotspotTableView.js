@@ -95,6 +95,8 @@ function HotspotTableView(options)
         data: {},
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
+        // threshold for pValue, any value below this will be shown as >threshold
+        pValueThreshold: 0.001,
         variantColors: ViewUtils.getDefaultVariantColors(),
         tumorColors: ViewUtils.getDefaultTumorTypeColors(),
         tooltipStackHeight: 14,
@@ -127,9 +129,32 @@ function HotspotTableView(options)
                 composition: row["tumorTypeComposition"]
             };
         },
-        variantRender: function(data) {
-            var templateFn = _.template($("#basic_content").html());
-            return templateFn({value: _.size(data)});
+        pValueRender: function(data, type) {
+            // sort value should be the data value
+            if (type === 'sort')
+            {
+                return data;
+            }
+            // type == 'display' || 'filter' || 'type'
+            else if (data < _options.pValueThreshold)
+            {
+                return _options.noWrapRender(">" + _options.pValueThreshold);
+            }
+            else
+            {
+                return _options.noWrapRender(data);
+            }
+        },
+        variantRender: function(data, type) {
+            if (type === 'sort')
+            {
+                return _.size(data);
+            }
+            else
+            {
+                var templateFn = _.template($("#basic_content").html());
+                return templateFn({value: ""});
+            }
         },
         variantTipRender: function(data)
         {
@@ -196,7 +221,12 @@ function HotspotTableView(options)
         },
         variantPostRender: function(td, cellData, rowData, row, col) {
             var target = $(td).find(".basic-content");
-            target.empty();
+
+            if (_.isEmpty(cellData))
+            {
+                // nothing to render
+                return;
+            }
 
             var stackedBar = new StackedBar({
                 el: target,
@@ -233,8 +263,12 @@ function HotspotTableView(options)
                                       tooltipOpts(cellData, viewOpts));
         },
         tumorTypePostRender: function (td, cellData, rowData, row, col) {
-            cbio.util.addTargetedQTip($(td).find(".qtipped-text"),
-                                      tooltipOpts(cellData));
+            if (cellData.tumorCount > 0 &&
+                !_.isEmpty(cellData.composition))
+            {
+                cbio.util.addTargetedQTip($(td).find(".qtipped-text"),
+                                          tooltipOpts(cellData));
+            }
         }
     };
 
@@ -331,7 +365,7 @@ function HotspotTableView(options)
                 {id: "pValue",
                     title: _options.noWrapRender("P-value"),
                     data: "pValue",
-                    render: _options.noWrapRender},
+                    render: _options.pValueRender},
                 {id: "sampleCount",
                     title: "Sample Count <sup>&#8224;</sup>",
                     data: _options.sampleData,
