@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController
 {
     private final HotspotMutationService hotspotMutationService;
-    private final DataImportService variantImportService;
+    private final DataImportService dataImportService;
 
     @Autowired
     public AdminController(HotspotMutationService hotspotMutationService,
-        DataImportService variantImportService)
+        DataImportService dataImportService)
     {
         this.hotspotMutationService = hotspotMutationService;
-        this.variantImportService = variantImportService;
+        this.dataImportService = dataImportService;
     }
 
 //    @RequestMapping(value = "/create/variants",
@@ -31,7 +31,7 @@ public class AdminController
 //        produces = "application/json")
     public String createVariants()
     {
-        variantImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
+        dataImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
 
         return "variant file creation initialized";
     }
@@ -41,7 +41,7 @@ public class AdminController
 //        produces = "application/json")
     public String createHotspots()
     {
-        variantImportService.createHotspotFile(hotspotMutationService.getAllHotspotMutations());
+        dataImportService.createHotspotFile(hotspotMutationService.getAllHotspotMutations());
 
         return "hotspots file creation initialized";
     }
@@ -51,10 +51,20 @@ public class AdminController
 //        produces = "application/json")
     public String generateVariantComposition()
     {
-        variantImportService.generateVariantComposition(
+        dataImportService.generateVariantComposition(
             hotspotMutationService.getAllHotspotMutations());
 
         return "variant composition extraction initialized";
     }
 
+//    @RequestMapping(value = "/create/tumor_type_composition",
+//        method = {RequestMethod.GET, RequestMethod.POST},
+//        produces = "application/json")
+    public String generateTumorTypeComposition()
+    {
+        dataImportService.generateTumorTypeComposition(
+            hotspotMutationService.getAllHotspotMutations());
+
+        return "tumor type composition extraction initialized";
+    }
 }

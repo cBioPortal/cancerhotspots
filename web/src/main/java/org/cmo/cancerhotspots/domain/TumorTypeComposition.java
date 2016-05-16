@@ -101,4 +101,25 @@ public class TumorTypeComposition
 
         tumorTypeComposition.put(key, count + 1);
     }
+
+    public void merge(TumorTypeComposition composition)
+    {
+        for(String tumorType: composition.getTumorTypeComposition().keySet())
+        {
+            Integer count = this.getTumorTypeComposition().get(tumorType);
+
+            // if no value yet, just copy from the source
+            if (count == null)
+            {
+                this.getTumorTypeComposition().put(tumorType,
+                    composition.getTumorTypeComposition().get(tumorType));
+            }
+            // if already exists add to the current value
+            else
+            {
+                this.getTumorTypeComposition().put(tumorType,
+                    count + composition.getTumorTypeComposition().get(tumorType));
+            }
+        }
+    }
 }

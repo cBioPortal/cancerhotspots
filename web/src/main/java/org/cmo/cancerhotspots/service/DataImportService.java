@@ -12,4 +12,5 @@ public interface DataImportService
     void createVariantFile(List<HotspotMutation> hotspotMutations);
     void createHotspotFile(List<HotspotMutation> hotspotMutations);
     void generateVariantComposition(List<HotspotMutation> hotspotMutations);
+    void generateTumorTypeComposition(List<HotspotMutation> hotspotMutations);
 }

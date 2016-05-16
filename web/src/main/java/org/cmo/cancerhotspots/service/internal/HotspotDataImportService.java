@@ -164,6 +164,49 @@ public class HotspotDataImportService implements DataImportService
         }
     }
 
+    @Override
+    public void generateTumorTypeComposition(List<HotspotMutation> hotspotMutations)
+    {
+        if (this.variantCacheByGeneAndCodon == null)
+        {
+            this.variantCacheByGeneAndCodon = constructVariantCacheByGeneAndCodon();
+        }
+
+        for (HotspotMutation mutation : hotspotMutations)
+        {
+            // get variant composition for each hotspot mutations
+            VariantComposition variantComposition = this.getVariantComposition(
+                mutation.getHugoSymbol(), mutation.getCodon());
+
+            // skip unknown/invalid variants
+            if (variantComposition == null)
+            {
+                continue;
+            }
+
+            // TODO a method to get tumor type composition by gene and codon would be useful here
+            TumorTypeComposition composition = new TumorTypeComposition();
+
+            // for each variant get tumor type composition and combine them into a single
+            // tumor type composition for this codon
+            for (String variant: variantComposition.getVariantComposition().keySet())
+            {
+                String aminoAcidChange = mutation.getCodon() + variant;
+                TumorTypeComposition tumorTypeComposition = this.getTumorTypeComposition(
+                    mutation.getHugoSymbol(), aminoAcidChange);
+
+                // skip unknown/invalid variants
+                if (tumorTypeComposition != null)
+                {
+                    // merge all tumor type compositions into one!
+                    composition.merge(tumorTypeComposition);
+                }
+            }
+
+            mutation.setTumorTypeComposition(composition.getTumorTypeComposition());
+        }
+    }
+
     private Map<String, VariantComposition> constructVariantCacheByGeneAndCodon()
     {
         Map<String, VariantComposition> variantCache = new HashMap<>();
