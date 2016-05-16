@@ -54,7 +54,7 @@ public class SignificantHotspotMutationService implements HotspotMutationService
     private ResourceLoader resourceLoader;
 
     private String hotspotMutationUri;
-    @Value("${significant.hotspot.uri}")
+    @Value("${hotspot.mutation.uri}")
     public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
 
     private List<HotspotMutation> hotspotCache;

@@ -29,7 +29,7 @@ public class HotspotDataImportService implements DataImportService
     }
 
     private String hotspotMutationUri;
-    @Value("${significant.hotspot.uri}")
+    @Value("${hotspot.mutation.uri}")
     public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
 
     // cache of <amino acid change, tumor type composition> pairs

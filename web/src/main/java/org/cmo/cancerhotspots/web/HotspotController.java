@@ -48,8 +48,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Selcuk Onur Sumer
@@ -211,6 +213,24 @@ public class HotspotController
     public List<TumorTypeComposition> getAllVariants()
     {
         return variantService.getAllVariantCompositions();
+    }
+
+    @ApiOperation(value = "get metadata",
+        nickname = "getMetadata")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/metadata",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public Map<String, String> getMetadata()
+    {
+        Map <String, String> map = new LinkedHashMap<>();
+
+        map.put("profile", this.configService.getProfile());
+
+        return map;
     }
 
 //    @RequestMapping(value = "/download/{filename}",

@@ -10,15 +10,41 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConfigurationService
 {
+    private String itemSeparator;
     @Value("${conversion.separator.item}")
-    public void itemSeparator(String itemSeparator)
+    public void setItemSeparator(String itemSeparator)
     {
+        this.itemSeparator = itemSeparator;
         Config.ITEM_SEPARATOR = itemSeparator;
     }
 
-    @Value("${conversion.separator.mapping}")
-    public void mappingSeparator(String mappingSeparator)
+    public String getItemSeparator()
     {
+        return itemSeparator;
+    }
+
+    private String mappingSeparator;
+    @Value("${conversion.separator.mapping}")
+    public void setMappingSeparator(String mappingSeparator)
+    {
+        this.mappingSeparator = mappingSeparator;
         Config.MAPPING_SEPARATOR = mappingSeparator;
+    }
+
+    public String getMappingSeparator()
+    {
+        return mappingSeparator;
+    }
+
+    private String profile;
+    @Value("${hotspot.profile}")
+    public void setProfile(String profile)
+    {
+        this.profile = profile;
+    }
+
+    public String getProfile()
+    {
+        return profile;
     }
 }

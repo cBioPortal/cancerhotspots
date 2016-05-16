@@ -36,7 +36,7 @@
  * @author Selcuk Onur Sumer
  */
 $(document).ready(function() {
-    function initWithData()
+    function initWithData(metadata)
     {
         var proxy = new HotspotDataProxy();
 
@@ -47,6 +47,7 @@ $(document).ready(function() {
 
             // init the table view with the hotspot data
             var tableView = new HotspotTableView({
+                metadata: metadata,
                 data: data
             });
 
@@ -55,13 +56,14 @@ $(document).ready(function() {
         });
     }
 
-    function initWithAjax()
+    function initWithAjax(metadata)
     {
         var mainTemplateFn = _.template($("#main_view").html());
         $("#main_content").html(mainTemplateFn());
 
         // init the table view with the hotspot data retrieval function
         var tableView = new HotspotTableView({
+            metadata: metadata,
             "ajax": function (data, callback, settings) {
                 var proxy = new HotspotDataProxy();
 
@@ -82,6 +84,10 @@ $(document).ready(function() {
     // TODO initial AJAX call to determine which data fields are available
     // this way we can hide/show columns when we initialize the data table
 
-    //initWithData();
-    initWithAjax();
+    var metadataProxy = new MetadataProxy();
+
+    metadataProxy.getMetadata(function(data) {
+        //initWithData(data);
+        initWithAjax(data);
+    });
 });

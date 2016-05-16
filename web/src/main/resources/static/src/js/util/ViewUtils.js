@@ -187,7 +187,28 @@ var ViewUtils = (function() {
         return map;
     }
 
+    function determineVisibility(columns, metadata)
+    {
+        if (metadata && metadata.profile)
+        {
+            _.each(columns, function(column) {
+                if (column.id === "pValue" &&
+                    metadata.profile.toLowerCase() === "singleresidue")
+                {
+                    column.visible = false;
+                }
+
+                if (column.id === "qValue" &&
+                    metadata.profile.toLowerCase() === "3d")
+                {
+                    column.visible = false;
+                }
+            });
+        }
+    }
+
     return {
+        determineVisibility: determineVisibility,
         getTumorTypeNames: getTumorTypeNames,
         getDefaultTumorTypeColors: getDefaultTumorTypeColors,
         getDefaultVariantColors: getDefaultVariantColors

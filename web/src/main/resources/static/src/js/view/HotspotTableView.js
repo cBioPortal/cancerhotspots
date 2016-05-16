@@ -90,6 +90,7 @@ function HotspotTableView(options)
     var _defaultOpts = {
         // default target DOM element
         el: "#hotspots_table",
+        metadata: false,
         // no data by default, must be provided by the client
         data: {},
         // delay amount before applying the user entered filter query
@@ -309,27 +310,35 @@ function HotspotTableView(options)
                 }
             }],
             columns: [
-                {title: "Hugo Symbol",
+                {id: "hugoSymbol",
+                    title: "Hugo Symbol",
                     data: "hugoSymbol"},
-                {title: "Codon",
+                {id: "codon",
+                    title: "Codon",
                     data: "codon"},
-                //{title: "Alt Common Codon Usage *",
+                //{id: "altCodon",
+                //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
-                {title: "Variant Amino Acid <sup>&#8224;</sup>",
+                {id: "variant",
+                    title: "Variant Amino Acid <sup>&#8224;</sup>",
                     data: "variantAminoAcid",
                     render: _options.variantRender,
                     createdCell: _options.variantPostRender},
-                {title: _options.noWrapRender("Q-value"),
+                {id: "qValue",
+                    title: _options.noWrapRender("Q-value"),
                     data: "qValue",
                     render: _options.noWrapRender},
-                {title: _options.noWrapRender("P-value"),
+                {id: "pValue",
+                    title: _options.noWrapRender("P-value"),
                     data: "pValue",
                     render: _options.noWrapRender},
-                {title: "Sample Count <sup>&#8224;</sup>",
+                {id: "sampleCount",
+                    title: "Sample Count <sup>&#8224;</sup>",
                     data: _options.sampleData,
                     render: _options.sampleRender,
                     createdCell: _options.tumorTypePostRender}
-                //{title: "Validation Level [a]",
+                //{id: "validationLevel"
+                //    title: "Validation Level [a]",
                 //    data: "validationLevel"}
             ],
             initComplete: function(settings) {
@@ -357,6 +366,8 @@ function HotspotTableView(options)
                 }
             }
         };
+
+        ViewUtils.determineVisibility(dataTableOpts.columns, _options.metadata);
 
         if (_.isFunction(_options.ajax))
         {
