@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author Selcuk Onur Sumer
  */
-@RestController // shorthand for @Controller, @ResponseBody
-//@CrossOrigin(origins="*") // allow all cross-domain requests
+//@RestController // shorthand for @Controller, @ResponseBody
 @RequestMapping(value = "/admin")
 public class AdminController
 {
@@ -26,9 +25,9 @@ public class AdminController
         this.dataImportService = dataImportService;
     }
 
-//    @RequestMapping(value = "/create/variants",
-//        method = {RequestMethod.GET, RequestMethod.POST},
-//        produces = "application/json")
+    @RequestMapping(value = "/create/variants",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
     public String createVariants()
     {
         dataImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
@@ -36,9 +35,9 @@ public class AdminController
         return "variant file creation initialized";
     }
 
-//    @RequestMapping(value = "/create/hotspots",
-//        method = {RequestMethod.GET, RequestMethod.POST},
-//        produces = "application/json")
+    @RequestMapping(value = "/create/hotspots",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
     public String createHotspots()
     {
         dataImportService.createHotspotFile(hotspotMutationService.getAllHotspotMutations());
@@ -46,9 +45,9 @@ public class AdminController
         return "hotspots file creation initialized";
     }
 
-//    @RequestMapping(value = "/create/variant_composition",
-//        method = {RequestMethod.GET, RequestMethod.POST},
-//        produces = "application/json")
+    @RequestMapping(value = "/create/variant_composition",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
     public String generateVariantComposition()
     {
         dataImportService.generateVariantComposition(
@@ -57,9 +56,9 @@ public class AdminController
         return "variant composition extraction initialized";
     }
 
-//    @RequestMapping(value = "/create/tumor_type_composition",
-//        method = {RequestMethod.GET, RequestMethod.POST},
-//        produces = "application/json")
+    @RequestMapping(value = "/create/tumor_type_composition",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
     public String generateTumorTypeComposition()
     {
         dataImportService.generateTumorTypeComposition(

@@ -122,4 +122,16 @@ public class TumorTypeComposition
             }
         }
     }
+
+    public Integer compositionCount()
+    {
+        Integer total = 0;
+
+        for (Integer value: getTumorTypeComposition().values())
+        {
+            total += value;
+        }
+
+        return total;
+    }
 }

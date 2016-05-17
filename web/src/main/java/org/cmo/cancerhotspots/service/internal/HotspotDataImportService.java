@@ -6,6 +6,8 @@ import org.cmo.cancerhotspots.domain.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.util.FileIO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ import java.util.Map;
 @Service
 public class HotspotDataImportService implements DataImportService
 {
+    // Define the logger object for this class
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
+
     private String variantFileUri;
     @Value("${hotspot.variant.uri}")
     public void setVariantFileUri(String variantFileUri)
@@ -203,7 +208,16 @@ public class HotspotDataImportService implements DataImportService
                 }
             }
 
+            if (!mutation.getTumorCount().equals(composition.compositionCount())) {
+                log.debug("Tumor Count Mismatch: " +
+                    mutation.getHugoSymbol() + "\t" +
+                    mutation.getCodon() + "\t" +
+                    mutation.getTumorCount() + "\t" +
+                    composition.compositionCount());
+            }
+
             mutation.setTumorTypeComposition(composition.getTumorTypeComposition());
+            mutation.setTumorCount(composition.compositionCount());
         }
     }
 

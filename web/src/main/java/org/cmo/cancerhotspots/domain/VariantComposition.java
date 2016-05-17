@@ -80,4 +80,16 @@ public class VariantComposition
 
         variantComposition.put(key, count + 1);
     }
+
+    public Integer compositionCount()
+    {
+        Integer total = 0;
+
+        for (Integer value: getVariantComposition().values())
+        {
+            total += value;
+        }
+
+        return total;
+    }
 }
