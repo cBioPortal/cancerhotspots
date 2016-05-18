@@ -5,6 +5,7 @@ import com.univocity.parsers.tsv.TsvWriter;
 import org.cmo.cancerhotspots.domain.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
+import org.cmo.cancerhotspots.service.MutationFilterService;
 import org.cmo.cancerhotspots.util.FileIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +46,14 @@ public class HotspotDataImportService implements DataImportService
     private Map<String, VariantComposition> variantCacheByGeneAndCodon;
 
     private MutationAnnotationService mafService;
+    private MutationFilterService filterService;
 
     @Autowired
-    public HotspotDataImportService(MutationAnnotationService mafService)
+    public HotspotDataImportService(MutationAnnotationService mafService,
+        MutationFilterService filterService)
     {
         this.mafService = mafService;
+        this.filterService = filterService;
         // TODO technically we should use database for such large data, not in-memory cache
         this.variantCacheByGeneAndAAChange = null;
         this.variantCacheByAAChange = null;
@@ -230,7 +234,11 @@ public class HotspotDataImportService implements DataImportService
         {
             String codon = this.extractCodon(annotation);
 
-            if (codon != null)
+            // TODO should we also apply this filter for all import methods for consistency?
+            // skip the annotation if the mutation type is filtered out,
+            // or if no codon information can be extracted
+            if (this.filterService.filterByType(annotation) &&
+                codon != null)
             {
                 String key = (annotation.getHugoSymbol() + "_" + codon).toUpperCase();
                 this.updateVariant(variantCache, key, annotation);
