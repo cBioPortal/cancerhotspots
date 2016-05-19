@@ -33,7 +33,6 @@
 package org.cmo.cancerhotspots.util;
 
 import com.univocity.parsers.conversions.*;
-import org.cmo.cancerhotspots.util.Config;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -42,14 +41,14 @@ import java.util.Map;
 /**
  * @author Selcuk Onur Sumer
  */
-public class MapConversion implements Conversion<String, Map<String, Integer>>
+public class CompositionMapConversion implements Conversion<String, Map<String, Integer>>
 {
     private final String itemSeparator;
     private final String mappingSeparator;
 
-    public MapConversion(String... args) {
-        String itemSeparator = Config.ITEM_SEPARATOR;
-        String mappingSeparator = Config.MAPPING_SEPARATOR;
+    public CompositionMapConversion(String... args) {
+        String itemSeparator = Config.COMPOSITION_ITEM_SEPARATOR;
+        String mappingSeparator = Config.COMPOSITION_MAPPING_SEPARATOR;
 
         if (args.length > 0) {
             itemSeparator = args[0];
@@ -63,7 +62,7 @@ public class MapConversion implements Conversion<String, Map<String, Integer>>
         this.mappingSeparator = mappingSeparator;
     }
 
-    public MapConversion(String itemSeparator, String mappingSeparator)
+    public CompositionMapConversion(String itemSeparator, String mappingSeparator)
     {
         this.itemSeparator = itemSeparator;
         this.mappingSeparator = mappingSeparator;
@@ -80,7 +79,7 @@ public class MapConversion implements Conversion<String, Map<String, Integer>>
         for (String token : input.split(itemSeparator)) {
             String[] parts = token.trim().split(mappingSeparator);
 
-            if (parts.length == 2)
+            if (parts.length >= 2)
             {
                 out.put(parts[0], Integer.parseInt(parts[1]));
             }

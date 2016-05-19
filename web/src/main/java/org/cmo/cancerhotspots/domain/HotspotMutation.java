@@ -36,8 +36,9 @@ import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
 import io.swagger.annotations.ApiModelProperty;
+import org.cmo.cancerhotspots.util.ChainMapConversion;
 import org.cmo.cancerhotspots.util.ListConversion;
-import org.cmo.cancerhotspots.util.MapConversion;
+import org.cmo.cancerhotspots.util.CompositionMapConversion;
 
 import java.util.List;
 import java.util.Map;
@@ -60,16 +61,16 @@ public class HotspotMutation
     private String cluster;
 
     @Trim
-    @Convert(conversionClass = ListConversion.class)
+    @Convert(conversionClass = ChainMapConversion.class)
     @Parsed(field = "PDB chains")
-    private List<String> pdbChains;
+    private Map<String, Double> pdbChains;
 
     @Trim
     @Parsed(field = "Class")
     private String classification;
 
     @Trim
-    @Convert(conversionClass = MapConversion.class)
+    @Convert(conversionClass = CompositionMapConversion.class)
     @Parsed(field = "Variant Amino Acid")
     private Map<String, Integer> variantAminoAcid;
 
@@ -90,7 +91,7 @@ public class HotspotMutation
     private Integer tumorTypeCount;
 
     @Trim
-    @Convert(conversionClass = MapConversion.class)
+    @Convert(conversionClass = CompositionMapConversion.class)
     @Parsed(field = "Tumor Type Composition")
     private Map<String, Integer> tumorTypeComposition;
 

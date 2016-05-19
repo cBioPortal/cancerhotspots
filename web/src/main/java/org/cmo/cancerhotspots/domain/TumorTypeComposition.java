@@ -3,7 +3,7 @@ package org.cmo.cancerhotspots.domain;
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
-import org.cmo.cancerhotspots.util.MapConversion;
+import org.cmo.cancerhotspots.util.CompositionMapConversion;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class TumorTypeComposition
 
     // tumor type composition as <tumor type, count> pairs
     @Trim
-    @Convert(conversionClass = MapConversion.class)
+    @Convert(conversionClass = CompositionMapConversion.class)
     @Parsed(field = "Tumor_Type_Composition")
     private Map<String, Integer> tumorTypeComposition;
 

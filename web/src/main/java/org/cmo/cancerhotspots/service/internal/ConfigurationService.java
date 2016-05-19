@@ -10,30 +10,69 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConfigurationService
 {
-    private String itemSeparator;
-    @Value("${conversion.separator.item}")
-    public void setItemSeparator(String itemSeparator)
+    private String compositionItemSeparator;
+    @Value("${conversion.separator.compositionItem}")
+    public void setCompositionItemSeparator(String compositionItemSeparator)
     {
-        this.itemSeparator = itemSeparator;
-        Config.ITEM_SEPARATOR = itemSeparator;
+        this.compositionItemSeparator = compositionItemSeparator;
+        Config.COMPOSITION_ITEM_SEPARATOR = compositionItemSeparator;
     }
 
-    public String getItemSeparator()
+    public String getCompositionItemSeparator()
     {
-        return itemSeparator;
+        return compositionItemSeparator;
     }
 
-    private String mappingSeparator;
-    @Value("${conversion.separator.mapping}")
-    public void setMappingSeparator(String mappingSeparator)
+    private String compositionMappingSeparator;
+    @Value("${conversion.separator.compositionMapping}")
+    public void setCompositionMappingSeparator(String compositionMappingSeparator)
     {
-        this.mappingSeparator = mappingSeparator;
-        Config.MAPPING_SEPARATOR = mappingSeparator;
+        this.compositionMappingSeparator = compositionMappingSeparator;
+        Config.COMPOSITION_MAPPING_SEPARATOR = compositionMappingSeparator;
     }
 
-    public String getMappingSeparator()
+    public String getCompositionMappingSeparator()
     {
-        return mappingSeparator;
+        return compositionMappingSeparator;
+    }
+
+    private String chainItemSeparator;
+    @Value("${conversion.separator.chainItem}")
+    public void setChainItemSeparator(String chainItemSeparator)
+    {
+        this.chainItemSeparator = chainItemSeparator;
+        Config.CHAIN_ITEM_SEPARATOR = chainItemSeparator;
+    }
+
+    public String getChainItemSeparator()
+    {
+        return chainItemSeparator;
+    }
+
+    private String chainOpenBracket;
+    @Value("${conversion.separator.chainOpenBracket}")
+    public void setChainOpenBracket(String chainOpenBracket)
+    {
+        this.chainOpenBracket = chainOpenBracket;
+        Config.CHAIN_OPEN_BRACKET = chainOpenBracket;
+    }
+
+    public String getChainOpenBracket()
+    {
+        return chainOpenBracket;
+    }
+
+    private String chainCloseBracket;
+    @Value("${conversion.separator.chainCloseBracket}")
+    public void setChainCloseBracket(String chainCloseBracket)
+    {
+        this.chainCloseBracket = chainCloseBracket;
+        Config.CHAIN_CLOSE_BRACKET = chainCloseBracket;
+    }
+
+    public String getChainCloseBracket()
+    {
+        return chainCloseBracket;
     }
 
     private String listSeparator;
