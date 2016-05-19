@@ -7,4 +7,5 @@ public class Config
 {
     public static String ITEM_SEPARATOR;
     public static String MAPPING_SEPARATOR;
+    public static String LIST_SEPARATOR;
 }

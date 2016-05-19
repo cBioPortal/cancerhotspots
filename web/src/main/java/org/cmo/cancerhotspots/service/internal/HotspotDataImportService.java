@@ -212,7 +212,8 @@ public class HotspotDataImportService implements DataImportService
                 }
             }
 
-            if (!mutation.getTumorCount().equals(composition.compositionCount())) {
+            if (mutation.getTumorCount() != null &&
+                !mutation.getTumorCount().equals(composition.compositionCount())) {
                 log.debug("Tumor Count Mismatch: " +
                     mutation.getHugoSymbol() + "\t" +
                     mutation.getCodon() + "\t" +

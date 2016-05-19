@@ -36,7 +36,10 @@ import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
 import io.swagger.annotations.ApiModelProperty;
+import org.cmo.cancerhotspots.util.ListConversion;
+import org.cmo.cancerhotspots.util.MapConversion;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,8 +56,17 @@ public class HotspotMutation
     private String codon;
 
     @Trim
-    @Parsed(field = "Alt Common Codon Usage *")
-    private String altCommonCodonUsage;
+    @Parsed(field = "Cluster")
+    private String cluster;
+
+    @Trim
+    @Convert(conversionClass = ListConversion.class)
+    @Parsed(field = "PDB chains")
+    private List<String> pdbChains;
+
+    @Trim
+    @Parsed(field = "Class")
+    private String classification;
 
     @Trim
     @Convert(conversionClass = MapConversion.class)
@@ -78,14 +90,9 @@ public class HotspotMutation
     private Integer tumorTypeCount;
 
     @Trim
-    @Parsed(field = "Validation Level [a]")
-    private String validationLevel;
-
-    @Trim
     @Convert(conversionClass = MapConversion.class)
     @Parsed(field = "Tumor Type Composition")
     private Map<String, Integer> tumorTypeComposition;
-
 
     @ApiModelProperty(value = "Hugo symbol", required = true)
     public String getHugoSymbol()
@@ -107,17 +114,6 @@ public class HotspotMutation
     public void setCodon(String codon)
     {
         this.codon = codon;
-    }
-
-    @ApiModelProperty(value = "Alternative Common Codon Usage", required = true)
-    public String getAltCommonCodonUsage()
-    {
-        return altCommonCodonUsage;
-    }
-
-    public void setAltCommonCodonUsage(String altCommonCodonUsage)
-    {
-        this.altCommonCodonUsage = altCommonCodonUsage;
     }
 
     @ApiModelProperty(value = "Variant Amino Acid", required = true)
@@ -175,17 +171,6 @@ public class HotspotMutation
         this.tumorTypeCount = tumorTypeCount;
     }
 
-    @ApiModelProperty(value = "Validation Level", required = true)
-    public String getValidationLevel()
-    {
-        return validationLevel;
-    }
-
-    public void setValidationLevel(String validationLevel)
-    {
-        this.validationLevel = validationLevel;
-    }
-
     @ApiModelProperty(value = "Tumor Type Composition", required = true)
     public Map<String, Integer> getTumorTypeComposition()
     {
@@ -196,4 +181,34 @@ public class HotspotMutation
     {
         this.tumorTypeComposition = tumorTypeComposition;
     }
+
+//    @Trim
+//    @Parsed(field = "Alt Common Codon Usage *")
+//    private String altCommonCodonUsage;
+//
+//    @Trim
+//    @Parsed(field = "Validation Level [a]")
+//    private String validationLevel;
+//
+//    @ApiModelProperty(value = "Alternative Common Codon Usage", required = true)
+//    public String getAltCommonCodonUsage()
+//    {
+//        return altCommonCodonUsage;
+//    }
+//
+//    public void setAltCommonCodonUsage(String altCommonCodonUsage)
+//    {
+//        this.altCommonCodonUsage = altCommonCodonUsage;
+//    }
+//
+//    @ApiModelProperty(value = "Validation Level", required = true)
+//    public String getValidationLevel()
+//    {
+//        return validationLevel;
+//    }
+//
+//    public void setValidationLevel(String validationLevel)
+//    {
+//        this.validationLevel = validationLevel;
+//    }
 }

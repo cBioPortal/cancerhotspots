@@ -30,88 +30,65 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.cmo.cancerhotspots.domain;
+package org.cmo.cancerhotspots.util;
 
 import com.univocity.parsers.conversions.*;
 import org.cmo.cancerhotspots.util.Config;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Selcuk Onur Sumer
  */
-public class MapConversion implements Conversion<String, Map<String, Integer>>
+public class ListConversion implements Conversion<String, List<String>>
 {
     private final String itemSeparator;
-    private final String mappingSeparator;
 
-    public MapConversion(String... args) {
-        String itemSeparator = Config.ITEM_SEPARATOR;
-        String mappingSeparator = Config.MAPPING_SEPARATOR;
+    public ListConversion(String... args) {
+        String itemSeparator = Config.LIST_SEPARATOR;
 
         if (args.length > 0) {
             itemSeparator = args[0];
         }
 
-        if (args.length > 1) {
-            mappingSeparator = args[1];
-        }
-
         this.itemSeparator = itemSeparator;
-        this.mappingSeparator = mappingSeparator;
     }
 
-    public MapConversion(String itemSeparator, String mappingSeparator)
+    public ListConversion(String itemSeparator)
     {
         this.itemSeparator = itemSeparator;
-        this.mappingSeparator = mappingSeparator;
     }
 
     @Override
-    public  Map<String, Integer> execute(String input) {
+    public  List<String> execute(String input) {
         if (input == null) {
-            return Collections.emptyMap();
+            return Collections.emptyList();
         }
-
-        Map<String, Integer> out = new HashMap<>();
-
-        for (String token : input.split(itemSeparator)) {
-            String[] parts = token.trim().split(mappingSeparator);
-
-            if (parts.length == 2)
-            {
-                out.put(parts[0], Integer.parseInt(parts[1]));
-            }
+        else {
+            return Arrays.asList(input.split(itemSeparator));
         }
-
-        return out;
     }
 
     @Override
-    public String revert(Map<String, Integer> input)
+    public String revert(List<String> input)
     {
         if (input == null || input.isEmpty()) {
             return null;
         }
 
         StringBuilder out = new StringBuilder();
+        String separator = itemSeparator.replaceAll("\\\\", "");
 
-        for (String key : input.keySet()) {
-            Integer value = input.get(key);
-            if (value == null)
-            {
+        for (String item : input) {
+            if (item == null) {
                 continue;
             }
 
             if (out.length() > 0) {
-                out.append(itemSeparator.replaceAll("\\\\", ""));
+                out.append(separator);
             }
 
-            out.append(key);
-            out.append(mappingSeparator.replaceAll("\\\\", ""));
-            out.append(value);
+            out.append(item);
         }
 
         if (out.length() == 0) {

@@ -3,6 +3,7 @@ package org.cmo.cancerhotspots.domain;
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
+import org.cmo.cancerhotspots.util.MapConversion;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

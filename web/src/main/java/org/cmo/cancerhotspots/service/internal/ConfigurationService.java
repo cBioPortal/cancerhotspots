@@ -36,6 +36,20 @@ public class ConfigurationService
         return mappingSeparator;
     }
 
+    private String listSeparator;
+
+    @Value("${conversion.separator.list}")
+    public void setListSeparator(String listSeparator)
+    {
+        this.listSeparator = listSeparator;
+        Config.LIST_SEPARATOR = listSeparator;
+    }
+
+    public String getListSeparator()
+    {
+        return listSeparator;
+    }
+
     private String profile;
     @Value("${hotspot.profile}")
     public void setProfile(String profile)
