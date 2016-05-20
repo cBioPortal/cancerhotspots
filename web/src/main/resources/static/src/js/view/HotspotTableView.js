@@ -184,7 +184,7 @@ function HotspotTableView(options)
         variantTipCountPostRender: function(td, cellData, rowData, row, col) {
             var proxy = new VariantDataProxy();
             var gene = cellData.hugoSymbol;
-            var aaChange = cellData.codon + rowData.type;
+            var aaChange = cellData.residue + rowData.type;
             var helper = cellData.variantHelper;
 
             proxy.getTumorTypeComposition(gene, aaChange, function(compositionData) {
@@ -250,9 +250,9 @@ function HotspotTableView(options)
                             return {
                                 count: data.count,
                                 hugoSymbol: rowData.hugoSymbol,
-                                codon: rowData.codon,
+                                residue: rowData.residue,
                                 variantHelper: variantHelper(cellData)
-                            }
+                            };
                         },
                         render: _options.variantTipCountRender,
                         createdCell: _options.variantTipCountPostRender}
@@ -312,8 +312,8 @@ function HotspotTableView(options)
                     var columns = [
                         {title: "Hugo Symbol",
                             data: "hugoSymbol"},
-                        {title: "Codon",
-                            data: "codon"},
+                        {title: "Residue",
+                            data: "residue"},
                         //{title: "Alt Common Codon Usage *",
                         //    data: "altCommonCodonUsage"},
                         {title: "Variant Amino Acid",
@@ -347,9 +347,9 @@ function HotspotTableView(options)
                 {id: "hugoSymbol",
                     title: "Hugo Symbol",
                     data: "hugoSymbol"},
-                {id: "codon",
-                    title: "Codon",
-                    data: "codon"},
+                {id: "residue",
+                    title: "Residue",
+                    data: "residue"},
                 //{id: "altCodon",
                 //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},

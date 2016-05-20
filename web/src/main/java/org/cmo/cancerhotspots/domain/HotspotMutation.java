@@ -37,10 +37,8 @@ import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
 import io.swagger.annotations.ApiModelProperty;
 import org.cmo.cancerhotspots.util.ChainMapConversion;
-import org.cmo.cancerhotspots.util.ListConversion;
 import org.cmo.cancerhotspots.util.CompositionMapConversion;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,8 +51,8 @@ public class HotspotMutation
     private String hugoSymbol;
 
     @Trim
-    @Parsed(field = "Codon")
-    private String codon;
+    @Parsed(field = "Residue")
+    private String residue;
 
     @Trim
     @Parsed(field = "Cluster")
@@ -106,15 +104,15 @@ public class HotspotMutation
         this.hugoSymbol = hugoSymbol;
     }
 
-    @ApiModelProperty(value = "Codon", required = true)
-    public String getCodon()
+    @ApiModelProperty(value = "Residue", required = true)
+    public String getResidue()
     {
-        return codon;
+        return residue;
     }
 
-    public void setCodon(String codon)
+    public void setResidue(String residue)
     {
-        this.codon = codon;
+        this.residue = residue;
     }
 
     @ApiModelProperty(value = "Variant Amino Acid", required = true)

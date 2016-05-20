@@ -12,7 +12,7 @@ public class VariantComposition
 
     private String referenceAminoAcid;
 
-    private String codon;
+    private String residue;
 
     private Integer aminoAcidPosition;
 
@@ -43,14 +43,14 @@ public class VariantComposition
         this.referenceAminoAcid = referenceAminoAcid;
     }
 
-    public String getCodon()
+    public String getResidue()
     {
-        return codon;
+        return residue;
     }
 
-    public void setCodon(String codon)
+    public void setResidue(String residue)
     {
-        this.codon = codon;
+        this.residue = residue;
     }
 
     public Integer getAminoAcidPosition()

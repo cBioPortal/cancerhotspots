@@ -42,8 +42,8 @@ public class HotspotDataImportService implements DataImportService
     private Map<String, TumorTypeComposition> variantCacheByAAChange;
     // cache of <hugo symbol + amino acid change, tumor type composition> pairs
     private Map<String, TumorTypeComposition> variantCacheByGeneAndAAChange;
-    // cache of <hugo symbol + codon, variant composition> pairs
-    private Map<String, VariantComposition> variantCacheByGeneAndCodon;
+    // cache of <hugo symbol + residue, variant composition> pairs
+    private Map<String, VariantComposition> variantCacheByGeneAndResidue;
 
     private MutationAnnotationService mafService;
     private MutationFilterService filterService;
@@ -57,7 +57,7 @@ public class HotspotDataImportService implements DataImportService
         // TODO technically we should use database for such large data, not in-memory cache
         this.variantCacheByGeneAndAAChange = null;
         this.variantCacheByAAChange = null;
-        this.variantCacheByGeneAndCodon = null;
+        this.variantCacheByGeneAndResidue = null;
     }
 
     public TumorTypeComposition getTumorTypeComposition(String aminoAcidChange)
@@ -81,15 +81,15 @@ public class HotspotDataImportService implements DataImportService
             (hugoSymbol + "_" + aminoAcidChange).toUpperCase());
     }
 
-    public VariantComposition getVariantComposition(String hugoSymbol, String codon)
+    public VariantComposition getVariantComposition(String hugoSymbol, String residue)
     {
-        if (this.variantCacheByGeneAndCodon == null)
+        if (this.variantCacheByGeneAndResidue == null)
         {
-            this.variantCacheByGeneAndCodon = constructVariantCacheByGeneAndCodon();
+            this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
         }
 
-        return variantCacheByGeneAndCodon.get(
-            (hugoSymbol + "_" + codon).toUpperCase());
+        return variantCacheByGeneAndResidue.get(
+            (hugoSymbol + "_" + residue).toUpperCase());
     }
 
     @Override
@@ -116,7 +116,7 @@ public class HotspotDataImportService implements DataImportService
 
             for (String variant: mutation.getVariantAminoAcid().keySet())
             {
-                String aminoAcidChange = mutation.getCodon() + variant;
+                String aminoAcidChange = mutation.getResidue() + variant;
                 TumorTypeComposition composition = this.getTumorTypeComposition(
                     mutation.getHugoSymbol(), aminoAcidChange);
 
@@ -153,15 +153,15 @@ public class HotspotDataImportService implements DataImportService
     @Override
     public void generateVariantComposition(List<HotspotMutation> hotspotMutations)
     {
-        if (this.variantCacheByGeneAndCodon == null)
+        if (this.variantCacheByGeneAndResidue == null)
         {
-            this.variantCacheByGeneAndCodon = constructVariantCacheByGeneAndCodon();
+            this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
         }
 
         for (HotspotMutation mutation : hotspotMutations)
         {
             VariantComposition composition = this.getVariantComposition(
-                mutation.getHugoSymbol(), mutation.getCodon());
+                mutation.getHugoSymbol(), mutation.getResidue());
 
             // skip unknown/invalid variants
             if (composition == null)
@@ -176,16 +176,16 @@ public class HotspotDataImportService implements DataImportService
     @Override
     public void generateTumorTypeComposition(List<HotspotMutation> hotspotMutations)
     {
-        if (this.variantCacheByGeneAndCodon == null)
+        if (this.variantCacheByGeneAndResidue == null)
         {
-            this.variantCacheByGeneAndCodon = constructVariantCacheByGeneAndCodon();
+            this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
         }
 
         for (HotspotMutation mutation : hotspotMutations)
         {
             // get variant composition for each hotspot mutations
             VariantComposition variantComposition = this.getVariantComposition(
-                mutation.getHugoSymbol(), mutation.getCodon());
+                mutation.getHugoSymbol(), mutation.getResidue());
 
             // skip unknown/invalid variants
             if (variantComposition == null)
@@ -193,14 +193,14 @@ public class HotspotDataImportService implements DataImportService
                 continue;
             }
 
-            // TODO a method to get tumor type composition by gene and codon would be useful here
+            // TODO a method to get tumor type composition by gene and residue would be useful here
             TumorTypeComposition composition = new TumorTypeComposition();
 
             // for each variant get tumor type composition and combine them into a single
-            // tumor type composition for this codon
+            // tumor type composition for this residue
             for (String variant: variantComposition.getVariantComposition().keySet())
             {
-                String aminoAcidChange = mutation.getCodon() + variant;
+                String aminoAcidChange = mutation.getResidue() + variant;
                 TumorTypeComposition tumorTypeComposition = this.getTumorTypeComposition(
                     mutation.getHugoSymbol(), aminoAcidChange);
 
@@ -215,10 +215,10 @@ public class HotspotDataImportService implements DataImportService
             if (mutation.getTumorCount() != null &&
                 !mutation.getTumorCount().equals(composition.compositionCount())) {
                 log.debug("Tumor Count Mismatch: " +
-                    mutation.getHugoSymbol() + "\t" +
-                    mutation.getCodon() + "\t" +
-                    mutation.getTumorCount() + "\t" +
-                    composition.compositionCount());
+                          mutation.getHugoSymbol() + "\t" +
+                          mutation.getResidue() + "\t" +
+                          mutation.getTumorCount() + "\t" +
+                          composition.compositionCount());
             }
 
             mutation.setTumorTypeComposition(composition.getTumorTypeComposition());
@@ -226,22 +226,22 @@ public class HotspotDataImportService implements DataImportService
         }
     }
 
-    private Map<String, VariantComposition> constructVariantCacheByGeneAndCodon()
+    private Map<String, VariantComposition> constructVariantCacheByGeneAndResidue()
     {
         Map<String, VariantComposition> variantCache = new HashMap<>();
         List<MutationAnnotation> annotations = mafService.getAllMutationAnnotations();
 
         for (MutationAnnotation annotation : annotations)
         {
-            String codon = this.extractCodon(annotation);
+            String residue = this.extractResidue(annotation);
 
             // TODO should we also apply this filter for all import methods for consistency?
             // skip the annotation if the mutation type is filtered out,
-            // or if no codon information can be extracted
+            // or if no residue information can be extracted
             if (this.filterService.filterByType(annotation) &&
-                codon != null)
+                residue != null)
             {
-                String key = (annotation.getHugoSymbol() + "_" + codon).toUpperCase();
+                String key = (annotation.getHugoSymbol() + "_" + residue).toUpperCase();
                 this.updateVariant(variantCache, key, annotation);
             }
         }
@@ -323,7 +323,7 @@ public class HotspotDataImportService implements DataImportService
             // init variant
             variantComposition.setAminoAcidPosition(annotation.getAminoAcidPosition());
             variantComposition.setReferenceAminoAcid(annotation.getReferenceAminoAcid());
-            variantComposition.setCodon(this.extractCodon(annotation));
+            variantComposition.setResidue(this.extractResidue(annotation));
             variantComposition.setHugoSymbol(annotation.getHugoSymbol());
 
             variantCache.put(key, variantComposition);
@@ -335,24 +335,24 @@ public class HotspotDataImportService implements DataImportService
     }
 
 	/**
-     * Creates a codon string by using the reference amino acid
+     * Creates a residue string by using the reference amino acid
      * and amino acid position values of the given annotation.
      *
      * @param annotation mutation annotation instance
-     * @return codon string
+     * @return residue string
      */
-    private String extractCodon(MutationAnnotation annotation)
+    private String extractResidue(MutationAnnotation annotation)
     {
-        String codon = null;
+        String residue = null;
 
         if (annotation.getReferenceAminoAcid() != null &&
             annotation.getAminoAcidPosition() != null)
         {
-            codon = annotation.getReferenceAminoAcid() +
+            residue = annotation.getReferenceAminoAcid() +
                     annotation.getAminoAcidPosition();
         }
 
-        return codon;
+        return residue;
     }
 
 	/**
