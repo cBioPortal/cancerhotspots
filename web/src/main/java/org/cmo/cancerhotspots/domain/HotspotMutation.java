@@ -183,6 +183,39 @@ public class HotspotMutation
         this.tumorTypeComposition = tumorTypeComposition;
     }
 
+    @ApiModelProperty(value = "Cluster No", required = false)
+    public String getCluster()
+    {
+        return cluster;
+    }
+
+    public void setCluster(String cluster)
+    {
+        this.cluster = cluster;
+    }
+
+    @ApiModelProperty(value = "PDB chain (with p-value)", required = false)
+    public Map<String, Double> getPdbChains()
+    {
+        return pdbChains;
+    }
+
+    public void setPdbChains(Map<String, Double> pdbChains)
+    {
+        this.pdbChains = pdbChains;
+    }
+
+    @ApiModelProperty(value = "Hotspot Classification", required = false)
+    public String getClassification()
+    {
+        return classification;
+    }
+
+    public void setClassification(String classification)
+    {
+        this.classification = classification;
+    }
+
 //    @Trim
 //    @Parsed(field = "Alt Common Codon Usage *")
 //    private String altCommonCodonUsage;
