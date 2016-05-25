@@ -32,32 +32,31 @@
 
 package org.cmo.cancerhotspots.service.internal;
 
-import com.univocity.parsers.common.processor.BeanListProcessor;
-import com.univocity.parsers.csv.CsvParser;
 import org.cmo.cancerhotspots.domain.HotspotMutation;
+import org.cmo.cancerhotspots.domain.Mutation;
+import org.cmo.cancerhotspots.domain.MutationRepository;
+import org.cmo.cancerhotspots.domain.SingleResidueHotspotMutation;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
-import org.cmo.cancerhotspots.util.FileIO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Selcuk Onur Sumer
  */
 @Service
-public class SignificantHotspotMutationService implements HotspotMutationService
+public class SingleResidueHotspotMutationService implements HotspotMutationService
 {
-    @Autowired
-    private ResourceLoader resourceLoader;
-
-    private String hotspotMutationUri;
-    @Value("${hotspot.mutation.uri}")
-    public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
-
+    private final MutationRepository mutationRepository;
     private List<HotspotMutation> hotspotCache;
+
+    @Autowired
+    public SingleResidueHotspotMutationService(MutationRepository mutationRepository)
+    {
+        this.mutationRepository = mutationRepository;
+    }
 
     public List<HotspotMutation> getAllHotspotMutations()
     {
@@ -65,16 +64,35 @@ public class SignificantHotspotMutationService implements HotspotMutationService
         if (this.hotspotCache == null ||
             this.hotspotCache.size() == 0)
         {
-            BeanListProcessor<HotspotMutation> rowProcessor =
-                new BeanListProcessor<>(HotspotMutation.class);
+            List<Mutation> mutations = mutationRepository.findAll();
 
-            CsvParser hotspotParser = FileIO.initCsvParser(rowProcessor);
-            hotspotParser.parse(FileIO.getReader(hotspotMutationUri));
-
-            // cache retrieved beans
-            this.hotspotCache = rowProcessor.getBeans();
+            // cache converted data
+            this.hotspotCache = convertToSingleResidue(mutations);
         }
 
         return this.hotspotCache;
+    }
+
+    public List<HotspotMutation> convertToSingleResidue(List<Mutation> mutations)
+    {
+        List<HotspotMutation> list = new ArrayList<>(mutations.size());
+
+        for (Mutation mutation : mutations)
+        {
+            SingleResidueHotspotMutation hotspotMutation = new SingleResidueHotspotMutation();
+
+            // TODO this a manual mapping / field copy from Mutation -> HotspotMutation
+            hotspotMutation.setHugoSymbol(mutation.getHugoSymbol());
+            hotspotMutation.setTumorCount(mutation.getTumorCount());
+            hotspotMutation.setTumorTypeCount(mutation.getTumorTypeCount());
+            hotspotMutation.setTumorTypeComposition(mutation.getTumorTypeComposition());
+            hotspotMutation.setqValue(mutation.getqValue());
+            hotspotMutation.setResidue(mutation.getResidue());
+            hotspotMutation.setVariantAminoAcid(mutation.getVariantAminoAcid());
+
+            list.add(hotspotMutation);
+        }
+
+        return list;
     }
 }

@@ -65,7 +65,14 @@ $(document).ready(function() {
         var tableView = new HotspotTableView({
             metadata: metadata,
             "ajax": function (data, callback, settings) {
-                var proxy = new HotspotDataProxy();
+                var proxyOptions = {};
+
+                if (metadata.profile.toLowerCase() === "3d")
+                {
+                    proxyOptions.serviceUrl = "api/hotspots/3d";
+                }
+
+                var proxy = new HotspotDataProxy(proxyOptions);
 
                 proxy.getAllHotspots(function(hotspotData) {
                     // defer rendering of the table a few miliseconds

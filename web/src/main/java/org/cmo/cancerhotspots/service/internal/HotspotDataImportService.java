@@ -93,7 +93,7 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void createVariantFile(List<HotspotMutation> hotspotMutations)
+    public void createVariantFile(List<Mutation> mutations)
     {
         if (this.variantCacheByGeneAndAAChange == null)
         {
@@ -106,7 +106,7 @@ public class HotspotDataImportService implements DataImportService
 
         writer.writeHeaders();
 
-        for (HotspotMutation mutation : hotspotMutations)
+        for (Mutation mutation : mutations)
         {
             if (mutation.getVariantAminoAcid() == null)
             {
@@ -134,15 +134,17 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void createHotspotFile(List<HotspotMutation> hotspotMutations)
+    public void createHotspotFile(List<Mutation> mutations)
     {
+        // TODO use mutation repository here!
+
         TsvWriter writer = FileIO.initTsvWriter(
-            new BeanWriterProcessor<>(HotspotMutation.class),
+            new BeanWriterProcessor<>(Mutation.class),
             FileIO.getWriter(hotspotMutationUri));
 
         writer.writeHeaders();
 
-        for (HotspotMutation mutation : hotspotMutations)
+        for (Mutation mutation : mutations)
         {
             writer.processRecord(mutation);
         }
@@ -151,14 +153,14 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void generateVariantComposition(List<HotspotMutation> hotspotMutations)
+    public void generateVariantComposition(List<Mutation> mutations)
     {
         if (this.variantCacheByGeneAndResidue == null)
         {
             this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
         }
 
-        for (HotspotMutation mutation : hotspotMutations)
+        for (Mutation mutation : mutations)
         {
             VariantComposition composition = this.getVariantComposition(
                 mutation.getHugoSymbol(), mutation.getResidue());
@@ -174,14 +176,14 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void generateTumorTypeComposition(List<HotspotMutation> hotspotMutations)
+    public void generateTumorTypeComposition(List<Mutation> mutations)
     {
         if (this.variantCacheByGeneAndResidue == null)
         {
             this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
         }
 
-        for (HotspotMutation mutation : hotspotMutations)
+        for (Mutation mutation : mutations)
         {
             // get variant composition for each hotspot mutations
             VariantComposition variantComposition = this.getVariantComposition(

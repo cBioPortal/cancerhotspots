@@ -38,10 +38,17 @@
  */
 function MetadataProxy(options)
 {
+    var _defaultOpts = {
+        serviceUrl: "api/metadata"
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
+
     function getMetadata(callback)
     {
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts("api/metadata", {}, callback));
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {}, callback));
     }
 
     this.getMetadata = getMetadata;

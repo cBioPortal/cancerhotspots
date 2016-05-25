@@ -38,10 +38,17 @@
  */
 function HotspotDataProxy(options)
 {
+    var _defaultOpts = {
+        serviceUrl: "api/hotspots/single"
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
+
     function getAllHotspots(callback)
     {
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts("api/hotspots", {}, callback));
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {}, callback));
     }
 
     this.getAllHotspots = getAllHotspots;

@@ -1,6 +1,6 @@
 package org.cmo.cancerhotspots.service;
 
-import org.cmo.cancerhotspots.domain.HotspotMutation;
+import org.cmo.cancerhotspots.domain.Mutation;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface DataImportService
 {
-    void createVariantFile(List<HotspotMutation> hotspotMutations);
-    void createHotspotFile(List<HotspotMutation> hotspotMutations);
-    void generateVariantComposition(List<HotspotMutation> hotspotMutations);
-    void generateTumorTypeComposition(List<HotspotMutation> hotspotMutations);
+    void createVariantFile(List<Mutation> mutations);
+    void createHotspotFile(List<Mutation> mutations);
+    void generateVariantComposition(List<Mutation> mutations);
+    void generateTumorTypeComposition(List<Mutation> mutations);
 }

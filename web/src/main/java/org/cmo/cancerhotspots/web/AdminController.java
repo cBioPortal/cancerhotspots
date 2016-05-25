@@ -1,6 +1,6 @@
 package org.cmo.cancerhotspots.web;
 
-import org.cmo.cancerhotspots.service.HotspotMutationService;
+import org.cmo.cancerhotspots.domain.MutationRepository;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/admin")
 public class AdminController
 {
-    private final HotspotMutationService hotspotMutationService;
+    private final MutationRepository mutationRepository;
     private final DataImportService dataImportService;
 
     @Autowired
-    public AdminController(HotspotMutationService hotspotMutationService,
+    public AdminController(MutationRepository mutationRepository,
         DataImportService dataImportService)
     {
-        this.hotspotMutationService = hotspotMutationService;
+        this.mutationRepository = mutationRepository;
         this.dataImportService = dataImportService;
     }
 
@@ -30,7 +30,7 @@ public class AdminController
         produces = "application/json")
     public String createVariants()
     {
-        dataImportService.createVariantFile(hotspotMutationService.getAllHotspotMutations());
+        dataImportService.createVariantFile(mutationRepository.findAll());
 
         return "variant file creation initialized";
     }
@@ -40,7 +40,7 @@ public class AdminController
         produces = "application/json")
     public String createHotspots()
     {
-        dataImportService.createHotspotFile(hotspotMutationService.getAllHotspotMutations());
+        dataImportService.createHotspotFile(mutationRepository.findAll());
 
         return "hotspots file creation initialized";
     }
@@ -51,7 +51,7 @@ public class AdminController
     public String generateVariantComposition()
     {
         dataImportService.generateVariantComposition(
-            hotspotMutationService.getAllHotspotMutations());
+            mutationRepository.findAll());
 
         return "variant composition extraction initialized";
     }
@@ -62,7 +62,7 @@ public class AdminController
     public String generateTumorTypeComposition()
     {
         dataImportService.generateTumorTypeComposition(
-            hotspotMutationService.getAllHotspotMutations());
+            mutationRepository.findAll());
 
         return "tumor type composition extraction initialized";
     }

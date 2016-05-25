@@ -36,11 +36,14 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.cmo.cancerhotspots.domain.ClusteredHotspotMutation;
 import org.cmo.cancerhotspots.domain.HotspotMutation;
+import org.cmo.cancerhotspots.domain.SingleResidueHotspotMutation;
 import org.cmo.cancerhotspots.domain.TumorTypeComposition;
-import org.cmo.cancerhotspots.service.HotspotMutationService;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.cmo.cancerhotspots.service.internal.ConfigurationService;
+import org.cmo.cancerhotspots.service.internal.ClusteredHotspotMutationService;
+import org.cmo.cancerhotspots.service.internal.SingleResidueHotspotMutationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
@@ -61,16 +64,19 @@ import java.util.Map;
 @RequestMapping(value = "/api")
 public class HotspotController
 {
-    private final HotspotMutationService hotspotMutationService;
+    private final SingleResidueHotspotMutationService singleResidueHotspotMutationService;
+    private final ClusteredHotspotMutationService multiResidueHotspotMutationService;
     private final VariantService variantService;
     private final ConfigurationService configService;
 
     @Autowired
-    public HotspotController(HotspotMutationService hotspotMutationService,
+    public HotspotController(SingleResidueHotspotMutationService singleResidueHotspotMutationService,
+        ClusteredHotspotMutationService multiResidueHotspotMutationService,
         VariantService variantService,
         ConfigurationService configService)
     {
-        this.hotspotMutationService = hotspotMutationService;
+        this.singleResidueHotspotMutationService = singleResidueHotspotMutationService;
+        this.multiResidueHotspotMutationService = multiResidueHotspotMutationService;
         this.variantService = variantService;
         this.configService = configService;
     }
@@ -79,18 +85,33 @@ public class HotspotController
         nickname = "getAllHotspotMutations")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success",
-            response = HotspotMutation.class,
+            response = SingleResidueHotspotMutation.class,
             responseContainer = "List"),
         @ApiResponse(code = 400, message = "Bad Request")
     })
-    @RequestMapping(value = "/hotspots",
+    @RequestMapping(value = "/hotspots/single",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
-    public List<HotspotMutation> getAllHotspotMutations()
+    public List<HotspotMutation> getSingleResidueHotspotMutations()
     {
-        return hotspotMutationService.getAllHotspotMutations();
+        return singleResidueHotspotMutationService.getAllHotspotMutations();
     }
 
+    @ApiOperation(value = "get all 3D hotspot mutations",
+        nickname = "getAll3dHotspotMutations")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = ClusteredHotspotMutation.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/hotspots/3d",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public List<HotspotMutation> get3dHotspotMutations()
+    {
+        return multiResidueHotspotMutationService.getAllHotspotMutations();
+    }
 
     // TODO API disabled for now, enable if needed
     // -- after implementing corresponding service method properly!
