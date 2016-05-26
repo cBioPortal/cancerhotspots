@@ -1,13 +1,13 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import org.cmo.cancerhotspots.domain.HotspotMutation;
-import org.cmo.cancerhotspots.domain.Mutation;
-import org.cmo.cancerhotspots.domain.MutationRepository;
+import org.cmo.cancerhotspots.domain.*;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Selcuk Onur Sumer
@@ -39,7 +39,47 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
 
     public List<HotspotMutation> convertToMultiResidue(List<Mutation> mutations)
     {
-        // TODO process mutations and merge into corresponding ClusteredHotspotMutation instances
+        Map<String, Cluster> clusterMap = new LinkedHashMap<>();
+        Map<String, ClusteredHotspotMutation> mutationMap = new LinkedHashMap<>();
+
+        // index Cluster instances
+        for (Mutation mutation : mutations)
+        {
+            String key = mutation.getCluster();
+
+            if (clusterMap.get(key) == null)
+            {
+                Cluster cluster = new Cluster();
+
+                cluster.setClusterId(key);
+                cluster.setPdbChains(mutation.getPdbChains());
+                cluster.setpValue(mutation.getpValue());
+
+                clusterMap.put(key, cluster);
+            }
+        }
+
+        // create ClusteredHotspotMutation instances
+        for (Mutation mutation : mutations)
+        {
+            String key = mutation.getHugoSymbol().toLowerCase() + "_" + mutation.getResidue();
+            ClusteredHotspotMutation clusteredMutation = mutationMap.get(key);
+
+            if (clusteredMutation == null)
+            {
+                clusteredMutation = new ClusteredHotspotMutation();
+
+                // TODO copy fields needed from mutation
+
+                mutationMap.put(key, clusteredMutation);
+            }
+
+
+            // TODO update the mutation with the current cluster information (add cluster)
+
+        }
+
+        // TODO convert to a list of hotspot mutations...
         return null;
     }
 }
