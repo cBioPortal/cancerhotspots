@@ -1,19 +1,16 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import com.univocity.parsers.common.processor.BeanWriterProcessor;
-import com.univocity.parsers.tsv.TsvWriter;
 import org.cmo.cancerhotspots.domain.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.service.MutationFilterService;
-import org.cmo.cancerhotspots.util.FileIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,19 +21,8 @@ import java.util.Map;
 @Service
 public class HotspotDataImportService implements DataImportService
 {
-    // Define the logger object for this class
+    // define the logger object for this class
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-
-    private String variantFileUri;
-    @Value("${hotspot.variant.uri}")
-    public void setVariantFileUri(String variantFileUri)
-    {
-        this.variantFileUri = variantFileUri;
-    }
-
-    private String hotspotMutationUri;
-    @Value("${hotspot.mutation.uri}")
-    public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
 
     // cache of <amino acid change, tumor type composition> pairs
     private Map<String, TumorTypeComposition> variantCacheByAAChange;
@@ -47,13 +33,19 @@ public class HotspotDataImportService implements DataImportService
 
     private MutationAnnotationService mafService;
     private MutationFilterService filterService;
+    private MutationRepository mutationRepository;
+    private VariantRepository variantRepository;
 
     @Autowired
     public HotspotDataImportService(MutationAnnotationService mafService,
-        MutationFilterService filterService)
+        MutationFilterService filterService,
+        MutationRepository mutationRepository,
+        VariantRepository variantRepository)
     {
         this.mafService = mafService;
         this.filterService = filterService;
+        this.mutationRepository = mutationRepository;
+        this.variantRepository = variantRepository;
         // TODO technically we should use database for such large data, not in-memory cache
         this.variantCacheByGeneAndAAChange = null;
         this.variantCacheByAAChange = null;
@@ -95,16 +87,7 @@ public class HotspotDataImportService implements DataImportService
     @Override
     public void createVariantFile(List<Mutation> mutations)
     {
-        if (this.variantCacheByGeneAndAAChange == null)
-        {
-            this.variantCacheByGeneAndAAChange = constructVariantCacheByGeneAndAAChange();
-        }
-
-        TsvWriter writer = FileIO.initTsvWriter(
-            new BeanWriterProcessor<>(TumorTypeComposition.class),
-            FileIO.getWriter(variantFileUri));
-
-        writer.writeHeaders();
+        List<TumorTypeComposition> compositions = new ArrayList<>();
 
         for (Mutation mutation : mutations)
         {
@@ -126,30 +109,17 @@ public class HotspotDataImportService implements DataImportService
                     continue;
                 }
 
-                writer.processRecord(composition);
+                compositions.add(composition);
             }
         }
 
-        writer.close();
+        variantRepository.saveAll(compositions);
     }
 
     @Override
     public void createHotspotFile(List<Mutation> mutations)
     {
-        // TODO use mutation repository here!
-
-        TsvWriter writer = FileIO.initTsvWriter(
-            new BeanWriterProcessor<>(Mutation.class),
-            FileIO.getWriter(hotspotMutationUri));
-
-        writer.writeHeaders();
-
-        for (Mutation mutation : mutations)
-        {
-            writer.processRecord(mutation);
-        }
-
-        writer.close();
+        mutationRepository.saveAll(mutations);
     }
 
     @Override

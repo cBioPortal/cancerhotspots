@@ -1,11 +1,9 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import com.univocity.parsers.common.processor.BeanListProcessor;
-import com.univocity.parsers.csv.CsvParser;
 import org.cmo.cancerhotspots.domain.MutationAnnotation;
+import org.cmo.cancerhotspots.domain.MutationAnnotationRepository;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
-import org.cmo.cancerhotspots.util.FileIO;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,37 +16,21 @@ import java.util.regex.Pattern;
 @Service
 public class HotspotMAFService implements MutationAnnotationService
 {
-    private String mafUri;
-    @Value("${hotspot.maf.uri}")
-    public void setMafUri(String mafUri)
-    {
-        this.mafUri = mafUri;
-    }
+    private final MutationAnnotationRepository mutationAnnotationRepository;
 
-    private List<MutationAnnotation> mafCache;
+    @Autowired
+    public HotspotMAFService(MutationAnnotationRepository mutationAnnotationRepository)
+    {
+        this.mutationAnnotationRepository = mutationAnnotationRepository;
+    }
 
     @Override
     public List<MutationAnnotation> getAllMutationAnnotations()
     {
-        // parse the input file only once,
-        // and save the result in the maf cache
-        if (this.mafCache == null ||
-            this.mafCache.size() == 0)
-        {
-            BeanListProcessor<MutationAnnotation> rowProcessor =
-                new BeanListProcessor<>(MutationAnnotation.class);
+        List<MutationAnnotation> annotations = mutationAnnotationRepository.findAll();
 
-            CsvParser mafParser = FileIO.initCsvParser(rowProcessor);
-            mafParser.parse(FileIO.getReader(mafUri));
-
-            // cache retrieved beans
-            this.mafCache = rowProcessor.getBeans();
-
-            // post process to construct missing fields (if any)
-            this.mafCache = this.postProcess(this.mafCache);
-        }
-
-        return this.mafCache;
+        // post process to construct missing fields (if any)
+        return this.postProcess(annotations);
     }
 
     private List<MutationAnnotation> postProcess(List<MutationAnnotation> annotations)

@@ -22,13 +22,13 @@ public class MutationRepositoryImpl implements MutationRepository
     @Value("${hotspot.mutation.uri}")
     public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
 
-    private List<Mutation> mutationCache;
+    private List<Mutation> cache;
 
     public List<Mutation> findAll()
     {
         // parse the input file only once, and save the result in the hotspot cache
-        if (this.mutationCache == null ||
-            this.mutationCache.size() == 0)
+        if (this.cache == null ||
+            this.cache.size() == 0)
         {
             BeanListProcessor<Mutation> rowProcessor =
                 new BeanListProcessor<>(Mutation.class);
@@ -37,10 +37,10 @@ public class MutationRepositoryImpl implements MutationRepository
             hotspotParser.parse(FileIO.getReader(hotspotMutationUri));
 
             // cache retrieved beans
-            this.mutationCache = rowProcessor.getBeans();
+            this.cache = rowProcessor.getBeans();
         }
 
-        return this.mutationCache;
+        return this.cache;
     }
 
     @Override
