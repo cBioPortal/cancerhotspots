@@ -145,6 +145,10 @@ function HotspotTableView(options)
                 return _options.noWrapRender(data);
             }
         },
+        clustersRender: function(data, type) {
+            // TODO create a link to the clusters page!
+            return _.size(data);
+        },
         pValueData: function(row) {
             var data = row["pValue"];
 
@@ -373,6 +377,13 @@ function HotspotTableView(options)
                 //{id: "altCodon",
                 //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
+                {id: "clusters",
+                    title: "3D Clusters",
+                    data: "clusters",
+                    render: _options.clustersRender},
+                {id: "classification",
+                    title: "Class",
+                    data: "classification"},
                 {id: "variant",
                     title: "Variant Amino Acid <sup>&#8224;</sup>",
                     data: "variantAminoAcid",

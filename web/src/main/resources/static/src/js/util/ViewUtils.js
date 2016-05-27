@@ -191,15 +191,21 @@ var ViewUtils = (function() {
     {
         if (metadata && metadata.profile)
         {
+            var profile = metadata.profile.toLowerCase();
+            var only3d = ["pValue", "clusters", "classification"];
+            var onlySingleRes = ["qValue"];
+
             _.each(columns, function(column) {
-                if (column.id === "pValue" &&
-                    metadata.profile.toLowerCase() === "singleresidue")
+                // if single residue view: hide 3D specific columns
+                if (profile === "singleresidue" &&
+                    _.contains(only3d, column.id))
                 {
                     column.visible = false;
                 }
 
-                if (column.id === "qValue" &&
-                    metadata.profile.toLowerCase() === "3d")
+                // if 3D view: hide single residue specific columns
+                if (profile === "3d" &&
+                    _.contains(onlySingleRes, column.id))
                 {
                     column.visible = false;
                 }
