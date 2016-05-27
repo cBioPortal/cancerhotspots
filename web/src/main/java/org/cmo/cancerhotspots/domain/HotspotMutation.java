@@ -101,4 +101,14 @@ public class HotspotMutation
     {
         this.tumorTypeComposition = tumorTypeComposition;
     }
+
+    // TODO this is a manual mapping / field copy from Mutation -> HotspotMutation
+    public void init(Mutation mutation)
+    {
+        setHugoSymbol(mutation.getHugoSymbol());
+        setTumorCount(mutation.getTumorCount());
+        setTumorTypeComposition(mutation.getTumorTypeComposition());
+        setResidue(mutation.getResidue());
+        setVariantAminoAcid(mutation.getVariantAminoAcid());
+    }
 }

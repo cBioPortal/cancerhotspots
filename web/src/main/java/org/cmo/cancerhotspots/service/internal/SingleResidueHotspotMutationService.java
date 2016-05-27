@@ -81,14 +81,9 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
         {
             SingleResidueHotspotMutation hotspotMutation = new SingleResidueHotspotMutation();
 
-            // TODO this a manual mapping / field copy from Mutation -> HotspotMutation
-            hotspotMutation.setHugoSymbol(mutation.getHugoSymbol());
-            hotspotMutation.setTumorCount(mutation.getTumorCount());
+            hotspotMutation.init(mutation);
             hotspotMutation.setTumorTypeCount(mutation.getTumorTypeCount());
-            hotspotMutation.setTumorTypeComposition(mutation.getTumorTypeComposition());
             hotspotMutation.setqValue(mutation.getqValue());
-            hotspotMutation.setResidue(mutation.getResidue());
-            hotspotMutation.setVariantAminoAcid(mutation.getVariantAminoAcid());
 
             list.add(hotspotMutation);
         }

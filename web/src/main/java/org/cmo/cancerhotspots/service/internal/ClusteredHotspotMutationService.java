@@ -5,9 +5,7 @@ import org.cmo.cancerhotspots.service.HotspotMutationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Selcuk Onur Sumer
@@ -69,17 +67,20 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
             {
                 clusteredMutation = new ClusteredHotspotMutation();
 
-                // TODO copy fields needed from mutation
+                // copy required fields from the mutation instance
+                clusteredMutation.init(mutation);
+                clusteredMutation.setClassification(mutation.getClassification());
 
                 mutationMap.put(key, clusteredMutation);
             }
 
-
-            // TODO update the mutation with the current cluster information (add cluster)
-
+            // update the mutation with the current cluster information
+            Cluster cluster = clusterMap.get(mutation.getCluster());
+            clusteredMutation.addCluster(cluster);
         }
 
-        // TODO convert to a list of hotspot mutations...
-        return null;
+        List<HotspotMutation> list = new ArrayList<>();
+        list.addAll(mutationMap.values());
+        return list;
     }
 }

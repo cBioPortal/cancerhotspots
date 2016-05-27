@@ -2,14 +2,15 @@ package org.cmo.cancerhotspots.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @author Selcuk Onur Sumer
  */
 public class ClusteredHotspotMutation extends HotspotMutation
 {
-    private List<Cluster> cluster;
+    private Set<Cluster> clusters;
     private String classification;
 
     @ApiModelProperty(value = "Hotspot Classification", required = true)
@@ -24,13 +25,23 @@ public class ClusteredHotspotMutation extends HotspotMutation
     }
 
     @ApiModelProperty(value = "Cluster Specific Information", required = true)
-    public List<Cluster> getCluster()
+    public Set<Cluster> getClusters()
     {
-        return cluster;
+        return clusters;
     }
 
-    public void setCluster(List<Cluster> cluster)
+    public void setClusters(Set<Cluster> clusters)
     {
-        this.cluster = cluster;
+        this.clusters = clusters;
+    }
+
+    public void addCluster(Cluster cluster)
+    {
+        if (clusters == null)
+        {
+            clusters = new LinkedHashSet<>();
+        }
+
+        clusters.add(cluster);
     }
 }
