@@ -138,12 +138,32 @@ function HotspotTableView(options)
             // type == 'display' || 'filter' || 'type'
             else if (data < _options.pValueThreshold)
             {
-                return _options.noWrapRender(">" + _options.pValueThreshold);
+                return _options.noWrapRender("<" + _options.pValueThreshold);
             }
             else
             {
                 return _options.noWrapRender(data);
             }
+        },
+        pValueData: function(row) {
+            var data = row["pValue"];
+
+            // if no pValue field exists then extract it from the clusters
+            if (data == null)
+            {
+                var map = {};
+
+                var clusters = row["clusters"];
+                var pValues = _.map(clusters, function(cluster) {
+                    var pValue = parseFloat(cluster.pValue);
+                    map[pValue] = cluster.pValue;
+                    return pValue;
+                });
+
+                data = map[_.min(pValues)];
+            }
+
+            return data;
         },
         variantRender: function(data, type) {
             if (type === 'sort')
@@ -321,7 +341,7 @@ function HotspotTableView(options)
                         {title: "Q-value",
                             data: "qValue"},
                         {title: "P-value",
-                            data: "pValue"},
+                            data: _options.pValueData},
                         {title: "Sample Count",
                             data: "tumorCount"},
                         {title: "Tumor Type Composition",
@@ -364,7 +384,7 @@ function HotspotTableView(options)
                     render: _options.noWrapRender},
                 {id: "pValue",
                     title: _options.noWrapRender("P-value"),
-                    data: "pValue",
+                    data: _options.pValueData,
                     render: _options.pValueRender},
                 {id: "sampleCount",
                     title: "Sample Count <sup>&#8224;</sup>",

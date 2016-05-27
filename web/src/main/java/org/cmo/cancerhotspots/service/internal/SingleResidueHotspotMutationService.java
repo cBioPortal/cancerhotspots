@@ -82,7 +82,6 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
             SingleResidueHotspotMutation hotspotMutation = new SingleResidueHotspotMutation();
 
             hotspotMutation.init(mutation);
-            hotspotMutation.setTumorTypeCount(mutation.getTumorTypeCount());
             hotspotMutation.setqValue(mutation.getqValue());
 
             list.add(hotspotMutation);

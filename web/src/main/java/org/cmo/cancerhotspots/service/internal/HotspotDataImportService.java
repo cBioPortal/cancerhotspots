@@ -125,11 +125,6 @@ public class HotspotDataImportService implements DataImportService
     @Override
     public void generateVariantComposition(List<Mutation> mutations)
     {
-        if (this.variantCacheByGeneAndResidue == null)
-        {
-            this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
-        }
-
         for (Mutation mutation : mutations)
         {
             VariantComposition composition = this.getVariantComposition(
@@ -148,11 +143,6 @@ public class HotspotDataImportService implements DataImportService
     @Override
     public void generateTumorTypeComposition(List<Mutation> mutations)
     {
-        if (this.variantCacheByGeneAndResidue == null)
-        {
-            this.variantCacheByGeneAndResidue = constructVariantCacheByGeneAndResidue();
-        }
-
         for (Mutation mutation : mutations)
         {
             // get variant composition for each hotspot mutations
@@ -185,16 +175,17 @@ public class HotspotDataImportService implements DataImportService
             }
 
             if (mutation.getTumorCount() != null &&
-                !mutation.getTumorCount().equals(composition.compositionCount())) {
+                !mutation.getTumorCount().equals(composition.tumorCount())) {
                 log.debug("Tumor Count Mismatch: " +
                           mutation.getHugoSymbol() + "\t" +
                           mutation.getResidue() + "\t" +
                           mutation.getTumorCount() + "\t" +
-                          composition.compositionCount());
+                          composition.tumorCount());
             }
 
             mutation.setTumorTypeComposition(composition.getTumorTypeComposition());
-            mutation.setTumorCount(composition.compositionCount());
+            mutation.setTumorTypeCount(composition.tumorTypeCount());
+            mutation.setTumorCount(composition.tumorCount());
         }
     }
 

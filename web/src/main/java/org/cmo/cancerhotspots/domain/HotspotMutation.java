@@ -44,6 +44,7 @@ public class HotspotMutation
     private String hugoSymbol;
     private String residue;
     private Map<String, Integer> variantAminoAcid;
+    private Integer tumorTypeCount;
     private Integer tumorCount;
     private Map<String, Integer> tumorTypeComposition;
 
@@ -102,12 +103,24 @@ public class HotspotMutation
         this.tumorTypeComposition = tumorTypeComposition;
     }
 
+    @ApiModelProperty(value = "Number of Distinct Tumor Types", required = false)
+    public Integer getTumorTypeCount()
+    {
+        return tumorTypeCount;
+    }
+
+    public void setTumorTypeCount(Integer tumorTypeCount)
+    {
+        this.tumorTypeCount = tumorTypeCount;
+    }
+
     // TODO this is a manual mapping / field copy from Mutation -> HotspotMutation
     public void init(Mutation mutation)
     {
         setHugoSymbol(mutation.getHugoSymbol());
         setTumorCount(mutation.getTumorCount());
         setTumorTypeComposition(mutation.getTumorTypeComposition());
+        setTumorTypeCount(mutation.getTumorTypeCount());
         setResidue(mutation.getResidue());
         setVariantAminoAcid(mutation.getVariantAminoAcid());
     }

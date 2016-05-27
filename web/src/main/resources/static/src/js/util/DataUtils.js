@@ -57,7 +57,14 @@ function DataUtils(columns)
             var rowContent = [];
 
             _.each(_columns, function(column){
-                var value = rowData[column.data];
+                var value;
+
+                if (_.isFunction(column.data)) {
+                    value = column.data(rowData);
+                }
+                else {
+                    value = rowData[column.data];
+                }
 
                 if (_.isObject(value))
                 {

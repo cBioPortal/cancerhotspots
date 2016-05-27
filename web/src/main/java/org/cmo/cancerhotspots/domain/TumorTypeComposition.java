@@ -124,7 +124,7 @@ public class TumorTypeComposition
         }
     }
 
-    public Integer compositionCount()
+    public Integer tumorCount()
     {
         Integer total = 0;
 
@@ -134,5 +134,10 @@ public class TumorTypeComposition
         }
 
         return total;
+    }
+
+    public Integer tumorTypeCount()
+    {
+        return getTumorTypeComposition().keySet().size();
     }
 }
