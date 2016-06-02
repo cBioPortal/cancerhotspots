@@ -45,9 +45,11 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
         {
             String key = mutation.getCluster();
 
-            if (clusterMap.get(key) == null)
+            Cluster cluster = clusterMap.get(key);
+
+            if (cluster == null)
             {
-                Cluster cluster = new Cluster();
+                cluster = new Cluster();
 
                 cluster.setClusterId(key);
                 cluster.setPdbChains(mutation.getPdbChains());
@@ -55,6 +57,8 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
 
                 clusterMap.put(key, cluster);
             }
+
+            cluster.addResidue(mutation.getResidue());
         }
 
         // create ClusteredHotspotMutation instances
