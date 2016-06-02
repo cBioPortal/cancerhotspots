@@ -39,54 +39,6 @@
  */
 function HotspotTableView(options)
 {
-    function defaultTooltipOpts()
-    {
-        return {
-            content: {text: 'NA'},
-            show: {event: 'mouseover'},
-            hide: {fixed: true, delay: 100, event: 'mouseout'},
-            style: {classes: 'cancer-hotspots-tooltip qtip-shadow qtip-light qtip-rounded'},
-            position: {my:'top left', at:'bottom right', viewport: $(window)}
-        };
-    }
-
-    function tooltipOpts(colData, viewOpts)
-    {
-        var tooltipOpts = defaultTooltipOpts();
-
-        // this will overwrite the default content
-        tooltipOpts.events = {
-            render: function(event, api) {
-                var tableData = [];
-
-                var defaultViewOpts = {
-                    el: $(this).find('.qtip-content'),
-                    colData: colData,
-                    data: tableData
-                };
-
-                var map = colData.composition || colData;
-
-                _.each(_.pairs(map), function(pair) {
-                    tableData.push({type: pair[0], count: pair[1]});
-                });
-
-                var opts = jQuery.extend(true, {}, defaultViewOpts, viewOpts);
-                var tableView = new CompositionView(opts);
-
-                tableView.render();
-
-                // this is a workaround for the misaligned table headers
-                // due to the scroll bar feature
-                setTimeout(function() {
-                    tableView.getDataTable().columns.adjust();
-                }, 0);
-            }
-        };
-
-        return tooltipOpts;
-    }
-
     var _defaultOpts = {
         // default target DOM element
         el: "#hotspots_table",
@@ -237,7 +189,7 @@ function HotspotTableView(options)
                     stackedBar.init(tumorTypeComposition);
 
                     cbio.util.addTargetedQTip($(td).find(".variant-count-cell-content"),
-                                              tooltipOpts(tooltipData));
+                                              TooltipUtils.tooltipOptions(tooltipData));
                 }
             });
 
@@ -284,14 +236,14 @@ function HotspotTableView(options)
             };
 
             cbio.util.addTargetedQTip(target.find('svg'),
-                                      tooltipOpts(cellData, viewOpts));
+                                      TooltipUtils.tooltipOptions(cellData, viewOpts));
         },
         tumorTypePostRender: function (td, cellData, rowData, row, col) {
             if (cellData.tumorCount > 0 &&
                 !_.isEmpty(cellData.composition))
             {
                 cbio.util.addTargetedQTip($(td).find(".qtipped-text"),
-                                          tooltipOpts(cellData));
+                                          TooltipUtils.tooltipOptions(cellData));
             }
         }
     };
