@@ -64,38 +64,12 @@ function HotspotTableView(options)
 
             return view.join("<br>");
         },
-        // default rendering function for no-wrap text
-        noWrapRender: function(data) {
-            var templateFn = _.template($("#no_text_wrap").html());
-            return templateFn({text: data});
-        },
-        // default rendering function for tip enabled text
-        sampleRender: function(data) {
-            var templateFn = _.template($("#samples_column").html());
-            return templateFn(data);
-        },
         sampleData: function(row) {
             return {
                 tumorCount: row["tumorCount"],
                 tumorTypeCount: row["tumorTypeCount"],
                 composition: row["tumorTypeComposition"]
             };
-        },
-        pValueRender: function(data, type) {
-            // sort value should be the data value
-            if (type === 'sort')
-            {
-                return data;
-            }
-            // type == 'display' || 'filter' || 'type'
-            else if (data < _options.pValueThreshold)
-            {
-                return _options.noWrapRender("<" + _options.pValueThreshold);
-            }
-            else
-            {
-                return _options.noWrapRender(data);
-            }
         },
         clustersRender: function(data, type) {
             // TODO create a link to the clusters page!
@@ -120,131 +94,6 @@ function HotspotTableView(options)
             }
 
             return data;
-        },
-        variantRender: function(data, type) {
-            if (type === 'sort')
-            {
-                return _.size(data);
-            }
-            else
-            {
-                var templateFn = _.template($("#basic_content").html());
-                return templateFn({value: ""});
-            }
-        },
-        variantTipRender: function(data)
-        {
-            if (_options.variantColors[data.toString().trim().toUpperCase()] != null)
-            {
-                var templateFn = _.template($("#variant_cell").html());
-                return templateFn({value: data});
-            }
-            else
-            {
-                return data;
-            }
-        },
-        variantTipPostRender: function(td, cellData, rowData, row, col) {
-            var bgColor = _options.variantColors[cellData.toString().trim().toUpperCase()];
-
-            if (bgColor != null)
-            {
-                $(td).find(".variant-cell").css({"background-color": bgColor});
-            }
-        },
-        variantTipCountRender: function(data)
-        {
-            var templateFn = _.template($("#variant_count_cell").html());
-            return templateFn({value: data.count});
-        },
-        variantTipCountPostRender: function(td, cellData, rowData, row, col) {
-            var proxy = new VariantDataProxy();
-            var gene = cellData.hugoSymbol;
-            var aaChange = cellData.residue + rowData.type;
-            var helper = cellData.variantHelper;
-
-            proxy.getTumorTypeComposition(gene, aaChange, function(compositionData) {
-                var target = $(td).find(".variant-tumor-type-composition");
-                target.empty();
-
-                if (compositionData.length > 0)
-                {
-                    var stackedBar = new StackedBar({
-                        el: target,
-                        elWidth: helper.scaleFn(rowData.count),
-                        elHeight: _options.tooltipStackHeight,
-                        disableText: true,
-                        // assign a fixed color for each tumor type
-                        colors: _options.tumorColors
-                    });
-
-                    var tumorTypeComposition = compositionData[0]["tumorTypeComposition"];
-
-                    var tooltipData = {
-                        tumorCount: rowData.count,
-                        tumorTypeCount: _.size(tumorTypeComposition),
-                        composition: tumorTypeComposition
-                    };
-
-                    stackedBar.init(tumorTypeComposition);
-
-                    cbio.util.addTargetedQTip($(td).find(".variant-count-cell-content"),
-                                              TooltipUtils.tooltipOptions(tooltipData));
-                }
-            });
-
-            //$(td).find(".variant-tumor-type-composition-cell").css({"background-color": bgColor});
-        },
-        variantPostRender: function(td, cellData, rowData, row, col) {
-            var target = $(td).find(".basic-content");
-
-            if (_.isEmpty(cellData))
-            {
-                // nothing to render
-                return;
-            }
-
-            var stackedBar = new StackedBar({
-                el: target,
-                // assign a fixed color for each amino acid value
-                colors: _options.variantColors
-            });
-
-            stackedBar.init(cellData);
-
-            var viewOpts = {
-                templateId: '#variant_composition',
-                dataTableTarget: ".variant-composition",
-                dom: "t",
-                columns: [
-                    {title: "Variant",
-                        data: "type",
-                        render: _options.variantTipRender,
-                        createdCell: _options.variantTipPostRender},
-                    {title: "Count",
-                        data: function(data) {
-                            return {
-                                count: data.count,
-                                hugoSymbol: rowData.hugoSymbol,
-                                residue: rowData.residue,
-                                variantHelper: variantHelper(cellData)
-                            };
-                        },
-                        render: _options.variantTipCountRender,
-                        createdCell: _options.variantTipCountPostRender}
-                ]
-            };
-
-            cbio.util.addTargetedQTip(target.find('svg'),
-                                      TooltipUtils.tooltipOptions(cellData, viewOpts));
-        },
-        tumorTypePostRender: function (td, cellData, rowData, row, col) {
-            if (cellData.tumorCount > 0 &&
-                !_.isEmpty(cellData.composition))
-            {
-                cbio.util.addTargetedQTip($(td).find(".qtipped-text"),
-                                          TooltipUtils.tooltipOptions(cellData));
-            }
         }
     };
 
@@ -266,6 +115,22 @@ function HotspotTableView(options)
 
     function render()
     {
+        // TODO allow customization of renderer instances
+        var noWrapRender = new NoWrapRender();
+
+        var pValueRender = new PValueRender({
+            threshold: _options.pValueThreshold
+        });
+
+        var variantRender = new VariantRender({
+            variantColors: _options.variantColors,
+            tumorColors: _options.tumorColors,
+            tooltipStackHeight: _options.tooltipStackHeight,
+            tooltipStackRange: _options.tooltipStackRange
+        });
+
+        var tumorCountRender = new TumorCountRender();
+
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
@@ -339,21 +204,21 @@ function HotspotTableView(options)
                 {id: "variant",
                     title: "Variant Amino Acid <sup>&#8224;</sup>",
                     data: "variantAminoAcid",
-                    render: _options.variantRender,
-                    createdCell: _options.variantPostRender},
+                    render: variantRender.render,
+                    createdCell: variantRender.postRender},
                 {id: "qValue",
-                    title: _options.noWrapRender("Q-value"),
+                    title: noWrapRender.render("Q-value"),
                     data: "qValue",
-                    render: _options.noWrapRender},
+                    render: noWrapRender.render},
                 {id: "pValue",
-                    title: _options.noWrapRender("P-value"),
+                    title: noWrapRender.render("P-value"),
                     data: _options.pValueData,
-                    render: _options.pValueRender},
+                    render: pValueRender.render},
                 {id: "sampleCount",
                     title: "Sample Count <sup>&#8224;</sup>",
                     data: _options.sampleData,
-                    render: _options.sampleRender,
-                    createdCell: _options.tumorTypePostRender}
+                    render: tumorCountRender.render,
+                    createdCell: tumorCountRender.postRender}
                 //{id: "validationLevel"
                 //    title: "Validation Level [a]",
                 //    data: "validationLevel"}
