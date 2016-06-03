@@ -158,6 +158,10 @@ table.about-lab-table {
     font-size: larger;
 }
 
+.residue-link {
+    cursor: pointer;
+}
+
 .table-button-group {
     padding-top: 8px;
 }

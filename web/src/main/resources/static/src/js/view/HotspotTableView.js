@@ -71,10 +71,6 @@ function HotspotTableView(options)
                 composition: row["tumorTypeComposition"]
             };
         },
-        clustersRender: function(data, type) {
-            // TODO create a link to the clusters page!
-            return _.size(data);
-        },
         pValueData: function(row) {
             var data = row["pValue"];
 
@@ -131,6 +127,10 @@ function HotspotTableView(options)
 
         var tumorCountRender = new TumorCountRender();
 
+        var clustersRender = new ClustersRender({
+            pValueThreshold: _options.pValueThreshold
+        });
+
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
@@ -143,7 +143,7 @@ function HotspotTableView(options)
             language: {
                 loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
-            order: [[3 , "asc" ], [4, "asc"], [5, "desc"]],
+            order: [[5 , "asc" ], [6, "asc"], [7, "desc"]],
             buttons: [{
                 text: "Download",
                 className: "btn-sm",
@@ -197,7 +197,8 @@ function HotspotTableView(options)
                 {id: "clusters",
                     title: "3D Clusters",
                     data: "clusters",
-                    render: _options.clustersRender},
+                    render: clustersRender.render,
+                    createdCell: clustersRender.postRender},
                 {id: "classification",
                     title: "Class",
                     data: "classification"},

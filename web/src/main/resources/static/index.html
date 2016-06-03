@@ -60,6 +60,8 @@
     <script type="text/javascript" src="src/js/render/VariantTipRender.js"></script>
     <script type="text/javascript" src="src/js/render/VariantTipCountRender.js"></script>
     <script type="text/javascript" src="src/js/render/TumorCountRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ClustersRender.js"></script>
+    <script type="text/javascript" src="src/js/render/PdbChainsRender.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ViewUtils.js"></script>
@@ -158,6 +160,7 @@
                 </span></p>
             </div>
             <div id="main_content" class="default-plain-text"></div>
+            <div id="residue_content" class="default-plain-text"></div>
         </div>
     </section>
 
@@ -336,12 +339,28 @@
     </div-->
 </script>
 
+<script type="text/template" id="residue_view">
+    <b>Gene:</b> {{gene}} <br>
+    <b>Residue:</b> {{residue}} <br>
+    <table id="residue_table"
+           class="display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
+</script>
+
 <script type="text/template" id="no_text_wrap">
     <span class="no-text-wrap">{{text}}</span>
 </script>
 
 <script type="text/template" id="samples_column">
     <span class="qtipped-text">{{tumorCount}}</span>
+</script>
+
+<script type="text/template" id="clusters_column">
+    <a class="residue-link">{{clusterCount}}</a>
+</script>
+
+<script type="text/template" id="pdb_chains_column">
+    <span class="qtipped-text">{{chainCount}}</span>
 </script>
 
 <script type="text/template" id="basic_content">
