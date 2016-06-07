@@ -2,8 +2,7 @@ package org.cmo.cancerhotspots.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -13,12 +12,12 @@ public class Cluster
 {
     private String clusterId;
     private Map<String, Double> pdbChains;
-    private List<String> residues;
+    private Map<String, Integer> residues;
     private String pValue;
 
     public Cluster()
     {
-        this.residues = new ArrayList<>();
+        this.residues = new LinkedHashMap<>();
     }
 
     @ApiModelProperty(value = "P-value", required = false)
@@ -54,19 +53,19 @@ public class Cluster
         this.pdbChains = pdbChains;
     }
 
-    @ApiModelProperty(value = "Residues within this cluster", required = false)
-    public List<String> getResidues()
+    @ApiModelProperty(value = "Residues within this cluster (with overall tumor count)", required = false)
+    public Map<String, Integer> getResidues()
     {
         return residues;
     }
 
-    public void setResidues(List<String> residues)
+    public void setResidues(Map<String, Integer> residues)
     {
         this.residues = residues;
     }
 
-    public void addResidue(String residue)
+    public void addResidue(String residue, Integer tumorCount)
     {
-        this.residues.add(residue);
+        this.residues.put(residue, tumorCount);
     }
 }

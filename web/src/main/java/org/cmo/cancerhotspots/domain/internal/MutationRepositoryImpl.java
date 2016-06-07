@@ -24,7 +24,7 @@ public class MutationRepositoryImpl implements MutationRepository
 
     private List<Mutation> cache;
 
-    public List<Mutation> findAll()
+    public Iterable<Mutation> findAll()
     {
         // parse the input file only once, and save the result in the hotspot cache
         if (this.cache == null ||
@@ -44,7 +44,7 @@ public class MutationRepositoryImpl implements MutationRepository
     }
 
     @Override
-    public void saveAll(List<Mutation> mutations)
+    public void saveAll(Iterable<Mutation> mutations)
     {
         TsvWriter writer = FileIO.initTsvWriter(
             new BeanWriterProcessor<>(Mutation.class),

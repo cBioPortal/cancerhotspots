@@ -25,7 +25,7 @@ public class MutationAnnotationRepositoryImpl implements MutationAnnotationRepos
 
     private List<MutationAnnotation> cache;
 
-    public List<MutationAnnotation> findAll()
+    public Iterable<MutationAnnotation> findAll()
     {
         // parse the input file only once,
         // and save the result in the maf cache

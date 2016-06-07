@@ -27,7 +27,7 @@ public class VariantRepositoryImpl implements VariantRepository
 
     private List<TumorTypeComposition> cache;
 
-    public void saveAll(List<TumorTypeComposition> compositions)
+    public void saveAll(Iterable<TumorTypeComposition> compositions)
     {
         TsvWriter writer = FileIO.initTsvWriter(
             new BeanWriterProcessor<>(TumorTypeComposition.class),
@@ -43,7 +43,7 @@ public class VariantRepositoryImpl implements VariantRepository
         writer.close();
     }
 
-    public List<TumorTypeComposition> findAll()
+    public Iterable<TumorTypeComposition> findAll()
     {
         // parse the input file only once, and save the result in the hotspot cache
         if (this.cache == null ||

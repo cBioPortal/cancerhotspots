@@ -64,7 +64,7 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
         if (this.hotspotCache == null ||
             this.hotspotCache.size() == 0)
         {
-            List<Mutation> mutations = mutationRepository.findAll();
+            Iterable<Mutation> mutations = mutationRepository.findAll();
 
             // cache converted data
             this.hotspotCache = convertToSingleResidue(mutations);
@@ -73,9 +73,9 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
         return this.hotspotCache;
     }
 
-    public List<HotspotMutation> convertToSingleResidue(List<Mutation> mutations)
+    public List<HotspotMutation> convertToSingleResidue(Iterable<Mutation> mutations)
     {
-        List<HotspotMutation> list = new ArrayList<>(mutations.size());
+        List<HotspotMutation> list = new ArrayList<>();
 
         for (Mutation mutation : mutations)
         {

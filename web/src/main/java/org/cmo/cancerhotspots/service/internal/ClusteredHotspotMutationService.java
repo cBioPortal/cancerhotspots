@@ -28,14 +28,14 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
         if (this.hotspotCache == null ||
             this.hotspotCache.size() == 0)
         {
-            List<Mutation> mutations = mutationRepository.findAll();
+            Iterable<Mutation> mutations = mutationRepository.findAll();
             this.hotspotCache = convertToMultiResidue(mutations);
         }
 
         return this.hotspotCache;
     }
 
-    public List<HotspotMutation> convertToMultiResidue(List<Mutation> mutations)
+    public List<HotspotMutation> convertToMultiResidue(Iterable<Mutation> mutations)
     {
         Map<String, Cluster> clusterMap = new LinkedHashMap<>();
         Map<String, ClusteredHotspotMutation> mutationMap = new LinkedHashMap<>();
@@ -58,7 +58,7 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
                 clusterMap.put(key, cluster);
             }
 
-            cluster.addResidue(mutation.getResidue());
+            cluster.addResidue(mutation.getResidue(), mutation.getTumorCount());
         }
 
         // create ClusteredHotspotMutation instances

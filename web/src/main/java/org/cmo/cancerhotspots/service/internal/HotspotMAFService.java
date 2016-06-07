@@ -6,6 +6,7 @@ import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,14 +28,16 @@ public class HotspotMAFService implements MutationAnnotationService
     @Override
     public List<MutationAnnotation> getAllMutationAnnotations()
     {
-        List<MutationAnnotation> annotations = mutationAnnotationRepository.findAll();
+        Iterable<MutationAnnotation> annotations = mutationAnnotationRepository.findAll();
 
         // post process to construct missing fields (if any)
         return this.postProcess(annotations);
     }
 
-    private List<MutationAnnotation> postProcess(List<MutationAnnotation> annotations)
+    private List<MutationAnnotation> postProcess(Iterable<MutationAnnotation> annotations)
     {
+        List<MutationAnnotation> list = new ArrayList<>();
+
         for (MutationAnnotation annotation : annotations)
         {
             boolean missing = annotation.getReferenceAminoAcid() == null ||
@@ -67,8 +70,10 @@ public class HotspotMAFService implements MutationAnnotationService
                     }
                 }
             }
+
+            list.add(annotation);
         }
 
-        return annotations;
+        return list;
     }
 }

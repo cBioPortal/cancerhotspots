@@ -1,19 +1,12 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import com.univocity.parsers.common.processor.BeanListProcessor;
-import com.univocity.parsers.csv.CsvParser;
 import org.cmo.cancerhotspots.domain.TumorTypeComposition;
 import org.cmo.cancerhotspots.domain.VariantRepository;
 import org.cmo.cancerhotspots.service.VariantService;
-import org.cmo.cancerhotspots.util.FileIO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Selcuk Onur Sumer
@@ -60,7 +53,14 @@ public class HotspotVariantService implements VariantService
     @Override
     public List<TumorTypeComposition> getAllVariantCompositions()
     {
-        return variantRepository.findAll();
+        List<TumorTypeComposition> list = new ArrayList<>();
+
+        for (TumorTypeComposition composition : variantRepository.findAll())
+        {
+            list.add(composition);
+        }
+
+        return list;
     }
 
     private Map<String, TumorTypeComposition> constructVariantCacheByGeneAndAAChange()

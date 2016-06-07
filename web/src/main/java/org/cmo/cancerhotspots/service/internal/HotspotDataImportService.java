@@ -85,7 +85,7 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void createVariantFile(List<Mutation> mutations)
+    public void createVariantFile(Iterable<Mutation> mutations)
     {
         List<TumorTypeComposition> compositions = new ArrayList<>();
 
@@ -117,13 +117,13 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void createHotspotFile(List<Mutation> mutations)
+    public void createHotspotFile(Iterable<Mutation> mutations)
     {
         mutationRepository.saveAll(mutations);
     }
 
     @Override
-    public void generateVariantComposition(List<Mutation> mutations)
+    public void generateVariantComposition(Iterable<Mutation> mutations)
     {
         for (Mutation mutation : mutations)
         {
@@ -141,7 +141,7 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
-    public void generateTumorTypeComposition(List<Mutation> mutations)
+    public void generateTumorTypeComposition(Iterable<Mutation> mutations)
     {
         for (Mutation mutation : mutations)
         {
