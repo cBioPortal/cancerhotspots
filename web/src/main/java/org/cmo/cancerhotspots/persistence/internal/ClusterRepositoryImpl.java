@@ -1,7 +1,7 @@
-package org.cmo.cancerhotspots.domain.internal;
+package org.cmo.cancerhotspots.persistence.internal;
 
-import org.cmo.cancerhotspots.domain.Cluster;
-import org.cmo.cancerhotspots.domain.ClusterRepository;
+import org.cmo.cancerhotspots.model.Cluster;
+import org.cmo.cancerhotspots.persistence.ClusterRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 

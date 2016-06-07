@@ -1,14 +1,12 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import org.cmo.cancerhotspots.domain.MutationAnnotation;
+import org.cmo.cancerhotspots.model.MutationAnnotation;
 import org.cmo.cancerhotspots.service.MutationFilterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

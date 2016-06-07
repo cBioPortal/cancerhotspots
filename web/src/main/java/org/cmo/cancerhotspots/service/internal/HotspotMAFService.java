@@ -1,7 +1,7 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import org.cmo.cancerhotspots.domain.MutationAnnotation;
-import org.cmo.cancerhotspots.domain.MutationAnnotationRepository;
+import org.cmo.cancerhotspots.model.MutationAnnotation;
+import org.cmo.cancerhotspots.persistence.MutationAnnotationRepository;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

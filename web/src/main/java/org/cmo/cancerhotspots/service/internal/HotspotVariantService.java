@@ -1,7 +1,7 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import org.cmo.cancerhotspots.domain.TumorTypeComposition;
-import org.cmo.cancerhotspots.domain.VariantRepository;
+import org.cmo.cancerhotspots.model.TumorTypeComposition;
+import org.cmo.cancerhotspots.persistence.VariantRepository;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

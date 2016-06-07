@@ -1,4 +1,4 @@
-package org.cmo.cancerhotspots.domain;
+package org.cmo.cancerhotspots.model;
 
 import io.swagger.annotations.ApiModelProperty;
 

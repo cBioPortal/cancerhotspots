@@ -32,10 +32,10 @@
 
 package org.cmo.cancerhotspots.service.internal;
 
-import org.cmo.cancerhotspots.domain.HotspotMutation;
-import org.cmo.cancerhotspots.domain.Mutation;
-import org.cmo.cancerhotspots.domain.MutationRepository;
-import org.cmo.cancerhotspots.domain.SingleResidueHotspotMutation;
+import org.cmo.cancerhotspots.model.HotspotMutation;
+import org.cmo.cancerhotspots.model.Mutation;
+import org.cmo.cancerhotspots.persistence.MutationRepository;
+import org.cmo.cancerhotspots.model.SingleResidueHotspotMutation;
 import org.cmo.cancerhotspots.service.HotspotMutationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,10 @@
 package org.cmo.cancerhotspots.service.internal;
 
-import org.cmo.cancerhotspots.domain.*;
+import org.cmo.cancerhotspots.persistence.*;
+import org.cmo.cancerhotspots.model.Mutation;
+import org.cmo.cancerhotspots.model.MutationAnnotation;
+import org.cmo.cancerhotspots.model.TumorTypeComposition;
+import org.cmo.cancerhotspots.model.VariantComposition;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.service.MutationFilterService;

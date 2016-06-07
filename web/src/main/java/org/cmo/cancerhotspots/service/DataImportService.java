@@ -1,6 +1,6 @@
 package org.cmo.cancerhotspots.service;
 
-import org.cmo.cancerhotspots.domain.Mutation;
+import org.cmo.cancerhotspots.model.Mutation;
 
 /**
  * @author Selcuk Onur Sumer

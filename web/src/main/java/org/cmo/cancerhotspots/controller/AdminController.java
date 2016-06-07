@@ -1,6 +1,6 @@
-package org.cmo.cancerhotspots.web;
+package org.cmo.cancerhotspots.controller;
 
-import org.cmo.cancerhotspots.domain.MutationRepository;
+import org.cmo.cancerhotspots.persistence.MutationRepository;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

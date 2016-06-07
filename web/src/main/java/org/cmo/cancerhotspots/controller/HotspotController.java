@@ -30,16 +30,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.cmo.cancerhotspots.web;
+package org.cmo.cancerhotspots.controller;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.cmo.cancerhotspots.domain.ClusteredHotspotMutation;
-import org.cmo.cancerhotspots.domain.HotspotMutation;
-import org.cmo.cancerhotspots.domain.SingleResidueHotspotMutation;
-import org.cmo.cancerhotspots.domain.TumorTypeComposition;
+import org.cmo.cancerhotspots.model.ClusteredHotspotMutation;
+import org.cmo.cancerhotspots.model.HotspotMutation;
+import org.cmo.cancerhotspots.model.SingleResidueHotspotMutation;
+import org.cmo.cancerhotspots.model.TumorTypeComposition;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.cmo.cancerhotspots.service.internal.ConfigurationService;
 import org.cmo.cancerhotspots.service.internal.ClusteredHotspotMutationService;

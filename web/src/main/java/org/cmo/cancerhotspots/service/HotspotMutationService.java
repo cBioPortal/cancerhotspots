@@ -32,7 +32,7 @@
 
 package org.cmo.cancerhotspots.service;
 
-import org.cmo.cancerhotspots.domain.HotspotMutation;
+import org.cmo.cancerhotspots.model.HotspotMutation;
 
 import java.util.List;
 

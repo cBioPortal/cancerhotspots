@@ -1,6 +1,6 @@
 package org.cmo.cancerhotspots.service;
 
-import org.cmo.cancerhotspots.domain.TumorTypeComposition;
+import org.cmo.cancerhotspots.model.TumorTypeComposition;
 
 import java.util.List;
 

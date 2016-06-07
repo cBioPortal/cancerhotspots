@@ -1,4 +1,4 @@
-package org.cmo.cancerhotspots.domain;
+package org.cmo.cancerhotspots.model;
 
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;

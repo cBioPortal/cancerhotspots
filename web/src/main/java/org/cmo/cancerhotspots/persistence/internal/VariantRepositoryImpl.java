@@ -1,11 +1,11 @@
-package org.cmo.cancerhotspots.domain.internal;
+package org.cmo.cancerhotspots.persistence.internal;
 
 import com.univocity.parsers.common.processor.BeanListProcessor;
 import com.univocity.parsers.common.processor.BeanWriterProcessor;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.tsv.TsvWriter;
-import org.cmo.cancerhotspots.domain.TumorTypeComposition;
-import org.cmo.cancerhotspots.domain.VariantRepository;
+import org.cmo.cancerhotspots.model.TumorTypeComposition;
+import org.cmo.cancerhotspots.persistence.VariantRepository;
 import org.cmo.cancerhotspots.util.FileIO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
