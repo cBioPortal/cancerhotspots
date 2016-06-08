@@ -36,10 +36,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.cmo.cancerhotspots.model.ClusteredHotspotMutation;
-import org.cmo.cancerhotspots.model.HotspotMutation;
-import org.cmo.cancerhotspots.model.SingleResidueHotspotMutation;
-import org.cmo.cancerhotspots.model.TumorTypeComposition;
+import org.cmo.cancerhotspots.model.*;
+import org.cmo.cancerhotspots.service.ClusterService;
 import org.cmo.cancerhotspots.service.VariantService;
 import org.cmo.cancerhotspots.service.internal.ConfigurationService;
 import org.cmo.cancerhotspots.service.internal.ClusteredHotspotMutationService;
@@ -51,10 +49,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Selcuk Onur Sumer
@@ -67,17 +62,20 @@ public class HotspotController
     private final SingleResidueHotspotMutationService singleResidueHotspotMutationService;
     private final ClusteredHotspotMutationService multiResidueHotspotMutationService;
     private final VariantService variantService;
+    private final ClusterService clusterService;
     private final ConfigurationService configService;
 
     @Autowired
     public HotspotController(SingleResidueHotspotMutationService singleResidueHotspotMutationService,
         ClusteredHotspotMutationService multiResidueHotspotMutationService,
         VariantService variantService,
+        ClusterService clusterService,
         ConfigurationService configService)
     {
         this.singleResidueHotspotMutationService = singleResidueHotspotMutationService;
         this.multiResidueHotspotMutationService = multiResidueHotspotMutationService;
         this.variantService = variantService;
+        this.clusterService = clusterService;
         this.configService = configService;
     }
 
@@ -234,6 +232,92 @@ public class HotspotController
     public List<TumorTypeComposition> getAllVariants()
     {
         return variantService.getAllVariantCompositions();
+    }
+
+    @ApiOperation(value = "get clusters by hugo symbol and residue",
+        nickname = "getClustersByHugoSymbolAndResidue")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = Cluster.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/clusters/{hugoSymbol}/{residue}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<Cluster> getClusters(
+        @ApiParam(value = "Hugo gene symbol, for example BRAF",
+            required = true)
+        @PathVariable String hugoSymbol,
+        @ApiParam(value = "Residue, for example F595",
+            required = true,
+            allowMultiple = true)
+        @PathVariable String residue)
+    {
+        return clusterService.getCluster(hugoSymbol, residue);
+    }
+
+    @ApiOperation(value = "get clusters by cluster id",
+        nickname = "getClustersByClusterId")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = Cluster.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/clusters/{clusterIds}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<Cluster> getClusters(
+        @ApiParam(value = "Comma separated list of cluster ids, for example 1,2,3",
+            required = false)
+        @PathVariable List<String> clusterIds)
+    {
+        return clusterService.getCluster(clusterIds);
+    }
+
+    @ApiOperation(value = "get clusters",
+        nickname = "postClusters")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = Cluster.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/clusters",
+        method = {RequestMethod.POST},
+        produces = "application/json")
+    public List<Cluster> postClusters(
+        @ApiParam(value = "Comma separated list of cluster ids, for example 1,2,3",
+            required = false)
+        @RequestParam(required = false)
+        List<String> clusterIds,
+        @ApiParam(value = "Hugo gene symbol, for example BRAF",
+            required = false)
+        @RequestParam(required = false)
+        String hugoSymbol,
+        @ApiParam(value = "Residue, for example F595",
+            required = false,
+            allowMultiple = true)
+        @RequestParam(required = false)
+        String residue)
+    {
+        if (clusterIds != null)
+        {
+            // if cluster ids are provided get clusters by id by default
+            return getClusters(clusterIds);
+        }
+        else if (hugoSymbol != null &&
+                 residue != null)
+        {
+            // this will only be invoked if both hugo symbol and residue provided,
+            // and no cluster id provided
+            return getClusters(hugoSymbol, residue);
+        }
+        else
+        {
+            return Collections.emptyList();
+        }
     }
 
     @ApiOperation(value = "get metadata",

@@ -18,12 +18,15 @@ import java.util.*;
 public class ClusteredHotspotMutationService implements HotspotMutationService
 {
     private final MutationRepository mutationRepository;
+    private final ClusterRepository clusterRepository;
     private List<HotspotMutation> hotspotCache;
 
     @Autowired
-    public ClusteredHotspotMutationService(MutationRepository mutationRepository)
+    public ClusteredHotspotMutationService(MutationRepository mutationRepository,
+        ClusterRepository clusterRepository)
     {
         this.mutationRepository = mutationRepository;
+        this.clusterRepository = clusterRepository;
     }
 
     public List<HotspotMutation> getAllHotspotMutations()
@@ -41,29 +44,7 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
 
     public List<HotspotMutation> convertToMultiResidue(Iterable<Mutation> mutations)
     {
-        Map<String, Cluster> clusterMap = new LinkedHashMap<>();
         Map<String, ClusteredHotspotMutation> mutationMap = new LinkedHashMap<>();
-
-        // index Cluster instances
-        for (Mutation mutation : mutations)
-        {
-            String key = mutation.getCluster();
-
-            Cluster cluster = clusterMap.get(key);
-
-            if (cluster == null)
-            {
-                cluster = new Cluster();
-
-                cluster.setClusterId(key);
-                cluster.setPdbChains(mutation.getPdbChains());
-                cluster.setpValue(mutation.getpValue());
-
-                clusterMap.put(key, cluster);
-            }
-
-            cluster.addResidue(mutation.getResidue(), mutation.getTumorCount());
-        }
 
         // create ClusteredHotspotMutation instances
         for (Mutation mutation : mutations)
@@ -83,7 +64,7 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
             }
 
             // update the mutation with the current cluster information
-            Cluster cluster = clusterMap.get(mutation.getCluster());
+            Cluster cluster = clusterRepository.findOne(mutation.getCluster());
             clusteredMutation.addCluster(cluster);
         }
 

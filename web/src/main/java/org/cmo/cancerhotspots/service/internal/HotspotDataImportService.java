@@ -1,10 +1,7 @@
 package org.cmo.cancerhotspots.service.internal;
 
+import org.cmo.cancerhotspots.model.*;
 import org.cmo.cancerhotspots.persistence.*;
-import org.cmo.cancerhotspots.model.Mutation;
-import org.cmo.cancerhotspots.model.MutationAnnotation;
-import org.cmo.cancerhotspots.model.TumorTypeComposition;
-import org.cmo.cancerhotspots.model.VariantComposition;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.service.MutationFilterService;
@@ -14,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Selcuk Onur Sumer
@@ -34,26 +28,32 @@ public class HotspotDataImportService implements DataImportService
     private Map<String, TumorTypeComposition> variantCacheByGeneAndAAChange;
     // cache of <hugo symbol + residue, variant composition> pairs
     private Map<String, VariantComposition> variantCacheByGeneAndResidue;
+    // cache of <cluster id, Cluster> pairs
+    private Map<String, Cluster> clusterCacheById;
 
     private MutationAnnotationService mafService;
     private MutationFilterService filterService;
     private MutationRepository mutationRepository;
     private VariantRepository variantRepository;
+    private ClusterRepository clusterRepository;
 
     @Autowired
     public HotspotDataImportService(MutationAnnotationService mafService,
         MutationFilterService filterService,
         MutationRepository mutationRepository,
-        VariantRepository variantRepository)
+        VariantRepository variantRepository,
+        ClusterRepository clusterRepository)
     {
         this.mafService = mafService;
         this.filterService = filterService;
         this.mutationRepository = mutationRepository;
         this.variantRepository = variantRepository;
+        this.clusterRepository = clusterRepository;
         // TODO technically we should use database for such large data, not in-memory cache
         this.variantCacheByGeneAndAAChange = null;
         this.variantCacheByAAChange = null;
         this.variantCacheByGeneAndResidue = null;
+        this.clusterCacheById = null;
     }
 
     public TumorTypeComposition getTumorTypeComposition(String aminoAcidChange)
@@ -118,6 +118,17 @@ public class HotspotDataImportService implements DataImportService
         }
 
         variantRepository.saveAll(compositions);
+    }
+
+    @Override
+    public void createClusterFile(Iterable<Mutation> mutations)
+    {
+        if (clusterCacheById == null)
+        {
+            clusterCacheById = constructClusterCache(mutations);
+        }
+
+        clusterRepository.saveAll(clusterCacheById.values());
     }
 
     @Override
@@ -191,6 +202,40 @@ public class HotspotDataImportService implements DataImportService
             mutation.setTumorTypeCount(composition.tumorTypeCount());
             mutation.setTumorCount(composition.tumorCount());
         }
+    }
+
+    private Map<String, Cluster> constructClusterCache(Iterable<Mutation> mutations)
+    {
+        if (mutations == null)
+        {
+            mutations = mutationRepository.findAll();
+        }
+
+        Map<String, Cluster> clusterMap = new LinkedHashMap<>();
+
+        // index Cluster instances
+        for (Mutation mutation : mutations)
+        {
+            String key = mutation.getCluster();
+
+            Cluster cluster = clusterMap.get(key);
+
+            if (cluster == null)
+            {
+                cluster = new Cluster();
+
+                cluster.setClusterId(key);
+                cluster.setPdbChains(mutation.getPdbChains());
+                cluster.setpValue(mutation.getpValue());
+                cluster.setHugoSymbol(mutation.getHugoSymbol());
+
+                clusterMap.put(key, cluster);
+            }
+
+            cluster.addResidue(mutation.getResidue(), mutation.getTumorCount());
+        }
+
+        return clusterMap;
     }
 
     private Map<String, VariantComposition> constructVariantCacheByGeneAndResidue()

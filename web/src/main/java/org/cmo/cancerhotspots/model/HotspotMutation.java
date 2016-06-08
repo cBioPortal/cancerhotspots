@@ -48,7 +48,7 @@ public class HotspotMutation
     private Integer tumorCount;
     private Map<String, Integer> tumorTypeComposition;
 
-    @ApiModelProperty(value = "Hugo symbol", required = true)
+    @ApiModelProperty(value = "Hugo gene symbol", required = true)
     public String getHugoSymbol()
     {
         return hugoSymbol;

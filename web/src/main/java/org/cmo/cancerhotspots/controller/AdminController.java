@@ -35,6 +35,16 @@ public class AdminController
         return "variant file creation initialized";
     }
 
+    @RequestMapping(value = "/create/clusters",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public String createClusters()
+    {
+        dataImportService.createClusterFile(mutationRepository.findAll());
+
+        return "cluster file creation initialized";
+    }
+
     @RequestMapping(value = "/create/hotspots",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")

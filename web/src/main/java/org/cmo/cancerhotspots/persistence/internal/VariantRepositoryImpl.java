@@ -45,7 +45,7 @@ public class VariantRepositoryImpl implements VariantRepository
 
     public Iterable<TumorTypeComposition> findAll()
     {
-        // parse the input file only once, and save the result in the hotspot cache
+        // parse the input file only once, and save the result in the cache
         if (this.cache == null ||
             this.cache.size() == 0)
         {
