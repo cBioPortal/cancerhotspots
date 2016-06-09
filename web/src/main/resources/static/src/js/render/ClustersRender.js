@@ -46,24 +46,29 @@ function ClustersRender(options)
     function render(data, type)
     {
         var templateFn = _.template($("#" + _options.templateId).html());
-        return templateFn({clusterCount: _.size(data)});
+        return templateFn({clusterCount: data});
     }
 
     function postRender(td, cellData, rowData, row, col)
     {
+        var proxy = new ClusterDataProxy();
+
         $(td).find('.residue-link').click(function(){
-            var data = {
-                tableData: cellData,
-                gene: rowData.hugoSymbol,
-                residue: rowData.residue
-            };
 
-            var residueView = new ResidueView({
-                data: data,
-                pValueThreshold: _options.pValueThreshold
+            proxy.getCluster(rowData.hugoSymbol, rowData.residue, function(data) {
+                var clusterData = {
+                    tableData: data,
+                    gene: rowData.hugoSymbol,
+                    residue: rowData.residue
+                };
+
+                var residueView = new ResidueView({
+                    data: clusterData,
+                    pValueThreshold: _options.pValueThreshold
+                });
+
+                residueView.render();
             });
-
-            residueView.render();
         });
     }
 

@@ -196,7 +196,7 @@ function HotspotTableView(options)
                 //    data: "altCommonCodonUsage"},
                 {id: "clusters",
                     title: "3D Clusters",
-                    data: "clusters",
+                    data: "clusterCount",
                     render: clustersRender.render,
                     createdCell: clustersRender.postRender},
                 {id: "classification",

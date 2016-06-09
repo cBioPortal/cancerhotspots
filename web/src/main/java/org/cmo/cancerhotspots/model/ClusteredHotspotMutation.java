@@ -1,5 +1,6 @@
 package org.cmo.cancerhotspots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.LinkedHashSet;
@@ -36,7 +37,14 @@ public class ClusteredHotspotMutation extends HotspotMutation
         this.pValue = pValue;
     }
 
-    @ApiModelProperty(value = "Cluster Specific Information", required = true)
+    @ApiModelProperty(value = "Number of 3D clusters where this mutation is observed", required = true)
+    public Integer getClusterCount()
+    {
+        return clusters.size();
+    }
+
+    //@ApiModelProperty(value = "Cluster Specific Information", required = true)
+    @JsonIgnore
     public Set<Cluster> getClusters()
     {
         return clusters;

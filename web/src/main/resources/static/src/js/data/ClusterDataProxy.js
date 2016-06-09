@@ -31,31 +31,31 @@
  */
 
 /**
- * Designed to retrieve variant data from server.
+ * Designed to retrieve 3D cluster data from server.
  *
  * @param options   proxy options
  * @author Selcuk Onur Sumer
  */
-function VariantDataProxy(options)
+function ClusterDataProxy(options)
 {
     var _defaultOpts = {
-        serviceUrl: "api/variants"
+        serviceUrl: "api/clusters"
     };
 
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
-    function getTumorTypeComposition(hugoSymbol, aminoAcidChange, callback)
+    function getCluster(hugoSymbol, residue, callback)
     {
         var data = {
             hugoSymbol: hugoSymbol,
-            aminoAcidChanges: aminoAcidChange
+            residue: residue
         };
 
         // retrieve data from the server
         $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, data, callback));
     }
 
-    this.getTumorTypeComposition = getTumorTypeComposition;
+    this.getCluster = getCluster;
 }
 
