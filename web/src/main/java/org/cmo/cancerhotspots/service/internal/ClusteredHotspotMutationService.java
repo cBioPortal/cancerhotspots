@@ -59,6 +59,7 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
                 // copy required fields from the mutation instance
                 clusteredMutation.init(mutation);
                 clusteredMutation.setClassification(mutation.getClassification());
+                clusteredMutation.setpValue(mutation.getpValue());
 
                 mutationMap.put(key, clusteredMutation);
             }

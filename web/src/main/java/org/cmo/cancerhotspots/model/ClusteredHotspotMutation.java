@@ -12,6 +12,7 @@ public class ClusteredHotspotMutation extends HotspotMutation
 {
     private Set<Cluster> clusters;
     private String classification;
+    private String pValue;
 
     @ApiModelProperty(value = "Hotspot Classification", required = true)
     public String getClassification()
@@ -22,6 +23,17 @@ public class ClusteredHotspotMutation extends HotspotMutation
     public void setClassification(String classification)
     {
         this.classification = classification;
+    }
+
+    @ApiModelProperty(value = "P-value", required = true)
+    public String getpValue()
+    {
+        return pValue;
+    }
+
+    public void setpValue(String pValue)
+    {
+        this.pValue = pValue;
     }
 
     @ApiModelProperty(value = "Cluster Specific Information", required = true)
