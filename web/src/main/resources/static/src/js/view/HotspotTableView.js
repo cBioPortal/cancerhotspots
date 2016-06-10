@@ -273,7 +273,7 @@ function HotspotTableView(options)
         //    _.template($("#single_residue_title").html())({}));
 
         $("div.hotspot-table-title").html(
-            _.template($("#table_hover_info").html())({}));
+            _.template($("#hotspot_table_title").html())({}));
     }
 
     this.render = render;

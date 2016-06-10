@@ -115,8 +115,8 @@ function ResidueView(options)
 
         $(_options.el).find("#residue_table").DataTable(dataTableOpts);
 
-        //$("div.residue-table-title").html(
-        //    _.template($("#residue_table_info").html())({}));
+        $("div.residue-table-title").html(
+            _.template($("#residue_table_title").html())({residue: _options.data.residue}));
     }
 
     this.render = render;
