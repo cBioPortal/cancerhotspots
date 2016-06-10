@@ -36,8 +36,7 @@
 function ClustersRender(options)
 {
     var _defaultOpts = {
-        templateId: "clusters_column",
-        pValueThreshold: 0.001
+        templateId: "clusters_column"
     };
 
     // merge options with default options to use defaults for missing values
@@ -46,18 +45,8 @@ function ClustersRender(options)
     function render(data, type)
     {
         var templateFn = _.template($("#" + _options.templateId).html());
-        return templateFn({clusterCount: data});
-    }
-
-    function postRender(td, cellData, rowData, row, col)
-    {
-        // TODO generate the link in the render function if possible and get rid of postRender!
-        $(td).find('.residue-link').attr('href',
-                                         "#/residue/" +
-                                         rowData.hugoSymbol + "/" +
-                                         rowData.residue);
+        return templateFn(data);
     }
 
     this.render = render;
-    this.postRender = postRender;
 }

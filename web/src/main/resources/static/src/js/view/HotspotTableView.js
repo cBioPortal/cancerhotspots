@@ -71,6 +71,13 @@ function HotspotTableView(options)
                 composition: row["tumorTypeComposition"]
             };
         },
+        clusterData: function(row) {
+            return {
+                clusterCount: row["clusterCount"],
+                hugoSymbol: row["hugoSymbol"],
+                residue: row["residue"]
+            }
+        },
         pValueData: function(row) {
             var data = row["pValue"];
 
@@ -196,9 +203,8 @@ function HotspotTableView(options)
                 //    data: "altCommonCodonUsage"},
                 {id: "clusters",
                     title: "3D Clusters",
-                    data: "clusterCount",
-                    render: clustersRender.render,
-                    createdCell: clustersRender.postRender},
+                    data: _options.clusterData,
+                    render: clustersRender.render},
                 {id: "classification",
                     title: "Class",
                     data: "classification"},
