@@ -35,22 +35,42 @@
  */
 function CancerHotspots(options)
 {
-    // TODO defaultOpts
+    var _defaultOpts = {
+        pageLoaderDelay: 50,
+        tableLoaderDelay: 500,
+        pageContent: "#page_content",
+        pageLoader: "#page_loader",
+        mainView: "#main_view",
+        mainContent: "#main_content",
+        homePage: "#home",
+        homeTemplateId: "home_page",
+        aboutPage: "#about",
+        aboutTemplateId: "about_page",
+        residuePage: "#residue",
+        residueTemplateId: "residue_page"
+        // TODO view & render options...
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
     function switchContent(routeFn, params)
     {
-        $("#page_content").children().hide();
+        // hide everything first
+        $(_options.pageContent).children().hide();
 
-        // TODO show a loader image here!!!
+        // show the loader image before starting the transition
+        $(_options.pageLoader).show();
 
         setTimeout(function() {
             routeFn(params);
 
-            // TODO and hide the loader image here!!!
-        }, 50);
+            // hide the loader image after transition completed
+            $(_options.pageLoader).hide();
+        }, _options.pageLoaderDelay);
     }
 
-    function home()
+    function home(params)
     {
         function initWithData(metadata)
         {
@@ -58,8 +78,8 @@ function CancerHotspots(options)
 
             // get all hotspot data
             proxy.getAllHotspots(function(data) {
-                var mainTemplateFn = _.template($("#main_view").html());
-                $("#main_content").html(mainTemplateFn());
+                var mainTemplateFn = _.template($(_options.mainView).html());
+                $(_options.mainContent).html(mainTemplateFn());
 
                 // init the table view with the hotspot data
                 var tableView = new HotspotTableView({
@@ -74,8 +94,8 @@ function CancerHotspots(options)
 
         function initWithAjax(metadata)
         {
-            var mainTemplateFn = _.template($("#main_view").html());
-            $("#main_content").html(mainTemplateFn());
+            var mainTemplateFn = _.template($(_options.mainView).html());
+            $(_options.mainContent).html(mainTemplateFn());
 
             // init the table view with the hotspot data retrieval function
             var tableView = new HotspotTableView({
@@ -95,7 +115,7 @@ function CancerHotspots(options)
                         // for a smoother rendering of the loader
                         setTimeout(function(){
                             callback({data: hotspotData});
-                        }, 500);
+                        }, _options.tableLoaderDelay);
                     });
                 }
             });
@@ -105,10 +125,10 @@ function CancerHotspots(options)
         }
 
         // init section if not initialized yet
-        if (!$("#home").length)
+        if (!$(_options.homePage).length)
         {
-            var templateFn = _.template($("#home_page").html());
-            $("#page_content").append(templateFn());
+            var templateFn = _.template($("#" + _options.homeTemplateId).html());
+            $(_options.pageContent).append(templateFn());
 
             // initial AJAX call to determine which profile is active
             var metadataProxy = new MetadataProxy();
@@ -119,19 +139,19 @@ function CancerHotspots(options)
             });
         }
 
-        $("#home").show();
+        $(_options.homePage).show();
     }
 
-    function about()
+    function about(params)
     {
         // init section if not initialized yet
-        if (!$("#about").length)
+        if (!$(_options.aboutPage).length)
         {
-            var templateFn = _.template($("#about_page").html());
-            $("#page_content").append(templateFn());
+            var templateFn = _.template($("#" + _options.aboutTemplateId).html());
+            $(_options.pageContent).append(templateFn());
         }
 
-        $("#about").show();
+        $(_options.aboutPage).show();
     }
 
     function cluster(params)
@@ -139,17 +159,17 @@ function CancerHotspots(options)
         var proxy = new ClusterDataProxy();
 
         // init section if not initialized yet
-        if (!$("#residue").length)
+        if (!$(_options.residuePage).length)
         {
-            var templateFn = _.template($("#residue_page").html());
-            $("#page_content").append(templateFn());
+            var templateFn = _.template($("#" + _options.residueTemplateId).html());
+            $(_options.pageContent).append(templateFn());
         }
 
-        $("#residue").show();
+        $(_options.residuePage).show();
 
         proxy.getCluster(params.hugoSymbol, params.residue, function(data) {
             var clusterData = {
-                tableData: data,
+                cluster: data,
                 gene: params.hugoSymbol,
                 residue: params.residue
             };
@@ -181,6 +201,7 @@ function CancerHotspots(options)
         router.configure({notfound: function() {
             // TODO switch to the not found page! (a static error page)
             //switchContent(unknown);
+            $(_options.pageContent).children().hide();
         }});
 
         // load home page content initially

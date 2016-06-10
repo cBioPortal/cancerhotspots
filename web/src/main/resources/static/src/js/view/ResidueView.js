@@ -110,7 +110,7 @@ function ResidueView(options)
         }
         else
         {
-            dataTableOpts.data = _options.data.tableData;
+            dataTableOpts.data = _options.data.cluster;
         }
 
         $(_options.el).find("#residue_table").DataTable(dataTableOpts);
