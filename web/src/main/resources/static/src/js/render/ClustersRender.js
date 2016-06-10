@@ -51,25 +51,11 @@ function ClustersRender(options)
 
     function postRender(td, cellData, rowData, row, col)
     {
-        var proxy = new ClusterDataProxy();
-
-        $(td).find('.residue-link').click(function(){
-
-            proxy.getCluster(rowData.hugoSymbol, rowData.residue, function(data) {
-                var clusterData = {
-                    tableData: data,
-                    gene: rowData.hugoSymbol,
-                    residue: rowData.residue
-                };
-
-                var residueView = new ResidueView({
-                    data: clusterData,
-                    pValueThreshold: _options.pValueThreshold
-                });
-
-                residueView.render();
-            });
-        });
+        // TODO generate the link in the render function if possible and get rid of postRender!
+        $(td).find('.residue-link').attr('href',
+                                         "#/residue/" +
+                                         rowData.hugoSymbol + "/" +
+                                         rowData.residue);
     }
 
     this.render = render;

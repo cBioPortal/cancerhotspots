@@ -36,65 +36,6 @@
  * @author Selcuk Onur Sumer
  */
 $(document).ready(function() {
-    function initWithData(metadata)
-    {
-        var proxy = new HotspotDataProxy();
-
-        // get all hotspot data
-        proxy.getAllHotspots(function(data) {
-            var mainTemplateFn = _.template($("#main_view").html());
-            $("#main_content").html(mainTemplateFn());
-
-            // init the table view with the hotspot data
-            var tableView = new HotspotTableView({
-                metadata: metadata,
-                data: data
-            });
-
-            // render the table
-            tableView.render();
-        });
-    }
-
-    function initWithAjax(metadata)
-    {
-        var mainTemplateFn = _.template($("#main_view").html());
-        $("#main_content").html(mainTemplateFn());
-
-        // init the table view with the hotspot data retrieval function
-        var tableView = new HotspotTableView({
-            metadata: metadata,
-            "ajax": function (data, callback, settings) {
-                var proxyOptions = {};
-
-                if (metadata.profile.toLowerCase() === "3d")
-                {
-                    proxyOptions.serviceUrl = "api/hotspots/3d";
-                }
-
-                var proxy = new HotspotDataProxy(proxyOptions);
-
-                proxy.getAllHotspots(function(hotspotData) {
-                    // defer rendering of the table a few miliseconds
-                    // for a smoother rendering of the loader
-                    setTimeout(function(){
-                        callback({data: hotspotData});
-                    }, 500);
-                });
-            }
-        });
-
-        // render the table
-        tableView.render();
-    }
-
-    // TODO initial AJAX call to determine which data fields are available
-    // this way we can hide/show columns when we initialize the data table
-
-    var metadataProxy = new MetadataProxy();
-
-    metadataProxy.getMetadata(function(data) {
-        //initWithData(data);
-        initWithAjax(data);
-    });
+    var hotspots = new CancerHotspots();
+    hotspots.init();
 });
