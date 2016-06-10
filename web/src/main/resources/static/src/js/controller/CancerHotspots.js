@@ -178,10 +178,13 @@ function CancerHotspots(options)
             }
         });
 
-        router.init();
+        router.configure({notfound: function() {
+            // TODO switch to the not found page! (a static error page)
+            //switchContent(unknown);
+        }});
 
         // load home page content initially
-        home();
+        router.init("/home");
     }
 
     this.init = init;
