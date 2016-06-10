@@ -156,8 +156,6 @@ function CancerHotspots(options)
 
     function cluster(params)
     {
-        var proxy = new ClusterDataProxy();
-
         // init section if not initialized yet
         if (!$(_options.residuePage).length)
         {
@@ -167,20 +165,26 @@ function CancerHotspots(options)
 
         $(_options.residuePage).show();
 
-        proxy.getCluster(params.hugoSymbol, params.residue, function(data) {
-            var clusterData = {
-                cluster: data,
+        var residueView = new ResidueView({
+            data: {
                 gene: params.hugoSymbol,
                 residue: params.residue
-            };
+            },
+            ajax: function (data, callback, settings) {
+                var proxy = new ClusterDataProxy();
 
-            var residueView = new ResidueView({
-                data: clusterData
-                //TODO pValueThreshold: _options.pValueThreshold
-            });
-
-            residueView.render();
+                proxy.getCluster(params.hugoSymbol, params.residue, function(data) {
+                    // defer rendering of the table a few miliseconds
+                    // for a smoother rendering of the loader
+                    setTimeout(function(){
+                        callback({data: data});
+                    }, _options.tableLoaderDelay);
+                });
+            }
+            //TODO pValueThreshold: _options.pValueThreshold
         });
+
+        residueView.render();
     }
 
     function init()
