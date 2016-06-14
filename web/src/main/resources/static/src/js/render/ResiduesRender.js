@@ -33,11 +33,10 @@
 /**
  * @author Selcuk Onur Sumer
  */
-function PdbChainsRender(options)
+function ResiduesRender(options)
 {
     var _defaultOpts = {
-        templateId: "pdb_chains_column",
-        pValueThreshold: 0.001
+        templateId: "residues_column"
     };
 
     // merge options with default options to use defaults for missing values
@@ -46,7 +45,7 @@ function PdbChainsRender(options)
     function render(data, type)
     {
         var templateFn = _.template($("#" + _options.templateId).html());
-        return templateFn({chainCount: _.size(data)});
+        return templateFn({residueCount: _.size(data.residues)});
     }
 
     function postRender(td, cellData, rowData, row, col)
@@ -57,41 +56,37 @@ function PdbChainsRender(options)
             return;
         }
 
-        var pValueRender = new PValueRender({
-            threshold: _options.pValueThreshold
-        });
-
-        var noWrapRender = new NoWrapRender();
-
         // convert map into a list
-        var pdbList = [];
+        var residueList = [];
 
-        _.each(_.keys(cellData), function(key) {
-            var parts = key.split("_");
-            pdbList.push({
-                pdbId: parts[0],
-                chain: parts[1] || "NA",
-                pValue: cellData[key]
+        _.each(_.pairs(cellData.residues), function(parts) {
+            residueList.push({
+                residue: parts[0],
+                sampleCount: parts[1]
             });
         });
 
         var viewOpts = {
-            //templateId: '#pdb_chain_composition',
-            //dataTableTarget: ".pdb-chain-composition",
+            //templateId: '#residues_composition',
+            //dataTableTarget: ".residues-composition",
             templateId: '#variant_composition',
             dataTableTarget: ".variant-composition",
             dom: "t",
-            data: pdbList,
-            order: [[2 , "asc" ], [1, "asc"]],
+            data: residueList,
+            order: [[1 , "desc" ], [0, "asc"]],
             columns: [
-                {title: "PDB Id",
-                    data: "pdbId"},
-                {title: "Chain",
-                    data: "chain"},
-                {id: "pValue",
-                    title: noWrapRender.render("P-value"),
-                    data: "pValue",
-                    render: pValueRender.render}
+                {title: "Residue",
+                    data: "residue",
+                    render: function render(data, type) {
+                        if (data === cellData.residue) {
+                            return '<b>' + data + '</b>';
+                        }
+                        else {
+                            return data;
+                        }
+                    }},
+                {title: "Mutations",
+                    data: "sampleCount"}
             ]
         };
 

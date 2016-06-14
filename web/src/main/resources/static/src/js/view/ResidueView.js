@@ -48,7 +48,13 @@ function ResidueView(options)
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
         // threshold for pValue, any value below this will be shown as >threshold
-        pValueThreshold: 0.001
+        pValueThreshold: 0.001,
+        residuesData: function(row) {
+            return {
+                residue: _options.data.residue,
+                residues: row["residues"]
+            };
+        }
     };
 
     // merge options with default options to use defaults for missing values
@@ -67,6 +73,8 @@ function ResidueView(options)
             pValueThreshold: _options.pValueThreshold
         });
 
+        var residuesRender = new ResiduesRender();
+
         var noWrapRender = new NoWrapRender();
 
         var dataTableOpts = {
@@ -82,7 +90,9 @@ function ResidueView(options)
             columns: [
                 {id: "residues",
                     title: "Residues",
-                    data: "residues"},
+                    data: _options.residuesData,
+                    render: residuesRender.render,
+                    createdCell: residuesRender.postRender},
                 {id: "pdbChains",
                     title: "PDB Chains",
                     data: "pdbChains",
