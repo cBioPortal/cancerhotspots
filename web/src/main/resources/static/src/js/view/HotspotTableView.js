@@ -138,6 +138,8 @@ function HotspotTableView(options)
             pValueThreshold: _options.pValueThreshold
         });
 
+        var classRender = new ClassificationRender();
+
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
@@ -207,7 +209,8 @@ function HotspotTableView(options)
                     render: clustersRender.render},
                 {id: "classification",
                     title: "Class",
-                    data: "classification"},
+                    data: "classification",
+                    render: classRender.render},
                 {id: "variant",
                     title: "Variant Amino Acid <sup>&#8224;</sup>",
                     data: "variantAminoAcid",

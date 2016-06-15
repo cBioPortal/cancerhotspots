@@ -37,6 +37,7 @@ function PdbChainsRender(options)
 {
     var _defaultOpts = {
         templateId: "pdb_chains_column",
+        threshold: 2,
         pValueThreshold: 0.001
     };
 
@@ -78,13 +79,13 @@ function PdbChainsRender(options)
             // create an array of display values
             var values = [];
 
-            _.each(_.first(pdbChains, 2), function(pdbChain) {
+            _.each(_.first(pdbChains, _options.threshold), function(pdbChain) {
                 values.push(pdbChain.pdbId + ":" + pdbChain.chain);
             });
 
-            if (_.size(pdbChains) > 2)
+            if (_.size(pdbChains) > _options.threshold)
             {
-                values.push('and ' + (_.size(pdbChains) - 2) + ' more');
+                values.push('and ' + (_.size(pdbChains) - _options.threshold) + ' more');
             }
 
             var templateFn = _.template($("#" + _options.templateId).html());
