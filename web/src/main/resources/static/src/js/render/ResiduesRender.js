@@ -44,8 +44,47 @@ function ResiduesRender(options)
 
     function render(data, type)
     {
-        var templateFn = _.template($("#" + _options.templateId).html());
-        return templateFn({residueCount: _.size(data.residues)});
+        if (type === 'sort')
+        {
+            return _.size(data.residues);
+        }
+        else
+        {
+            var residues = [];
+
+            // convert map into an array and sort by count
+            _.each(_.keys(data.residues), function(residue) {
+                residues.push({residue: residue, count: data.residues[residue]});
+            });
+
+            residues = _.sortBy(residues, function(residue) {
+                // sort by residue position
+                var matched = residue.residue.match(/[0-9]+/g);
+
+                if (matched && matched.length > 0) {
+                    return parseInt(matched[0]);
+                }
+                else {
+                    return residue.residue;
+                }
+            });
+
+            // create an array of display values
+            var values = [];
+
+            _.each(residues, function(residue) {
+                // highlight the current residue
+                if (residue.residue === data.residue) {
+                    values.push('<b>' + residue.residue + '</b>');
+                }
+                else {
+                    values.push(residue.residue);
+                }
+            });
+
+            var templateFn = _.template($("#" + _options.templateId).html());
+            return templateFn({residues: values.join(", ")});
+        }
     }
 
     function postRender(td, cellData, rowData, row, col)

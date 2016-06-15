@@ -86,8 +86,11 @@ function ResidueView(options)
             language: {
                 loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
-            order: [[2, "asc"], [1, "desc"]],
+            order: [[3, "asc"], [2, "desc"]],
             columns: [
+                {id: "cluster",
+                    title: noWrapRender.render("Cluster #"),
+                    data: "clusterId"},
                 {id: "residues",
                     title: "Residues",
                     data: _options.residuesData,
