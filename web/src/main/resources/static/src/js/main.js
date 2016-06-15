@@ -36,6 +36,8 @@
  * @author Selcuk Onur Sumer
  */
 $(document).ready(function() {
-    var hotspots = new CancerHotspots();
-    hotspots.init();
+    $("#mutation_mapper_templates").load("lib/template/mutationMapperTemplates.html", function(){
+        var hotspots = new CancerHotspots();
+        hotspots.init();
+    });
 });

@@ -8,6 +8,7 @@
     <link rel="icon" href="src/images/favicon.ico" type="image/x-icon"/>
 
     <!-- lib css -->
+    <link href="lib/css/jquery-ui.min.css" rel="stylesheet">
     <link href="lib/css/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.pagination.css" type="text/css" rel="stylesheet" />
@@ -20,6 +21,7 @@
     <link href="lib/css/font-awesome.min.css" rel="stylesheet">
     <link href="lib/css/icomoon.css" rel="stylesheet">
     <link href="lib/css/freelancer.css" rel="stylesheet">
+    <link href="lib/css/mutationMapper.min.css" rel="stylesheet">
 
     <!-- source css -->
     <link href="src/css/oncokb.css" type="text/css" rel="stylesheet"/>
@@ -47,6 +49,17 @@
     <script type="text/javascript" src="lib/js/cbpAnimatedHeader.min.js"></script-->
     <script type="text/javascript" src="lib/js/freelancer.js"></script>
     <script type="text/javascript" src="lib/js/FileSaver.min.js"></script>
+
+        <!-- MutationMapper & dependencies -->
+    <script type="text/javascript" src="lib/js/3Dmol-nojquery-min.js"></script>
+    <!--script type="text/javascript" src="lib/js/jquery-migrate.js"></script-->
+    <script type="text/javascript" src="lib/js/jquery.expander.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.tipTip.min.js"></script>
+    <script type="text/javascript" src="lib/js/ui.tabs.paging.js"></script>
+    <script type="text/javascript" src="lib/js/backbone-min.js"></script>
+    <script type="text/javascript" src="lib/js/mutationMapper.min.js"></script>
 
     <!-- src js -->
     <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
@@ -191,6 +204,8 @@
         </div>
     </div>
 </div>
+
+<div id="mutation_mapper_templates"></div>
 
 <!--<footer class="text-center">-->
 <!--div class="footer-above">
@@ -369,6 +384,7 @@
 <script type="text/template" id="residue_view">
     <b>Gene:</b> {{gene}} <br>
     <b>Residue:</b> {{residue}} <br>
+    <div class="mutation-mapper-container"></div>
     <table id="residue_table"
            class="display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
