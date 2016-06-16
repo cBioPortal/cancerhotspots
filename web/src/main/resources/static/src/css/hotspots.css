@@ -223,3 +223,8 @@ header hr.star-light:after {
 section {
     padding: 40px 10px;
 }
+
+/* MutationMapper customization */
+.mutation-3d-container {
+    top: 120px;
+}

@@ -165,15 +165,19 @@ function CancerHotspots(options)
 
         $(_options.residuePage).show();
 
+        var dataManager = new ClusterDataManager();
+        dataManager.updateData({
+            gene: params.hugoSymbol,
+            residue: params.residue
+        });
+
         var residueView = new ResidueView({
-            data: {
-                gene: params.hugoSymbol,
-                residue: params.residue
-            },
+            dataManager: dataManager,
             ajax: function (data, callback, settings) {
                 var proxy = new ClusterDataProxy();
 
                 proxy.getCluster(params.hugoSymbol, params.residue, function(data) {
+                    dataManager.updateData({clusters: data});
                     // defer rendering of the table a few miliseconds
                     // for a smoother rendering of the loader
                     setTimeout(function(){

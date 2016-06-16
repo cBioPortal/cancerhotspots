@@ -36,7 +36,9 @@
 function ResiduesRender(options)
 {
     var _defaultOpts = {
-        templateId: "residues_column"
+        templateId: "residues_column",
+        linkTemplateId: "cluster_residue_link",
+        dataManager: false
     };
 
     // merge options with default options to use defaults for missing values
@@ -73,13 +75,17 @@ function ResiduesRender(options)
             var values = [];
 
             _.each(residues, function(residue) {
+                var templateFn = _.template($("#" + _options.linkTemplateId).html());
+                var value;
                 // highlight the current residue
                 if (residue.residue === data.residue) {
-                    values.push('<b>' + residue.residue + '</b>');
+                    value = templateFn({residue: '<b>' + residue.residue + '</b>'});
                 }
                 else {
-                    values.push(residue.residue);
+                    value = templateFn({residue: residue.residue});
                 }
+
+                values.push(value);
             });
 
             var templateFn = _.template($("#" + _options.templateId).html());
@@ -129,8 +135,26 @@ function ResiduesRender(options)
             ]
         };
 
+        // add tooltip for the entire cell
         cbio.util.addTargetedQTip($(td).find('.qtipped-text'),
                                   TooltipUtils.tooltipOptions(cellData, viewOpts));
+
+        // also add click listeners
+        $(td).find(".cluster-residue-link").on('mouseenter', function() {
+            // highlight the residue!
+            if (_options.dataManager)
+            {
+                _options.dataManager.highlightResidues([$(this).text()]);
+            }
+        });
+
+        $(td).find(".cluster-residue-link").on('mouseleave', function() {
+            // remove highlights!
+            if (_options.dataManager)
+            {
+                _options.dataManager.unHighlightResidues([$(this).text()]);
+            }
+        });
     }
 
     this.render = render;

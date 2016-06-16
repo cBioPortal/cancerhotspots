@@ -43,15 +43,15 @@ function ResidueView(options)
         // default target DOM element
         el: "#residue_content",
         templateId: "residue_view",
-        // no data by default, must be provided by the client
-        data: {},
+        // no data manager by default, must be provided by the client
+        dataManager: {},
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
         // threshold for pValue, any value below this will be shown as >threshold
         pValueThreshold: 0.001,
         residuesData: function(row) {
             return {
-                residue: _options.data.residue,
+                residue: _options.dataManager.getData().residue,
                 residues: row["residues"]
             };
         }
@@ -63,7 +63,7 @@ function ResidueView(options)
     function render()
     {
         var templateFn = _.template($("#" + _options.templateId).html());
-        $(_options.el).html(templateFn(_options.data));
+        $(_options.el).html(templateFn(_options.dataManager.getData()));
 
         var pValueRender = new PValueRender({
             threshold: _options.pValueThreshold
@@ -73,7 +73,9 @@ function ResidueView(options)
             pValueThreshold: _options.pValueThreshold
         });
 
-        var residuesRender = new ResiduesRender();
+        var residuesRender = new ResiduesRender({
+            dataManager: _options.dataManager
+        });
 
         var noWrapRender = new NoWrapRender();
 
@@ -114,6 +116,14 @@ function ResidueView(options)
                 {
                     dataTable.fnSetFilteringDelay(_options.filteringDelay);
                 }
+
+                // generate mutation mapper data
+                var mutationData = generateMutationData(dataTable.api().data());
+
+                // TODO also generate PDB data?
+
+                // init the mutation mapper
+                initMutationMapper(_.values(mutationData));
             }
         };
 
@@ -123,13 +133,109 @@ function ResidueView(options)
         }
         else
         {
-            dataTableOpts.data = _options.data.cluster;
+            dataTableOpts.data = _options.dataManager.getData().clusters;
         }
 
+        // init the residue table
         $(_options.el).find("#residue_table").DataTable(dataTableOpts);
 
         $("div.residue-table-title").html(
-            _.template($("#residue_table_title").html())({residue: _options.data.residue}));
+            _.template($("#residue_table_title").html())(
+                {residue: _options.dataManager.getData().residue}));
+    }
+
+    function generateMutationData(clusterData)
+    {
+        var mutationData = {};
+
+        _.each(clusterData, function(cluster) {
+            _.each(_.keys(cluster.residues), function(residue) {
+                var counter = 0;
+                _.times(cluster.residues[residue], function() {
+                    counter++;
+                    var id = _options.dataManager.getData().gene + "_" + residue + "_" + counter;
+                    // index by id instead of adding into an array
+                    // this will prevent duplicates
+                    mutationData[id] = {
+                        mutationId: id,
+                        mutationSid: id,
+                        proteinChange: residue,
+                        geneSymbol: _options.dataManager.getData().gene,
+                        mutationType: "missense_mutation"
+                    };
+                });
+            });
+        });
+
+        return mutationData;
+    }
+
+    function initMutationMapper(mutationData)
+    {
+        var options = {
+            el: '.mutation-mapper-container',
+            data: {
+                geneList: [_options.dataManager.getData().gene]
+            },
+            view: {
+                mutationTable: false,
+                mutationSummary: false,
+                infoPanel: false
+            },
+            render: {
+                mutation3dVis: {
+                    loaderImage: "lib/images/ajax-loader.gif",
+                    helpImage: "lib/images/help.png",
+                    border: {
+                        top: "120px"
+                    }
+                },
+                mainMutation: {
+                    loaderImage: "lib/images/ajax-loader.gif"
+                },
+                mutationDetails: {
+                    loaderImage: "lib/images/ajax-loader.gif",
+                    coreTemplate: "custom_mutation_details_template",
+                    init: function(mutationDetailsView) {
+                        // hide loader image
+                        mutationDetailsView.$el.find(".mutation-details-loader").hide();
+                    },
+                    format: function(mutationDetailsView) {
+                        mutationDetailsView.dispatcher.trigger(
+                            MutationDetailsEvents.GENE_TABS_CREATED);
+                    }
+                }
+            },
+            proxy: {
+                mutationProxy: {
+                    options: {
+                        initMode: "full",
+                        data: mutationData
+                    }
+                },
+                pfamProxy: {
+                    options: {
+                        servletName: 'http://www.cbioportal.org/getPfamSequence.json'
+                    }
+                },
+                mutationAlignerProxy: {
+                    options: {
+                        servletName: 'http://www.cbioportal.org/getMutationAligner.json'
+                    }
+                },
+                pdbProxy: {
+                    options: {
+                        servletName: 'http://www.cbioportal.org/get3dPdb.json',
+                        subService: false,
+                        listJoiner: ' '
+                    }
+                }
+            }
+        };
+
+        var mutationMapper = new MutationMapper(options);
+        mutationMapper.init();
+        return mutationMapper;
     }
 
     this.render = render;

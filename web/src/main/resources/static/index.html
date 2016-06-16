@@ -85,6 +85,7 @@
     <script type="text/javascript" src="src/js/util/ViewUtils.js"></script>
     <script type="text/javascript" src="src/js/util/TooltipUtils.js"></script>
     <script type="text/javascript" src="src/js/controller/CancerHotspots.js"></script>
+    <script type="text/javascript" src="src/js/controller/ClusterDataManager.js"></script>
     <script type="text/javascript" src="src/js/main.js"></script>
 
 
@@ -410,6 +411,10 @@
     <span class="qtipped-text">{{residues}}</span>
 </script>
 
+<script type="text/template" id="cluster_residue_link">
+    <a class="cluster-residue-link">{{residue}}</a>
+</script>
+
 <script type="text/template" id="basic_content">
     <div class="basic-content">{{value}}</div>
 </script>
@@ -465,6 +470,16 @@
 <script type="text/template" id="residue_table_title">
     <div class="data-table-title">
         Clusters which contain residue <b>{{residue}}</b>
+    </div>
+</script>
+
+<script type="text/template" id="custom_mutation_details_template">
+    <div class='mutation-3d-container'></div>
+    <div class='mutation-details-loader'>
+        <img src='{{loaderImage}}'/>
+    </div>
+    <div class='mutation-details-content'>
+        {{mainContent}}
     </div>
 </script>
 
