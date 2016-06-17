@@ -77,6 +77,8 @@ function ResidueView(options)
             dataManager: _options.dataManager
         });
 
+        var clusterRender = new ClusterRender();
+
         var noWrapRender = new NoWrapRender();
 
         var dataTableOpts = {
@@ -91,8 +93,9 @@ function ResidueView(options)
             order: [[3, "asc"], [2, "desc"]],
             columns: [
                 {id: "cluster",
-                    title: noWrapRender.render("Cluster #"),
-                    data: "clusterId"},
+                    title: noWrapRender.render("Cluster"),
+                    data: "clusterId",
+                    render: clusterRender.render},
                 {id: "residues",
                     title: "Residues",
                     data: _options.residuesData,
@@ -123,7 +126,7 @@ function ResidueView(options)
                 // TODO also generate PDB data?
 
                 // init the mutation mapper
-                initMutationMapper(_.values(mutationData));
+                var mutationMapper = initMutationMapper(_.values(mutationData));
             }
         };
 
@@ -173,7 +176,7 @@ function ResidueView(options)
     function initMutationMapper(mutationData)
     {
         var options = {
-            el: '.mutation-mapper-container',
+            el:  $(_options.el).find('.mutation-mapper-container'),
             data: {
                 geneList: [_options.dataManager.getData().gene]
             },

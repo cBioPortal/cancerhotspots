@@ -175,6 +175,10 @@ table.about-lab-table {
     padding-top: 10px;
 }
 
+#residue_table {
+    font-size: 95%;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
@@ -228,3 +232,11 @@ section {
 .mutation-3d-container {
     top: 120px;
 }
+
+.mutation-details-uniprot-link,
+.diagram-to-pdf,
+.diagram-help,
+.mutation-3d-vis {
+    display: none;
+}
+
