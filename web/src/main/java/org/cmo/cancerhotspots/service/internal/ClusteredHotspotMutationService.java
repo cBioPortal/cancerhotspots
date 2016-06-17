@@ -42,6 +42,20 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
         return this.hotspotCache;
     }
 
+    @Override
+    public List<HotspotMutation> getHotspotMutations(List<String> hugoSymbols)
+    {
+        List<HotspotMutation> mutations = new ArrayList<>();
+
+        for (String hugoSymbol: hugoSymbols)
+        {
+            mutations.addAll(convertToMultiResidue(
+                mutationRepository.findByGene(hugoSymbol)));
+        }
+
+        return mutations;
+    }
+
     public List<HotspotMutation> convertToMultiResidue(Iterable<Mutation> mutations)
     {
         Map<String, ClusteredHotspotMutation> mutationMap = new LinkedHashMap<>();

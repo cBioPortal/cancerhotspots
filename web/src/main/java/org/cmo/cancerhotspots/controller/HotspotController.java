@@ -95,7 +95,7 @@ public class HotspotController
         return singleResidueHotspotMutationService.getAllHotspotMutations();
     }
 
-    @ApiOperation(value = "get all 3D hotspot mutations",
+    @ApiOperation(value = "get 3D hotspot mutations",
         nickname = "getAll3dHotspotMutations")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success",
@@ -104,11 +104,44 @@ public class HotspotController
         @ApiResponse(code = 400, message = "Bad Request")
     })
     @RequestMapping(value = "/hotspots/3d",
-        method = {RequestMethod.GET, RequestMethod.POST},
+        method = {RequestMethod.POST},
         produces = "application/json")
-    public List<HotspotMutation> get3dHotspotMutations()
+    public List<HotspotMutation> post3dHotspotMutations(
+        @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
+            required = false,
+            allowMultiple = true)
+        @RequestParam(required = false)
+        List<String> hugoSymbols)
     {
-        return multiResidueHotspotMutationService.getAllHotspotMutations();
+        if (hugoSymbols == null)
+        {
+            return multiResidueHotspotMutationService.getAllHotspotMutations();
+        }
+        else
+        {
+            return get3dHotspotMutations(hugoSymbols);
+        }
+
+    }
+
+    @ApiOperation(value = "get all hotspot mutations for the specified genes",
+        nickname = "get3dHotspotMutationsByGene")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = ClusteredHotspotMutation.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/hotspots/3d/{hugoSymbols}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<HotspotMutation> get3dHotspotMutations(
+        @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
+            required = true,
+            allowMultiple = true)
+        @PathVariable List<String> hugoSymbols)
+    {
+        return multiResidueHotspotMutationService.getHotspotMutations(hugoSymbols);
     }
 
     // TODO API disabled for now, enable if needed

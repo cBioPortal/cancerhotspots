@@ -8,5 +8,6 @@ import org.cmo.cancerhotspots.model.Mutation;
 public interface MutationRepository
 {
     Iterable<Mutation> findAll();
+    Iterable<Mutation> findByGene(String hugoSymbol);
     void saveAll(Iterable<Mutation> mutations);
 }

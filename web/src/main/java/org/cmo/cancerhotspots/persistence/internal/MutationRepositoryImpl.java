@@ -10,6 +10,7 @@ import org.cmo.cancerhotspots.util.FileIO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,6 +42,23 @@ public class MutationRepositoryImpl implements MutationRepository
         }
 
         return this.cache;
+    }
+
+    @Override
+    public Iterable<Mutation> findByGene(String hugoSymbol)
+    {
+        Iterable<Mutation> mutations = findAll();
+        List<Mutation> result = new ArrayList<>();
+
+        for (Mutation mutation: mutations)
+        {
+            if (mutation.getHugoSymbol().trim().equalsIgnoreCase(hugoSymbol))
+            {
+                result.add(mutation);
+            }
+        }
+
+        return result;
     }
 
     @Override

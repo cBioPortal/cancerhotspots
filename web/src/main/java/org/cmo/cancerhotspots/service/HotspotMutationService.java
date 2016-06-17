@@ -42,4 +42,5 @@ import java.util.List;
 public interface HotspotMutationService
 {
     List<HotspotMutation> getAllHotspotMutations();
+    List<HotspotMutation> getHotspotMutations(List<String> hugoSymbols);
 }

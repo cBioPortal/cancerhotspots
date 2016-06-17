@@ -73,6 +73,20 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
         return this.hotspotCache;
     }
 
+    @Override
+    public List<HotspotMutation> getHotspotMutations(List<String> hugoSymbols)
+    {
+        List<HotspotMutation> mutations = new ArrayList<>();
+
+        for (String hugoSymbol: hugoSymbols)
+        {
+            mutations.addAll(convertToSingleResidue(
+                mutationRepository.findByGene(hugoSymbol)));
+        }
+
+        return mutations;
+    }
+
     public List<HotspotMutation> convertToSingleResidue(Iterable<Mutation> mutations)
     {
         List<HotspotMutation> list = new ArrayList<>();
