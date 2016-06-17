@@ -51,5 +51,12 @@ function HotspotDataProxy(options)
         $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {}, callback));
     }
 
+    function getHotspots(gene, callback)
+    {
+        // retrieve data from the server
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {hugoSymbols: [gene]}, callback));
+    }
+
     this.getAllHotspots = getAllHotspots;
+    this.getHotspots = getHotspots;
 }

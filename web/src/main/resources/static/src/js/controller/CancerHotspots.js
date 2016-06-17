@@ -35,6 +35,10 @@
  */
 function CancerHotspots(options)
 {
+    var _hotspotProxy = null;
+    var _clusterProxy = null;
+    var _metadataProxy = null;
+
     var _defaultOpts = {
         pageLoaderDelay: 50,
         tableLoaderDelay: 500,
@@ -101,16 +105,7 @@ function CancerHotspots(options)
             var tableView = new HotspotTableView({
                 metadata: metadata,
                 "ajax": function (data, callback, settings) {
-                    var proxyOptions = {};
-
-                    if (metadata.profile.toLowerCase() === "3d")
-                    {
-                        proxyOptions.serviceUrl = "api/hotspots/3d";
-                    }
-
-                    var proxy = new HotspotDataProxy(proxyOptions);
-
-                    proxy.getAllHotspots(function(hotspotData) {
+                    _hotspotProxy.getAllHotspots(function(hotspotData) {
                         // defer rendering of the table a few miliseconds
                         // for a smoother rendering of the loader
                         setTimeout(function(){
@@ -131,9 +126,7 @@ function CancerHotspots(options)
             $(_options.pageContent).append(templateFn());
 
             // initial AJAX call to determine which profile is active
-            var metadataProxy = new MetadataProxy();
-
-            metadataProxy.getMetadata(function(data) {
+            _metadataProxy.getMetadata(function(data) {
                 //initWithData(data);
                 initWithAjax(data);
             });
@@ -174,15 +167,18 @@ function CancerHotspots(options)
         var residueView = new ResidueView({
             dataManager: dataManager,
             ajax: function (data, callback, settings) {
-                var proxy = new ClusterDataProxy();
-
-                proxy.getCluster(params.hugoSymbol, params.residue, function(data) {
-                    dataManager.updateData({clusters: data});
-                    // defer rendering of the table a few miliseconds
-                    // for a smoother rendering of the loader
-                    setTimeout(function(){
-                        callback({data: data});
-                    }, _options.tableLoaderDelay);
+                _clusterProxy.getCluster(params.hugoSymbol, params.residue, function(clusterData) {
+                    _hotspotProxy.getHotspots(params.hugoSymbol, function(hotspotData) {
+                        dataManager.updateData({
+                            clusters: clusterData,
+                            mutations: hotspotData
+                        });
+                        // defer rendering of the table a few miliseconds
+                        // for a smoother rendering of the loader
+                        setTimeout(function(){
+                            callback({data: clusterData});
+                        }, _options.tableLoaderDelay);
+                    });
                 });
             }
             //TODO pValueThreshold: _options.pValueThreshold
@@ -212,8 +208,23 @@ function CancerHotspots(options)
             $(_options.pageContent).children().hide();
         }});
 
-        // load home page content initially
-        router.init("/home");
+        // init data proxies
+        _metadataProxy = new MetadataProxy();
+
+        _metadataProxy.getMetadata(function(metadata) {
+            var hotspotProxyOptions = {};
+
+            if (metadata.profile.toLowerCase() === "3d")
+            {
+                hotspotProxyOptions.serviceUrl = "api/hotspots/3d";
+            }
+
+            _hotspotProxy = new HotspotDataProxy(hotspotProxyOptions);
+            _clusterProxy = new ClusterDataProxy();
+
+            // load home page content initially
+            router.init("/home");
+        });
     }
 
     this.init = init;

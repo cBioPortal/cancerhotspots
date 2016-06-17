@@ -54,6 +54,29 @@ function ResidueView(options)
                 residue: _options.dataManager.getData().residue,
                 residues: row["residues"]
             };
+        },
+        tumorCountData: function(row) {
+            var tumorCount = 0;
+            var tumorTypeCount = 0;
+            var composition = {};
+
+            _.each(_options.dataManager.getData().mutations, function(mutation) {
+                // select the mutation if only it's residue is in this cluster
+
+                // TODO this is not correct, we need to merge all data!
+                if (_.contains(_.keys(row["residues"]), mutation.residue))
+                {
+                    tumorCount = mutation.tumorCount;
+                    composition = mutation.tumorTypeComposition;
+                    tumorTypeCount = mutation.tumorTypeCount;
+                }
+            });
+
+            return {
+                tumorCount: tumorCount,
+                tumorTypeCount: tumorTypeCount,
+                composition: composition
+            };
         }
     };
 
@@ -78,7 +101,7 @@ function ResidueView(options)
         });
 
         var clusterRender = new ClusterRender();
-
+        var tumorCountRender = new TumorCountRender();
         var noWrapRender = new NoWrapRender();
 
         var dataTableOpts = {
@@ -109,7 +132,12 @@ function ResidueView(options)
                 {id: "pValue",
                     title: noWrapRender.render("P-value"),
                     data: "pValue",
-                    render: pValueRender.render}
+                    render: pValueRender.render},
+                {id: "tumorCount",
+                    title: "Sample Count",
+                    data: _options.tumorCountData,
+                    render: tumorCountRender.render,
+                    createdCell: tumorCountRender.postRender}
             ],
             initComplete: function(settings) {
                 var dataTable = this;
