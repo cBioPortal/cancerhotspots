@@ -56,21 +56,33 @@ function ResidueView(options)
             };
         },
         tumorCountData: function(row) {
-            var tumorCount = 0;
-            var tumorTypeCount = 0;
             var composition = {};
 
+            // combine all the tumor type composition maps in one map
             _.each(_options.dataManager.getData().mutations, function(mutation) {
                 // select the mutation if only it's residue is in this cluster
-
-                // TODO this is not correct, we need to merge all data!
                 if (_.contains(_.keys(row["residues"]), mutation.residue))
                 {
-                    tumorCount = mutation.tumorCount;
-                    composition = mutation.tumorTypeComposition;
-                    tumorTypeCount = mutation.tumorTypeCount;
+                    _.each(_.keys(mutation.tumorTypeComposition), function (tumorType) {
+                        var count = mutation.tumorTypeComposition[tumorType];
+
+                        // init if not initialized yet
+                        if (composition[tumorType] == null) {
+                            composition[tumorType] = 0;
+                        }
+
+                        composition[tumorType] += count;
+                    });
                 }
             });
+
+            // tumor count is the sum of all values
+            var tumorCount = _.reduce(_.values(composition), function(memo, value) {
+                return memo + value;
+            });
+
+            // tumor type count is the total number of keys
+            var tumorTypeCount = _.size(_.keys(composition));
 
             return {
                 tumorCount: tumorCount,
