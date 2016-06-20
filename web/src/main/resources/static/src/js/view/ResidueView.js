@@ -50,9 +50,23 @@ function ResidueView(options)
         // threshold for pValue, any value below this will be shown as >threshold
         pValueThreshold: 0.001,
         residuesData: function(row) {
+            var residue = _options.dataManager.getData().residue;
+            var residues = row["residues"];
+            var classifications = {};
+
+            _.each(_.keys(residues), function(residue) {
+                // any mutation with the current residue is enough to determine the class
+                var mutation = _.find(_options.dataManager.getData().mutations, function(mutation) {
+                    return mutation.residue === residue;
+                });
+
+                classifications[residue] = mutation.classification;
+            });
+
             return {
-                residue: _options.dataManager.getData().residue,
-                residues: row["residues"]
+                residue: residue,
+                residues: residues,
+                classifications: classifications
             };
         },
         tumorCountData: function(row) {

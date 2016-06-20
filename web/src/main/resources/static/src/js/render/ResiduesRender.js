@@ -56,7 +56,9 @@ function ResiduesRender(options)
 
             // convert map into an array and sort by count
             _.each(_.keys(data.residues), function(residue) {
-                residues.push({residue: residue, count: data.residues[residue]});
+                residues.push({residue: residue,
+                    count: data.residues[residue],
+                    classification: data.classifications[residue]});
             });
 
             residues = _.sortBy(residues, function(residue) {
@@ -76,20 +78,23 @@ function ResiduesRender(options)
 
             _.each(residues, function(residue) {
                 var templateFn = _.template($("#" + _options.linkTemplateId).html());
+                var vars = {style: residue.classification};
+
                 var value;
                 // highlight the current residue
                 if (residue.residue === data.residue) {
-                    value = templateFn({residue: '<b>' + residue.residue + '</b>'});
+                    vars.residue = '<b>' + residue.residue + '</b>';
                 }
                 else {
-                    value = templateFn({residue: residue.residue});
+                    vars.residue = residue.residue;
                 }
 
+                value = templateFn(vars);
                 values.push(value);
             });
 
             var templateFn = _.template($("#" + _options.templateId).html());
-            return templateFn({residues: values.join(", ")});
+            return templateFn({residues: values.join(" ")});
         }
     }
 
