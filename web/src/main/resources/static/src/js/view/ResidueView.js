@@ -95,6 +95,8 @@ function ResidueView(options)
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
+    var _mutationMapper = null;
+
     function render()
     {
         var templateFn = _.template($("#" + _options.templateId).html());
@@ -166,7 +168,7 @@ function ResidueView(options)
                 // TODO also generate PDB data?
 
                 // init the mutation mapper
-                var mutationMapper = initMutationMapper(_.values(mutationData));
+                _mutationMapper = initMutationMapper(_.values(mutationData));
             }
         };
 
@@ -283,5 +285,8 @@ function ResidueView(options)
 
     this.render = render;
 
+    this.getMutationMapper = function(){
+        return _mutationMapper;
+    };
 }
 

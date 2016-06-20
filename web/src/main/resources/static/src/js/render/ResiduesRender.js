@@ -139,8 +139,15 @@ function ResiduesRender(options)
         cbio.util.addTargetedQTip($(td).find('.qtipped-text'),
                                   TooltipUtils.tooltipOptions(cellData, viewOpts));
 
+        addEventListeners(td);
+    }
+
+    function addEventListeners(td)
+    {
+        var residueLink = $(td).find(".cluster-residue-link");
+
         // also add click listeners
-        $(td).find(".cluster-residue-link").on('mouseenter', function() {
+        residueLink.on('mouseenter', function() {
             // highlight the residue!
             if (_options.dataManager)
             {
@@ -148,11 +155,19 @@ function ResiduesRender(options)
             }
         });
 
-        $(td).find(".cluster-residue-link").on('mouseleave', function() {
+        residueLink.on('mouseleave', function() {
             // remove highlights!
             if (_options.dataManager)
             {
                 _options.dataManager.unHighlightResidues([$(this).text()]);
+            }
+        });
+
+        residueLink.on('click', function() {
+            // select the residue! TODO selection disabled for now
+            if (_options.dataManager)
+            {
+                //_options.dataManager.selectResidues([$(this).text()]);
             }
         });
     }

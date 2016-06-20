@@ -179,6 +179,10 @@ table.about-lab-table {
     font-size: 95%;
 }
 
+.cluster-residue-link {
+    cursor: pointer;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;

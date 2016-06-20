@@ -35,12 +35,20 @@
  */
 function ClusterDataManager(options)
 {
+    var _dispatcher = {};
+
     var _data = {
 
     };
 
     var _defaultOpts = {
 
+    };
+
+    var _state = {
+        highlighted: [],
+        selected: [],
+        hidden: []
     };
 
     // merge options with default options to use defaults for missing values
@@ -63,16 +71,38 @@ function ClusterDataManager(options)
 
     function highlightResidues(residues)
     {
-        // add given residues to the list of highlighted residues
+        // add given residues to the set of highlighted residues
+        _state.highlighted = _.union(_state.highlighted, residues);
 
-        // TODO trigger a custom (global?) event for highlight state change?
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_HIGHLIGHT, _state);
     }
 
     function unHighlightResidues(residues)
     {
-        // remove given residues from the list of highlighted residues
+        // remove given residues from the set of highlighted residues
+        _state.highlighted = _.difference(_state.highlighted, residues);
 
-        // TODO trigger a custom (global?) event for highlight state change?
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_HIGHLIGHT, _state);
+    }
+
+    function selectResidues(residues)
+    {
+        // add given residues to the set of selected residues
+        _state.selected = _.union(_state.selected, residues);
+
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_SELECT, _state);
+    }
+
+    function unSelectResidues(residues)
+    {
+        // remove given residues from the list of selected residues
+        _state.selected = _.difference(_state.selected, residues);
+
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_SELECT, _state);
     }
 
     this.updateData = updateData;
@@ -80,4 +110,7 @@ function ClusterDataManager(options)
     this.getData = getData;
     this.highlightResidues = highlightResidues;
     this.unHighlightResidues = unHighlightResidues;
+    this.selectResidues = selectResidues;
+    this.unSelectResidues = unSelectResidues;
+    this.dispatcher = _dispatcher;
 }

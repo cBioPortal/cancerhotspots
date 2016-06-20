@@ -184,6 +184,8 @@ function CancerHotspots(options)
             //TODO pValueThreshold: _options.pValueThreshold
         });
 
+        var residueController = new ResidueController(residueView, dataManager);
+        residueController.init();
         residueView.render();
     }
 
