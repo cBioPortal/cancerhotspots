@@ -179,8 +179,23 @@ table.about-lab-table {
     font-size: 95%;
 }
 
-.cluster-residue-link {
+span.cluster-residue {
     cursor: pointer;
+    /*color: #FFF;*/
+    /*padding-left: 4px;*/
+    /*padding-right: 4px;*/
+}
+
+span.cluster-residue.LH {
+    color: #09BCD3;
+}
+
+span.cluster-residue.LL {
+    color: #DEBA24;
+}
+
+span.cluster-residue.H {
+    color: #4CAE4E;
 }
 
 /* This is to center paging buttons */

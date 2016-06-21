@@ -78,7 +78,10 @@ function ResiduesRender(options)
 
             _.each(residues, function(residue) {
                 var templateFn = _.template($("#" + _options.linkTemplateId).html());
-                var vars = {style: residue.classification};
+                var vars = {
+                    gene: data.gene,
+                    style: residue.classification
+                };
 
                 var value;
                 // highlight the current residue
@@ -149,10 +152,10 @@ function ResiduesRender(options)
 
     function addEventListeners(td)
     {
-        var residueLink = $(td).find(".cluster-residue-link");
+        var residueElem = $(td).find(".cluster-residue");
 
         // also add click listeners
-        residueLink.on('mouseenter', function() {
+        residueElem.on('mouseenter', function() {
             // highlight the residue!
             if (_options.dataManager)
             {
@@ -160,7 +163,7 @@ function ResiduesRender(options)
             }
         });
 
-        residueLink.on('mouseleave', function() {
+        residueElem.on('mouseleave', function() {
             // remove highlights!
             if (_options.dataManager)
             {
@@ -168,7 +171,7 @@ function ResiduesRender(options)
             }
         });
 
-        residueLink.on('click', function() {
+        residueElem.on('click', function() {
             // select the residue! TODO selection disabled for now
             if (_options.dataManager)
             {

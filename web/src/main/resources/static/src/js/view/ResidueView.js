@@ -49,21 +49,27 @@ function ResidueView(options)
         filteringDelay: 500,
         // threshold for pValue, any value below this will be shown as >threshold
         pValueThreshold: 0.001,
+        classColors: function (pileup) {
+            var colors = {
+                LH: "#09BCD3",
+                LL: "#DEBA24",
+                H: "#4CAE4E"
+            };
+
+            var mutation = _.first(pileup.mutations);
+            return colors[mutation.get("residueClass")];
+        },
         residuesData: function(row) {
             var residue = _options.dataManager.getData().residue;
             var residues = row["residues"];
             var classifications = {};
 
             _.each(_.keys(residues), function(residue) {
-                // any mutation with the current residue is enough to determine the class
-                var mutation = _.find(_options.dataManager.getData().mutations, function(mutation) {
-                    return mutation.residue === residue;
-                });
-
-                classifications[residue] = mutation.classification;
+                classifications[residue] = findResidueClass(residue);
             });
 
             return {
+                gene: _options.dataManager.getData().gene,
                 residue: residue,
                 residues: residues,
                 classifications: classifications
@@ -203,6 +209,16 @@ function ResidueView(options)
                 {residue: _options.dataManager.getData().residue}));
     }
 
+    function findResidueClass(residue)
+    {
+        // any mutation with the current residue is enough to determine the class
+        var mutation = _.find(_options.dataManager.getData().mutations, function(mutation) {
+            return mutation.residue === residue;
+        });
+
+        return mutation.classification;
+    }
+
     function generateMutationData(clusterData)
     {
         var mutationData = {};
@@ -210,6 +226,8 @@ function ResidueView(options)
         _.each(clusterData, function(cluster) {
             _.each(_.keys(cluster.residues), function(residue) {
                 var counter = 0;
+                var residueClass = findResidueClass(residue);
+
                 _.times(cluster.residues[residue], function() {
                     counter++;
                     var id = _options.dataManager.getData().gene + "_" + residue + "_" + counter;
@@ -220,7 +238,7 @@ function ResidueView(options)
                         mutationSid: id,
                         proteinChange: residue,
                         geneSymbol: _options.dataManager.getData().gene,
-                        mutationType: "missense_mutation"
+                        residueClass: residueClass
                     };
                 });
             });
@@ -237,6 +255,9 @@ function ResidueView(options)
                 geneList: [_options.dataManager.getData().gene]
             },
             view: {
+                mutationDiagram: {
+                    lollipopFillColor: _options.classColors
+                },
                 mutationTable: false,
                 mutationSummary: false,
                 infoPanel: false
