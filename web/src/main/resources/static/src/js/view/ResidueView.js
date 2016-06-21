@@ -127,7 +127,8 @@ function ResidueView(options)
         });
 
         var pdbChainsRender = new PdbChainsRender({
-            pValueThreshold: _options.pValueThreshold
+            pValueThreshold: _options.pValueThreshold,
+            dataManager: _options.dataManager
         });
 
         var residuesRender = new ResiduesRender({
@@ -260,6 +261,7 @@ function ResidueView(options)
                 },
                 mutationTable: false,
                 mutationSummary: false,
+                pdbTable: false,
                 infoPanel: false
             },
             render: {

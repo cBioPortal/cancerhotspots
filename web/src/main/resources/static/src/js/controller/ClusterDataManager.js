@@ -48,7 +48,8 @@ function ClusterDataManager(options)
     var _state = {
         highlighted: [],
         selected: [],
-        hidden: []
+        hidden: [],
+        pdb: []
     };
 
     // merge options with default options to use defaults for missing values
@@ -105,6 +106,14 @@ function ClusterDataManager(options)
         $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_SELECT, _state);
     }
 
+    function selectPdbChain(pdbChain)
+    {
+        _state.pdb = [pdbChain];
+
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_PDB_SELECT, _state);
+    }
+
     this.updateData = updateData;
     this.setData = setData;
     this.getData = getData;
@@ -112,5 +121,6 @@ function ClusterDataManager(options)
     this.unHighlightResidues = unHighlightResidues;
     this.selectResidues = selectResidues;
     this.unSelectResidues = unSelectResidues;
+    this.selectPdbChain = selectPdbChain;
     this.dispatcher = _dispatcher;
 }

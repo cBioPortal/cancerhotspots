@@ -59,6 +59,12 @@ function ResidueController(residueView, dataManager)
                 mutationDiagram().highlightMutation(defaultMutationSid(residue));
             });
         });
+
+        $(dataManager.dispatcher).on(EventUtils.CLUSTER_PDB_SELECT, function(event, data) {
+            var parts = data.pdb[0].split(":");
+            residueView.getMutationMapper().getController().get3dController().reset3dView(
+                parts[0], parts[1]);
+        });
     }
 
     function defaultMutationSid(residue)

@@ -154,7 +154,6 @@ function ResiduesRender(options)
     {
         var residueElem = $(td).find(".cluster-residue");
 
-        // also add click listeners
         residueElem.on('mouseenter', function() {
             // highlight the residue!
             if (_options.dataManager)

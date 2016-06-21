@@ -38,6 +38,7 @@
 var EventUtils = (function(){
     return {
         CLUSTER_RESIDUE_HIGHLIGHT: "clusterResidueHighlight",
-        CLUSTER_RESIDUE_SELECT: "clusterResidueSelect"
+        CLUSTER_RESIDUE_SELECT: "clusterResidueSelect",
+        CLUSTER_PDB_SELECT: "clusterPdbSelect"
     };
 })();

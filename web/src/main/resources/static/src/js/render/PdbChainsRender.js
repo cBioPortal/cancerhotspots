@@ -37,8 +37,10 @@ function PdbChainsRender(options)
 {
     var _defaultOpts = {
         templateId: "pdb_chains_column",
+        linkTemplateId: "cluster_pdb_link",
         threshold: 2,
-        pValueThreshold: 0.001
+        pValueThreshold: 0.001,
+        dataManager: false
     };
 
     // merge options with default options to use defaults for missing values
@@ -78,9 +80,13 @@ function PdbChainsRender(options)
 
             // create an array of display values
             var values = [];
+            var linkTemplateFn = _.template($("#" + _options.linkTemplateId).html());
 
             _.each(_.first(pdbChains, _options.threshold), function(pdbChain) {
-                values.push(pdbChain.pdbId + ":" + pdbChain.chain);
+
+                values.push(linkTemplateFn({
+                    pdbChain: pdbChain.pdbId + ":" + pdbChain.chain
+                }));
             });
 
             if (_.size(pdbChains) > _options.threshold)
@@ -131,8 +137,24 @@ function PdbChainsRender(options)
             ]
         };
 
+        addEventListeners(td);
+
         cbio.util.addTargetedQTip($(td).find('.qtipped-text'),
                                   TooltipUtils.tooltipOptions(cellData, viewOpts));
+    }
+
+    function addEventListeners(td)
+    {
+        var pdbElem = $(td).find(".cluster-pdb");
+
+        pdbElem.on('click', function() {
+            // show the 3D vis
+            if (_options.dataManager)
+            {
+                // select the pdb!
+                _options.dataManager.selectPdbChain($(this).text());
+            }
+        });
     }
 
     this.render = render;

@@ -179,6 +179,10 @@ table.about-lab-table {
     font-size: 95%;
 }
 
+span.cluster-pdb {
+    cursor: pointer;
+}
+
 span.cluster-residue {
     cursor: pointer;
     /*color: #FFF;*/
