@@ -39,7 +39,8 @@
 function HotspotDataProxy(options)
 {
     var _defaultOpts = {
-        serviceUrl: "api/hotspots/single"
+        serviceUrl: "api/hotspots/single",
+        listJoiner: ","
     };
 
     // merge options with default options to use defaults for missing values
@@ -51,10 +52,21 @@ function HotspotDataProxy(options)
         $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {}, callback));
     }
 
-    function getHotspots(gene, callback)
+    function getHotspots(genes, callback)
     {
+        var hugoSymbols = null;
+
+        if (_.isArray(genes)) {
+            hugoSymbols = genes.join(_options.listJoiner);
+        }
+        else if (_.isString(genes)) {
+            hugoSymbols = genes;
+        }
+
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {hugoSymbols: [gene]}, callback));
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl,
+                                   {hugoSymbols: hugoSymbols},
+                                   callback));
     }
 
     this.getAllHotspots = getAllHotspots;
