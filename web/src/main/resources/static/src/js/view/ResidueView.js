@@ -259,6 +259,9 @@ function ResidueView(options)
                 mutationDiagram: {
                     lollipopFillColor: _options.classColors
                 },
+                pdbPanel: {
+                    labelY: false
+                },
                 mutationTable: false,
                 mutationSummary: false,
                 pdbTable: false,
@@ -271,6 +274,9 @@ function ResidueView(options)
                     border: {
                         top: "120px"
                     }
+                },
+                pdbPanel: {
+                    autoExpand: false
                 },
                 mainMutation: {
                     loaderImage: "lib/images/ajax-loader.gif"

@@ -251,7 +251,7 @@ section {
     padding: 40px 10px;
 }
 
-/* MutationMapper customization */
+/* MutationMapper customization & tweaks */
 .mutation-3d-container {
     top: 120px;
 }
@@ -263,3 +263,6 @@ section {
     display: none;
 }
 
+.mutation-pdb-panel-container {
+    height: 11px;
+}
