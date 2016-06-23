@@ -65,7 +65,8 @@ function ResidueView(options)
             var classifications = {};
 
             _.each(_.keys(residues), function(residue) {
-                classifications[residue] = findResidueClass(residue);
+                classifications[residue] = MutationUtils.findResidueClass(
+                    residue, _options.dataManager.getData().mutations);
             });
 
             return {
@@ -184,12 +185,14 @@ function ResidueView(options)
                 }
 
                 // generate mutation mapper data
-                var mutationData = generateMutationData(dataTable.api().data());
+                //var mutationData = generateMutationData(dataTable.api().data());
+                var mutationData = MutationUtils.generateMutationMapperData(
+                    _options.dataManager.getData().mutations);
 
                 // TODO also generate PDB data?
 
                 // init the mutation mapper
-                _mutationMapper = initMutationMapper(_.values(mutationData));
+                _mutationMapper = initMutationMapper(mutationData);
             }
         };
 
@@ -210,24 +213,21 @@ function ResidueView(options)
                 {residue: _options.dataManager.getData().residue}));
     }
 
-    function findResidueClass(residue)
-    {
-        // any mutation with the current residue is enough to determine the class
-        var mutation = _.find(_options.dataManager.getData().mutations, function(mutation) {
-            return mutation.residue === residue;
-        });
-
-        return mutation.classification;
-    }
-
-    function generateMutationData(clusterData)
+	/**
+     * Generates mutation mapper data for the provided cluster data.
+     *
+     * @param clusterData
+     * @returns {Array} array of mutation data
+     */
+    function generateMutationMapperData(clusterData)
     {
         var mutationData = {};
 
         _.each(clusterData, function(cluster) {
             _.each(_.keys(cluster.residues), function(residue) {
                 var counter = 0;
-                var residueClass = findResidueClass(residue);
+                var residueClass = MutationUtils.findResidueClass(
+                    residue, _options.dataManager.getData().mutations);
 
                 _.times(cluster.residues[residue], function() {
                     counter++;
@@ -245,7 +245,7 @@ function ResidueView(options)
             });
         });
 
-        return mutationData;
+        return _.values(mutationData);
     }
 
     function initMutationMapper(mutationData)
