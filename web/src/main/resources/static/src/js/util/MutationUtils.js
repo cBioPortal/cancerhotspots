@@ -36,6 +36,7 @@
  * @author Selcuk Onur Sumer
  */
 var MutationUtils = (function() {
+
 	/**
      * Generates mutation mapper data for the given hotspot mutation list.
      *
@@ -50,19 +51,22 @@ var MutationUtils = (function() {
             var counter = 0;
             var residueClass = findResidueClass(mutation.residue, mutations);
 
-            _.times(mutation.tumorCount, function() {
-                counter++;
-                var id = mutation.hugoSymbol + "_" + mutation.residue + "_" + counter;
-                // index by id instead of adding into an array
-                // this will prevent duplicates
-                mutationData[id] = {
-                    mutationId: id,
-                    mutationSid: id,
-                    proteinChange: mutation.residue,
-                    geneSymbol: mutation.hugoSymbol,
-                    residueClass: residueClass
-                };
-            });
+            _.each(_.keys(mutation.variantAminoAcid), function(variant) {
+                _.times(mutation.variantAminoAcid[variant], function() {
+                    counter++;
+                    var id = mutation.hugoSymbol + "_" + mutation.residue + "_" + counter;
+                    // index by id instead of adding into an array
+                    // this will prevent duplicates
+                    mutationData[id] = {
+                        mutationId: id,
+                        mutationSid: id,
+                        proteinChange: mutation.residue + variant,
+                        geneSymbol: mutation.hugoSymbol,
+                        residueClass: residueClass
+                    };
+                });
+            })
+
         });
 
         return _.values(mutationData);
