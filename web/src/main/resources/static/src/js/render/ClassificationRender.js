@@ -36,9 +36,15 @@
 function ClassificationRender(options)
 {
     var _defaultOpts = {
+        templateId: "span_class",
         displayValue: {
             "LL": "L<sub>L</sub>",
             "LH": "L<sub>H</sub>"
+        },
+        style: {
+            "LL": "LL",
+            "LH": "LH",
+            "H": "H"
         }
     };
 
@@ -47,7 +53,13 @@ function ClassificationRender(options)
 
     function render(data, type)
     {
-        return _options.displayValue[data] || data;
+        var value = data.value || data;
+        var classification = data.classification || data;
+
+        var templateFn = _.template($("#" + _options.templateId).html());
+        var display = _options.displayValue[value] || value;
+        var style = _options.style[classification] || classification;
+        return templateFn({display: display, style: style});
     }
 
     this.render = render;

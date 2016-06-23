@@ -190,15 +190,15 @@ span.cluster-residue {
     /*padding-right: 4px;*/
 }
 
-span.cluster-residue.LH {
+span.LH {
     color: #09BCD3;
 }
 
-span.cluster-residue.LL {
+span.LL {
     color: #DEBA24;
 }
 
-span.cluster-residue.H {
+span.H {
     color: #4CAE4E;
 }
 

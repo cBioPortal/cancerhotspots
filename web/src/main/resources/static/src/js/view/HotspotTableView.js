@@ -78,6 +78,12 @@ function HotspotTableView(options)
                 residue: row["residue"]
             }
         },
+        residueData: function(row) {
+            return {
+                value: row["residue"],
+                classification: row["classification"]
+            }
+        },
         pValueData: function(row) {
             var data = row["pValue"];
 
@@ -199,7 +205,8 @@ function HotspotTableView(options)
                     data: "hugoSymbol"},
                 {id: "residue",
                     title: "Residue",
-                    data: "residue"},
+                    data: _options.residueData,
+                    render: classRender.render},
                 //{id: "altCodon",
                 //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
