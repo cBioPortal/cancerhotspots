@@ -42,6 +42,8 @@ function CancerHotspots(options)
     var _defaultOpts = {
         pageLoaderDelay: 50,
         tableLoaderDelay: 500,
+        appContent: "#app_content",
+        appTemplateId: "main_page",
         pageContent: "#page_content",
         pageLoader: "#page_loader",
         mainView: "#main_view",
@@ -51,8 +53,17 @@ function CancerHotspots(options)
         aboutPage: "#about",
         aboutTemplateId: "about_page",
         residuePage: "#residue",
-        residueTemplateId: "residue_page"
+        residueTemplateId: "residue_page",
         // TODO view & render options...
+        content: {
+            app: {
+                tagline: "A resource for statistically significant mutations in cancer",
+                title: "Cancer Hotspots"
+            },
+            home: {
+                mutationInfo: "Single residue mutation hotspots identified in 11,119 tumor samples"
+            }
+        }
     };
 
     // merge options with default options to use defaults for missing values
@@ -123,7 +134,7 @@ function CancerHotspots(options)
         if (!$(_options.homePage).length)
         {
             var templateFn = _.template($("#" + _options.homeTemplateId).html());
-            $(_options.pageContent).append(templateFn());
+            $(_options.pageContent).append(templateFn(params));
 
             // initial AJAX call to determine which profile is active
             _metadataProxy.getMetadata(function(data) {
@@ -194,7 +205,7 @@ function CancerHotspots(options)
         // init router
         var router = new Router({
             '/home': function() {
-                switchContent(home);
+                switchContent(home, _options.content.home);
             },
             '/about': function() {
                 switchContent(about);
@@ -219,10 +230,23 @@ function CancerHotspots(options)
             if (metadata.profile.toLowerCase() === "3d")
             {
                 hotspotProxyOptions.serviceUrl = "api/hotspots/3d";
+                _options.content = {
+                    app: {
+                        tagline: "A resource for statistically significant 3D hotspot mutations in cancer",
+                        title: "3D Hotspots"
+                    },
+                    home: {
+                        mutationInfo: "3D hotspots identified in 11,119 tumor samples"
+                    }
+                };
             }
 
             _hotspotProxy = new HotspotDataProxy(hotspotProxyOptions);
             _clusterProxy = new ClusterDataProxy();
+
+            // init static content
+            var templateFn = _.template($("#" + _options.appTemplateId).html());
+            $(_options.appContent).append(templateFn(_options.content.app));
 
             // load home page content initially
             router.init("/home");
