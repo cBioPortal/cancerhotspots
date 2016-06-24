@@ -53,6 +53,13 @@ function HotspotTableView(options)
         tumorColors: ViewUtils.getDefaultTumorTypeColors(),
         tooltipStackHeight: 14,
         tooltipStackRange: [4, 150],
+        paging: true,
+        pageLength: 20,
+        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+        //scrollY: "500px",
+        //scrollCollapse: true,
+        scrollY: false,
+        scrollCollapse: false,
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -151,12 +158,19 @@ function HotspotTableView(options)
             //dom: '<".left-align"i>ft<".right-align"B>',
             //dom: "<'row'<'col-sm-2'B><'col-sm-6 center-align'i><'col-sm-4'f>>t",
             dom: "<'row'<'col-sm-8 hotspot-table-title'><'col-sm-4'f>>t" +
-                 "<'row'<'col-sm-8'i><'col-sm-4 right-align table-button-group'B>>",
-            paging: false,
-            scrollY: "500px",
-            scrollCollapse: true,
+                 "<'row'<'col-sm-6'i><'col-sm-6 right-align'p>>" +
+                 "<'row'<'col-sm-6'l><'col-sm-6 right-align table-button-group'B>>",
+            paging: _options.paging,
+            pageLength: _options.pageLength,
+            lengthMenu: _options.lengthMenu,
+            deferRender: true,
+            scrollY: _options.scrollY,
+            scrollCollapse: _options.scrollCollapse,
             language: {
-                loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
+                loadingRecords: '<img src="lib/images/loader.gif"> Loading...',
+                lengthMenu: "Show _MENU_ mutations per page",
+                info: "Showing _START_ to _END_ of _TOTAL_ mutations",
+                infoFiltered: "(filtered from _MAX_ total mutations)"
             },
             order: [[5 , "asc" ], [6, "asc"], [7, "desc"]],
             buttons: [{
