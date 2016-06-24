@@ -180,19 +180,19 @@ function HotspotTableView(options)
                     // get the file data (formatted by 'fnCellRender' function)
                     //var content = this.fnGetTableData(oConfig);
                     var columns = [
-                        {title: "Hugo Symbol",
+                        {title: "Gene",
                             data: "hugoSymbol"},
                         {title: "Residue",
                             data: "residue"},
                         //{title: "Alt Common Codon Usage *",
                         //    data: "altCommonCodonUsage"},
-                        {title: "Variant Amino Acid",
+                        {title: "Variants",
                             data: "variantAminoAcid"},
                         {title: "Q-value",
                             data: "qValue"},
                         {title: "P-value",
                             data: _options.pValueData},
-                        {title: "Sample Count",
+                        {title: "Samples",
                             data: "tumorCount"},
                         {title: "Tumor Type Composition",
                             data: "tumorTypeComposition"}
@@ -215,7 +215,7 @@ function HotspotTableView(options)
             }],
             columns: [
                 {id: "hugoSymbol",
-                    title: "Hugo Symbol",
+                    title: "Gene",
                     data: "hugoSymbol"},
                 {id: "residue",
                     title: "Residue",
@@ -233,7 +233,7 @@ function HotspotTableView(options)
                     data: "classification",
                     render: classRender.render},
                 {id: "variant",
-                    title: "Variant Amino Acid <sup>&#8224;</sup>",
+                    title: "Variants <sup>&#8224;</sup>",
                     data: "variantAminoAcid",
                     render: variantRender.render,
                     createdCell: variantRender.postRender},
@@ -246,7 +246,7 @@ function HotspotTableView(options)
                     data: _options.pValueData,
                     render: pValueRender.render},
                 {id: "sampleCount",
-                    title: "Sample Count <sup>&#8224;</sup>",
+                    title: "Samples <sup>&#8224;</sup>",
                     data: _options.sampleData,
                     render: tumorCountRender.render,
                     createdCell: tumorCountRender.postRender}
