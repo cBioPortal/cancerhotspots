@@ -78,6 +78,7 @@
     <script type="text/javascript" src="src/js/render/TumorCountRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClustersRender.js"></script>
     <script type="text/javascript" src="src/js/render/PdbChainsRender.js"></script>
+    <script type="text/javascript" src="src/js/render/PdbIdRender.js"></script>
     <script type="text/javascript" src="src/js/render/ResiduesRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClassificationRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClusterRender.js"></script>
@@ -354,6 +355,10 @@
 
 <script type="text/template" id="pdb_chains_column">
     <span class="qtipped-text left-align">{{pdbChains}}</span>
+</script>
+
+<script type="text/template" id="pdb_id_column">
+    <a class="tooltip-pdb-link"><span class="cluster-pdb">{{pdbId}}</span></a>
 </script>
 
 <script type="text/template" id="cluster_pdb_link">

@@ -40,7 +40,13 @@ function PdbChainsRender(options)
         linkTemplateId: "cluster_pdb_link",
         threshold: 2,
         pValueThreshold: 0.001,
-        dataManager: false
+        dataManager: false,
+        pdbIdData: function(row) {
+            return {
+                pdbId: row["pdbId"],
+                chain: row["chain"]
+            };
+        }
     };
 
     // merge options with default options to use defaults for missing values
@@ -108,6 +114,10 @@ function PdbChainsRender(options)
             return;
         }
 
+        var pdbIdRender = new PdbIdRender({
+            dataManager: _options.dataManager
+        });
+
         var pValueRender = new PValueRender({
             threshold: _options.pValueThreshold
         });
@@ -127,7 +137,9 @@ function PdbChainsRender(options)
             order: [[2 , "asc" ], [1, "asc"]],
             columns: [
                 {title: "PDB Id",
-                    data: "pdbId"},
+                    data: _options.pdbIdData,
+                    render: pdbIdRender.render,
+                    createdCell: pdbIdRender.postRender},
                 {title: "Chain",
                     data: "chain"},
                 {id: "pValue",

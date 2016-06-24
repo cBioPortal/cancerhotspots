@@ -183,6 +183,10 @@ span.cluster-pdb {
     cursor: pointer;
 }
 
+a.tooltip-pdb-link {
+    color: #2c3e50;
+}
+
 span.cluster-residue {
     cursor: pointer;
     /*color: #FFF;*/
