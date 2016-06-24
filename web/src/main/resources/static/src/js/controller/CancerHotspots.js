@@ -61,7 +61,7 @@ function CancerHotspots(options)
                 title: "Cancer Hotspots"
             },
             home: {
-                mutationInfo: "Single residue mutation hotspots identified in 11,119 tumor samples"
+                mutationInfo: _.template($("#default_mutation_info").html())()
             }
         }
     };
@@ -236,7 +236,7 @@ function CancerHotspots(options)
                         title: "3D Hotspots"
                     },
                     home: {
-                        mutationInfo: "3D hotspots identified in 11,119 tumor samples"
+                        mutationInfo: "3D hotspots identified in 11,119 tumor samples across 41 tumor types"
                     }
                 };
             }
