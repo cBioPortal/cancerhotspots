@@ -38,26 +38,42 @@ function ResidueController(residueView, dataManager)
     function init()
     {
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_HIGHLIGHT, function(event, data) {
-            mutationDiagram().clearHighlights();
+            var diagram = mutationDiagram();
 
-            // highlight mutations corresponding to each residue
-            _.each(data.highlighted, function(residue) {
-                mutationDiagram().highlightMutation(defaultMutationSid(residue));
-            });
+            if (diagram)
+            {
+                if (diagram.isHighlighted()) {
+                    diagram.clearHighlights();
+                }
 
-            // selected mutations should always remain highlighted!
-            _.each(data.selected, function(residue) {
-                mutationDiagram().highlightMutation(defaultMutationSid(residue));
-            });
+                // highlight mutations corresponding to each residue
+                _.each(data.highlighted, function (residue)
+                {
+                    diagram.highlightMutation(defaultMutationSid(residue));
+                });
+
+                // selected mutations should always remain highlighted!
+                _.each(data.selected, function (residue)
+                {
+                    diagram.highlightMutation(defaultMutationSid(residue));
+                });
+            }
         });
 
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_SELECT, function(event, data) {
-            mutationDiagram().clearHighlights();
+            var diagram = mutationDiagram();
 
-            // highlight mutations corresponding to each residue
-            _.each(data.selected, function(residue) {
-                mutationDiagram().highlightMutation(defaultMutationSid(residue));
-            });
+            if (diagram)
+            {
+                if (diagram.isHighlighted()) {
+                    diagram.clearHighlights();
+                }
+
+                // highlight mutations corresponding to each residue
+                _.each(data.selected, function(residue) {
+                    diagram.highlightMutation(defaultMutationSid(residue));
+                });
+            }
         });
 
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_PDB_SELECT, function(event, data) {
@@ -76,8 +92,15 @@ function ResidueController(residueView, dataManager)
     function mutationDiagram()
     {
         var gene = dataManager.getData().gene;
-        return residueView.getMutationMapper().getController().getMainView(
-            gene).mainMutationView.diagramView.mutationDiagram;
+        var mainView = residueView.getMutationMapper().getController()
+            .getMainView(gene).mainMutationView;
+
+        if (mainView &&
+            mainView.diagramView &&
+            mainView.diagramView.mutationDiagram)
+        {
+            return mainView.diagramView.mutationDiagram;
+        }
     }
 
     this.init = init;

@@ -58,7 +58,7 @@ function ResidueRender(options)
             var classification = data.classification;
 
             var templateFn = _.template($("#" + _options.templateId).html());
-            var style = _options.style[classification] || classification;
+            var style = _options.style[classification] || classification || "";
 
             var vars = {residue: data.residue,
                 style: style,
