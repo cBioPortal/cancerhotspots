@@ -248,6 +248,12 @@ function CancerHotspots(options)
             var templateFn = _.template($("#" + _options.appTemplateId).html());
             $(_options.appContent).append(templateFn(_options.content.app));
 
+            // TODO temporarily hiding about page link for now
+            if (metadata.profile.toLowerCase() === "3d")
+            {
+                $(_options.appContent).find(".about-nav").hide();
+            }
+
             // load home page content initially
             router.init("/home");
         });
