@@ -51,21 +51,25 @@ var MutationUtils = (function() {
             var counter = 0;
             var residueClass = findResidueClass(mutation.residue, mutations);
 
-            _.each(_.keys(mutation.variantAminoAcid), function(variant) {
-                _.times(mutation.variantAminoAcid[variant], function() {
-                    counter++;
-                    var id = mutation.hugoSymbol + "_" + mutation.residue + "_" + counter;
-                    // index by id instead of adding into an array
-                    // this will prevent duplicates
-                    mutationData[id] = {
-                        mutationId: id,
-                        mutationSid: id,
-                        proteinChange: mutation.residue + variant,
-                        geneSymbol: mutation.hugoSymbol,
-                        residueClass: residueClass
-                    };
+            if (!_.isEmpty(mutation.variantAminoAcid))
+            {
+                _.each(_.keys(mutation.variantAminoAcid), function (variant)
+                {
+                    _.times(mutation.variantAminoAcid[variant], function ()
+                    {
+                        counter++;
+                        var mapperMutation = initMutation(mutation, residueClass, counter, variant);
+                        // index by id instead of adding into an array
+                        // this will prevent duplicates
+                        mutationData[mapperMutation.mutationId] = mapperMutation;
+                    });
                 });
-            })
+            }
+            else // TODO a mutation with no variant amino acid composition is not a good sign!
+            {
+                var mapperMutation = initMutation(mutation, residueClass, 1);
+                mutationData[mapperMutation.mutationId] = mapperMutation;
+            }
 
         });
 
@@ -80,6 +84,25 @@ var MutationUtils = (function() {
         });
 
         return mutation.classification;
+    }
+
+    function initMutation(mutation, residueClass, counter, variant)
+    {
+        var id = mutation.hugoSymbol + "_" + mutation.residue + "_" + counter;
+        var proteinChange = mutation.residue;
+
+        if (variant)
+        {
+            proteinChange = proteinChange + variant;
+        }
+
+        return {
+            mutationId: id,
+            mutationSid: id,
+            proteinChange: proteinChange,
+            geneSymbol: mutation.hugoSymbol,
+            residueClass: residueClass
+        };
     }
 
     return {
