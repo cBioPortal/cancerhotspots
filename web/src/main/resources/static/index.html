@@ -81,6 +81,7 @@
     <script type="text/javascript" src="src/js/render/PdbIdRender.js"></script>
     <script type="text/javascript" src="src/js/render/ResiduesRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClassificationRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ResidueRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClusterRender.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
@@ -348,6 +349,10 @@
 
 <script type="text/template" id="span_class">
     <span class="{{style}}">{{display}}</span>
+</script>
+
+<script type="text/template" id="residue_column">
+    <a class="residue-link" href="#/residue/{{hugoSymbol}}/{{residue}}"><span class="{{style}}">{{residue}}</span></a>
 </script>
 
 <script type="text/template" id="clusters_column">

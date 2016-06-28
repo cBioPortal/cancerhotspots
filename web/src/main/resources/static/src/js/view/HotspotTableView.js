@@ -87,7 +87,8 @@ function HotspotTableView(options)
         },
         residueData: function(row) {
             return {
-                value: row["residue"],
+                hugoSymbol: row["hugoSymbol"],
+                residue: row["residue"],
                 classification: row["classification"]
             }
         },
@@ -147,11 +148,12 @@ function HotspotTableView(options)
 
         var tumorCountRender = new TumorCountRender();
 
-        var clustersRender = new ClustersRender({
-            pValueThreshold: _options.pValueThreshold
-        });
+        //var clustersRender = new ClustersRender({
+        //    pValueThreshold: _options.pValueThreshold
+        //});
 
         var classRender = new ClassificationRender();
+        var residueRender = new ResidueRender();
 
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
@@ -172,7 +174,7 @@ function HotspotTableView(options)
                 info: "Showing _START_ to _END_ of _TOTAL_ mutations",
                 infoFiltered: "(filtered from _MAX_ total mutations)"
             },
-            order: [[5 , "asc" ], [6, "asc"], [7, "desc"]],
+            order: [[4 , "asc" ], [5, "asc"], [6, "desc"]],
             buttons: [{
                 text: "Download",
                 className: "btn-sm",
@@ -220,14 +222,14 @@ function HotspotTableView(options)
                 {id: "residue",
                     title: "Residue",
                     data: _options.residueData,
-                    render: classRender.render},
+                    render: residueRender.render},
                 //{id: "altCodon",
                 //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
-                {id: "clusters",
-                    title: "3D Clusters",
-                    data: _options.clusterData,
-                    render: clustersRender.render},
+                //{id: "clusters",
+                //    title: "3D Clusters",
+                //    data: _options.clusterData,
+                //    render: clustersRender.render},
                 {id: "classification",
                     title: "Class",
                     data: "classification",
