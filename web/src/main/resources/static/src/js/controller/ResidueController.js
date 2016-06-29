@@ -35,6 +35,8 @@
  */
 function ResidueController(residueView, dataManager)
 {
+    var _filterTimer = null;
+
     function init()
     {
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_HIGHLIGHT, function(event, data) {
@@ -65,6 +67,10 @@ function ResidueController(residueView, dataManager)
             }
         });
 
+        $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_FILTER, function(event, data) {
+            delayedFilter(event, data);
+        });
+
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_SELECT, function(event, data) {
             var diagram = mutationDiagram();
 
@@ -90,6 +96,67 @@ function ResidueController(residueView, dataManager)
             residueView.getMutationMapper().getController().get3dController().reset3dView(
                 parts[0], parts[1]);
         });
+    }
+
+    function delayedFilter(event, data, delay)
+    {
+        if (delay == null)
+        {
+            delay = 500;
+        }
+
+        // clear previous timers
+        clearTimers();
+
+        // set new timer
+        _filterTimer = setTimeout(function() {
+            filterDiagram(event, data);
+        }, delay);
+    }
+
+    function filterDiagram(event, data)
+    {
+        var diagram = mutationDiagram();
+
+        if (diagram)
+        {
+            // nothing filtered, just show everything...
+            if (_.isEmpty(data.filtered))
+            {
+                diagram.resetPlot();
+            }
+            else
+            {
+                var mutationProxy = residueView.getMutationMapper().getController().getDataProxies().mutationProxy;
+
+                mutationProxy.getMutationData(dataManager.getData().gene, function (mutationData) {
+                    var visibleMutations = [];
+
+                    _.each(mutationData, function (mutation) {
+                        // if hidden, exclude from the list
+                        var visible = _.find(data.filtered, function (residue) {
+                            return mutation.get("proteinChange").toLowerCase().indexOf(residue.toLowerCase()) != -1;
+                        });
+
+                        if (visible)
+                        {
+                            visibleMutations.push(mutation);
+                        }
+                    });
+
+                    // find the corresponding mutation mapper data for this hotspot mutations
+                    diagram.updatePlot(new MutationCollection(visibleMutations));
+                });
+            }
+        }
+    }
+
+    function clearTimers()
+    {
+        if (_filterTimer != null)
+        {
+            clearTimeout(_filterTimer);
+        }
     }
 
     function defaultMutationSid(residue)

@@ -48,7 +48,7 @@ function ClusterDataManager(options)
     var _state = {
         highlighted: [],
         selected: [],
-        hidden: [],
+        filtered: [],
         pdb: []
     };
 
@@ -81,11 +81,45 @@ function ClusterDataManager(options)
 
     function unHighlightResidues(residues)
     {
-        // remove given residues from the set of highlighted residues
-        _state.highlighted = _.difference(_state.highlighted, residues);
+        if (residues == null)
+        {
+            // reset all highlights
+            _state.highlighted = [];
+        }
+        else
+        {
+            // remove given residues from the set of highlighted residues
+            _state.highlighted = _.difference(_state.highlighted, residues);
+        }
 
         // trigger a custom event
         $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_HIGHLIGHT, _state);
+    }
+
+    function filterResidues(residues)
+    {
+        // add given residues to the set of filtered residues
+        _state.filtered = _.union(_state.filtered, residues);
+
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_FILTER, _state);
+    }
+
+    function unfilterResidues(residues)
+    {
+        if (residues == null)
+        {
+            // reset all filters
+            _state.filtered = [];
+        }
+        else
+        {
+            // remove given residues from the set of filtered residues
+            _state.filtered = _.difference(_state.filtered, residues);
+        }
+
+        // trigger a custom event
+        $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_FILTER, _state);
     }
 
     function selectResidues(residues)
@@ -119,6 +153,8 @@ function ClusterDataManager(options)
     this.getData = getData;
     this.highlightResidues = highlightResidues;
     this.unHighlightResidues = unHighlightResidues;
+    this.filterResidues = filterResidues;
+    this.unfilterResidues = unfilterResidues;
     this.selectResidues = selectResidues;
     this.unSelectResidues = unSelectResidues;
     this.selectPdbChain = selectPdbChain;
