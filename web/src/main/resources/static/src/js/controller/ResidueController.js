@@ -46,16 +46,21 @@ function ResidueController(residueView, dataManager)
                     diagram.clearHighlights();
                 }
 
+                // clear all residue highlights
+                residueView.unHighlightResidue();
+
                 // highlight mutations corresponding to each residue
                 _.each(data.highlighted, function (residue)
                 {
                     diagram.highlightMutation(defaultMutationSid(residue));
+                    residueView.highlightResidue(residue);
                 });
 
                 // selected mutations should always remain highlighted!
                 _.each(data.selected, function (residue)
                 {
                     diagram.highlightMutation(defaultMutationSid(residue));
+                    residueView.highlightResidue(residue);
                 });
             }
         });
@@ -69,9 +74,13 @@ function ResidueController(residueView, dataManager)
                     diagram.clearHighlights();
                 }
 
+                // clear all residue highlights
+                residueView.unHighlightResidue();
+
                 // highlight mutations corresponding to each residue
                 _.each(data.selected, function(residue) {
                     diagram.highlightMutation(defaultMutationSid(residue));
+                    residueView.highlightResidue(residue);
                 });
             }
         });

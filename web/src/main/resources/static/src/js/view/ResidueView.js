@@ -213,6 +213,22 @@ function ResidueView(options)
                 {residue: _options.dataManager.getData().residue}));
     }
 
+    function highlightResidue(residue)
+    {
+        _.each($(_options.el).find(".cluster-residue"), function(span) {
+            if($(span).text() === residue)
+            {
+                $(span).addClass("highlighted");
+            }
+        })
+    }
+
+    function unHighlightResidue(residue)
+    {
+        // if residue is provided only remove that residue's highlight?
+        $(_options.el).find(".cluster-residue").removeClass("highlighted");
+    }
+
 	/**
      * Generates mutation mapper data for the provided cluster data.
      *
@@ -327,6 +343,8 @@ function ResidueView(options)
     }
 
     this.render = render;
+    this.highlightResidue = highlightResidue;
+    this.unHighlightResidue = unHighlightResidue;
 
     this.getMutationMapper = function(){
         return _mutationMapper;
