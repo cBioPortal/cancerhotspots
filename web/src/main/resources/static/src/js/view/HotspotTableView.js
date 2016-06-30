@@ -48,7 +48,7 @@ function HotspotTableView(options)
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
         // threshold for pValue, any value below this will be shown as >threshold
-        pValueThreshold: 0.001,
+        pValueThreshold: 0.0001,
         variantColors: ViewUtils.getDefaultVariantColors(),
         tumorColors: ViewUtils.getDefaultTumorTypeColors(),
         tooltipStackHeight: 14,

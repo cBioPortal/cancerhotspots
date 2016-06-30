@@ -39,7 +39,7 @@ function PdbChainsRender(options)
         templateId: "pdb_chains_column",
         linkTemplateId: "cluster_pdb_link",
         threshold: 2,
-        pValueThreshold: 0.001,
+        pValueThreshold: 0.0001,
         dataManager: false,
         pdbIdData: function(row) {
             return {

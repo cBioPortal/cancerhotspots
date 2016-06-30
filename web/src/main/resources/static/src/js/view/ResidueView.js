@@ -48,7 +48,7 @@ function ResidueView(options)
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
         // threshold for pValue, any value below this will be shown as >threshold
-        pValueThreshold: 0.001,
+        pValueThreshold: 0.0001,
         classColors: function (pileup) {
             var colors = {
                 LH: "#09BCD3",
