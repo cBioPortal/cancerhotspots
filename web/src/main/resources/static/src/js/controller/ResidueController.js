@@ -149,6 +149,9 @@ function ResidueController(residueView, dataManager)
             _.each(data.selected, function (residue) {
                 diagram.highlightMutation(defaultMutationSid(residue));
             });
+
+            // triggering this event will enable highlighting the 3D diagram as well...
+            diagram.dispatcher.trigger(MutationDetailsEvents.LOLLIPOP_SELECTED);
         }
     }
 
