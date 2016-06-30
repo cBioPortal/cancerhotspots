@@ -271,6 +271,15 @@ section {
     display: none;
 }
 
+    /* this is gonna make the filter info area practically hidden */
+.mutation-details-filter-info {
+    display: none !important;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 .mutation-pdb-panel-container {
     height: 11px;
 }

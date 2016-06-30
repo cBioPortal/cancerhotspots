@@ -208,6 +208,7 @@ function ResidueView(options)
         // init the residue table
         $(_options.el).find("#residue_table").DataTable(dataTableOpts);
 
+        // update the title
         $("div.residue-table-title").html(
             _.template($("#residue_table_title").html())(
                 {residue: _options.dataManager.getData().residue}));

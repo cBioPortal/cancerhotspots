@@ -35,36 +35,22 @@
  */
 function ResidueController(residueView, dataManager)
 {
+    // we need to delay diagram filtering a bit
+    // to prevent filtering every time in case of rapid mouse events
+    var _filterDelay = 300;
+
+    // we need to delay highlights right after filtering
+    // to avoid incorrect rendering of lollipop circles
+    var _transactionDelay = 1500;
+
     var _filterTimer = null;
+    var _highlightTimer = null;
+    var _transactionTimer = null;
 
     function init()
     {
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_HIGHLIGHT, function(event, data) {
-            var diagram = mutationDiagram();
-
-            if (diagram)
-            {
-                if (diagram.isHighlighted()) {
-                    diagram.clearHighlights();
-                }
-
-                // clear all residue highlights
-                residueView.unHighlightResidue();
-
-                // highlight mutations corresponding to each residue
-                _.each(data.highlighted, function (residue)
-                {
-                    diagram.highlightMutation(defaultMutationSid(residue));
-                    residueView.highlightResidue(residue);
-                });
-
-                // selected mutations should always remain highlighted!
-                _.each(data.selected, function (residue)
-                {
-                    diagram.highlightMutation(defaultMutationSid(residue));
-                    residueView.highlightResidue(residue);
-                });
-            }
+            delayedHighlight(event, data);
         });
 
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_FILTER, function(event, data) {
@@ -98,11 +84,79 @@ function ResidueController(residueView, dataManager)
         });
     }
 
+    function delayedHighlight(event, data, delay)
+    {
+        if (delay == null)
+        {
+            delay = _transactionDelay;
+        }
+
+        // clear only highlight timer
+        if (_highlightTimer != null)
+        {
+            clearTimeout(_highlightTimer);
+            _highlightTimer = null;
+        }
+
+        highlightTable(event, data);
+
+        if (_filterTimer || _transactionTimer)
+        {
+            // set new timer
+            _highlightTimer = setTimeout(function() {
+                highlightDiagram(event, data);
+                _highlightTimer = null;
+            }, delay);
+        }
+        else
+        {
+            highlightDiagram(event, data);
+        }
+    }
+
+    function highlightTable(event, data)
+    {
+        // clear all residue highlights
+        residueView.unHighlightResidue();
+
+        // highlight mutations corresponding to each residue
+        _.each(data.highlighted, function (residue) {
+            residueView.highlightResidue(residue);
+        });
+
+        // selected mutations should always remain highlighted!
+        _.each(data.selected, function (residue) {
+            residueView.highlightResidue(residue);
+        });
+    }
+
+    function highlightDiagram(event, data)
+    {
+        var diagram = mutationDiagram();
+
+        if (diagram)
+        {
+            if (diagram.isHighlighted()) {
+                diagram.clearHighlights();
+            }
+
+            // highlight mutations corresponding to each residue
+            _.each(data.highlighted, function (residue) {
+                diagram.highlightMutation(defaultMutationSid(residue));
+            });
+
+            // selected mutations should always remain highlighted!
+            _.each(data.selected, function (residue) {
+                diagram.highlightMutation(defaultMutationSid(residue));
+            });
+        }
+    }
+
     function delayedFilter(event, data, delay)
     {
         if (delay == null)
         {
-            delay = 500;
+            delay = _filterDelay;
         }
 
         // clear previous timers
@@ -111,6 +165,10 @@ function ResidueController(residueView, dataManager)
         // set new timer
         _filterTimer = setTimeout(function() {
             filterDiagram(event, data);
+            _transactionTimer = setTimeout(function() {
+                _transactionTimer = null;
+            }, _transactionDelay);
+            _filterTimer = null;
         }, delay);
     }
 
@@ -156,6 +214,19 @@ function ResidueController(residueView, dataManager)
         if (_filterTimer != null)
         {
             clearTimeout(_filterTimer);
+            _filterTimer = null;
+        }
+
+        if (_highlightTimer != null)
+        {
+            clearTimeout(_highlightTimer);
+            _highlightTimer = null;
+        }
+
+        if (_transactionTimer != null)
+        {
+            clearTimeout(_transactionTimer);
+            _transactionTimer = null;
         }
     }
 
