@@ -149,7 +149,7 @@ function ResidueView(options)
             language: {
                 loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
             },
-            order: [[3, "asc"], [2, "desc"]],
+            order: [[3, "asc"], [4, "desc"]],
             columns: [
                 {id: "cluster",
                     title: noWrapRender.render("Cluster"),

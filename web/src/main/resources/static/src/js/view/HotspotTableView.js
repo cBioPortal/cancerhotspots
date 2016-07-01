@@ -174,7 +174,9 @@ function HotspotTableView(options)
                 info: "Showing _START_ to _END_ of _TOTAL_ mutations",
                 infoFiltered: "(filtered from _MAX_ total mutations)"
             },
-            order: [[4 , "asc" ], [5, "asc"], [6, "desc"]],
+            //order: [[4 , "asc" ], [5, "asc"], [6, "desc"]],
+            // do not sort the table by default, use the initial ordering
+            order: [],
             buttons: [{
                 text: "Download",
                 className: "btn-sm",
