@@ -58,7 +58,8 @@ function CancerHotspots(options)
         content: {
             app: {
                 tagline: "A resource for statistically significant mutations in cancer",
-                title: "Cancer Hotspots"
+                title: "Cancer Hotspots",
+                downloadFile: "files/hotspots.xls"
             },
             home: {
                 mutationInfo: _.template($("#default_mutation_info").html())()
@@ -233,7 +234,8 @@ function CancerHotspots(options)
                 _options.content = {
                     app: {
                         tagline: "A resource for statistically significant 3D hotspot mutations in cancer",
-                        title: "3D Hotspots"
+                        title: "3D Hotspots",
+                        downloadFile: "files/3d_hotspots.xls"
                     },
                     home: {
                         mutationInfo: "3D hotspots identified in 11,119 tumor samples across 41 tumor types"
