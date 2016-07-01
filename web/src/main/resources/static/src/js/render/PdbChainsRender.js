@@ -52,22 +52,6 @@ function PdbChainsRender(options)
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
-    function convertToPdbList(data)
-    {
-        var pdbList = [];
-
-        _.each(_.keys(data), function(key) {
-            var parts = key.split("_");
-            pdbList.push({
-                pdbId: parts[0],
-                chain: parts[1] || "NA",
-                pValue: data[key]
-            });
-        });
-
-        return pdbList;
-    }
-
     function render(data, type)
     {
         if (type === 'sort')
@@ -77,12 +61,7 @@ function PdbChainsRender(options)
         else
         {
             // convert map into an array and sort by count
-            var pdbChains = convertToPdbList(data);
-
-            pdbChains = _.sortBy(pdbChains, function(pdbChain) {
-                // ascending order
-                return pdbChain.pValue;
-            });
+            var pdbChains = MutationUtils.convertToPdbList(data);
 
             // create an array of display values
             var values = [];
@@ -125,7 +104,7 @@ function PdbChainsRender(options)
         var noWrapRender = new NoWrapRender();
 
         // convert map into a list
-        var pdbList = convertToPdbList(cellData);
+        var pdbList = MutationUtils.convertToPdbList(cellData);
 
         var viewOpts = {
             //templateId: '#pdb_chain_composition',

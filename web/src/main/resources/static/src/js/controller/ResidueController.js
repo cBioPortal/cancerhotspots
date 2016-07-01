@@ -241,9 +241,7 @@ function ResidueController(residueView, dataManager)
 
     function mutationDiagram()
     {
-        var gene = dataManager.getData().gene;
-        var mainView = residueView.getMutationMapper().getController()
-            .getMainView(gene).mainMutationView;
+        var mainView = mainMutationView();
 
         if (mainView &&
             mainView.diagramView &&
@@ -251,6 +249,14 @@ function ResidueController(residueView, dataManager)
         {
             return mainView.diagramView.mutationDiagram;
         }
+    }
+
+    function mainMutationView()
+    {
+        var gene = dataManager.getData().gene;
+
+        return residueView.getMutationMapper().getController()
+            .getMainView(gene).mainMutationView;
     }
 
     this.init = init;

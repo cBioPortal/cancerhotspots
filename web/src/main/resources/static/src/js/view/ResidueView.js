@@ -267,6 +267,9 @@ function ResidueView(options)
 
     function initMutationMapper(mutationData)
     {
+        var cluster = _.first(_options.dataManager.getData().clusters);
+        var pdbChains = MutationUtils.convertToPdbList(cluster.pdbChains);
+
         var options = {
             el:  $(_options.el).find('.mutation-mapper-container'),
             data: {
@@ -301,6 +304,10 @@ function ResidueView(options)
                 mutationDetails: {
                     loaderImage: "lib/images/ajax-loader.gif",
                     coreTemplate: "custom_mutation_details_template",
+                    activate3dOnInit: {
+                        pdbId: pdbChains[0].pdbId,
+                        chain: pdbChains[0].chain
+                    },
                     init: function(mutationDetailsView) {
                         // hide loader image
                         mutationDetailsView.$el.find(".mutation-details-loader").hide();

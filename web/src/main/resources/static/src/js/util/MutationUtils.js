@@ -105,8 +105,38 @@ var MutationUtils = (function() {
         };
     }
 
+	/**
+     * Converts pdb data into a list sorted by p-value.
+     *
+     * @param pdbData   PDB data as a map of (pdb_chain, p-value) pairs
+     * @returns {Array}
+     */
+    function convertToPdbList(pdbData)
+    {
+        var pdbList = [];
+
+        // convert map into a list
+        _.each(_.keys(pdbData), function(key) {
+            var parts = key.split("_");
+            pdbList.push({
+                pdbId: parts[0],
+                chain: parts[1] || "NA",
+                pValue: pdbData[key]
+            });
+        });
+
+        // sort by p-value
+        pdbList = _.sortBy(pdbList, function(pdbChain) {
+            // ascending order
+            return pdbChain.pValue;
+        });
+
+        return pdbList;
+    }
+
     return {
         generateMutationMapperData: generateMutationMapperData,
-        findResidueClass: findResidueClass
+        findResidueClass: findResidueClass,
+        convertToPdbList: convertToPdbList
     }
 })();
