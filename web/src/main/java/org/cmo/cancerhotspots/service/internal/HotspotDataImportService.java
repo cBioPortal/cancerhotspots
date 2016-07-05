@@ -301,7 +301,23 @@ public class HotspotDataImportService implements DataImportService
                 }
             }
 
-            mergedMutations.add(merged);
+            if (merged != null)
+            {
+                // also calculate tumor count value if null
+                if (merged.getTumorCount() == null)
+                {
+                    Integer tumorCount = 0;
+
+                    for (Integer value: merged.getTumorTypeComposition().values())
+                    {
+                        tumorCount += value;
+                    }
+
+                    merged.setTumorCount(tumorCount);
+                }
+
+                mergedMutations.add(merged);
+            }
         }
 
         return mergedMutations;

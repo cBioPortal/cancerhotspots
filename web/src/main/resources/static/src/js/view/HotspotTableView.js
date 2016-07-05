@@ -60,6 +60,21 @@ function HotspotTableView(options)
         //scrollCollapse: true,
         scrollY: false,
         scrollCollapse: false,
+        renderer: {
+            noWrap: {},
+            variant: {
+                variantColors: ViewUtils.getDefaultVariantColors(),
+                tumorColors: ViewUtils.getDefaultTumorTypeColors(),
+                tooltipStackHeight: 14,
+                tooltipStackRange: [4, 150]
+            },
+            pValue: {
+                threshold: 0.0001
+            },
+            tumorCount: {},
+            classification: {},
+            residue: {}
+        },
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -83,14 +98,14 @@ function HotspotTableView(options)
                 clusterCount: row["clusterCount"],
                 hugoSymbol: row["hugoSymbol"],
                 residue: row["residue"]
-            }
+            };
         },
         residueData: function(row) {
             return {
                 hugoSymbol: row["hugoSymbol"],
                 residue: row["residue"],
                 classification: row["classification"]
-            }
+            };
         },
         pValueData: function(row) {
             var data = row["pValue"];
@@ -133,27 +148,16 @@ function HotspotTableView(options)
     function render()
     {
         // TODO allow customization of renderer instances
-        var noWrapRender = new NoWrapRender();
-
-        var pValueRender = new PValueRender({
-            threshold: _options.pValueThreshold
-        });
-
-        var variantRender = new VariantRender({
-            variantColors: _options.variantColors,
-            tumorColors: _options.tumorColors,
-            tooltipStackHeight: _options.tooltipStackHeight,
-            tooltipStackRange: _options.tooltipStackRange
-        });
-
-        var tumorCountRender = new TumorCountRender();
+        var noWrapRender = new NoWrapRender(_options.renderer.noWrap);
+        var pValueRender = new PValueRender(_options.renderer.pValue);
+        var variantRender = new VariantRender(_options.renderer.variant);
+        var tumorCountRender = new TumorCountRender(_options.renderer.tumorCount);
+        var classRender = new ClassificationRender(_options.renderer.classification);
+        var residueRender = new ResidueRender(_options.renderer.residue);
 
         //var clustersRender = new ClustersRender({
         //    pValueThreshold: _options.pValueThreshold
         //});
-
-        var classRender = new ClassificationRender();
-        var residueRender = new ResidueRender();
 
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',

@@ -53,6 +53,10 @@ function ClassificationRender(options)
 
     function render(data, type)
     {
+        if (data == null) {
+            return "";
+        }
+
         var value = data.value || data;
         var classification = data.classification || data;
 

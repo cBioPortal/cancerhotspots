@@ -54,7 +54,6 @@ function CancerHotspots(options)
         aboutTemplateId: "about_page",
         residuePage: "#residue",
         residueTemplateId: "residue_page",
-        // TODO view & render options...
         content: {
             app: {
                 tagline: "A resource for statistically significant mutations in cancer",
@@ -64,6 +63,10 @@ function CancerHotspots(options)
             home: {
                 mutationInfo: _.template($("#default_mutation_info").html())()
             }
+        },
+        // TODO view & render options...
+        view: {
+            hotspotTable: {}
         }
     };
 
@@ -97,11 +100,13 @@ function CancerHotspots(options)
                 var mainTemplateFn = _.template($(_options.mainView).html());
                 $(_options.mainContent).html(mainTemplateFn());
 
-                // init the table view with the hotspot data
-                var tableView = new HotspotTableView({
+                var options = jQuery.extend(true, {}, _options.view.hotspotTable, {
                     metadata: metadata,
                     data: data
                 });
+
+                // init the table view with the hotspot data
+                var tableView = new HotspotTableView(options);
 
                 // render the table
                 tableView.render();
@@ -114,7 +119,7 @@ function CancerHotspots(options)
             $(_options.mainContent).html(mainTemplateFn());
 
             // init the table view with the hotspot data retrieval function
-            var tableView = new HotspotTableView({
+            var options = jQuery.extend(true, {}, _options.view.hotspotTable, {
                 metadata: metadata,
                 "ajax": function (data, callback, settings) {
                     _hotspotProxy.getAllHotspots(function(hotspotData) {
@@ -126,6 +131,8 @@ function CancerHotspots(options)
                     });
                 }
             });
+
+            var tableView = new HotspotTableView(options);
 
             // render the table
             tableView.render();
@@ -242,6 +249,16 @@ function CancerHotspots(options)
                     }
                 };
             }
+            else
+            {
+                // TODO update in a safer way...
+                _options.view.hotspotTable.renderer = {
+                    residue: {
+                        templateId: "residue_column_single"
+                    }
+                };
+            }
+
 
             _hotspotProxy = new HotspotDataProxy(hotspotProxyOptions);
             _clusterProxy = new ClusterDataProxy();
