@@ -4,6 +4,7 @@ import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
 import org.cmo.cancerhotspots.util.CompositionMapConversion;
+import org.cmo.cancerhotspots.util.DataUtils;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -105,23 +106,8 @@ public class TumorTypeComposition
 
     public void merge(TumorTypeComposition composition)
     {
-        for(String tumorType: composition.getTumorTypeComposition().keySet())
-        {
-            Integer count = this.getTumorTypeComposition().get(tumorType);
-
-            // if no value yet, just copy from the source
-            if (count == null)
-            {
-                this.getTumorTypeComposition().put(tumorType,
-                    composition.getTumorTypeComposition().get(tumorType));
-            }
-            // if already exists add to the current value
-            else
-            {
-                this.getTumorTypeComposition().put(tumorType,
-                    count + composition.getTumorTypeComposition().get(tumorType));
-            }
-        }
+        DataUtils.mergeCompositions(this.getTumorTypeComposition(),
+                                    composition.getTumorTypeComposition());
     }
 
     public Integer tumorCount()

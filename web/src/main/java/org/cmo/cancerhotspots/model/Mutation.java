@@ -22,6 +22,14 @@ public class Mutation
     private String residue;
 
     @Trim
+    @Parsed(field = "Reference Amino Acid")
+    private String referenceAminoAcid;
+
+    @Trim
+    @Parsed(field = "Amino Acid Position")
+    private Integer aminoAcidPosition;
+
+    @Trim
     @Parsed(field = "Cluster")
     private String cluster;
 
@@ -168,6 +176,26 @@ public class Mutation
     public void setClassification(String classification)
     {
         this.classification = classification;
+    }
+
+    public String getReferenceAminoAcid()
+    {
+        return referenceAminoAcid;
+    }
+
+    public void setReferenceAminoAcid(String referenceAminoAcid)
+    {
+        this.referenceAminoAcid = referenceAminoAcid;
+    }
+
+    public Integer getAminoAcidPosition()
+    {
+        return aminoAcidPosition;
+    }
+
+    public void setAminoAcidPosition(Integer aminoAcidPosition)
+    {
+        this.aminoAcidPosition = aminoAcidPosition;
     }
 
     //    @Trim

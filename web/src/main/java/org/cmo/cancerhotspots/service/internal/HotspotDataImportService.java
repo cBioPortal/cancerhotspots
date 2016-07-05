@@ -5,6 +5,7 @@ import org.cmo.cancerhotspots.persistence.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.service.MutationFilterService;
+import org.cmo.cancerhotspots.util.DataUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,23 @@ public class HotspotDataImportService implements DataImportService
         this.clusterCacheById = null;
     }
 
+    public TumorTypeComposition getTumorTypeComposition(Mutation mutation)
+    {
+        // assuming that there is only one variant amino acid
+        String variant = mutation.getVariantAminoAcid().keySet().iterator().next();
+
+        // construct the tumor type instance
+        TumorTypeComposition composition = new TumorTypeComposition();
+
+        composition.setHugoSymbol(mutation.getHugoSymbol());
+        composition.setAminoAcidPosition(mutation.getAminoAcidPosition());
+        composition.setReferenceAminoAcid(mutation.getReferenceAminoAcid());
+        composition.setVariantAminoAcid(variant);
+        composition.setTumorTypeComposition(mutation.getTumorTypeComposition());
+
+        return composition;
+    }
+
     public TumorTypeComposition getTumorTypeComposition(String aminoAcidChange)
     {
         if (this.variantCacheByAAChange == null)
@@ -101,11 +119,26 @@ public class HotspotDataImportService implements DataImportService
                 continue;
             }
 
+            int variantCount = mutation.getVariantAminoAcid().keySet().size();
+
             for (String variant: mutation.getVariantAminoAcid().keySet())
             {
                 String aminoAcidChange = mutation.getResidue() + variant;
-                TumorTypeComposition composition = this.getTumorTypeComposition(
-                    mutation.getHugoSymbol(), aminoAcidChange);
+                TumorTypeComposition composition;
+
+                // do not use the MAF file if there is only one variant and
+                // the tumor type composition field already exist
+                if (variantCount == 1 &&
+                    mutation.getTumorTypeComposition() != null &&
+                    mutation.getTumorTypeComposition().size() > 0)
+                {
+                    composition = this.getTumorTypeComposition(mutation);
+                }
+                else
+                {
+                    composition = this.getTumorTypeComposition(
+                        mutation.getHugoSymbol(), aminoAcidChange);
+                }
 
                 // skip unknown/invalid variants
                 if (composition == null)
@@ -134,7 +167,9 @@ public class HotspotDataImportService implements DataImportService
     @Override
     public void createHotspotFile(Iterable<Mutation> mutations)
     {
-        mutationRepository.saveAll(mutations);
+        // merge mutations by residue and save to the repository
+        Iterable<Mutation> merged = this.mergeByGeneAndResidue(mutations);
+        mutationRepository.saveAll(merged);
     }
 
     @Override
@@ -202,6 +237,74 @@ public class HotspotDataImportService implements DataImportService
             mutation.setTumorTypeCount(composition.tumorTypeCount());
             mutation.setTumorCount(composition.tumorCount());
         }
+    }
+
+    private Iterable<Mutation> mergeByGeneAndResidue(Iterable<Mutation> mutations)
+    {
+        Map<String, List<Mutation>> map = new LinkedHashMap<>();
+        List<Mutation> mergedMutations = new ArrayList<>();
+
+        // first, index mutations by residue
+        for (Mutation mutation: mutations)
+        {
+            String gene = mutation.getHugoSymbol();
+            String residue = mutation.getResidue();
+            String reference = mutation.getReferenceAminoAcid();
+            Integer position = mutation.getAminoAcidPosition();
+
+            // set residue if null
+            if (residue == null &&
+                reference != null &&
+                position != null)
+            {
+                mutation.setResidue(reference + position);
+            }
+
+            // if residue is still null, then nothing to do...
+            if (residue != null)
+            {
+                String key = (gene + "_" + residue).toUpperCase();
+                List<Mutation> list = map.get(key);
+
+                if (list == null)
+                {
+                    list = new LinkedList<>();
+                    map.put(key, list);
+                }
+
+                list.add(mutation);
+            }
+        }
+
+
+        // second, merge mutations by residue:
+        // merge tumor type composition and variant amino acid values,
+        // assuming all other values are identical
+        for (String key: map.keySet())
+        {
+            Mutation merged = null;
+            List<Mutation> list = map.get(key);
+
+            for (Mutation mutation: list)
+            {
+                if (merged == null)
+                {
+                    merged = mutation;
+                }
+                else
+                {
+                    DataUtils.mergeCompositions(merged.getTumorTypeComposition(),
+                                                mutation.getTumorTypeComposition());
+
+                    DataUtils.mergeCompositions(merged.getVariantAminoAcid(),
+                                                mutation.getVariantAminoAcid());
+                }
+            }
+
+            mergedMutations.add(merged);
+        }
+
+        return mergedMutations;
     }
 
     private Map<String, Cluster> constructClusterCache(Iterable<Mutation> mutations)
