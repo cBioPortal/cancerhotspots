@@ -76,7 +76,8 @@ var ViewUtils = (function() {
         lymbc: "bl",
         nbl: "nbl",
         mcl: "mcl",
-        all: "all"
+        all: "all",
+        unk: "other"
     };
 
     var _oncotree = {
@@ -116,9 +117,40 @@ var ViewUtils = (function() {
         "prad": {color: "cyan", name: "Prostate Adenocarcinoma"},
         "skcm": {color: "black", name: "Cutaneous Melanoma"},
         "stad": {color: "lightskyblue", name: "Stomach Adenocarcinoma"},
-        "thyroid": {color: "teal", name: "Thyroid Cancer"}, // ?
         "ucec": {color: "peachpuff", name: "Endometrial Carcinoma"},
-        "ucs": {color: "peachpuff", name: "Uterine Carcinosarcoma / Uterine Malignant Mixed Mullerian Tumor"}
+        "ucs": {color: "peachpuff", name: "Uterine Carcinosarcoma / Uterine Malignant Mixed Mullerian Tumor"},
+        "pancreas": {"color": "Purple", "name": "Pancreas"},
+        "blood": {"color": "LightSalmon", "name": "Blood"},
+        "other": {"color": "Black", "name": "Other"},
+        "head_neck": {"color": "DarkRed", "name": "Head and Neck"},
+        "biliary_tract": {"color": "Green", "name": "Biliary Tract"},
+        "pns": {"color": "Gray", "name": "Peripheral Nervous System"},
+        "adrenal_gland": {"color": "Purple", "name": "Adrenal Gland"},
+        "uterus": {"color": "PeachPuff", "name": "Uterus"},
+        "thymus": {"color": "Purple", "name": "Thymus"},
+        "liver": {"color": "MediumSeaGreen", "name": "Liver"},
+        "testis": {"color": "Red", "name": "Testis"},
+        "breast": {"color": "HotPink", "name": "Breast"},
+        "bladder": {"color": "Yellow", "name": "Bladder/Urinary Tract"},
+        "cervix": {"color": "Teal", "name": "Cervix"},
+        "lymph": {"color": "LimeGreen", "name": "Lymph"},
+        "brain": {"color": "Gray", "name": "CNS/Brain"},
+        "bowel": {"color": "SaddleBrown", "name": "Bowel"},
+        "ovary": {"color": "LightBlue", "name": "Ovary/Fallopian Tube"},
+        "thyroid": {"color": "Teal", "name": "Thyroid"},
+        "skin": {"color": "Black", "name": "Skin"},
+        "lung": {"color": "Gainsboro", "name": "Lung"},
+        "bone": {"color": "White", "name": "Bone"},
+        "prostate": {"color": "Cyan", "name": "Prostate"},
+        "soft_tissue": {"color": "LightYellow", "name": "Soft Tissue"},
+        "stomach": {"color": "LightSkyBlue", "name": "Esophagus/Stomach"},
+        "ampulla_of_vater": {"color": "Purple", "name": "Ampulla of Vater"},
+        "kidney": {"color": "Orange", "name": "Kidney"},
+        "vulva": {"color": "Purple", "name": "Vulva/Vagina"},
+        "eye": {"color": "Green", "name": "Eye"},
+        "peritoneum": {"color": "Green", "name": "Peritoneum"},
+        "penis": {"color": "Blue", "name": "Penis"},
+        "pleura": {"color": "Blue", "name": "Pleura"}
     };
 
     var _variantType = {
@@ -145,6 +177,7 @@ var ViewUtils = (function() {
         "Y": {color: "#3b3eac"},
         "V": {color: "#b77322"},
         "X": {color: "#16d620"},
+        "sp": {color: "#b91383"},
         "*": {color: "#090303"}
     };
 
@@ -156,6 +189,13 @@ var ViewUtils = (function() {
             var oncoKey = _legacyToOncotree[legacyKey];
             if (_oncotree[oncoKey] != null) {
                 map[legacyKey] = _oncotree[oncoKey].color;
+            }
+        });
+
+        _.each(_.keys(_oncotree), function (oncoKey) {
+            if (map[oncoKey] == null)
+            {
+                map[oncoKey] = _oncotree[oncoKey].color;
             }
         });
 
@@ -182,6 +222,13 @@ var ViewUtils = (function() {
             if (_oncotree[oncoKey] != null) {
                 map[legacyKey] = _oncotree[oncoKey].name;
             }
+        });
+
+        _.each(_.keys(_oncotree), function (oncoKey) {
+           if (map[oncoKey] == null)
+           {
+               map[oncoKey] = _oncotree[oncoKey].name;
+           }
         });
 
         return map;
