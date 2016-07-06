@@ -61,17 +61,7 @@ function ResiduesRender(options)
                     classification: data.classifications[residue]});
             });
 
-            residues = _.sortBy(residues, function(residue) {
-                // sort by residue position
-                var matched = residue.residue.match(/[0-9]+/g);
-
-                if (matched && matched.length > 0) {
-                    return parseInt(matched[0]);
-                }
-                else {
-                    return residue.residue;
-                }
-            });
+            residues = _.sortBy(residues, MutationUtils.defaultResidueSortValue);
 
             // create an array of display values
             var values = [];

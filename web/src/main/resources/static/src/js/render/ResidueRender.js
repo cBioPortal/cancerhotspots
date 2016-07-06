@@ -51,7 +51,7 @@ function ResidueRender(options)
     {
         if (type === 'sort')
         {
-            return data.residue;
+            return MutationUtils.defaultResidueSortValue(data);
         }
         else
         {

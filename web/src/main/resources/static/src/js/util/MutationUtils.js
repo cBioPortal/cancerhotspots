@@ -134,8 +134,22 @@ var MutationUtils = (function() {
         return pdbList;
     }
 
+    function defaultResidueSortValue(data)
+    {
+        // sort by residue position
+        var matched = data.residue.match(/[0-9]+/g);
+
+        if (matched && matched.length > 0) {
+            return parseInt(matched[0]);
+        }
+        else {
+            return data.residue;
+        }
+    }
+
     return {
         generateMutationMapperData: generateMutationMapperData,
+        defaultResidueSortValue: defaultResidueSortValue,
         findResidueClass: findResidueClass,
         convertToPdbList: convertToPdbList
     }
