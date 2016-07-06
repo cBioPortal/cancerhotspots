@@ -263,6 +263,8 @@ function CancerHotspots(options)
                 {
                     _options.content.home.mutationInfo =
                         _.template($("#internal_mutation_info").html())();
+
+                    _options.content.app.downloadFile = "files/internal_hotspots.xls";
                 }
             }
 
