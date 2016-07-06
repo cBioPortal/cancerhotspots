@@ -235,7 +235,7 @@ function CancerHotspots(options)
         _metadataProxy.getMetadata(function(metadata) {
             var hotspotProxyOptions = {};
 
-            if (metadata.profile.toLowerCase() === "3d")
+            if (metadata.profile.toLowerCase().indexOf("3d") != -1)
             {
                 hotspotProxyOptions.serviceUrl = "api/hotspots/3d";
                 _options.content = {
@@ -251,14 +251,20 @@ function CancerHotspots(options)
             }
             else
             {
-                // TODO update in a safer way...
+                // TODO update options in a safer way...
+
                 _options.view.hotspotTable.renderer = {
                     residue: {
                         templateId: "residue_column_single"
                     }
                 };
-            }
 
+                if (metadata.profile.toLowerCase() === "internalsingleresidue")
+                {
+                    _options.content.home.mutationInfo =
+                        _.template($("#internal_mutation_info").html())();
+                }
+            }
 
             _hotspotProxy = new HotspotDataProxy(hotspotProxyOptions);
             _clusterProxy = new ClusterDataProxy();

@@ -111,6 +111,11 @@ body {
     margin-top: 10px;
 }
 
+.internal-note {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .variant-cell {
     color: #ffffff;
     font-weight: bold;

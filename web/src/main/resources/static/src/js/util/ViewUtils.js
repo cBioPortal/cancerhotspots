@@ -244,14 +244,14 @@ var ViewUtils = (function() {
 
             _.each(columns, function(column) {
                 // if single residue view: hide 3D specific columns
-                if (profile === "singleresidue" &&
+                if (profile.indexOf("singleresidue") != -1 &&
                     _.contains(only3d, column.id))
                 {
                     column.visible = false;
                 }
 
                 // if 3D view: hide single residue specific columns
-                if (profile === "3d" &&
+                if (profile.indexOf("3d") != -1 &&
                     _.contains(onlySingleRes, column.id))
                 {
                     column.visible = false;
