@@ -141,7 +141,7 @@ function ResidueView(options)
         var noWrapRender = new NoWrapRender();
 
         var dataTableOpts = {
-            dom: "<'row'<'col-sm-8 residue-table-title'><'col-sm-4'f>>t" +
+            dom: "<'row'<'col-sm-6 residue-table-title'><'col-sm-6'f>>t" +
                  "<'row'<'col-sm-8'i><'col-sm-4 right-align table-button-group'>>",
             paging: false,
             scrollY: "500px",

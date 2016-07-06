@@ -54,7 +54,7 @@
     font-size: 1.25em;
     font-family: icomoon;
     content: "\e666";
-    color: #FF9900
+    color: #FF9900;
 }
 
 .navbar-header {
@@ -182,6 +182,10 @@ table.about-lab-table {
 
 #residue_table {
     font-size: 95%;
+}
+
+div#residue_table_wrapper {
+    width: 740px;
 }
 
 span.cluster-pdb {
