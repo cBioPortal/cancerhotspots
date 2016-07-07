@@ -49,6 +49,7 @@ function ClusterDataManager(options)
         highlighted: [],
         selected: [],
         filtered: [],
+        filteredClusters: [],
         pdb: []
     };
 
@@ -122,6 +123,78 @@ function ClusterDataManager(options)
         $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_FILTER, _state);
     }
 
+    function filterClusters(clusters)
+    {
+        // add given residues to the set of filtered residues
+        _state.filteredClusters = _.union(_state.filteredClusters, clusters);
+
+        // filter residues corresponding to the filtered clusters
+        if (_data && _data.clusters)
+        {
+            var residuesToFilter = findResidues(_state.filteredClusters);
+
+            // check if we really need to filter any residue
+            if (!_.isEmpty(_.difference(residuesToFilter, _state.filtered)))
+            {
+                filterResidues(residuesToFilter);
+            }
+        }
+    }
+
+    function unfilterClusters(clusters)
+    {
+        if (clusters == null)
+        {
+            // reset all filters
+            _state.filteredClusters = [];
+            unfilterResidues();
+        }
+        else
+        {
+            // remove given residues from the set of filtered residues
+            _state.filteredClusters = _.difference(_state.filteredClusters, clusters);
+
+            // this means nothing to filter, so show everything
+            if (_.isEmpty(_state.filteredClusters))
+            {
+                unfilterResidues();
+            }
+            else
+            {
+                // filter residues corresponding to the filtered clusters
+                var residuesToFilter = findResidues(_state.filteredClusters);
+                var residuesToUnfilter = _.difference(_state.filtered, residuesToFilter);
+
+                // check if we really need to unfilter any residue
+                if (!_.isEmpty(residuesToUnfilter))
+                {
+                    unfilterResidues(residuesToUnfilter);
+                }
+            }
+        }
+    }
+
+	/**
+     * Finds all residues within the given cluster set.
+     *
+     * @param clusters  an array of cluster instances
+     * @returns {Array} set of residues within the given clusters
+     */
+    function findResidues(clusters)
+    {
+        var filteredClusters = _.filter(_data.clusters, function(cluster) {
+            return _.contains(clusters, cluster.clusterId);
+        });
+
+        var residues = [];
+
+        _.each(filteredClusters, function(cluster) {
+            residues = _.union(residues, _.keys(cluster.residues));
+        });
+
+        return residues;
+    }
+
     function selectResidues(residues)
     {
         // add given residues to the set of selected residues
@@ -155,6 +228,8 @@ function ClusterDataManager(options)
     this.unHighlightResidues = unHighlightResidues;
     this.filterResidues = filterResidues;
     this.unfilterResidues = unfilterResidues;
+    this.filterClusters = filterClusters;
+    this.unfilterClusters = unfilterClusters;
     this.selectResidues = selectResidues;
     this.unSelectResidues = unSelectResidues;
     this.selectPdbChain = selectPdbChain;

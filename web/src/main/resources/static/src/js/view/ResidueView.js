@@ -136,7 +136,10 @@ function ResidueView(options)
             dataManager: _options.dataManager
         });
 
-        var clusterRender = new ClusterRender();
+        var clusterRender = new ClusterRender({
+            dataManager: _options.dataManager
+        });
+
         var tumorCountRender = new TumorCountRender();
         var noWrapRender = new NoWrapRender();
 
@@ -155,7 +158,8 @@ function ResidueView(options)
                     title: noWrapRender.render("Cluster"),
                     data: "clusterId",
                     type: "num",
-                    render: clusterRender.render},
+                    render: clusterRender.render,
+                    createdCell: clusterRender.postRender},
                 {id: "residues",
                     title: "Residues",
                     data: _options.residuesData,

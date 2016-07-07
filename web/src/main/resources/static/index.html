@@ -372,6 +372,12 @@
     <a class="residue-link" href="#/residue/{{hugoSymbol}}/{{residue}}">{{clusterCount}}</a>
 </script>
 
+<script type="text/template" id="cluster_column">
+    <div class="checkbox left-align">
+        <label><input type="checkbox" value="{{clusterId}}"> #{{clusterId}}</label>
+    </div>
+</script>
+
 <script type="text/template" id="pdb_chains_column">
     <span class="qtipped-text left-align">{{pdbChains}}</span>
 </script>

@@ -35,7 +35,10 @@
  */
 function ClusterRender(options)
 {
-    var _defaultOpts = {};
+    var _defaultOpts = {
+        templateId: "cluster_column",
+        dataManager: false
+    };
 
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
@@ -48,10 +51,37 @@ function ClusterRender(options)
         }
         else
         {
-            return "#" + data;
+            var templateFn = _.template($("#" + _options.templateId).html());
+            return templateFn({clusterId: data});
         }
     }
 
+    function postRender(td, cellData, rowData, row, col)
+    {
+        addEventListeners(td, cellData);
+    }
+
+    function addEventListeners(td, cellData)
+    {
+        $(td).find('input').on('change', function ()
+        {
+            if (_options.dataManager)
+            {
+                if ($(this).is(":checked"))
+                {
+                    // filter all lollipops corresponding to this cluster
+                    _options.dataManager.filterClusters([cellData]);
+                }
+                else
+                {
+                    // remove filters
+                    _options.dataManager.unfilterClusters([cellData]);
+                }
+            }
+        });
+    }
+
     this.render = render;
+    this.postRender = postRender;
 }
 

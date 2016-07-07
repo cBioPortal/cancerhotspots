@@ -144,27 +144,6 @@ function ResiduesRender(options)
     {
         var residueElem = $(td).find(".cluster-residue");
 
-        $(td).on('mouseenter', function() {
-            // highlight the residue!
-            if (_options.dataManager)
-            {
-                // filter all lollipops corresponding to this cluster
-                var residues = _.keys(cellData.residues);
-                _options.dataManager.filterResidues(residues);
-            }
-        });
-
-        $(td).on('mouseleave', function() {
-            // highlight the residue!
-            if (_options.dataManager)
-            {
-                // remove filters
-                //var residues = _.keys(cellData.residues);
-                // just pass an empty
-                _options.dataManager.unfilterResidues();
-            }
-        });
-
         residueElem.on('mouseenter', function() {
             // highlight the residue!
             if (_options.dataManager)
