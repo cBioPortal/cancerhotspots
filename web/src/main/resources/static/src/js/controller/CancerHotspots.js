@@ -58,6 +58,7 @@ function CancerHotspots(options)
             app: {
                 tagline: "A resource for statistically significant mutations in cancer",
                 title: "Cancer Hotspots",
+                logoStyle: "hotspot-fire",
                 downloadFile: "files/hotspots.xls"
             },
             home: {
@@ -242,7 +243,8 @@ function CancerHotspots(options)
                     app: {
                         tagline: "A resource for statistically significant 3D hotspot mutations in cancer",
                         title: "3D Hotspots",
-                        downloadFile: "files/3d_hotspots.xls"
+                        downloadFile: "files/3d_hotspots.xls",
+                        logoStyle: "hotspot-fire hotspot-3d-fire"
                     },
                     home: {
                         mutationInfo: "3D hotspots identified in 11,119 tumor samples across 41 tumor types"

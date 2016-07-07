@@ -57,6 +57,10 @@
     color: #FF9900;
 }
 
+.hotspot-3d-fire:after {
+    content: "\e667";
+}
+
 .navbar-header {
     text-transform: none;
 }
