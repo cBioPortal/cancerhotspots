@@ -184,7 +184,7 @@ function CancerHotspots(options)
             residue: params.residue
         });
 
-        var residueView = new ResidueView({
+        var viewOpts = {
             dataManager: dataManager,
             ajax: function (data, callback, settings) {
                 _clusterProxy.getCluster(params.hugoSymbol, params.residue, function(clusterData) {
@@ -202,7 +202,14 @@ function CancerHotspots(options)
                 });
             }
             //TODO pValueThreshold: _options.pValueThreshold
-        });
+        };
+
+        if (params.residue == null)
+        {
+            viewOpts.templateId = "gene_view";
+        }
+
+        var residueView = new ResidueView(viewOpts);
 
         var residueController = new ResidueController(residueView, dataManager);
         residueController.init();
@@ -221,6 +228,9 @@ function CancerHotspots(options)
             },
             '/residue/:hugoSymbol/:residue': function(hugoSymbol, residue) {
                 switchContent(cluster, {hugoSymbol: hugoSymbol, residue: residue});
+            },
+            '/gene/:hugoSymbol/': function(hugoSymbol) {
+                switchContent(cluster, {hugoSymbol: hugoSymbol});
             }
         });
 
@@ -258,6 +268,9 @@ function CancerHotspots(options)
                 _options.view.hotspotTable.renderer = {
                     residue: {
                         templateId: "residue_column_single"
+                    },
+                    gene: {
+                        templateId: "gene_column_single"
                     }
                 };
 

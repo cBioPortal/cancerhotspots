@@ -73,6 +73,7 @@ function HotspotTableView(options)
             },
             tumorCount: {},
             classification: {},
+            gene: {},
             residue: {}
         },
         // default rendering function for map data structure
@@ -154,6 +155,7 @@ function HotspotTableView(options)
         var tumorCountRender = new TumorCountRender(_options.renderer.tumorCount);
         var classRender = new ClassificationRender(_options.renderer.classification);
         var residueRender = new ResidueRender(_options.renderer.residue);
+        var geneRender = new GeneRender(_options.renderer.gene);
 
         //var clustersRender = new ClustersRender({
         //    pValueThreshold: _options.pValueThreshold
@@ -224,7 +226,8 @@ function HotspotTableView(options)
             columns: [
                 {id: "hugoSymbol",
                     title: "Gene",
-                    data: "hugoSymbol"},
+                    data: "hugoSymbol",
+                    render: geneRender.render},
                 {id: "residue",
                     title: "Residue",
                     type: "num",

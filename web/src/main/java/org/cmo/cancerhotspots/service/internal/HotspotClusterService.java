@@ -30,7 +30,7 @@ public class HotspotClusterService implements ClusterService
     }
 
     @Override
-    public List<Cluster> getCluster(List<String> clusterIds)
+    public List<Cluster> getClusters(List<String> clusterIds)
     {
         List<Cluster> clusters = new ArrayList<>();
 
@@ -43,11 +43,24 @@ public class HotspotClusterService implements ClusterService
     }
 
     @Override
-    public List<Cluster> getCluster(String hugoSymbol, String residue)
+    public List<Cluster> getClusters(String hugoSymbol, String residue)
     {
         List<Cluster> clusters = new ArrayList<>();
 
         for (Cluster cluster: clusterRepository.findByGeneAndResidue(hugoSymbol, residue))
+        {
+            clusters.add(cluster);
+        }
+
+        return clusters;
+    }
+
+    @Override
+    public List<Cluster> getClusters(String hugoSymbol)
+    {
+        List<Cluster> clusters = new ArrayList<>();
+
+        for (Cluster cluster: clusterRepository.findByGene(hugoSymbol))
         {
             clusters.add(cluster);
         }

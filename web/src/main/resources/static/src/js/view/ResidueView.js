@@ -216,9 +216,12 @@ function ResidueView(options)
         $(_options.el).find("#residue_table").DataTable(dataTableOpts);
 
         // update the title
-        $("div.residue-table-title").html(
-            _.template($("#residue_table_title").html())(
-                {residue: _options.dataManager.getData().residue}));
+        if (_options.dataManager.getData().residue != null)
+        {
+            $("div.residue-table-title").html(
+                _.template($("#residue_table_title").html())(
+                    {residue: _options.dataManager.getData().residue}));
+        }
     }
 
     function highlightResidue(residue)

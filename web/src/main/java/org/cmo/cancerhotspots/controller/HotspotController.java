@@ -287,7 +287,26 @@ public class HotspotController
             allowMultiple = true)
         @PathVariable String residue)
     {
-        return clusterService.getCluster(hugoSymbol, residue);
+        return clusterService.getClusters(hugoSymbol, residue);
+    }
+
+    @ApiOperation(value = "get clusters by hugo symbol",
+        nickname = "getClustersByHugoSymbol")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = Cluster.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/clusters/{hugoSymbol}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<Cluster> getClusters(
+        @ApiParam(value = "Hugo gene symbol, for example BRAF",
+            required = true)
+        @PathVariable String hugoSymbol)
+    {
+        return clusterService.getClusters(hugoSymbol);
     }
 
     @ApiOperation(value = "get clusters by cluster id",
@@ -298,7 +317,7 @@ public class HotspotController
             responseContainer = "List"),
         @ApiResponse(code = 400, message = "Bad Request")
     })
-    @RequestMapping(value = "/clusters/{clusterIds}",
+    @RequestMapping(value = "/clusters/id/{clusterIds}",
         method = {RequestMethod.GET},
         produces = "application/json")
     public List<Cluster> getClusters(
@@ -306,7 +325,7 @@ public class HotspotController
             required = false)
         @PathVariable List<String> clusterIds)
     {
-        return clusterService.getCluster(clusterIds);
+        return clusterService.getClusters(clusterIds);
     }
 
     @ApiOperation(value = "get clusters",
@@ -346,6 +365,11 @@ public class HotspotController
             // this will only be invoked if both hugo symbol and residue provided,
             // and no cluster id provided
             return getClusters(hugoSymbol, residue);
+        }
+        else if (hugoSymbol != null)
+        {
+            // this will only be invoked when only hugo symbol provided
+            return getClusters(hugoSymbol);
         }
         else
         {

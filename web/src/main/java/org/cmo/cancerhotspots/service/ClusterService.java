@@ -10,6 +10,8 @@ import java.util.List;
 public interface ClusterService
 {
     Cluster getCluster(String clusterId);
-    List<Cluster> getCluster(List<String> clusterIds);
-    List<Cluster> getCluster(String hugoSymbol, String residue);
+    List<Cluster> getClusters(List<String> clusterIds);
+    List<Cluster> getClusters(String hugoSymbol);
+    List<Cluster> getClusters(String hugoSymbol, String residue);
+
 }

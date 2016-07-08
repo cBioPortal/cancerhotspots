@@ -30,6 +30,7 @@ public class ClusterRepositoryImpl implements ClusterRepository
 
     private Map<String, Cluster> cache;
     private Map<String, List<Cluster>> cacheByGeneAndResidue;
+    private Map<String, List<Cluster>> cacheByGene;
 
     @Override
     public Iterable<Cluster> findAll()
@@ -73,6 +74,17 @@ public class ClusterRepositoryImpl implements ClusterRepository
 
         return this.cacheByGeneAndResidue.get(
             hugoSymbol.toLowerCase() + "_" + residue.toLowerCase());
+    }
+
+    @Override
+    public Iterable<Cluster> findByGene(String hugoSymbol)
+    {
+        if (this.cacheByGene == null)
+        {
+            this.cacheByGene = cacheByGene(findAll());
+        }
+
+        return this.cacheByGene.get(hugoSymbol.toLowerCase());
     }
 
     @Override
@@ -126,6 +138,28 @@ public class ClusterRepositoryImpl implements ClusterRepository
 
                 list.add(cluster);
             }
+        }
+
+        return cache;
+    }
+
+    private Map<String, List<Cluster>> cacheByGene(Iterable<Cluster> clusters)
+    {
+        Map<String, List<Cluster>> cache = new LinkedHashMap<>();
+
+        for (Cluster cluster : clusters)
+        {
+            String key = cluster.getHugoSymbol().toLowerCase();
+
+            List<Cluster> list = cache.get(key);
+
+            if (list == null)
+            {
+                list = new ArrayList<>();
+                cache.put(key, list);
+            }
+
+            list.add(cluster);
         }
 
         return cache;

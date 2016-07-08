@@ -82,6 +82,7 @@
     <script type="text/javascript" src="src/js/render/ResiduesRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClassificationRender.js"></script>
     <script type="text/javascript" src="src/js/render/ResidueRender.js"></script>
+    <script type="text/javascript" src="src/js/render/GeneRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClusterRender.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
@@ -348,6 +349,14 @@
            width="100%"></table>
 </script>
 
+<script type="text/template" id="gene_view">
+    <b>Gene:</b> {{gene}} <br>
+    <div class="mutation-mapper-container"></div>
+    <table id="residue_table"
+           class="display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
+</script>
+
 <script type="text/template" id="no_text_wrap">
     <span class="no-text-wrap">{{text}}</span>
 </script>
@@ -366,6 +375,14 @@
 
 <script type="text/template" id="residue_column_single">
     <span class="{{style}}">{{residue}}</span>
+</script>
+
+<script type="text/template" id="gene_column">
+    <a class="gene-link" href="#/gene/{{hugoSymbol}}">{{hugoSymbol}}</a>
+</script>
+
+<script type="text/template" id="gene_column_single">
+    <span>{{hugoSymbol}}</span>
 </script>
 
 <script type="text/template" id="clusters_column">
