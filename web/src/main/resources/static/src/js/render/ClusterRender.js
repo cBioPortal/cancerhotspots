@@ -58,6 +58,11 @@ function ClusterRender(options)
 
     function postRender(td, cellData, rowData, row, col)
     {
+        var tooltipOpts = TooltipUtils.defaultTooltipOpts();
+        tooltipOpts.content = "Check to highlight residues in the diagram";
+
+        cbio.util.addTargetedQTip($(td).find('input'), tooltipOpts);
+
         addEventListeners(td, cellData);
     }
 
