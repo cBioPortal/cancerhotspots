@@ -82,6 +82,56 @@ function ResidueController(residueView, dataManager)
             residueView.getMutationMapper().getController().get3dController().reset3dView(
                 parts[0], parts[1]);
         });
+
+        $(residueView.dispatcher).on(EventUtils.MUTATION_MAPPER_INIT, function(event, data) {
+            initMutationMapperEvents();
+        });
+    }
+
+    function initMutationMapperEvents()
+    {
+        var diagram = mutationDiagram();
+
+        function registerDiagramEvents(diagram)
+        {
+            // TODO highlight table residues!
+
+            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_MOUSEOUT, function() {
+
+            });
+
+            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_MOUSEOVER, function() {
+
+            });
+        }
+
+        function registerMainViewEvents(mainView)
+        {
+            mainView.dispatcher.on(MutationDetailsEvents.DIAGRAM_INIT, function(diagram) {
+                registerDiagramEvents(diagram);
+            });
+        }
+
+        // wait for the diagram to init...
+        if (!diagram)
+        {
+            var mainView = mainMutationView();
+
+            if (!mainView)
+            {
+                var mutationDetailsView = residueView.getMutationMapper().getView();
+
+                mutationDetailsView.dispatcher.on(MutationDetailsEvents.MAIN_VIEW_INIT, function(mainView) {
+                    registerMainViewEvents(mainView);
+                });
+            }
+            else {
+                registerMainViewEvents(mainView);
+            }
+        }
+        else {
+            registerDiagramEvents(diagram);
+        }
     }
 
     function delayedHighlight(event, data, delay)

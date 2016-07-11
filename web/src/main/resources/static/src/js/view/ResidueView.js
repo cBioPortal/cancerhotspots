@@ -39,6 +39,8 @@
  */
 function ResidueView(options)
 {
+    var _dispatcher = {};
+
     var _defaultOpts = {
         // default target DOM element
         el: "#residue_content",
@@ -200,6 +202,7 @@ function ResidueView(options)
 
                 // init the mutation mapper
                 _mutationMapper = initMutationMapper(mutationData);
+                $(_dispatcher).trigger(EventUtils.MUTATION_MAPPER_INIT, _mutationMapper);
             }
         };
 
@@ -363,6 +366,7 @@ function ResidueView(options)
     this.render = render;
     this.highlightResidue = highlightResidue;
     this.unHighlightResidue = unHighlightResidue;
+    this.dispatcher = _dispatcher;
 
     this.getMutationMapper = function(){
         return _mutationMapper;

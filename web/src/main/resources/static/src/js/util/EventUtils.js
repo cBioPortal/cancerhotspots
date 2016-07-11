@@ -37,6 +37,7 @@
  */
 var EventUtils = (function(){
     return {
+        MUTATION_MAPPER_INIT: "mutationMapperInit",
         CLUSTER_RESIDUE_HIGHLIGHT: "clusterResidueHighlight",
         CLUSTER_RESIDUE_FILTER: "clusterResidueFilter",
         CLUSTER_RESIDUE_SELECT: "clusterResidueSelect",
