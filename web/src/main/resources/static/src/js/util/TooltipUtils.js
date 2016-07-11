@@ -25,11 +25,16 @@ var TooltipUtils = (function() {
                     data: tableData
                 };
 
-                var map = colData.composition || colData;
+                // only update table data in case no data provided within view options!
+                if (_.isEmpty(viewOpts) ||
+                    _.isEmpty(viewOpts.data))
+                {
+                    var map = colData.composition || colData;
 
-                _.each(_.pairs(map), function(pair) {
-                    tableData.push({type: pair[0], count: pair[1]});
-                });
+                    _.each(_.pairs(map), function(pair) {
+                        tableData.push({type: pair[0], count: pair[1]});
+                    });
+                }
 
                 var opts = jQuery.extend(true, {}, defaultViewOpts, viewOpts);
                 var tableView = new CompositionView(opts);
