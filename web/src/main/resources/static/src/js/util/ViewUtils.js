@@ -181,6 +181,15 @@ var ViewUtils = (function() {
         "*": {color: "#090303"}
     };
 
+    var _classification = {
+        "LL": "LL",
+        "LH": "LH",
+        "H": "H",
+        "Cluster-exclusive": "LL",
+        "Hotspot-linked": "LH",
+        "Hotspot": "H"
+    };
+
     function getDefaultTumorTypeColors()
     {
         var map = {};
@@ -260,11 +269,17 @@ var ViewUtils = (function() {
         }
     }
 
+    function getClassStyle(classification)
+    {
+        return _classification[classification];
+    }
+
     return {
         determineVisibility: determineVisibility,
         getTumorTypeNames: getTumorTypeNames,
         getDefaultTumorTypeColors: getDefaultTumorTypeColors,
-        getDefaultVariantColors: getDefaultVariantColors
+        getDefaultVariantColors: getDefaultVariantColors,
+        getClassStyle: getClassStyle
     };
 
 })();

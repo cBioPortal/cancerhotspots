@@ -56,7 +56,10 @@ function ResidueView(options)
             var colors = {
                 LH: "#09BCD3",
                 LL: "#DEBA24",
-                H: "#4CAE4E"
+                H: "#4CAE4E",
+                "Hotspot-linked": "#09BCD3",
+                "Cluster-exclusive": "#DEBA24",
+                "Hotspot": "#4CAE4E"
             };
 
             var mutation = _.first(pileup.mutations);

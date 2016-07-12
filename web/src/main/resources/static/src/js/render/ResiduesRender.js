@@ -70,7 +70,8 @@ function ResiduesRender(options)
                 var templateFn = _.template($("#" + _options.linkTemplateId).html());
                 var vars = {
                     gene: data.gene,
-                    style: residue.classification
+                    style: ViewUtils.getClassStyle(residue.classification) ||
+                           residue.classification || ""
                 };
 
                 var value;

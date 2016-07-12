@@ -37,11 +37,7 @@ function ResidueRender(options)
 {
     var _defaultOpts = {
         templateId: "residue_column",
-        style: {
-            "LL": "LL",
-            "LH": "LH",
-            "H": "H"
-        }
+        style: {}
     };
 
     // merge options with default options to use defaults for missing values
@@ -58,7 +54,9 @@ function ResidueRender(options)
             var classification = data.classification;
 
             var templateFn = _.template($("#" + _options.templateId).html());
-            var style = _options.style[classification] || classification || "";
+            var style = _options.style[classification] ||
+                        ViewUtils.getClassStyle(classification) ||
+                        classification || "";
 
             var vars = {residue: data.residue,
                 style: style,

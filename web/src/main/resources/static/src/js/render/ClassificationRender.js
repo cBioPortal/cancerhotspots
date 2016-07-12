@@ -41,11 +41,7 @@ function ClassificationRender(options)
             "LL": "L<sub>L</sub>",
             "LH": "L<sub>H</sub>"
         },
-        style: {
-            "LL": "LL",
-            "LH": "LH",
-            "H": "H"
-        }
+        style: {}
     };
 
     // merge options with default options to use defaults for missing values
@@ -62,7 +58,10 @@ function ClassificationRender(options)
 
         var templateFn = _.template($("#" + _options.templateId).html());
         var display = _options.displayValue[value] || value;
-        var style = _options.style[classification] || classification;
+        var style = _options.style[classification] ||
+                    ViewUtils.getClassStyle(classification) ||
+                    classification || "";
+
         return templateFn({display: display, style: style});
     }
 
