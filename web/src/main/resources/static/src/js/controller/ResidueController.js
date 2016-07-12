@@ -54,6 +54,7 @@ function ResidueController(residueView, dataManager)
         });
 
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_FILTER, function(event, data) {
+            dataManager.unSelectResidues();
             delayedFilter(event, data);
         });
 
