@@ -101,6 +101,7 @@ var MutationUtils = (function() {
             mutationSid: id,
             proteinChange: proteinChange,
             geneSymbol: mutation.hugoSymbol,
+            residue: mutation.residue,
             residueClass: residueClass
         };
     }

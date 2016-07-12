@@ -58,10 +58,14 @@ function ResidueController(residueView, dataManager)
         });
 
         $(dataManager.dispatcher).on(EventUtils.CLUSTER_RESIDUE_SELECT, function(event, data) {
+            // highlight the residues on the table
+            highlightTable(event, data);
+
             var diagram = mutationDiagram();
 
             if (diagram)
             {
+                // TODO select diagram lollipops that are not already selected?
                 if (diagram.isHighlighted()) {
                     diagram.clearHighlights();
                 }
@@ -94,15 +98,44 @@ function ResidueController(residueView, dataManager)
 
         function registerDiagramEvents(diagram)
         {
-            // TODO highlight table residues!
+            function selectHandler()
+            {
+                var residues = [];
+                var lollipops = diagram.getSelectedElements();
 
-            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_MOUSEOUT, function() {
+                _.each(lollipops, function(ele) {
+                    residues.push(ele.datum().mutations[0].get('residue'));
+                });
 
+                dataManager.unSelectResidues();
+
+                if (!_.isEmpty(residues)) {
+                    dataManager.selectResidues(residues);
+                }
+            }
+
+            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_MOUSEOUT, function(datum, index) {
+                var residue = datum.mutations[0].get('residue');
+
+                if (!dataManager.isSelectedResidue(residue)) {
+                    residueView.unHighlightResidue(residue);
+                }
             });
 
-            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_MOUSEOVER, function() {
+            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_MOUSEOVER, function(datum, index) {
+                var residue = datum.mutations[0].get('residue');
 
+                if (!dataManager.isSelectedResidue(residue)) {
+                    residueView.highlightResidue(residue);
+                }
             });
+
+            diagram.dispatcher.on(MutationDetailsEvents.ALL_LOLLIPOPS_DESELECTED, function() {
+                dataManager.unSelectResidues();
+            });
+
+            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_DESELECTED, selectHandler);
+            diagram.dispatcher.on(MutationDetailsEvents.LOLLIPOP_SELECTED, selectHandler);
         }
 
         function registerMainViewEvents(mainView)
@@ -200,8 +233,8 @@ function ResidueController(residueView, dataManager)
                 diagram.highlightMutation(defaultMutationSid(residue));
             });
 
-            // triggering this event will enable highlighting the 3D diagram as well...
-            diagram.dispatcher.trigger(MutationDetailsEvents.LOLLIPOP_SELECTED);
+            // highlight corresponding mutations on the 3D diagram as well
+            residueView.getMutationMapper().getController().get3dController().highlightSelected();
         }
     }
 

@@ -234,13 +234,26 @@ function ResidueView(options)
             {
                 $(span).addClass("highlighted");
             }
-        })
+        });
     }
 
     function unHighlightResidue(residue)
     {
-        // if residue is provided only remove that residue's highlight?
-        $(_options.el).find(".cluster-residue").removeClass("highlighted");
+        if (residue == null)
+        {
+            // remove highlights for all residues
+            $(_options.el).find(".cluster-residue").removeClass("highlighted");
+        }
+        else
+        {
+            // only remove the provided residue's highlight
+            _.each($(_options.el).find(".cluster-residue"), function(span) {
+                if($(span).text() === residue)
+                {
+                    $(span).removeClass("highlighted");
+                }
+            });
+        }
     }
 
 	/**

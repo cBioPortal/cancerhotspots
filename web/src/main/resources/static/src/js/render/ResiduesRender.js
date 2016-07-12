@@ -161,10 +161,21 @@ function ResiduesRender(options)
         });
 
         residueElem.on('click', function() {
-            // select the residue! TODO selection disabled for now
+            // toggle the residue selection!
             if (_options.dataManager)
             {
-                //_options.dataManager.selectResidues([$(this).text()]);
+                var residue = $(this).text();
+
+                if (_options.dataManager.isSelectedResidue(residue))
+                {
+                    // unselect residue if it is already selected
+                    _options.dataManager.unSelectResidues([residue]);
+                }
+                else
+                {
+                    // select residue if not selected yet
+                    _options.dataManager.selectResidues([residue]);
+                }
             }
         });
     }

@@ -206,8 +206,16 @@ function ClusterDataManager(options)
 
     function unSelectResidues(residues)
     {
-        // remove given residues from the list of selected residues
-        _state.selected = _.difference(_state.selected, residues);
+        if (residues == null)
+        {
+            // reset all highlights
+            _state.selected = [];
+        }
+        else
+        {
+            // remove given residues from the list of selected residues
+            _state.selected = _.difference(_state.selected, residues);
+        }
 
         // trigger a custom event
         $(_dispatcher).trigger(EventUtils.CLUSTER_RESIDUE_SELECT, _state);
@@ -219,6 +227,11 @@ function ClusterDataManager(options)
 
         // trigger a custom event
         $(_dispatcher).trigger(EventUtils.CLUSTER_PDB_SELECT, _state);
+    }
+
+    function isSelectedResidue(residue)
+    {
+        return _.contains(_state.selected, residue);
     }
 
     this.updateData = updateData;
@@ -233,5 +246,6 @@ function ClusterDataManager(options)
     this.selectResidues = selectResidues;
     this.unSelectResidues = unSelectResidues;
     this.selectPdbChain = selectPdbChain;
+    this.isSelectedResidue = isSelectedResidue;
     this.dispatcher = _dispatcher;
 }
