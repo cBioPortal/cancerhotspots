@@ -344,6 +344,7 @@
     <b>Gene:</b> <a class="gene-link" href="#/gene/{{gene}}">{{gene}}</a> <br>
     <b>Residue:</b> {{residue}} <br>
     <div class="mutation-mapper-container"></div>
+    <div class="class-legend-container"></div>
     <table id="residue_table"
            class="display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
@@ -352,9 +353,25 @@
 <script type="text/template" id="gene_view">
     <b>Gene:</b> {{gene}} <br>
     <div class="mutation-mapper-container"></div>
+    <div class="class-legend-container"></div>
     <table id="residue_table"
            class="display compact center-align table table-condensed table-striped table-hover"
            width="100%"></table>
+</script>
+
+<script type="text/template" id="class_legend">
+    <span class="class-legend-item">
+        <span class="class-legend-color class-legend-color-H"></span>
+        <span class="class-legend-H">Hotspot</span>
+    </span>
+    <span class="class-legend-item">
+        <span class="class-legend-color class-legend-color-LH"></span>
+        <span class="class-legend-LH">Hotspot-linked</span>
+    </span>
+    <span class="class-legend-item">
+        <span class="class-legend-color class-legend-color-LL"></span>
+        <span class="class-legend-LL">Cluster-exclusive</span>
+    </span>
 </script>
 
 <script type="text/template" id="no_text_wrap">

@@ -45,6 +45,7 @@ function ResidueView(options)
         // default target DOM element
         el: "#residue_content",
         templateId: "residue_view",
+        legendTemplateId: "class_legend",
         // no data manager by default, must be provided by the client
         dataManager: {},
         // delay amount before applying the user entered filter query
@@ -203,6 +204,9 @@ function ResidueView(options)
                 // init the mutation mapper
                 _mutationMapper = initMutationMapper(mutationData);
                 $(_dispatcher).trigger(EventUtils.MUTATION_MAPPER_INIT, _mutationMapper);
+
+                $(_options.el).find(".class-legend-container").html(
+                    _.template($("#" + _options.legendTemplateId).html())());
             }
         };
 
