@@ -257,7 +257,7 @@ function CancerHotspots(options)
                         logoStyle: "hotspot-fire hotspot-3d-fire"
                     },
                     home: {
-                        mutationInfo: "3D hotspots identified in 11,119 tumor samples across 41 tumor types"
+                        mutationInfo: "Mutations clustering in 3D protein structures identified in 11,119 tumor samples across 41 tumor types"
                     }
                 };
             }
