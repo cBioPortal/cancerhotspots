@@ -251,13 +251,15 @@ function CancerHotspots(options)
                 hotspotProxyOptions.serviceUrl = "api/hotspots/3d";
                 _options.content = {
                     app: {
-                        tagline: "A resource for statistically significant 3D hotspot mutations in cancer",
+                        tagline: "A resource for statistically significant mutations clustering " +
+                                 "in 3D protein structures in cancer",
                         title: "3D Hotspots",
                         downloadFile: "files/3d_hotspots.xls",
                         logoStyle: "hotspot-fire hotspot-3d-fire"
                     },
                     home: {
-                        mutationInfo: "Mutations clustering in 3D protein structures identified in 11,119 tumor samples across 41 tumor types"
+                        mutationInfo: "Mutations clustering in 3D protein structures identified " +
+                                      "in 11,119 tumor samples across 41 tumor types"
                     }
                 };
 
