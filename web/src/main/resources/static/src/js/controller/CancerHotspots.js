@@ -260,6 +260,9 @@ function CancerHotspots(options)
                         mutationInfo: "Mutations clustering in 3D protein structures identified in 11,119 tumor samples across 41 tumor types"
                     }
                 };
+
+                // update page title as well
+                document.title = "3D Hotspots";
             }
             else
             {
