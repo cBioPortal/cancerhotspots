@@ -269,6 +269,27 @@ var ViewUtils = (function() {
         }
     }
 
+    function determineDownload(columns, metadata)
+    {
+        var toDownload = [];
+
+        if (metadata && metadata.profile)
+        {
+            determineVisibility(columns, metadata);
+
+            _.each(columns, function(column) {
+                if (column.visible !== false) {
+                    toDownload.push(column);
+                }
+            });
+        }
+        else {
+            toDownload = columns;
+        }
+
+        return toDownload;
+    }
+
     function getClassStyle(classification)
     {
         return _classification[classification];
@@ -276,6 +297,7 @@ var ViewUtils = (function() {
 
     return {
         determineVisibility: determineVisibility,
+        determineDownload: determineDownload,
         getTumorTypeNames: getTumorTypeNames,
         getDefaultTumorTypeColors: getDefaultTumorTypeColors,
         getDefaultVariantColors: getDefaultVariantColors,

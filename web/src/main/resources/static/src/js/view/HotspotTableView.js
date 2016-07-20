@@ -190,27 +190,33 @@ function HotspotTableView(options)
                     // get the file data (formatted by 'fnCellRender' function)
                     //var content = this.fnGetTableData(oConfig);
                     var columns = [
-                        {title: "Gene",
+                        {id: "hugoSymbol",
+                            title: "Gene",
                             data: "hugoSymbol"},
-                        {title: "Residue",
+                        {id: "residue",
+                            title: "Residue",
                             data: "residue"},
-                        //{title: "Alt Common Codon Usage *",
-                        //    data: "altCommonCodonUsage"},
-                        {title: "Class",
+                        {id: "classification",
+                            title: "Class",
                             data: "classification"},
-                        {title: "Variants",
+                        {id: "variant",
+                            title: "Variants",
                             data: "variantAminoAcid"},
-                        {title: "Q-value",
+                        {id: "qValue",
+                            title: "Q-value",
                             data: "qValue"},
-                        {title: "P-value",
+                        {id: "pValue",
+                            title: "P-value",
                             data: _options.pValueData},
-                        {title: "Samples",
+                        {id: "sampleCount",
+                            title: "Samples",
                             data: "tumorCount"},
-                        {title: "Tumor Type Composition",
+                        {id: "tumorTypeComposition",
+                            title: "Tumor Type Composition",
                             data: "tumorTypeComposition"}
-                        //{title: "Validation Level [a]",
-                        //    data: "validationLevel"}
                     ];
+
+                    columns = ViewUtils.determineDownload(columns, _options.metadata);
 
                     var dataUtils = new DataUtils(columns);
                     var content = dataUtils.stringify(dt.rows({filter: 'applied'}).data());
