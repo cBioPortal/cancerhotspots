@@ -196,6 +196,8 @@ function HotspotTableView(options)
                             data: "residue"},
                         //{title: "Alt Common Codon Usage *",
                         //    data: "altCommonCodonUsage"},
+                        {title: "Class",
+                            data: "classification"},
                         {title: "Variants",
                             data: "variantAminoAcid"},
                         {title: "Q-value",
@@ -214,7 +216,7 @@ function HotspotTableView(options)
                     var content = dataUtils.stringify(dt.rows({filter: 'applied'}).data());
 
                     var downloadOpts = {
-                        filename: "cancer_hotspots.txt",
+                        filename: "hotspots.txt",
                         contentType: "text/plain;charset=utf-8",
                         preProcess: false
                     };
