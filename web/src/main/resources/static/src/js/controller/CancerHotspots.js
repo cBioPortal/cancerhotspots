@@ -299,6 +299,7 @@ function CancerHotspots(options)
             if (metadata.profile.toLowerCase() === "3d")
             {
                 $(_options.appContent).find(".about-nav").hide();
+                $(".footer .footer-about-link").hide();
             }
 
             // load home page content initially
