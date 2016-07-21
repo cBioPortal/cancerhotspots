@@ -16,17 +16,47 @@
 
     <profiles>
         <profile>
-            <id>war</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>releaseSingle</id>
             <properties>
+                <activatedProperties>single</activatedProperties>
                 <packaging.type>war</packaging.type>
             </properties>
         </profile>
         <profile>
-            <id>jar</id>
+            <id>devSingle</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
+                <activatedProperties>single</activatedProperties>
+                <packaging.type>jar</packaging.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>release3d</id>
+            <properties>
+                <activatedProperties>3d</activatedProperties>
+                <packaging.type>war</packaging.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev3d</id>
+            <properties>
+                <activatedProperties>3d</activatedProperties>
+                <packaging.type>jar</packaging.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>releaseInternal</id>
+            <properties>
+                <activatedProperties>internal</activatedProperties>
+                <packaging.type>war</packaging.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>devInternal</id>
+            <properties>
+                <activatedProperties>internal</activatedProperties>
                 <packaging.type>jar</packaging.type>
             </properties>
         </profile>
