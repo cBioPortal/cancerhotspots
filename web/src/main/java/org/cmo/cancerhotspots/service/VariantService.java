@@ -1,7 +1,6 @@
 package org.cmo.cancerhotspots.service;
 
-import org.cmo.cancerhotspots.domain.HotspotMutation;
-import org.cmo.cancerhotspots.domain.VariantComposition;
+import org.cmo.cancerhotspots.model.TumorTypeComposition;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  */
 public interface VariantService
 {
-    VariantComposition getVariantComposition(String aminoAcidChange);
-    VariantComposition getVariantComposition(String hugoSymbol, String aminoAcidChange);
-    List<VariantComposition> getAllVariantCompositions();
+    TumorTypeComposition getVariantComposition(String aminoAcidChange);
+    TumorTypeComposition getVariantComposition(String hugoSymbol, String aminoAcidChange);
+    List<TumorTypeComposition> getAllVariantCompositions();
 }

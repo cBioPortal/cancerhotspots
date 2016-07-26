@@ -38,11 +38,37 @@
  */
 function HotspotDataProxy(options)
 {
+    var _defaultOpts = {
+        serviceUrl: "api/hotspots/single",
+        listJoiner: ","
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
+
     function getAllHotspots(callback)
     {
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts("api/hotspots", {}, callback));
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, {}, callback));
+    }
+
+    function getHotspots(genes, callback)
+    {
+        var hugoSymbols = null;
+
+        if (_.isArray(genes)) {
+            hugoSymbols = genes.join(_options.listJoiner);
+        }
+        else if (_.isString(genes)) {
+            hugoSymbols = genes;
+        }
+
+        // retrieve data from the server
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl,
+                                   {hugoSymbols: hugoSymbols},
+                                   callback));
     }
 
     this.getAllHotspots = getAllHotspots;
+    this.getHotspots = getHotspots;
 }

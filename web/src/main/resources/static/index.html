@@ -8,6 +8,7 @@
     <link rel="icon" href="src/images/favicon.ico" type="image/x-icon"/>
 
     <!-- lib css -->
+    <link href="lib/css/jquery-ui.min.css" rel="stylesheet">
     <link href="lib/css/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.pagination.css" type="text/css" rel="stylesheet" />
@@ -16,9 +17,11 @@
     <link href="lib/css/dataTables.bootstrap.min.css" type="text/css" rel="stylesheet" />
     <!--link href="lib/css/dataTables.jqueryui.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" /-->
+    <link href="lib/css/spinner.css" rel="stylesheet">
     <link href="lib/css/font-awesome.min.css" rel="stylesheet">
     <link href="lib/css/icomoon.css" rel="stylesheet">
     <link href="lib/css/freelancer.css" rel="stylesheet">
+    <link href="lib/css/mutationMapper.min.css" rel="stylesheet">
 
     <!-- source css -->
     <link href="src/css/oncokb.css" type="text/css" rel="stylesheet"/>
@@ -26,6 +29,7 @@
 
     <!-- lib js -->
     <script type="text/javascript" src="lib/js/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/js/director.min.js"></script>
     <script type="text/javascript" src="lib/js/jquery-2.2.1.min.js"></script>
     <script type="text/javascript" src="lib/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="lib/js/dataTables.bootstrap.min.js"></script>
@@ -40,21 +44,55 @@
     <script type="text/javascript" src="lib/js/d3.min.js"></script>
     <script type="text/javascript" src="lib/js/cbio-util.js"></script>
     <script type="text/javascript" src="lib/js/download-util.js"></script>
-    <script type="text/javascript" src="lib/js/jquery.easing.1.3.min.js"></script>
+    <!--script type="text/javascript" src="lib/js/jquery.easing.1.3.min.js"></script-->
     <!--script type="text/javascript" src="lib/js/classie.js"></script>
     <script type="text/javascript" src="lib/js/cbpAnimatedHeader.min.js"></script-->
     <script type="text/javascript" src="lib/js/freelancer.js"></script>
     <script type="text/javascript" src="lib/js/FileSaver.min.js"></script>
 
+        <!-- MutationMapper & dependencies -->
+    <script type="text/javascript" src="lib/js/3Dmol-nojquery-min.js"></script>
+    <!--script type="text/javascript" src="lib/js/jquery-migrate.js"></script-->
+    <script type="text/javascript" src="lib/js/jquery.expander.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.tipTip.min.js"></script>
+    <script type="text/javascript" src="lib/js/ui.tabs.paging.js"></script>
+    <script type="text/javascript" src="lib/js/backbone-min.js"></script>
+    <script type="text/javascript" src="lib/js/mutationMapper.min.js"></script>
+
     <!-- src js -->
     <script type="text/javascript" src="src/js/data/HotspotDataProxy.js"></script>
     <script type="text/javascript" src="src/js/data/VariantDataProxy.js"></script>
+    <script type="text/javascript" src="src/js/data/ClusterDataProxy.js"></script>
+    <script type="text/javascript" src="src/js/data/MetadataProxy.js"></script>
     <script type="text/javascript" src="src/js/component/StackedBar.js"></script>
     <script type="text/javascript" src="src/js/view/HotspotTableView.js"></script>
     <script type="text/javascript" src="src/js/view/CompositionView.js"></script>
+    <script type="text/javascript" src="src/js/view/ResidueView.js"></script>
+    <script type="text/javascript" src="src/js/render/NoWrapRender.js"></script>
+    <script type="text/javascript" src="src/js/render/PValueRender.js"></script>
+    <script type="text/javascript" src="src/js/render/VariantRender.js"></script>
+    <script type="text/javascript" src="src/js/render/VariantTipRender.js"></script>
+    <script type="text/javascript" src="src/js/render/VariantTipCountRender.js"></script>
+    <script type="text/javascript" src="src/js/render/TumorCountRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ClustersRender.js"></script>
+    <script type="text/javascript" src="src/js/render/PdbChainsRender.js"></script>
+    <script type="text/javascript" src="src/js/render/PdbIdRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ResiduesRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ClassificationRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ResidueRender.js"></script>
+    <script type="text/javascript" src="src/js/render/GeneRender.js"></script>
+    <script type="text/javascript" src="src/js/render/ClusterRender.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ViewUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/TooltipUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/EventUtils.js"></script>
+    <script type="text/javascript" src="src/js/util/MutationUtils.js"></script>
+    <script type="text/javascript" src="src/js/controller/CancerHotspots.js"></script>
+    <script type="text/javascript" src="src/js/controller/ClusterDataManager.js"></script>
+    <script type="text/javascript" src="src/js/controller/ResidueController.js"></script>
     <script type="text/javascript" src="src/js/main.js"></script>
 
 
@@ -78,80 +116,125 @@
     </script>
 </head>
 <body id="page-top" class="index">
-<div class="wrapper">
-    <!-- Navigation -->
-    <div class="navbar navbar-inverse navbar-fixed-top page-scroll" role="navigation">
-        <div class="container nav-container">
-            <div class="navbar-header">
-                <div data-toggle="collapse" data-target=".navbar-collapse" class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <b>Menu</b>
+    <div id="app_content"></div>
+    <div id="mutation_mapper_templates"></div>
+</body>
+
+<!-- underscore templates -->
+<script type="text/template" id="main_page">
+    <div class="wrapper">
+        <!-- Navigation -->
+        <div id="navbar_container" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container nav-container">
+                <div class="navbar-header">
+                    <div data-toggle="collapse" data-target=".navbar-collapse" class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <b>Menu</b>
+                    </div>
+                    <a class="navbar-brand" href="#/home"><span class="{{logoStyle}}"></span>{{title}}</a>
                 </div>
-                <a class="navbar-brand" href="#page-top"><span class="hotspot-fire"></span>Cancer Hotspots</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="page-scroll">
-                        <a href="#home">Home</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#about">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <!--a href="#">Download</a-->
-                        <a href="files/hotspots.xls" target="_blank">Download</a>
-                    </li>
-                </ul>
-                <div class="pull-right">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="home-nav">
+                            <a href="#/home">Home</a>
+                        </li>
+                        <li class="about-nav">
+                            <a href="#/about">About</a>
+                        </li>
+                        <li class="download-nav">
+                            <!--a href="#">Download</a-->
+                            <a href="{{downloadFile}}" target="_blank">Download</a>
+                        </li>
+                    </ul>
+                    <div class="pull-right">
                         <span><a href="http://mskcc.org"><img class="mskcc-logo" src="lib/images/MSKLogo_fff.png"></a></span>
                         <!--span><a href="http://mskcc.org"><img class="mskcc-icon" src="lib/images/mskcc_icon.png"></a></span-->
+                    </div>
+                </div>
+            </div>
+            <div class="subNavWrapper">
+                <div class="container">
+                    <div class="subNav">
+                        <div class="pull-left subNav-sxn-1">
+                            {{tagline}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="subNavWrapper">
-            <div class="container">
-                <div class="subNav">
-                    <div class="pull-left subNav-sxn-1">
-                        A resource for statistically significant mutations in cancer
-                    </div>
-                </div>
+        <div id="page_content">
+            <div id="page_loader" class="spinner">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
             </div>
         </div>
     </div>
 
-
-    <!--header>
+    <div class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                        <span class="name">Cancer Hotspots</span>
-                        <hr class="star-light">
+            <div class="row footer-row-1">
+                <div class="">
+                    <a href="http://mskcc.org" class="">MSKCC <i class="fa fa-external-link"></i></a>
+                    <a href="https://www.mskcc.org/research-areas/programs-centers/molecular-oncology" class="">CMO <i class="fa fa-external-link"></i></a>
+                    <a href="http://cbioportal.org" class="">cBioPortal <i class="fa fa-external-link"></i></a>
+                </div>
+            </div>
+            <div class="row footer-row-2">
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                    <div>
+                        <a href="#about" class="footer-about-link">About</a>
+                        <a href="mailto:info@cancerhotspots.org" target="_top">Contact us</a>
                     </div>
+                    <div class="footer-license-info">
+                        <a href="http://opendatacommons.org/licenses/odbl/1.0/">ODC Open Database License (ODbL)
+                            <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 mskcc-footer-logo0-wrapper">
+                    <span><img src="lib/images/MSKLogo_fff.png" class="mskcc-footer-logo"></span>
+                </div>
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                    <span>© 2016 Memorial Sloan Kettering Cancer Center</span>
                 </div>
             </div>
         </div>
-    </header-->
+    </div>
+</script>
 
+<script type="text/template" id="home_page">
     <section id="home">
         <div class="container">
             <div class="row">
-                <p><span class="skills">
-                    Single residue mutation hotspots identified in 11,119 tumor samples
-                    by the algorithm described in
-                    [<span class="header-citation"><a
-                        href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
-                </span></p>
+                <p><span class="skills">{{mutationInfo}}</span></p>
             </div>
             <div id="main_content" class="default-plain-text"></div>
         </div>
     </section>
+</script>
 
+<script type="text/template" id="default_mutation_info">
+    Single residue mutation hotspots identified in 11,119 tumor samples by the algorithm described in
+    [<span class="header-citation"><a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
+</script>
+
+<script type="text/template" id="internal_mutation_info">
+    Single residue mutation hotspots identified in 24,295 tumor samples by an adaptation of the algorithm described in
+    [<span class="header-citation"><a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
+    <div class="panel panel-warning internal-note">
+        This analysis incorporates unpublished prospective sequencing data from
+        MSK-IMPACT and is therefore ​<b>internal</b>​ use only at this time
+    </div>
+</script>
+
+<script type="text/template" id="about_page">
     <section class="stressed" id="about">
         <div class="container">
             <div class="row">
@@ -190,29 +273,29 @@
                 <div class="col-md-3 col-md-offset-3">
                     <table class="center-align about-lab-table">
                         <thead>
-                            <tr><th>Taylor Lab</th></tr>
+                        <tr><th>Taylor Lab</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>Matthew Chang</td></tr>
-                            <tr><td>Barry Taylor</td></tr>
+                        <tr><td>Matthew Chang</td></tr>
+                        <tr><td>Barry Taylor</td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="col-md-3">
                     <table class="center-align about-lab-table">
                         <thead>
-                            <tr><th>Schultz Lab</th></tr>
+                        <tr><th>Schultz Lab</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>Jianjiong Gao</td></tr>
-                            <tr><td>Selcuk Onur Sumer</td></tr>
-                            <tr><td>Hongxin Zhang</td></tr>
-                            <tr><td>Nikolaus Schultz</td></tr>
+                        <tr><td>Jianjiong Gao</td></tr>
+                        <tr><td>Selcuk Onur Sumer</td></tr>
+                        <tr><td>Hongxin Zhang</td></tr>
+                        <tr><td>Nikolaus Schultz</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div class="row funding">
                 <div class="col-md-12">
                     Funding for cancerhotspots.org is provided by the
                     <a href="https://www.mskcc.org/research-areas/programs-centers/molecular-oncology">Marie-Josée and Henry R. Kravis Center for Molecular Oncology
@@ -220,6 +303,19 @@
                     and by the
                     <a href="http://www.robertsonfoundation.org/">Robertson Foundation
                         <i class="fa fa-external-link"></i></a>
+                </div>
+            </div>
+            <div class="row data-license">
+                <div class="col-md-12">
+                    The data are available under the
+                    <a href="http://opendatacommons.org/licenses/odbl/1.0/">ODC Open Database License (ODbL)
+                        <i class="fa fa-external-link"></i></a>
+                    (summary available <a href="http://www.opendatacommons.org/licenses/odbl/1-0/summary/">here
+                        <i class="fa fa-external-link"></i></a>):
+                    you are free to share and modify the data so long as you attribute
+                    any public use of the database, or works produced from the database;
+                    keep the resulting data-sets open; and offer your shared or adapted version of
+                    the data-set under the same ODbL license.
                 </div>
             </div>
             <!--div class="row">
@@ -241,82 +337,16 @@
             </div-->
         </div>
     </section>
-</div>
+</script>
 
-<div class="footer">
-    <div class="container">
-        <div class="row footer-row-1">
-            <div class="">
-                <a href="http://mskcc.org" class="">MSKCC <i class="fa fa-external-link"></i></a>
-                <a href="https://www.mskcc.org/research-areas/programs-centers/molecular-oncology" class="">CMO <i class="fa fa-external-link"></i></a>
-                <a href="http://cbioportal.org" class="">cBioPortal <i class="fa fa-external-link"></i></a>
-            </div>
+<script type="text/template" id="residue_page">
+    <section id="residue">
+        <div class="container">
+            <div id="residue_content" class="default-plain-text"></div>
         </div>
-        <div class="row footer-row-2">
-            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-                <div class="">
-                    <a href="#about" class="">About</a>
-                    <a href="mailto:info@cancerhotspots.org" target="_top">Contact us</a>
-                </div>
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 mskcc-footer-logo0-wrapper">
-                <span><img src="lib/images/MSKLogo_fff.png" class="mskcc-footer-logo"></span>
-            </div>
-            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
-                <span>© 2016 Memorial Sloan Kettering Cancer Center</span>
-            </div>
-        </div>
-    </div>
-</div>
+    </section>
+</script>
 
-<!--<footer class="text-center">-->
-<!--div class="footer-above">
-    <div class="container">
-        <div class="row">
-            <div class="footer-col col-md-4">
-                <h3>Location</h3>
-                <p>...<br>...</p>
-            </div>
-            <div class="footer-col col-md-4">
-                <h3>Around the Web</h3>
-                <ul class="list-inline">
-                    <li>
-                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-col col-md-4">
-                <h3>About Cancer Hotspots</h3>
-                <p>...</p>
-            </div>
-        </div>
-    </div>
-</div-->
-<!--<div class="footer-below">-->
-<!--<div class="container">-->
-<!--<div class="row">-->
-<!--<div class="col-lg-12">-->
-<!--Copyright &copy; CancerHotspots.org 2016-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</footer>-->
-</body>
-
-<!-- underscore templates -->
 <script type="text/template" id="main_view">
     <table id="hotspots_table"
            class="display compact center-align table table-condensed table-striped table-hover"
@@ -327,12 +357,97 @@
     </div-->
 </script>
 
+<script type="text/template" id="residue_view">
+    <b>Gene:</b> <a class="gene-link" href="#/gene/{{gene}}">{{gene}}</a> <br>
+    <b>Residue:</b> {{residue}} <br>
+    <div class="mutation-mapper-container"></div>
+    <div class="class-legend-container"></div>
+    <table id="residue_table"
+           class="display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
+</script>
+
+<script type="text/template" id="gene_view">
+    <b>Gene:</b> {{gene}} <br>
+    <div class="mutation-mapper-container"></div>
+    <div class="class-legend-container"></div>
+    <table id="residue_table"
+           class="display compact center-align table table-condensed table-striped table-hover"
+           width="100%"></table>
+</script>
+
+<script type="text/template" id="class_legend">
+    <span class="class-legend-item">
+        <span class="class-legend-color class-legend-color-H"></span>
+        <span class="class-legend-H">Hotspot</span>
+    </span>
+    <span class="class-legend-item">
+        <span class="class-legend-color class-legend-color-LH"></span>
+        <span class="class-legend-LH">Hotspot-linked</span>
+    </span>
+    <span class="class-legend-item">
+        <span class="class-legend-color class-legend-color-LL"></span>
+        <span class="class-legend-LL">Cluster-exclusive</span>
+    </span>
+</script>
+
 <script type="text/template" id="no_text_wrap">
     <span class="no-text-wrap">{{text}}</span>
 </script>
 
 <script type="text/template" id="samples_column">
     <span class="qtipped-text">{{tumorCount}}</span>
+</script>
+
+<script type="text/template" id="span_class">
+    <span class="{{style}}">{{display}}</span>
+</script>
+
+<script type="text/template" id="residue_column">
+    <a class="residue-link" href="#/residue/{{hugoSymbol}}/{{residue}}"><span class="{{style}}">{{residue}}</span></a>
+</script>
+
+<script type="text/template" id="residue_column_single">
+    <span class="{{style}}">{{residue}}</span>
+</script>
+
+<script type="text/template" id="gene_column">
+    <a class="gene-link" href="#/gene/{{hugoSymbol}}">{{hugoSymbol}}</a>
+</script>
+
+<script type="text/template" id="gene_column_single">
+    <span>{{hugoSymbol}}</span>
+</script>
+
+<script type="text/template" id="clusters_column">
+    <a class="residue-link" href="#/residue/{{hugoSymbol}}/{{residue}}">{{clusterCount}}</a>
+</script>
+
+<script type="text/template" id="cluster_column">
+    <div class="checkbox left-align">
+        <label><input type="checkbox" value="{{clusterId}}"> #{{clusterId}}</label>
+    </div>
+</script>
+
+<script type="text/template" id="pdb_chains_column">
+    <span class="qtipped-text left-align">{{pdbChains}}</span>
+</script>
+
+<script type="text/template" id="pdb_id_column">
+    <a class="tooltip-pdb-link"><span class="cluster-pdb">{{pdbId}}</span></a>
+</script>
+
+<script type="text/template" id="cluster_pdb_link">
+    <a class="cluster-pdb-link"><span class="cluster-pdb">{{pdbChain}}</span></a>
+</script>
+
+<script type="text/template" id="residues_column">
+    <span class="qtipped-text left-align">{{residues}}</span>
+</script>
+
+<!-- <a class="cluster-residue-link" href="#/residue/{{gene}}/{{residue}}">...</a> -->
+<script type="text/template" id="cluster_residue_link">
+    <span class="cluster-residue {{style}}">{{residue}}</span>
 </script>
 
 <script type="text/template" id="basic_content">
@@ -380,10 +495,26 @@
     <span class="table-custom-title">Single Residue Hotspot Mutations</span>
 </script>
 
-<script type="text/template" id="table_hover_info">
-    <div class="table-hover-info">
+<script type="text/template" id="hotspot_table_title">
+    <div class="data-table-title">
         <sup><b>&#8224;</b></sup>
-        Mouse over <b>Variant Amino Acid</b> and <b>Sample Count</b> values for more information
+        Mouse over <b>Variants</b> and <b>Samples</b> values for more information
+    </div>
+</script>
+
+<script type="text/template" id="residue_table_title">
+    <div class="data-table-title">
+        Clusters which contain residue <b>{{residue}}</b>
+    </div>
+</script>
+
+<script type="text/template" id="custom_mutation_details_template">
+    <div class='mutation-3d-container'></div>
+    <div class='mutation-details-loader'>
+        <img src='{{loaderImage}}'/>
+    </div>
+    <div class='mutation-details-content'>
+        {{mainContent}}
     </div>
 </script>
 

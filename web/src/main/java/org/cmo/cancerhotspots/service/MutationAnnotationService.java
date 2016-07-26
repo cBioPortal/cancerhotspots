@@ -1,6 +1,6 @@
 package org.cmo.cancerhotspots.service;
 
-import org.cmo.cancerhotspots.domain.MutationAnnotation;
+import org.cmo.cancerhotspots.model.MutationAnnotation;
 
 import java.util.List;
 

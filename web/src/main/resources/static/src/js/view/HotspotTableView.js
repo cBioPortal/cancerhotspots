@@ -39,65 +39,43 @@
  */
 function HotspotTableView(options)
 {
-    function defaultTooltipOpts()
-    {
-        return {
-            content: {text: 'NA'},
-            show: {event: 'mouseover'},
-            hide: {fixed: true, delay: 100, event: 'mouseout'},
-            style: {classes: 'cancer-hotspots-tooltip qtip-shadow qtip-light qtip-rounded'},
-            position: {my:'top left', at:'bottom right', viewport: $(window)}
-        };
-    }
-
-    function tooltipOpts(colData, viewOpts)
-    {
-        var tooltipOpts = defaultTooltipOpts();
-
-        // this will overwrite the default content
-        tooltipOpts.events = {
-            render: function(event, api) {
-                var tableData = [];
-
-                var defaultViewOpts = {
-                    el: $(this).find('.qtip-content'),
-                    colData: colData,
-                    data: tableData
-                };
-
-                var map = colData.composition || colData;
-
-                _.each(_.pairs(map), function(pair) {
-                    tableData.push({type: pair[0], count: pair[1]});
-                });
-
-                var opts = jQuery.extend(true, {}, defaultViewOpts, viewOpts);
-                var tableView = new CompositionView(opts);
-
-                tableView.render();
-
-                // this is a workaround for the misaligned table headers
-                // due to the scroll bar feature
-                setTimeout(function() {
-                    tableView.getDataTable().columns.adjust();
-                }, 0);
-            }
-        };
-
-        return tooltipOpts;
-    }
-
     var _defaultOpts = {
         // default target DOM element
         el: "#hotspots_table",
+        metadata: false,
         // no data by default, must be provided by the client
         data: {},
         // delay amount before applying the user entered filter query
         filteringDelay: 500,
+        // threshold for pValue, any value below this will be shown as >threshold
+        pValueThreshold: 0.0001,
         variantColors: ViewUtils.getDefaultVariantColors(),
         tumorColors: ViewUtils.getDefaultTumorTypeColors(),
         tooltipStackHeight: 14,
         tooltipStackRange: [4, 150],
+        paging: true,
+        pageLength: 20,
+        lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+        //scrollY: "500px",
+        //scrollCollapse: true,
+        scrollY: false,
+        scrollCollapse: false,
+        renderer: {
+            noWrap: {},
+            variant: {
+                variantColors: ViewUtils.getDefaultVariantColors(),
+                tumorColors: ViewUtils.getDefaultTumorTypeColors(),
+                tooltipStackHeight: 14,
+                tooltipStackRange: [4, 150]
+            },
+            pValue: {
+                threshold: 0.0001
+            },
+            tumorCount: {},
+            classification: {},
+            gene: {},
+            residue: {}
+        },
         // default rendering function for map data structure
         mapRender: function(data) {
             var view = [];
@@ -109,16 +87,6 @@ function HotspotTableView(options)
 
             return view.join("<br>");
         },
-        // default rendering function for no-wrap text
-        noWrapRender: function(data) {
-            var templateFn = _.template($("#no_text_wrap").html());
-            return templateFn({text: data});
-        },
-        // default rendering function for tip enabled text
-        sampleRender: function(data) {
-            var templateFn = _.template($("#samples_column").html());
-            return templateFn(data);
-        },
         sampleData: function(row) {
             return {
                 tumorCount: row["tumorCount"],
@@ -126,114 +94,39 @@ function HotspotTableView(options)
                 composition: row["tumorTypeComposition"]
             };
         },
-        variantRender: function(data) {
-            var templateFn = _.template($("#basic_content").html());
-            return templateFn({value: _.size(data)});
-        },
-        variantTipRender: function(data)
-        {
-            if (_options.variantColors[data.toString().trim().toUpperCase()] != null)
-            {
-                var templateFn = _.template($("#variant_cell").html());
-                return templateFn({value: data});
-            }
-            else
-            {
-                return data;
-            }
-        },
-        variantTipPostRender: function(td, cellData, rowData, row, col) {
-            var bgColor = _options.variantColors[cellData.toString().trim().toUpperCase()];
-
-            if (bgColor != null)
-            {
-                $(td).find(".variant-cell").css({"background-color": bgColor});
-            }
-        },
-        variantTipCountRender: function(data)
-        {
-            var templateFn = _.template($("#variant_count_cell").html());
-            return templateFn({value: data.count});
-        },
-        variantTipCountPostRender: function(td, cellData, rowData, row, col) {
-            var proxy = new VariantDataProxy();
-            var gene = cellData.hugoSymbol;
-            var aaChange = cellData.codon + rowData.type;
-            var helper = cellData.variantHelper;
-
-            proxy.getTumorTypeComposition(gene, aaChange, function(compositionData) {
-                var target = $(td).find(".variant-tumor-type-composition");
-                target.empty();
-
-                if (compositionData.length > 0)
-                {
-                    var stackedBar = new StackedBar({
-                        el: target,
-                        elWidth: helper.scaleFn(rowData.count),
-                        elHeight: _options.tooltipStackHeight,
-                        disableText: true,
-                        // assign a fixed color for each tumor type
-                        colors: _options.tumorColors
-                    });
-
-                    var tumorTypeComposition = compositionData[0]["tumorTypeComposition"];
-
-                    var tooltipData = {
-                        tumorCount: rowData.count,
-                        tumorTypeCount: _.size(tumorTypeComposition),
-                        composition: tumorTypeComposition
-                    };
-
-                    stackedBar.init(tumorTypeComposition);
-
-                    cbio.util.addTargetedQTip($(td).find(".variant-count-cell-content"),
-                                              tooltipOpts(tooltipData));
-                }
-            });
-
-            //$(td).find(".variant-tumor-type-composition-cell").css({"background-color": bgColor});
-        },
-        variantPostRender: function(td, cellData, rowData, row, col) {
-            var target = $(td).find(".basic-content");
-            target.empty();
-
-            var stackedBar = new StackedBar({
-                el: target,
-                // assign a fixed color for each amino acid value
-                colors: _options.variantColors
-            });
-
-            stackedBar.init(cellData);
-
-            var viewOpts = {
-                templateId: '#variant_composition',
-                dataTableTarget: ".variant-composition",
-                dom: "t",
-                columns: [
-                    {title: "Variant",
-                        data: "type",
-                        render: _options.variantTipRender,
-                        createdCell: _options.variantTipPostRender},
-                    {title: "Count",
-                        data: function(data) {
-                            return {
-                                count: data.count,
-                                hugoSymbol: rowData.hugoSymbol,
-                                codon: rowData.codon,
-                                variantHelper: variantHelper(cellData)
-                            }
-                        },
-                        render: _options.variantTipCountRender,
-                        createdCell: _options.variantTipCountPostRender}
-                ]
+        clusterData: function(row) {
+            return {
+                clusterCount: row["clusterCount"],
+                hugoSymbol: row["hugoSymbol"],
+                residue: row["residue"]
             };
-
-            cbio.util.addTargetedQTip(target.find('svg'),
-                                      tooltipOpts(cellData, viewOpts));
         },
-        tumorTypePostRender: function (td, cellData, rowData, row, col) {
-            cbio.util.addTargetedQTip($(td).find(".qtipped-text"),
-                                      tooltipOpts(cellData));
+        residueData: function(row) {
+            return {
+                hugoSymbol: row["hugoSymbol"],
+                residue: row["residue"],
+                classification: row["classification"]
+            };
+        },
+        pValueData: function(row) {
+            var data = row["pValue"];
+
+            // if no pValue field exists then extract it from the clusters
+            if (data == null)
+            {
+                var map = {};
+
+                var clusters = row["clusters"];
+                var pValues = _.map(clusters, function(cluster) {
+                    var pValue = parseFloat(cluster.pValue);
+                    map[pValue] = cluster.pValue;
+                    return pValue;
+                });
+
+                data = map[_.min(pValues)];
+            }
+
+            return data;
         }
     };
 
@@ -255,19 +148,41 @@ function HotspotTableView(options)
 
     function render()
     {
+        // TODO allow customization of renderer instances
+        var noWrapRender = new NoWrapRender(_options.renderer.noWrap);
+        var pValueRender = new PValueRender(_options.renderer.pValue);
+        var variantRender = new VariantRender(_options.renderer.variant);
+        var tumorCountRender = new TumorCountRender(_options.renderer.tumorCount);
+        var classRender = new ClassificationRender(_options.renderer.classification);
+        var residueRender = new ResidueRender(_options.renderer.residue);
+        var geneRender = new GeneRender(_options.renderer.gene);
+
+        //var clustersRender = new ClustersRender({
+        //    pValueThreshold: _options.pValueThreshold
+        //});
+
         var dataTableOpts = {
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
             //dom: "<'row'<'col-sm-2'B><'col-sm-6 center-align'i><'col-sm-4'f>>t",
             dom: "<'row'<'col-sm-8 hotspot-table-title'><'col-sm-4'f>>t" +
-                 "<'row'<'col-sm-8'i><'col-sm-4 right-align table-button-group'B>>",
-            paging: false,
-            scrollY: "500px",
-            scrollCollapse: true,
+                 "<'row'<'col-sm-6'i><'col-sm-6 right-align'p>>" +
+                 "<'row'<'col-sm-6'l><'col-sm-6 right-align table-button-group'B>>",
+            paging: _options.paging,
+            pageLength: _options.pageLength,
+            lengthMenu: _options.lengthMenu,
+            deferRender: true,
+            scrollY: _options.scrollY,
+            scrollCollapse: _options.scrollCollapse,
             language: {
-                loadingRecords: '<img src="lib/images/loader.gif"> Loading...'
+                loadingRecords: '<img src="lib/images/loader.gif"> Loading...',
+                lengthMenu: "Show _MENU_ mutations per page",
+                info: "Showing _START_ to _END_ of _TOTAL_ mutations",
+                infoFiltered: "(filtered from _MAX_ total mutations)"
             },
-            order: [[3 , "asc" ], [4, "desc"]],
+            //order: [[4 , "asc" ], [5, "asc"], [6, "desc"]],
+            // do not sort the table by default, use the initial ordering
+            order: [],
             buttons: [{
                 text: "Download",
                 className: "btn-sm",
@@ -275,57 +190,89 @@ function HotspotTableView(options)
                     // get the file data (formatted by 'fnCellRender' function)
                     //var content = this.fnGetTableData(oConfig);
                     var columns = [
-                        {title: "Hugo Symbol",
+                        {id: "hugoSymbol",
+                            title: "Gene",
                             data: "hugoSymbol"},
-                        {title: "Codon",
-                            data: "codon"},
-                        //{title: "Alt Common Codon Usage *",
-                        //    data: "altCommonCodonUsage"},
-                        {title: "Variant Amino Acid",
+                        {id: "residue",
+                            title: "Residue",
+                            data: "residue"},
+                        {id: "classification",
+                            title: "Class",
+                            data: "classification"},
+                        {id: "variant",
+                            title: "Variants",
                             data: "variantAminoAcid"},
-                        {title: "Q-value",
+                        {id: "qValue",
+                            title: "Q-value",
                             data: "qValue"},
-                        {title: "Sample Count",
+                        {id: "pValue",
+                            title: "P-value",
+                            data: _options.pValueData},
+                        {id: "sampleCount",
+                            title: "Samples",
                             data: "tumorCount"},
-                        {title: "Tumor Type Composition",
+                        {id: "tumorTypeComposition",
+                            title: "Tumor Type Composition",
                             data: "tumorTypeComposition"}
-                        //{title: "Validation Level [a]",
-                        //    data: "validationLevel"}
                     ];
+
+                    columns = ViewUtils.determineDownload(columns, _options.metadata);
 
                     var dataUtils = new DataUtils(columns);
                     var content = dataUtils.stringify(dt.rows({filter: 'applied'}).data());
 
                     var downloadOpts = {
-                        filename: "cancer_hotspots.txt",
+                        filename: "hotspots.txt",
                         contentType: "text/plain;charset=utf-8",
                         preProcess: false
                     };
 
                     // send download request with filename & file content info
                     cbio.download.initDownload(content, downloadOpts);
-
                 }
             }],
             columns: [
-                {title: "Hugo Symbol",
-                    data: "hugoSymbol"},
-                {title: "Codon",
-                    data: "codon"},
-                //{title: "Alt Common Codon Usage *",
+                {id: "hugoSymbol",
+                    title: "Gene",
+                    data: "hugoSymbol",
+                    render: geneRender.render},
+                {id: "residue",
+                    title: "Residue",
+                    type: "num",
+                    data: _options.residueData,
+                    render: residueRender.render},
+                //{id: "altCodon",
+                //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
-                {title: "Variant Amino Acid <sup>&#8224;</sup>",
+                //{id: "clusters",
+                //    title: "3D Clusters",
+                //    data: _options.clusterData,
+                //    render: clustersRender.render},
+                {id: "classification",
+                    title: "Class",
+                    data: "classification",
+                    render: classRender.render},
+                {id: "variant",
+                    title: "Variants <sup>&#8224;</sup>",
                     data: "variantAminoAcid",
-                    render: _options.variantRender,
-                    createdCell: _options.variantPostRender},
-                {title: _options.noWrapRender("Q-value"),
+                    type: "num",
+                    render: variantRender.render,
+                    createdCell: variantRender.postRender},
+                {id: "qValue",
+                    title: noWrapRender.render("Q-value"),
                     data: "qValue",
-                    render: _options.noWrapRender},
-                {title: "Sample Count <sup>&#8224;</sup>",
+                    render: noWrapRender.render},
+                {id: "pValue",
+                    title: noWrapRender.render("P-value"),
+                    data: _options.pValueData,
+                    render: pValueRender.render},
+                {id: "sampleCount",
+                    title: "Samples <sup>&#8224;</sup>",
                     data: _options.sampleData,
-                    render: _options.sampleRender,
-                    createdCell: _options.tumorTypePostRender}
-                //{title: "Validation Level [a]",
+                    render: tumorCountRender.render,
+                    createdCell: tumorCountRender.postRender}
+                //{id: "validationLevel"
+                //    title: "Validation Level [a]",
                 //    data: "validationLevel"}
             ],
             initComplete: function(settings) {
@@ -354,6 +301,8 @@ function HotspotTableView(options)
             }
         };
 
+        ViewUtils.determineVisibility(dataTableOpts.columns, _options.metadata);
+
         if (_.isFunction(_options.ajax))
         {
             dataTableOpts.ajax = _options.ajax;
@@ -369,7 +318,7 @@ function HotspotTableView(options)
         //    _.template($("#single_residue_title").html())({}));
 
         $("div.hotspot-table-title").html(
-            _.template($("#table_hover_info").html())({}));
+            _.template($("#hotspot_table_title").html())({}));
     }
 
     this.render = render;

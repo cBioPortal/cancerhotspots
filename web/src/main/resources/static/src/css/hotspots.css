@@ -54,7 +54,11 @@
     font-size: 1.25em;
     font-family: icomoon;
     content: "\e666";
-    color: #FF9900
+    color: #FF9900;
+}
+
+.hotspot-3d-fire:after {
+    content: "\e667";
 }
 
 .navbar-header {
@@ -107,8 +111,13 @@ body {
     max-width: 300px;
 }
 
-.table-hover-info {
+.data-table-title {
     margin-top: 10px;
+}
+
+.internal-note {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .variant-cell {
@@ -148,6 +157,10 @@ body {
     padding-bottom: 16px;
 }
 
+.funding {
+    padding-bottom: 10px;
+}
+
 table.about-lab-table {
     margin-bottom: 16px;
 }
@@ -156,6 +169,10 @@ table.about-lab-table {
     padding-top: 8px;
     font-weight: bold;
     font-size: larger;
+}
+
+.residue-link {
+    cursor: pointer;
 }
 
 .table-button-group {
@@ -169,6 +186,71 @@ table.about-lab-table {
 .footer .footer-row-2 {
     line-height: 20px;
     padding-top: 10px;
+}
+
+#residue_table {
+    font-size: 95%;
+}
+
+div#residue_table_wrapper {
+    width: 740px;
+}
+
+span.cluster-pdb {
+    cursor: pointer;
+}
+
+a.tooltip-pdb-link {
+    color: #2c3e50;
+}
+
+span.highlighted {
+    background-color: #0d0707;
+}
+
+span.cluster-residue {
+    cursor: pointer;
+    /*color: #FFF;*/
+    /*padding-left: 4px;*/
+    /*padding-right: 4px;*/
+}
+
+span.LH {
+    color: #09BCD3;
+}
+
+span.LL {
+    color: #DEBA24;
+}
+
+span.H {
+    color: #4CAE4E;
+}
+
+.class-legend-item {
+    margin-right: 10px;
+}
+
+.class-legend-color {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+
+.class-legend-container {
+    margin-left: 45px;
+}
+
+span.class-legend-color-LH {
+    background-color: #09BCD3;
+}
+
+span.class-legend-color-LL {
+    background-color: #DEBA24;
+}
+
+span.class-legend-color-H {
+    background-color: #4CAE4E;
 }
 
 /* This is to center paging buttons */
@@ -218,4 +300,29 @@ header hr.star-light:after {
 }
 section {
     padding: 40px 10px;
+}
+
+/* MutationMapper customization & tweaks */
+.mutation-3d-container {
+    top: 120px;
+}
+
+.mutation-details-uniprot-link,
+.diagram-to-pdf,
+.diagram-help,
+.mutation-3d-vis {
+    display: none;
+}
+
+    /* this is gonna make the filter info area practically hidden */
+.mutation-details-filter-info {
+    display: none !important;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.mutation-pdb-panel-container {
+    height: 11px;
 }

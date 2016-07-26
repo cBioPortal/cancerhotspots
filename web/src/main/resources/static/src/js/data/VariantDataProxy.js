@@ -31,24 +31,29 @@
  */
 
 /**
- * Designed to retrieve hotspots data from server.
+ * Designed to retrieve variant data from server.
  *
  * @param options   proxy options
  * @author Selcuk Onur Sumer
  */
 function VariantDataProxy(options)
 {
+    var _defaultOpts = {
+        serviceUrl: "api/variants"
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
+
     function getTumorTypeComposition(hugoSymbol, aminoAcidChange, callback)
     {
-        var url = "api/variants";
-
         var data = {
             hugoSymbol: hugoSymbol,
             aminoAcidChanges: aminoAcidChange
         };
 
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(url, data, callback));
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, data, callback));
     }
 
     this.getTumorTypeComposition = getTumorTypeComposition;

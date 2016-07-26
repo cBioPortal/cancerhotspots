@@ -86,12 +86,7 @@ function CompositionView(options)
             },
             {title: "Count",
                 data: "count"}
-        ],
-        // default rendering function for map data structure
-        noWrapRender: function(data) {
-            var templateFn = _.template($('#no_text_wrap').html());
-            return templateFn({text: data});
-        }
+        ]
     };
 
     // merge options with default options to use defaults for missing values
