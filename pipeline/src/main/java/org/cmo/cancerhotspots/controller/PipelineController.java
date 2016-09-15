@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author Selcuk Onur Sumer
  */
-//@RestController // shorthand for @Controller, @ResponseBody
-@RequestMapping(value = "/admin")
-public class AdminController
+@RestController // shorthand for @Controller, @ResponseBody
+@RequestMapping(value = "/pipeline")
+public class PipelineController
 {
     private final MutationRepository mutationRepository;
     private final DataImportService dataImportService;
 
     @Autowired
-    public AdminController(MutationRepository mutationRepository,
+    public PipelineController(MutationRepository mutationRepository,
         DataImportService dataImportService)
     {
         this.mutationRepository = mutationRepository;

@@ -15,6 +15,7 @@
         <module>persistence</module>
         <module>service</module>
         <module>util</module>
+        <module>pipeline</module>
     </modules>
 
     <!-- inherit defaults from spring boot -->
