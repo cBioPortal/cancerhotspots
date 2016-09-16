@@ -16,16 +16,16 @@ import java.util.Map;
 public class Cluster
 {
     @Trim
-    @Parsed(field = "Cluster ID")
+    @Parsed(field = "Cluster_ID")
     private String clusterId;
 
     @Trim
-    @Parsed(field = "Hugo Symbol")
+    @Parsed(field = "Hugo_Symbol")
     private String hugoSymbol;
 
     @Trim
     @Convert(conversionClass = ChainMapConversion.class)
-    @Parsed(field = "PDB Chains")
+    @Parsed(field = "PDB_Chains")
     private Map<String, Double> pdbChains;
 
     @Trim

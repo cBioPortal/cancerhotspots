@@ -1,4 +1,4 @@
-Hugo Symbol	Residue	Cluster	PDB chains	Class	Variant Amino Acid	Q-value	P-value	Tumor Count	Tumor Type Count	Tumor Type Composition
+Hugo_Symbol	Residue	Cluster	PDB_chains	Class	Variant_Amino_Acid	Q-value	P-value	Tumor_Count	Tumor_Type_Count	Tumor_Type_Composition
 PTEN	A34	1	1d5r_A(0.0)	Hotspot-linked	V:1		0	1	1	ucec:1
 PTEN	M35	1	1d5r_A(0.0)	Hotspot-linked	I:1		0	1	1	luad:1
 PTEN	L70	1	1d5r_A(0.0)	Hotspot-linked	H:1		0	1	1	gbm:1

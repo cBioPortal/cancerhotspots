@@ -1,4 +1,4 @@
-Hugo Symbol	Residue	Alt Common Codon Usage *	Variant Amino Acid	Q-value	Tumor Count	Tumor Type Count	Validation Level [a]	Tumor Type Composition
+Hugo_Symbol	Residue	Alt_Common_Codon_Usage_*	Variant_Amino_Acid	Q-value	Tumor_Count	Tumor_Type_Count	Validation_Level_[a]	Tumor_Type_Composition
 BRAF	V600	NA	E:520|K:33|R:4|V:1	0	558	10	Level-3	skcm:252|thca:237|coadread:44|luad:9|gbm:6|mmyl:5|hgg:2|lgg:1|kirp:1|hnsc:1
 KRAS	G12	NA	D:255|V:227|C:115|R:71|A:43|S:23|G:1|F:1	0	736	21	Level-3	paad:290|luad:188|coadread:151|ucec:36|stad:14|mmyl:9|ucs:7|cesc:7|ov:6|brca:6|blca:5|laml:3|esca:3|skcm:2|kirp:2|gbm:2|thca:1|prad:1|npc:1|mds:1|lihc:1
 PIK3CA	H1047	NA	R:236|L:37|Y:6|Q:4	0	283	22	Level-3	brca:171|ucec:20|coadread:20|hnsc:19|stad:15|ucs:5|skcm:3|luad:3|lihc:3|cesc:3|prad:2|paad:2|mbl:2|lusc:2|lgg:2|kirc:2|hgg:2|gbm:2|blca:2|ov:1|esca:1|acc:1

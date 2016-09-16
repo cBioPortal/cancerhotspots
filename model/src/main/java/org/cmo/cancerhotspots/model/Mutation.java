@@ -14,7 +14,7 @@ import java.util.Map;
 public class Mutation
 {
     @Trim
-    @Parsed(field = "Hugo Symbol")
+    @Parsed(field = "Hugo_Symbol")
     private String hugoSymbol;
 
     @Trim
@@ -22,11 +22,11 @@ public class Mutation
     private String residue;
 
     @Trim
-    @Parsed(field = "Reference Amino Acid")
+    @Parsed(field = "Reference_Amino_Acid")
     private String referenceAminoAcid;
 
     @Trim
-    @Parsed(field = "Amino Acid Position")
+    @Parsed(field = "Amino_Acid_Position")
     private Integer aminoAcidPosition;
 
     @Trim
@@ -35,7 +35,7 @@ public class Mutation
 
     @Trim
     @Convert(conversionClass = ChainMapConversion.class)
-    @Parsed(field = "PDB chains")
+    @Parsed(field = "PDB_chains")
     private Map<String, Double> pdbChains;
 
     @Trim
@@ -44,7 +44,7 @@ public class Mutation
 
     @Trim
     @Convert(conversionClass = CompositionMapConversion.class)
-    @Parsed(field = "Variant Amino Acid")
+    @Parsed(field = "Variant_Amino_Acid")
     private Map<String, Integer> variantAminoAcid;
 
     @Trim
@@ -56,16 +56,16 @@ public class Mutation
     private String pValue;
 
     @Trim
-    @Parsed(field = "Tumor Count")
+    @Parsed(field = "Tumor_Count")
     private Integer tumorCount;
 
     @Trim
-    @Parsed(field = "Tumor Type Count")
+    @Parsed(field = "Tumor_Type_Count")
     private Integer tumorTypeCount;
 
     @Trim
     @Convert(conversionClass = CompositionMapConversion.class)
-    @Parsed(field = "Tumor Type Composition")
+    @Parsed(field = "Tumor_Type_Composition")
     private Map<String, Integer> tumorTypeComposition;
 
     public String getHugoSymbol()
