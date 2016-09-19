@@ -10,7 +10,12 @@
     <url>https://github.com/cBioPortal/cancerhotspots/</url>
 
     <modules>
-      <module>web</module>
+        <module>webapp</module>
+        <module>model</module>
+        <module>persistence</module>
+        <module>service</module>
+        <module>util</module>
+        <module>pipeline</module>
     </modules>
 
     <!-- inherit defaults from spring boot -->
