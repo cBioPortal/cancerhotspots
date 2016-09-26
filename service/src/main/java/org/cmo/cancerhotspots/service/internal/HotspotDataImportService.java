@@ -62,12 +62,13 @@ public class HotspotDataImportService implements DataImportService
         // assuming that there is only one variant amino acid
         String variant = mutation.getVariantAminoAcid().keySet().iterator().next();
 
+        // TODO should we consider to update TumorTypeComposition model wrt range aa position?
         // construct the tumor type instance
         TumorTypeComposition composition = new TumorTypeComposition();
 
         composition.setHugoSymbol(mutation.getHugoSymbol());
-        composition.setAminoAcidPosition(mutation.getAminoAcidPosition());
-        composition.setReferenceAminoAcid(mutation.getReferenceAminoAcid());
+        composition.setAminoAcidPosition(mutation.getAminoAcidPosition().getStart());
+        composition.setReferenceAminoAcid(mutation.mostFrequentReference());
         composition.setVariantAminoAcid(variant);
         composition.setTumorTypeComposition(mutation.getTumorTypeComposition());
 
@@ -249,8 +250,10 @@ public class HotspotDataImportService implements DataImportService
         {
             String gene = mutation.getHugoSymbol();
             String residue = mutation.getResidue();
-            String reference = mutation.getReferenceAminoAcid();
-            Integer position = mutation.getAminoAcidPosition();
+            String reference = mutation.mostFrequentReference();
+            Integer position = mutation.getAminoAcidPosition().getStart();
+
+            // TODO does it make sense to construct residue this way for indel?
 
             // set residue if null
             if (residue == null &&

@@ -31,7 +31,7 @@
             <id>pipelineInternal</id>
             <properties>
                 <activatedProperties>internal</activatedProperties>
-                <packaging.type>jat</packaging.type>
+                <packaging.type>jar</packaging.type>
             </properties>
         </profile>
     </profiles>

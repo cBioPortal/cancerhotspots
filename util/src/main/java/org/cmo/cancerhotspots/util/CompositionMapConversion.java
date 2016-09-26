@@ -83,6 +83,10 @@ public class CompositionMapConversion implements Conversion<String, Map<String, 
             {
                 out.put(parts[0], Integer.parseInt(parts[1]));
             }
+            else if (parts.length >= 1)
+            {
+                out.put(parts[0], null);
+            }
         }
 
         return out;
@@ -99,18 +103,18 @@ public class CompositionMapConversion implements Conversion<String, Map<String, 
 
         for (String key : input.keySet()) {
             Integer value = input.get(key);
-            if (value == null)
-            {
-                continue;
-            }
 
             if (out.length() > 0) {
                 out.append(itemSeparator.replaceAll("\\\\", ""));
             }
 
             out.append(key);
-            out.append(mappingSeparator.replaceAll("\\\\", ""));
-            out.append(value);
+
+            if (value != null)
+            {
+                out.append(mappingSeparator.replaceAll("\\\\", ""));
+                out.append(value);
+            }
         }
 
         if (out.length() == 0) {

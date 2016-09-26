@@ -3,8 +3,10 @@ package org.cmo.cancerhotspots.model;
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
+import org.cmo.cancerhotspots.data.IntegerRange;
 import org.cmo.cancerhotspots.util.ChainMapConversion;
 import org.cmo.cancerhotspots.util.CompositionMapConversion;
+import org.cmo.cancerhotspots.util.RangeConversion;
 
 import java.util.Map;
 
@@ -22,12 +24,14 @@ public class Mutation
     private String residue;
 
     @Trim
+    @Convert(conversionClass = CompositionMapConversion.class)
     @Parsed(field = "Reference_Amino_Acid")
-    private String referenceAminoAcid;
+    private Map<String, Integer> referenceAminoAcid;
 
     @Trim
     @Parsed(field = "Amino_Acid_Position")
-    private Integer aminoAcidPosition;
+    @Convert(conversionClass = RangeConversion.class)
+    private IntegerRange aminoAcidPosition;
 
     @Trim
     @Parsed(field = "Cluster")
@@ -178,24 +182,53 @@ public class Mutation
         this.classification = classification;
     }
 
-    public String getReferenceAminoAcid()
+    public Map<String, Integer> getReferenceAminoAcid()
     {
         return referenceAminoAcid;
     }
 
-    public void setReferenceAminoAcid(String referenceAminoAcid)
+    public void setReferenceAminoAcid(Map<String, Integer> referenceAminoAcid)
     {
         this.referenceAminoAcid = referenceAminoAcid;
     }
 
-    public Integer getAminoAcidPosition()
+    public IntegerRange getAminoAcidPosition()
     {
         return aminoAcidPosition;
     }
 
-    public void setAminoAcidPosition(Integer aminoAcidPosition)
+    public void setAminoAcidPosition(IntegerRange aminoAcidPosition)
     {
         this.aminoAcidPosition = aminoAcidPosition;
+    }
+
+    public String mostFrequentReference()
+    {
+        Integer max = Integer.MIN_VALUE;
+        String reference = null;
+
+        for (String key : referenceAminoAcid.keySet())
+        {
+            Integer value = referenceAminoAcid.get(key);
+
+            // update max and reference
+            if (value != null &&
+                value > max)
+            {
+                max = value;
+                reference = key;
+            }
+        }
+
+        // this is the case where all values are null, but there are keys
+        if (reference == null &&
+            referenceAminoAcid.keySet().size() > 0)
+        {
+            // return the first one in the list
+            reference = referenceAminoAcid.keySet().iterator().next();
+        }
+
+        return reference;
     }
 
     //    @Trim

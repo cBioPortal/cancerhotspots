@@ -77,7 +77,8 @@ public class FileIO
     {
         CsvParserSettings parserSettings = new CsvParserSettings();
         parserSettings.setHeaderExtractionEnabled(true);
-        parserSettings.getFormat().setDelimiter('\t');
+        parserSettings.getFormat().setDelimiter(Config.COLUMN_DELIMITER);
+        parserSettings.setMaxCharsPerColumn(Config.MAX_CHARS_PER_COLUMN);
         parserSettings.setRowProcessor(rowProcessor);
 
         return new CsvParser(parserSettings);
