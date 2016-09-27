@@ -71,6 +71,10 @@ function HotspotTableView(options)
             pValue: {
                 threshold: 0.0001
             },
+            qValue: {
+                threshold: 0.0001,
+                precision: 3
+            },
             tumorCount: {},
             classification: {},
             gene: {},
@@ -150,7 +154,8 @@ function HotspotTableView(options)
     {
         // TODO allow customization of renderer instances
         var noWrapRender = new NoWrapRender(_options.renderer.noWrap);
-        var pValueRender = new PValueRender(_options.renderer.pValue);
+        var pValueRender = new DecimalValueRender(_options.renderer.pValue);
+        var qValueRender = new DecimalValueRender(_options.renderer.qValue);
         var variantRender = new VariantRender(_options.renderer.variant);
         var tumorCountRender = new TumorCountRender(_options.renderer.tumorCount);
         var classRender = new ClassificationRender(_options.renderer.classification);
@@ -260,10 +265,12 @@ function HotspotTableView(options)
                     createdCell: variantRender.postRender},
                 {id: "qValue",
                     title: noWrapRender.render("Q-value"),
+                    type: "num",
                     data: "qValue",
-                    render: noWrapRender.render},
+                    render: qValueRender.render},
                 {id: "pValue",
                     title: noWrapRender.render("P-value"),
+                    type: "num",
                     data: _options.pValueData,
                     render: pValueRender.render},
                 {id: "sampleCount",

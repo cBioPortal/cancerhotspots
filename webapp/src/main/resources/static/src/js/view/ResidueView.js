@@ -129,7 +129,7 @@ function ResidueView(options)
         var templateFn = _.template($("#" + _options.templateId).html());
         $(_options.el).html(templateFn(_options.dataManager.getData()));
 
-        var pValueRender = new PValueRender({
+        var pValueRender = new DecimalValueRender({
             threshold: _options.pValueThreshold
         });
 

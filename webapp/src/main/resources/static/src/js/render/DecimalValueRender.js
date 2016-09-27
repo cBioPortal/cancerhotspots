@@ -33,10 +33,12 @@
 /**
  * @author Selcuk Onur Sumer
  */
-function PValueRender(options)
+function DecimalValueRender(options)
 {
     var _defaultOpts = {
-        threshold: 0
+        threshold: 0,
+        digits: 4,
+        precision: 0
     };
 
     // merge options with default options to use defaults for missing values
@@ -45,6 +47,7 @@ function PValueRender(options)
     function render (data, type)
     {
         var noWrapRender = new NoWrapRender();
+        var value = Number(data);
 
         // sort value should be the data value
         if (type === 'sort')
@@ -54,11 +57,27 @@ function PValueRender(options)
         // type == 'display' || 'filter' || 'type'
         else if (data < _options.threshold)
         {
-            return noWrapRender.render("<" + _options.threshold);
+            if (_options.precision > 0) {
+                if (value > 0) {
+                    value = value.toPrecision(_options.precision);
+                }
+            }
+            else {
+                value = "<" + _options.threshold;
+            }
+
+            return noWrapRender.render(value);
         }
         else
         {
-            return noWrapRender.render(data);
+            if (data == null || _.isNaN(value)) {
+                value = data;
+            }
+            else {
+                value = value.toFixed(_options.digits);
+            }
+
+            return noWrapRender.render(value);
         }
     }
 
