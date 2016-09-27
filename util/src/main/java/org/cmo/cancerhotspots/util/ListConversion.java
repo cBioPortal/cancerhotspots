@@ -33,7 +33,6 @@
 package org.cmo.cancerhotspots.util;
 
 import com.univocity.parsers.conversions.*;
-import org.cmo.cancerhotspots.util.Config;
 
 import java.util.*;
 

@@ -1,10 +1,12 @@
 package org.cmo.cancerhotspots.service.internal;
 
+import org.cmo.cancerhotspots.data.IntegerRange;
 import org.cmo.cancerhotspots.model.*;
 import org.cmo.cancerhotspots.persistence.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.service.MutationFilterService;
+import org.cmo.cancerhotspots.util.Config;
 import org.cmo.cancerhotspots.util.DataUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -250,17 +252,34 @@ public class HotspotDataImportService implements DataImportService
         {
             String gene = mutation.getHugoSymbol();
             String residue = mutation.getResidue();
-            String reference = mutation.mostFrequentReference();
-            Integer position = mutation.getAminoAcidPosition().getStart();
-
-            // TODO does it make sense to construct residue this way for indel?
+            IntegerRange position = mutation.getAminoAcidPosition();
 
             // set residue if null
             if (residue == null &&
-                reference != null &&
                 position != null)
             {
-                mutation.setResidue(reference + position);
+                // indel mutation with a range: set residue to the range value
+                if (position.getStart() != null &&
+                    position.getEnd() != null)
+                {
+                    mutation.setResidue(position.getStart() +
+                                        Config.RANGE_ITEM_SEPARATOR +
+                                        position.getEnd());
+                }
+                // indel mutation with start position only: set residue to the start pos
+                else if (mutation.getIndelSize() != null &&
+                         position.getStart() != null)
+                {
+                    mutation.setResidue(position.getStart().toString());
+                }
+                // single residue mutation: set residue to ref + start pos
+                else if (position.getStart() != null)
+                {
+                    mutation.setResidue(mutation.mostFrequentReference() + position.getStart());
+                }
+
+                // update local reference
+                residue = mutation.getResidue();
             }
 
             // if residue is still null, then nothing to do...

@@ -72,6 +72,10 @@ public class Mutation
     @Parsed(field = "Tumor_Type_Composition")
     private Map<String, Integer> tumorTypeComposition;
 
+    @Trim
+    @Parsed(field = "Indel_Size")
+    private Integer indelSize;
+
     public String getHugoSymbol()
     {
         return hugoSymbol;
@@ -200,6 +204,16 @@ public class Mutation
     public void setAminoAcidPosition(IntegerRange aminoAcidPosition)
     {
         this.aminoAcidPosition = aminoAcidPosition;
+    }
+
+    public Integer getIndelSize()
+    {
+        return indelSize;
+    }
+
+    public void setIndelSize(Integer indelSize)
+    {
+        this.indelSize = indelSize;
     }
 
     public String mostFrequentReference()
