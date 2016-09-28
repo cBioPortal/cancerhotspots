@@ -67,18 +67,14 @@ public class RangeConversion implements Conversion<String, IntegerRange>
 
         String[] parts = input.trim().split(rangeSeparator);
 
-        if (parts.length >= 1 &&
-            parts[0].matches("\\d+"))
+        if (parts.length >= 1)
         {
-            range.setStart(
-                Integer.parseInt(parts[0]));
+            range.setStart(integerPart(parts[0]));
         }
 
-        if (parts.length >= 2 &&
-            parts[1].matches("\\d+"))
+        if (parts.length >= 2)
         {
-            range.setEnd(
-                Integer.parseInt(parts[1]));
+            range.setEnd(integerPart(parts[1]));
         }
 
         return range;
@@ -105,5 +101,18 @@ public class RangeConversion implements Conversion<String, IntegerRange>
         }
 
         return out.toString();
+    }
+
+    private Integer integerPart(String str)
+    {
+        // just strip anything that is not a digit
+        String stripped = str.replaceAll("\\D+","");
+
+        if (stripped.length() > 0) {
+            return Integer.parseInt(stripped);
+        }
+        else {
+            return null;
+        }
     }
 }
