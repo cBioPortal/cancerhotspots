@@ -97,6 +97,8 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
 
             hotspotMutation.init(mutation);
             hotspotMutation.setqValue(mutation.getqValue());
+            hotspotMutation.setqValuePancan(mutation.getqValuePancan());
+            hotspotMutation.setqValueCancerType(mutation.getqValueCancerType());
 
             if (mutation.getIndelSize() != null) {
                 hotspotMutation.setType("indel");

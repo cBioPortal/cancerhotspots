@@ -56,6 +56,14 @@ public class Mutation
     private String qValue;
 
     @Trim
+    @Parsed(field = "Qvalue_Pancan")
+    private String qValuePancan;
+
+    @Trim
+    @Parsed(field = "QvalueCT")
+    private String qValueCancerType;
+
+    @Trim
     @Parsed(field = "P-value")
     private String pValue;
 
@@ -114,6 +122,26 @@ public class Mutation
     public void setqValue(String qValue)
     {
         this.qValue = qValue;
+    }
+
+    public String getqValueCancerType()
+    {
+        return qValueCancerType;
+    }
+
+    public void setqValueCancerType(String qValueCancerType)
+    {
+        this.qValueCancerType = qValueCancerType;
+    }
+
+    public String getqValuePancan()
+    {
+        return qValuePancan;
+    }
+
+    public void setqValuePancan(String qValuePancan)
+    {
+        this.qValuePancan = qValuePancan;
     }
 
     public String getpValue()
