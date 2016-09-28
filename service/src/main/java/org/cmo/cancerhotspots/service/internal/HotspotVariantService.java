@@ -3,6 +3,7 @@ package org.cmo.cancerhotspots.service.internal;
 import org.cmo.cancerhotspots.model.TumorTypeComposition;
 import org.cmo.cancerhotspots.persistence.VariantRepository;
 import org.cmo.cancerhotspots.service.VariantService;
+import org.cmo.cancerhotspots.util.RangeConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,10 +70,7 @@ public class HotspotVariantService implements VariantService
 
         for (TumorTypeComposition variant : getAllVariantCompositions())
         {
-            String aaChange = variant.getResidue() +
-                              variant.getVariantAminoAcid();
-
-            String key = (variant.getHugoSymbol() + "_" + aaChange).toUpperCase();
+            String key = (variant.getHugoSymbol() + "_" + aminoAcidChange(variant)).toUpperCase();
             variantCache.put(key, variant);
         }
 
@@ -88,13 +86,34 @@ public class HotspotVariantService implements VariantService
 
         for (TumorTypeComposition variant : getAllVariantCompositions())
         {
-            String aaChange = variant.getResidue() +
-                              variant.getVariantAminoAcid();
-
-            String key = aaChange.toUpperCase();
+            String key = aminoAcidChange(variant).toUpperCase();
             variantCache.put(key, variant);
         }
 
         return variantCache;
+    }
+
+    private String aminoAcidChange(TumorTypeComposition variant)
+    {
+        String aaChange;
+
+        // use residue if available
+        if (variant.getResidue() != null)
+        {
+            aaChange = variant.getResidue() +
+                       variant.getVariantAminoAcid();
+        }
+        else
+        {
+            RangeConversion converter = new RangeConversion();
+
+            // this is for backward compatibility
+            // (variant files with no residue column available)
+            aaChange = variant.getReferenceAminoAcid() +
+                       converter.revert(variant.getAminoAcidPosition()) +
+                       variant.getVariantAminoAcid();
+        }
+
+        return aaChange;
     }
 }
