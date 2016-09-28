@@ -6,7 +6,6 @@ import org.cmo.cancerhotspots.persistence.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
 import org.cmo.cancerhotspots.service.DataImportService;
 import org.cmo.cancerhotspots.service.MutationFilterService;
-import org.cmo.cancerhotspots.util.Config;
 import org.cmo.cancerhotspots.util.DataUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,15 +63,18 @@ public class HotspotDataImportService implements DataImportService
         // assuming that there is only one variant amino acid
         String variant = mutation.getVariantAminoAcid().keySet().iterator().next();
 
-        // TODO should we consider to update TumorTypeComposition model wrt range aa position?
         // construct the tumor type instance
         TumorTypeComposition composition = new TumorTypeComposition();
+        String residue = DataUtils.mutationResidue(mutation.getAminoAcidPosition(),
+                                                   mutation.mostFrequentReference(),
+                                                   mutation.getIndelSize());
 
         composition.setHugoSymbol(mutation.getHugoSymbol());
-        composition.setAminoAcidPosition(mutation.getAminoAcidPosition().getStart());
+        composition.setAminoAcidPosition(mutation.getAminoAcidPosition());
         composition.setReferenceAminoAcid(mutation.mostFrequentReference());
         composition.setVariantAminoAcid(variant);
         composition.setTumorTypeComposition(mutation.getTumorTypeComposition());
+        composition.setResidue(residue);
 
         return composition;
     }
@@ -258,28 +260,12 @@ public class HotspotDataImportService implements DataImportService
             if (residue == null &&
                 position != null)
             {
-                // indel mutation with a range: set residue to the range value
-                if (position.getStart() != null &&
-                    position.getEnd() != null)
-                {
-                    mutation.setResidue(position.getStart() +
-                                        Config.RANGE_ITEM_SEPARATOR +
-                                        position.getEnd());
-                }
-                // indel mutation with start position only: set residue to the start pos
-                else if (mutation.getIndelSize() != null &&
-                         position.getStart() != null)
-                {
-                    mutation.setResidue(position.getStart().toString());
-                }
-                // single residue mutation: set residue to ref + start pos
-                else if (position.getStart() != null)
-                {
-                    mutation.setResidue(mutation.mostFrequentReference() + position.getStart());
-                }
-
                 // update local reference
-                residue = mutation.getResidue();
+                residue = DataUtils.mutationResidue(position,
+                    mutation.mostFrequentReference(),
+                    mutation.getIndelSize());
+
+                mutation.setResidue(residue);
             }
 
             // if residue is still null, then nothing to do...
@@ -449,7 +435,8 @@ public class HotspotDataImportService implements DataImportService
             tumorTypeComposition = new TumorTypeComposition();
 
             // init variant
-            tumorTypeComposition.setAminoAcidPosition(annotation.getAminoAcidPosition());
+            tumorTypeComposition.setAminoAcidPosition(
+                new IntegerRange(annotation.getAminoAcidPosition()));
             tumorTypeComposition.setReferenceAminoAcid(annotation.getReferenceAminoAcid());
             tumorTypeComposition.setVariantAminoAcid(annotation.getVariantAminoAcid());
             tumorTypeComposition.setHugoSymbol(annotation.getHugoSymbol());
@@ -474,7 +461,8 @@ public class HotspotDataImportService implements DataImportService
             variantComposition = new VariantComposition();
 
             // init variant
-            variantComposition.setAminoAcidPosition(annotation.getAminoAcidPosition());
+            variantComposition.setAminoAcidPosition(new IntegerRange(
+                annotation.getAminoAcidPosition()));
             variantComposition.setReferenceAminoAcid(annotation.getReferenceAminoAcid());
             variantComposition.setResidue(this.extractResidue(annotation));
             variantComposition.setHugoSymbol(annotation.getHugoSymbol());

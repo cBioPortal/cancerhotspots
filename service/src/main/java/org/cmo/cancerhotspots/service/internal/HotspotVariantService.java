@@ -69,8 +69,7 @@ public class HotspotVariantService implements VariantService
 
         for (TumorTypeComposition variant : getAllVariantCompositions())
         {
-            String aaChange = variant.getReferenceAminoAcid() +
-                              variant.getAminoAcidPosition() +
+            String aaChange = variant.getResidue() +
                               variant.getVariantAminoAcid();
 
             String key = (variant.getHugoSymbol() + "_" + aaChange).toUpperCase();
@@ -89,8 +88,7 @@ public class HotspotVariantService implements VariantService
 
         for (TumorTypeComposition variant : getAllVariantCompositions())
         {
-            String aaChange = variant.getReferenceAminoAcid() +
-                              variant.getAminoAcidPosition() +
+            String aaChange = variant.getResidue() +
                               variant.getVariantAminoAcid();
 
             String key = aaChange.toUpperCase();

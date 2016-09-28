@@ -1,5 +1,7 @@
 package org.cmo.cancerhotspots.model;
 
+import org.cmo.cancerhotspots.data.IntegerRange;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -14,7 +16,7 @@ public class VariantComposition
 
     private String residue;
 
-    private Integer aminoAcidPosition;
+    private IntegerRange aminoAcidPosition;
 
     private Map<String, Integer> variantComposition;
 
@@ -53,12 +55,12 @@ public class VariantComposition
         this.residue = residue;
     }
 
-    public Integer getAminoAcidPosition()
+    public IntegerRange getAminoAcidPosition()
     {
         return aminoAcidPosition;
     }
 
-    public void setAminoAcidPosition(Integer aminoAcidPosition)
+    public void setAminoAcidPosition(IntegerRange aminoAcidPosition)
     {
         this.aminoAcidPosition = aminoAcidPosition;
     }

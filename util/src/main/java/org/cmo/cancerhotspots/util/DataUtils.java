@@ -32,6 +32,8 @@
 
 package org.cmo.cancerhotspots.util;
 
+import org.cmo.cancerhotspots.data.IntegerRange;
+
 import java.util.Map;
 
 /**
@@ -60,5 +62,32 @@ public class DataUtils
         }
 
         return target;
+    }
+
+    public static String mutationResidue(IntegerRange position, String reference, Integer indelSize)
+    {
+        String residue = null;
+
+        // indel mutation with a range: set residue to the range value
+        if (position.getStart() != null &&
+            position.getEnd() != null)
+        {
+            residue = position.getStart() +
+                      Config.RANGE_ITEM_SEPARATOR +
+                      position.getEnd();
+        }
+        // indel mutation with start position only: set residue to the start pos
+        else if (indelSize != null &&
+                 position.getStart() != null)
+        {
+            residue = position.getStart().toString();
+        }
+        // single residue mutation: set residue to ref + start pos
+        else if (position.getStart() != null)
+        {
+            residue = reference + position.getStart();
+        }
+
+        return residue;
     }
 }

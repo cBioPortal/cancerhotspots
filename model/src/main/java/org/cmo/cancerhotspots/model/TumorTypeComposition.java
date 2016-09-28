@@ -3,8 +3,10 @@ package org.cmo.cancerhotspots.model;
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
+import org.cmo.cancerhotspots.data.IntegerRange;
 import org.cmo.cancerhotspots.util.CompositionMapConversion;
 import org.cmo.cancerhotspots.util.DataUtils;
+import org.cmo.cancerhotspots.util.RangeConversion;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -19,6 +21,10 @@ public class TumorTypeComposition
     private String hugoSymbol;
 
     @Trim
+    @Parsed(field = "Residue")
+    private String residue;
+
+    @Trim
     @Parsed(field = "Reference_Amino_Acid")
     private String referenceAminoAcid;
 
@@ -28,7 +34,8 @@ public class TumorTypeComposition
 
     @Trim
     @Parsed(field = "Amino_Acid_Position")
-    private Integer aminoAcidPosition;
+    @Convert(conversionClass = RangeConversion.class)
+    private IntegerRange aminoAcidPosition;
 
     // tumor type composition as <tumor type, count> pairs
     @Trim
@@ -49,6 +56,16 @@ public class TumorTypeComposition
     public void setHugoSymbol(String hugoSymbol)
     {
         this.hugoSymbol = hugoSymbol;
+    }
+
+    public String getResidue()
+    {
+        return residue;
+    }
+
+    public void setResidue(String residue)
+    {
+        this.residue = residue;
     }
 
     public void setTumorTypeComposition(Map<String, Integer> tumorTypeComposition)
@@ -76,12 +93,12 @@ public class TumorTypeComposition
         this.variantAminoAcid = variantAminoAcid;
     }
 
-    public Integer getAminoAcidPosition()
+    public IntegerRange getAminoAcidPosition()
     {
         return aminoAcidPosition;
     }
 
-    public void setAminoAcidPosition(Integer aminoAcidPosition)
+    public void setAminoAcidPosition(IntegerRange aminoAcidPosition)
     {
         this.aminoAcidPosition = aminoAcidPosition;
     }
