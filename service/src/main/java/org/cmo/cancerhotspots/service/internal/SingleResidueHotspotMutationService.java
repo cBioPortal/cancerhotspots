@@ -98,6 +98,14 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
             hotspotMutation.init(mutation);
             hotspotMutation.setqValue(mutation.getqValue());
 
+            if (mutation.getIndelSize() != null) {
+                hotspotMutation.setType("indel");
+            }
+            else {
+                // TODO we may have different type of mutations, not only missense!
+                hotspotMutation.setType("missense");
+            }
+
             list.add(hotspotMutation);
         }
 

@@ -181,6 +181,8 @@ function StackedBar(options)
                     _options.colors[key].length === 0)
                 {
                     console.log("[warning] no color mapping for: " + key);
+                    // in case of no mapping, pick from default color schema
+                    color = _defaultOpts.colors[idx % _defaultOpts.colors.length];
                 }
             }
             else if (_.isArray(_options.colors))
