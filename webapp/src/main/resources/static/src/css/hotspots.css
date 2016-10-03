@@ -179,6 +179,10 @@ table.about-lab-table {
     padding-top: 8px;
 }
 
+.dt-button a {
+    cursor: pointer;
+}
+
 .tumor-type-composition-info {
     margin-bottom: 5px;
 }

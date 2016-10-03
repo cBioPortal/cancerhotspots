@@ -244,30 +244,65 @@ var ViewUtils = (function() {
         return map;
     }
 
+	/**
+     * For the provided metadata options, determines the visibility
+     * of the given columns.
+     *
+     * @param columns   list of DataTable columns
+     * @param metadata  metadata containing profile info
+     * @returns {Array} columns to be listed in the UI
+     */
     function determineVisibility(columns, metadata)
     {
+        var includedCols = [];
+
         if (metadata && metadata.profile)
         {
             var profile = metadata.profile.toLowerCase();
-            var only3d = ["pValue", "clusters", "classification"];
-            var onlySingleRes = ["qValue"];
+            var profileOpts = null;
+
+            // excluded: excluded from the table (always hidden)
+            // hidden: initially hidden, can be toggled visible later
+            var options = {
+                "3d": {
+                    excluded: ["qValue", "qValueCancerType", "qValuePancan"],
+                    hidden: []
+                },
+                "singleresidue": {
+                    excluded: ["pValue", "clusters", "classification"],
+                    hidden: ["qValueCancerType", "qValuePancan"]
+                },
+                "other" : {
+                    excluded: [],
+                    hidden: []
+                }
+            };
+
+            if (profile.indexOf("singleresidue") != -1) {
+                profileOpts = options["singleresidue"];
+            }
+            else if (profile.indexOf("3d") != -1) {
+                profileOpts = options["3d"];
+            }
+            else {
+                profileOpts = options["hidden"];
+            }
 
             _.each(columns, function(column) {
-                // if single residue view: hide 3D specific columns
-                if (profile.indexOf("singleresidue") != -1 &&
-                    _.contains(only3d, column.id))
-                {
+                var isHidden = _.contains(profileOpts.hidden, column.name);
+                var isExcluded = _.contains(profileOpts.excluded, column.name);
+
+                if (isHidden || isExcluded) {
                     column.visible = false;
                 }
 
-                // if 3D view: hide single residue specific columns
-                if (profile.indexOf("3d") != -1 &&
-                    _.contains(onlySingleRes, column.id))
-                {
-                    column.visible = false;
+                if (!isExcluded) {
+                    includedCols.push(column);
                 }
             });
         }
+
+        return includedCols;
     }
 
     function determineDownload(columns, metadata)
