@@ -265,7 +265,7 @@ var ViewUtils = (function() {
             // hidden: initially hidden, can be toggled visible later
             var options = {
                 "3d": {
-                    excluded: ["qValue", "qValueCancerType", "qValuePancan"],
+                    excluded: ["qValue", "qValueCancerType", "qValuePancan", "type"],
                     hidden: []
                 },
                 "singleresidue": {
@@ -305,23 +305,17 @@ var ViewUtils = (function() {
         return includedCols;
     }
 
-    function determineDownload(columns, metadata)
+    function determineDownload(dataTable, columns)
     {
         var toDownload = [];
 
-        if (metadata && metadata.profile)
-        {
-            determineVisibility(columns, metadata);
-
-            _.each(columns, function(column) {
-                if (column.visible !== false) {
-                    toDownload.push(column);
-                }
-            });
-        }
-        else {
-            toDownload = columns;
-        }
+        // if the column is not included in data table add it to the list in any case
+        // if the column is in the table but currently hidden, do not add it
+        _.each(columns, function(col) {
+            if (_.first(dataTable.columns(col.name + ":name").visible()) !== false) {
+                toDownload.push(col);
+            }
+        });
 
         return toDownload;
     }

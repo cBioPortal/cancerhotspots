@@ -101,11 +101,10 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
             hotspotMutation.setqValueCancerType(mutation.getqValueCancerType());
 
             if (mutation.getIndelSize() != null) {
-                hotspotMutation.setType("indel");
+                hotspotMutation.setType("in-frame indel");
             }
             else {
-                // TODO we may have different type of mutations, not only missense!
-                hotspotMutation.setType("missense");
+                hotspotMutation.setType("single residue");
             }
 
             list.add(hotspotMutation);

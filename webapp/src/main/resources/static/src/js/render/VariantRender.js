@@ -71,7 +71,7 @@ function VariantRender(options)
 
         // do not show stacked bar for indel mutations, only show count
         if (rowData.type != null &&
-            rowData.type.toLowerCase() === "indel")
+            rowData.type.toLowerCase().indexOf("indel") !== -1)
         {
             qTipTarget = target.find(".basic-content-text");
             qTipTarget.text(_.size(cellData));

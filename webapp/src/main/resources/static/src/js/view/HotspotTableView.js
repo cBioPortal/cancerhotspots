@@ -78,6 +78,7 @@ function HotspotTableView(options)
             tumorCount: {},
             classification: {},
             gene: {},
+            hotspotType: {},
             residue: {}
         },
         // default rendering function for map data structure
@@ -161,6 +162,7 @@ function HotspotTableView(options)
         var classRender = new ClassificationRender(_options.renderer.classification);
         var residueRender = new ResidueRender(_options.renderer.residue);
         var geneRender = new GeneRender(_options.renderer.gene);
+        var typeRender = new HotspotTypeRender(_options.renderer.hotspotType);
 
         //var clustersRender = new ClustersRender({
         //    pValueThreshold: _options.pValueThreshold
@@ -201,6 +203,9 @@ function HotspotTableView(options)
                         {name: "residue",
                             title: "Residue",
                             data: "residue"},
+                        {name: "type",
+                            title: "Type",
+                            data: "type"},
                         {name: "classification",
                             title: "Class",
                             data: "classification"},
@@ -209,6 +214,12 @@ function HotspotTableView(options)
                             data: "variantAminoAcid"},
                         {name: "qValue",
                             title: "Q-value",
+                            data: "qValue"},
+                        {name: "qValueCancerType",
+                            title: "Q-value Cancer Type",
+                            data: "qValue"},
+                        {name: "qValuePancan",
+                            title: "Q-value Pancan",
                             data: "qValue"},
                         {name: "pValue",
                             title: "P-value",
@@ -221,7 +232,7 @@ function HotspotTableView(options)
                             data: "tumorTypeComposition"}
                     ];
 
-                    columns = ViewUtils.determineDownload(columns, _options.metadata);
+                    columns = ViewUtils.determineDownload(dt, columns);
 
                     var dataUtils = new DataUtils(columns);
                     var content = dataUtils.stringify(dt.rows({filter: 'applied'}).data());
@@ -246,6 +257,10 @@ function HotspotTableView(options)
                     type: "num",
                     data: _options.residueData,
                     render: residueRender.render},
+                {name: "type",
+                    title: "Type",
+                    data: "type",
+                    render: typeRender.render},
                 //{id: "altCodon",
                 //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
