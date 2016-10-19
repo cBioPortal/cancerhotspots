@@ -9,5 +9,6 @@ public interface MutationRepository
 {
     Iterable<Mutation> findAll();
     Iterable<Mutation> findByGene(String hugoSymbol);
+    Iterable<Mutation> findByTranscript(String transcriptId);
     void saveAll(Iterable<Mutation> mutations);
 }

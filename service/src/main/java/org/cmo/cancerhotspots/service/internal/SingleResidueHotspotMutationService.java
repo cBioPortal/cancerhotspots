@@ -87,6 +87,20 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
         return mutations;
     }
 
+    @Override
+    public List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds)
+    {
+        List<HotspotMutation> mutations = new ArrayList<>();
+
+        for (String transcriptId: transcriptIds)
+        {
+            mutations.addAll(convertToSingleResidue(
+                mutationRepository.findByTranscript(transcriptId)));
+        }
+
+        return mutations;
+    }
+
     public List<HotspotMutation> convertToSingleResidue(Iterable<Mutation> mutations)
     {
         List<HotspotMutation> list = new ArrayList<>();
