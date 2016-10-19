@@ -51,6 +51,8 @@ function CancerHotspots(options)
         homePage: "#home",
         homeTemplateId: "home_page",
         aboutPage: "#about",
+        downloadPage: "#download",
+        downloadTemplateId: "download_page",
         aboutTemplateId: "about_page",
         residuePage: "#residue",
         residueTemplateId: "residue_page",
@@ -63,6 +65,9 @@ function CancerHotspots(options)
             },
             home: {
                 mutationInfo: _.template($("#default_mutation_info").html())()
+            },
+            download: {
+                // TODO set defaults!
             }
         },
         // TODO view & render options...
@@ -155,6 +160,18 @@ function CancerHotspots(options)
         $(_options.homePage).show();
     }
 
+    function download(params)
+    {
+        // init section if not initialized yet
+        if (!$(_options.downloadPage).length)
+        {
+            var templateFn = _.template($("#" + _options.downloadTemplateId).html());
+            $(_options.pageContent).append(templateFn(params));
+        }
+
+        $(_options.downloadPage).show();
+    }
+
     function about(params)
     {
         // init section if not initialized yet
@@ -226,6 +243,9 @@ function CancerHotspots(options)
             '/about': function() {
                 switchContent(about);
             },
+            '/download': function() {
+                switchContent(download, _options.content.download);
+            },
             '/residue/:hugoSymbol/:residue': function(hugoSymbol, residue) {
                 switchContent(cluster, {hugoSymbol: hugoSymbol, residue: residue});
             },
@@ -260,6 +280,9 @@ function CancerHotspots(options)
                     home: {
                         mutationInfo: "Mutations clustering in 3D protein structures identified " +
                                       "in 11,119 tumor samples across 41 tumor types"
+                    },
+                    download: {
+                        // TODO customize download file paths here
                     }
                 };
 
