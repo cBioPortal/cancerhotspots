@@ -290,7 +290,7 @@ hr.star-light:after, hr.star-primary:after {
     color: #FF9900;
 }
 #about hr.star-primary:after {
-    background-color: #dff0d8;
+    background-color: #fff;
 }
 #explore hr.star-primary:after {
     background-color: #fff;
