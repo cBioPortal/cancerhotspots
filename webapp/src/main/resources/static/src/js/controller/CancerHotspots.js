@@ -60,14 +60,18 @@ function CancerHotspots(options)
             app: {
                 tagline: "A resource for statistically significant mutations in cancer",
                 title: "Cancer Hotspots",
-                logoStyle: "hotspot-fire",
-                downloadFile: "files/hotspots.xls"
+                logoStyle: "hotspot-fire"
             },
             home: {
                 mutationInfo: _.template($("#default_mutation_info").html())()
             },
             download: {
-                // TODO set defaults!
+                links: [
+                    {href: 'href="files/hotspots.xls"',
+                        text: "Hotspot Results V1"},
+                    {href: 'href="https://github.com/taylor-lab/hotspots/blob/master/LINK_TO_MUTATIONAL_DATA"',
+                        text: "V1 Mutational Data (11K MAF)"}
+                ]
             }
         },
         // TODO view & render options...
@@ -166,10 +170,28 @@ function CancerHotspots(options)
         if (!$(_options.downloadPage).length)
         {
             var templateFn = _.template($("#" + _options.downloadTemplateId).html());
-            $(_options.pageContent).append(templateFn(params));
+            $(_options.pageContent).append(templateFn(downloadTemplateVars(params)));
         }
 
         $(_options.downloadPage).show();
+    }
+
+    function downloadTemplateVars(params)
+    {
+        var templateFn = _.template($("#download_link_basic_template").html());
+        var links = [];
+
+        links.push("<ul>");
+
+        _.each(params.links, function(link) {
+            links.push(templateFn(link));
+        });
+
+        links.push("</ul>");
+
+        return {
+            links: links.join("\n")
+        };
     }
 
     function about(params)
@@ -274,7 +296,6 @@ function CancerHotspots(options)
                         tagline: "A resource for statistically significant mutations clustering " +
                                  "in 3D protein structures in cancer",
                         title: "3D Hotspots",
-                        downloadFile: "files/3d_hotspots.xls",
                         logoStyle: "hotspot-fire hotspot-3d-fire"
                     },
                     home: {
@@ -282,7 +303,9 @@ function CancerHotspots(options)
                                       "in 11,119 tumor samples across 41 tumor types"
                     },
                     download: {
-                        // TODO customize download file paths here
+                        links: [
+                            {href: 'href="files/3d_hotspots.xls"', text: "3D Hotspot Results"}
+                        ]
                     }
                 };
 
@@ -307,7 +330,13 @@ function CancerHotspots(options)
                     _options.content.home.mutationInfo =
                         _.template($("#internal_mutation_info").html())();
 
-                    _options.content.app.downloadFile = "files/internal_hotspots.xls";
+                    // 2 more internal links in addition to the public ones
+                    _options.content.download.links.unshift(
+                        {href: 'href="files/internal_hotspots.xls"',
+                            text: "Hotspot results V2"},
+                        {href: "",
+                            text: "V2 Mutational Data (24K MAF) will be available upon publication"}
+                    );
                 }
             }
 
