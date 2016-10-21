@@ -333,7 +333,7 @@ function CancerHotspots(options)
                     // 2 more internal links in addition to the public ones
                     _options.content.download.links.unshift(
                         {href: 'href="files/internal_hotspots.xls"',
-                            text: "Hotspot results V2"},
+                            text: "Hotspot Results V2"},
                         {href: "",
                             text: "V2 Mutational Data (24K MAF) will be available upon publication"}
                     );
