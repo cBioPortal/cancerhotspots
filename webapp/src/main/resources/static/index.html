@@ -238,18 +238,36 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="download-links">
-                        {{links}}
-                    </span>
+                    {{content}}
                 </div>
             </div>
         </div>
     </section>
 </script>
 
+<script type="text/template" id="download_basic_content">
+    <div class="download-basic-content">
+        <span class="download-info">
+            <p>{{info}}</p>
+        </span>
+        <span class="download-links">
+            {{links}}
+        </span>
+    </div>
+</script>
+
+<script type="text/template" id="hotspots_v1_info">
+    Resources for single residue mutation hotspots identified in 11,119 tumor samples by
+    [<span class="header-citation"><a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]:
+</script>
+
+<script type="text/template" id="hotspots_v2_info">
+    Resources for single residue and indel mutation hotspots identified in 24,592 tumor samples:
+</script>
+
 <script type="text/template" id="download_link_basic_template">
     <li>
-        <a {{href}}>{{text}}</a>
+        <a {{href}} target="_blank">{{text}}</a>
     </li>
 </script>
 

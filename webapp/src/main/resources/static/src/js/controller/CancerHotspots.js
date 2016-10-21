@@ -66,12 +66,15 @@ function CancerHotspots(options)
                 mutationInfo: _.template($("#default_mutation_info").html())()
             },
             download: {
-                links: [
-                    {href: 'href="files/hotspots.xls"',
-                        text: "Hotspot Results V1"},
-                    {href: 'href="https://github.com/taylor-lab/hotspots/blob/master/LINK_TO_MUTATIONAL_DATA"',
-                        text: "V1 Mutational Data (11K MAF)"}
-                ]
+                content:[{
+                    links: [
+                        {href: 'href="files/hotspots.xls"',
+                            text: "Hotspot Results V1"},
+                        {href: 'href="https://github.com/taylor-lab/hotspots/blob/master/LINK_TO_MUTATIONAL_DATA"',
+                            text: "V1 Mutational Data (MAF)"}
+                    ],
+                    info: _.template($("#hotspots_v1_info").html())()
+                }]
             }
         },
         // TODO view & render options...
@@ -178,19 +181,29 @@ function CancerHotspots(options)
 
     function downloadTemplateVars(params)
     {
-        var templateFn = _.template($("#download_link_basic_template").html());
-        var links = [];
+        var linkTemplateFn = _.template($("#download_link_basic_template").html());
+        var contentTemplateFn = _.template($("#download_basic_content").html());
+        var content = [];
 
-        links.push("<ul>");
+        _.each(params.content, function(item) {
+            var links = [];
 
-        _.each(params.links, function(link) {
-            links.push(templateFn(link));
+            links.push("<ul>");
+
+            _.each(item.links, function(link) {
+                links.push(linkTemplateFn(link));
+            });
+
+            links.push("</ul>");
+
+            content.push(contentTemplateFn({
+                links: links.join("\n"),
+                info: item.info
+            }))
         });
 
-        links.push("</ul>");
-
         return {
-            links: links.join("\n")
+            content: content.join("\n")
         };
     }
 
@@ -303,9 +316,12 @@ function CancerHotspots(options)
                                       "in 11,119 tumor samples across 41 tumor types"
                     },
                     download: {
-                        links: [
-                            {href: 'href="files/3d_hotspots.xls"', text: "3D Hotspot Results"}
-                        ]
+                        content: [{
+                            links: [
+                                {href: 'href="files/3d_hotspots.xls"', text: "3D Hotspot Results"}
+                            ],
+                            info: "Resources for mutations in 3D protein structures:"
+                        }]
                     }
                 };
 
@@ -331,12 +347,15 @@ function CancerHotspots(options)
                         _.template($("#internal_mutation_info").html())();
 
                     // 2 more internal links in addition to the public ones
-                    _options.content.download.links.unshift(
-                        {href: 'href="files/internal_hotspots.xls"',
-                            text: "Hotspot Results V2"},
-                        {href: "",
-                            text: "V2 Mutational Data (24K MAF) will be available upon publication"}
-                    );
+                    _options.content.download.content.unshift({
+                        links: [
+                            {href: 'href="files/internal_hotspots.xls"',
+                                text: "Hotspot Results V2"},
+                            {href: "",
+                                text: "V2 Mutational Data (MAF) will be available upon publication"}
+                        ],
+                        info: _.template($("#hotspots_v2_info").html())()
+                    });
                 }
             }
 
