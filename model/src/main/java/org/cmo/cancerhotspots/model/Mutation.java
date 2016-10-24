@@ -84,7 +84,8 @@ public class Mutation
     @Parsed(field = "Indel_Size")
     private Integer indelSize;
 
-    // TODO add parsing annotations
+    @Trim
+    @Parsed(field = "Transcript_Id")
     private String transcriptId;
 
     public String getHugoSymbol()
