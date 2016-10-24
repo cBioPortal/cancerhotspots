@@ -39,7 +39,10 @@ function ClassificationRender(options)
         templateId: "span_class",
         displayValue: {
             "LL": "L<sub>L</sub>",
-            "LH": "L<sub>H</sub>"
+            "LH": "L<sub>H</sub>",
+            "Cluster-exclusive": "3D cluster residue NOT coupled to a single-residue hotspot",
+            "Hotspot-linked": "3D cluster residue coupled to a single-residue hotspot",
+            "Hotspot": "Single-residue hotspot"
         },
         style: {}
     };
