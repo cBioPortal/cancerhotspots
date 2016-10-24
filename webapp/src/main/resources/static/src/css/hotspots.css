@@ -261,6 +261,10 @@ span.download-links {
     font-size: 18px;
 }
 
+.download-links a {
+    text-decoration: underline;
+}
+
 /* This is to center paging buttons */
 div.dataTables_wrapper div.composition-paginate div.dataTables_paginate {
     text-align: center;
