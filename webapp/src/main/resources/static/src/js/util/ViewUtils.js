@@ -299,6 +299,12 @@ var ViewUtils = (function() {
                 if (!isExcluded) {
                     includedCols.push(column);
                 }
+
+                // TODO workaround for a DataTables issue: even if the column is initially invisible,
+                // DataTables still call all available render functions at init!
+                if (isExcluded) {
+                    delete(column.createdCell);
+                }
             });
         }
 
