@@ -417,15 +417,17 @@
 <script type="text/template" id="class_legend">
     <span class="class-legend-item">
         <span class="class-legend-color class-legend-color-H"></span>
-        <span class="class-legend-H">Hotspot</span>
+        <span class="class-legend-H">Single-residue hotspot</span>
     </span>
+    <br>
     <span class="class-legend-item">
         <span class="class-legend-color class-legend-color-LH"></span>
-        <span class="class-legend-LH">Hotspot-linked</span>
+        <span class="class-legend-LH">3D cluster residue coupled to a single-residue hotspot</span>
     </span>
+    <br>
     <span class="class-legend-item">
         <span class="class-legend-color class-legend-color-LL"></span>
-        <span class="class-legend-LL">Cluster-exclusive</span>
+        <span class="class-legend-LL">3D cluster residue NOT coupled to a single-residue hotspot</span>
     </span>
 </script>
 
@@ -438,7 +440,7 @@
 </script>
 
 <script type="text/template" id="span_class">
-    <span class="{{style}}">{{display}}</span>
+    <span class="hotspot-classification {{style}}">{{display}}</span>
 </script>
 
 <script type="text/template" id="residue_column">

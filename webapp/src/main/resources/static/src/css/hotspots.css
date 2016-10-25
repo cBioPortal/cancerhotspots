@@ -219,6 +219,10 @@ span.cluster-residue {
     /*padding-right: 4px;*/
 }
 
+span.hotspot-classification {
+    font-size: 0.80em;
+}
+
 span.LH {
     color: #09BCD3;
 }

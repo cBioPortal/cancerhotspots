@@ -39,7 +39,15 @@ function ClassificationRender(options)
         templateId: "span_class",
         displayValue: {
             "LL": "L<sub>L</sub>",
-            "LH": "L<sub>H</sub>"
+            "LH": "L<sub>H</sub>",
+            "Cluster-exclusive": "Not coupled to hotspot",
+            "Hotspot-linked": "Coupled to hotspot",
+            "Hotspot": "Single-residue hotspot"
+        },
+        tooltipValue: {
+            "Cluster-exclusive": "3D cluster residue NOT coupled to a single-residue hotspot",
+            "Hotspot-linked": "3D cluster residue coupled to a single-residue hotspot",
+            "Hotspot": "Single-residue hotspot"
         },
         style: {}
     };
@@ -65,5 +73,18 @@ function ClassificationRender(options)
         return templateFn({display: display, style: style});
     }
 
+    function postRender(td, cellData, rowData, row, col)
+    {
+        var tooltipOpts = TooltipUtils.defaultTooltipOpts();
+        tooltipOpts.content = _options.tooltipValue[cellData];
+
+        if (!_.isEmpty(tooltipOpts.content))
+        {
+            cbio.util.addTargetedQTip(
+                $(td).find('.hotspot-classification'), tooltipOpts);
+        }
+    }
+
     this.render = render;
+    this.postRender = postRender;
 }
