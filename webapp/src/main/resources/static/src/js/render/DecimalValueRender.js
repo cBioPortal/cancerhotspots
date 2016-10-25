@@ -28,66 +28,59 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-package org.cmo.cancerhotspots.util;
-
-import org.cmo.cancerhotspots.data.IntegerRange;
-
-import java.util.Map;
+ */
 
 /**
  * @author Selcuk Onur Sumer
  */
-public class DataUtils
+function DecimalValueRender(options)
 {
-    public static Map<String, Integer> mergeCompositions(
-        Map<String, Integer> target,
-        Map<String, Integer> source)
+    var _defaultOpts = {
+        threshold: 0,
+        digits: 4,
+        precision: 0
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
+
+    function render (data, type)
     {
-        for(String key: source.keySet())
+        var noWrapRender = new NoWrapRender();
+        var value = Number(data);
+
+        // sort value should be the data value
+        if (type === 'sort')
         {
-            Integer value = target.get(key);
-
-            // if no value yet, just copy from the source
-            if (value == null)
-            {
-                target.put(key, source.get(key));
-            }
-            // if already exists add to the current value
-            else
-            {
-                target.put(key, value + source.get(key));
-            }
+            return data;
         }
+        // type == 'display' || 'filter' || 'type'
+        else if (data < _options.threshold)
+        {
+            if (_options.precision > 0) {
+                if (value > 0) {
+                    value = value.toPrecision(_options.precision);
+                }
+            }
+            else {
+                value = "<" + _options.threshold;
+            }
 
-        return target;
+            return noWrapRender.render(value);
+        }
+        else
+        {
+            if (data == null || _.isNaN(value)) {
+                value = data;
+            }
+            else {
+                value = value.toFixed(_options.digits);
+            }
+
+            return noWrapRender.render(value);
+        }
     }
 
-    public static String mutationResidue(IntegerRange position, String reference, Integer indelSize)
-    {
-        String residue = null;
 
-        // indel mutation with a range: set residue to the range value
-        if (position.getStart() != null &&
-            position.getEnd() != null)
-        {
-            residue = position.getStart() +
-                      Config.RANGE_ITEM_SEPARATOR +
-                      position.getEnd();
-        }
-        // indel mutation with start position only: set residue to the start pos
-        else if (indelSize != null &&
-                 position.getStart() != null)
-        {
-            residue = position.getStart().toString();
-        }
-        // single residue mutation: set residue to ref + start pos
-        else if (position.getStart() != null)
-        {
-            residue = reference + position.getStart();
-        }
-
-        return residue;
-    }
+    this.render = render;
 }

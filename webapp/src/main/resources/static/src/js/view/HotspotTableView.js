@@ -71,9 +71,14 @@ function HotspotTableView(options)
             pValue: {
                 threshold: 0.0001
             },
+            qValue: {
+                threshold: 0.0001,
+                precision: 3
+            },
             tumorCount: {},
             classification: {},
             gene: {},
+            hotspotType: {},
             residue: {}
         },
         // default rendering function for map data structure
@@ -150,12 +155,14 @@ function HotspotTableView(options)
     {
         // TODO allow customization of renderer instances
         var noWrapRender = new NoWrapRender(_options.renderer.noWrap);
-        var pValueRender = new PValueRender(_options.renderer.pValue);
+        var pValueRender = new DecimalValueRender(_options.renderer.pValue);
+        var qValueRender = new DecimalValueRender(_options.renderer.qValue);
         var variantRender = new VariantRender(_options.renderer.variant);
         var tumorCountRender = new TumorCountRender(_options.renderer.tumorCount);
         var classRender = new ClassificationRender(_options.renderer.classification);
         var residueRender = new ResidueRender(_options.renderer.residue);
         var geneRender = new GeneRender(_options.renderer.gene);
+        var typeRender = new HotspotTypeRender(_options.renderer.hotspotType);
 
         //var clustersRender = new ClustersRender({
         //    pValueThreshold: _options.pValueThreshold
@@ -165,7 +172,7 @@ function HotspotTableView(options)
             //sDom: '<"hotspot-table-controls"f>ti',
             //dom: '<".left-align"i>ft<".right-align"B>',
             //dom: "<'row'<'col-sm-2'B><'col-sm-6 center-align'i><'col-sm-4'f>>t",
-            dom: "<'row'<'col-sm-8 hotspot-table-title'><'col-sm-4'f>>t" +
+            dom: "<'row'<'col-sm-2 table-top-button-group'><'col-sm-6 hotspot-table-title'><'col-sm-4'f>>t" +
                  "<'row'<'col-sm-6'i><'col-sm-6 right-align'p>>" +
                  "<'row'<'col-sm-6'l><'col-sm-6 right-align table-button-group'B>>",
             paging: _options.paging,
@@ -190,33 +197,42 @@ function HotspotTableView(options)
                     // get the file data (formatted by 'fnCellRender' function)
                     //var content = this.fnGetTableData(oConfig);
                     var columns = [
-                        {id: "hugoSymbol",
+                        {name: "hugoSymbol",
                             title: "Gene",
                             data: "hugoSymbol"},
-                        {id: "residue",
+                        {name: "residue",
                             title: "Residue",
                             data: "residue"},
-                        {id: "classification",
+                        {name: "type",
+                            title: "Type",
+                            data: "type"},
+                        {name: "classification",
                             title: "Class",
                             data: "classification"},
-                        {id: "variant",
+                        {name: "variant",
                             title: "Variants",
                             data: "variantAminoAcid"},
-                        {id: "qValue",
+                        {name: "qValue",
                             title: "Q-value",
                             data: "qValue"},
-                        {id: "pValue",
+                        {name: "qValueCancerType",
+                            title: "Q-value Cancer Type",
+                            data: "qValue"},
+                        {name: "qValuePancan",
+                            title: "Q-value Pancan",
+                            data: "qValue"},
+                        {name: "pValue",
                             title: "P-value",
                             data: _options.pValueData},
-                        {id: "sampleCount",
+                        {name: "sampleCount",
                             title: "Samples",
                             data: "tumorCount"},
-                        {id: "tumorTypeComposition",
+                        {name: "tumorTypeComposition",
                             title: "Tumor Type Composition",
                             data: "tumorTypeComposition"}
                     ];
 
-                    columns = ViewUtils.determineDownload(columns, _options.metadata);
+                    columns = ViewUtils.determineDownload(dt, columns);
 
                     var dataUtils = new DataUtils(columns);
                     var content = dataUtils.stringify(dt.rows({filter: 'applied'}).data());
@@ -232,15 +248,19 @@ function HotspotTableView(options)
                 }
             }],
             columns: [
-                {id: "hugoSymbol",
+                {name: "hugoSymbol",
                     title: "Gene",
                     data: "hugoSymbol",
                     render: geneRender.render},
-                {id: "residue",
+                {name: "residue",
                     title: "Residue",
                     type: "num",
                     data: _options.residueData,
                     render: residueRender.render},
+                {name: "type",
+                    title: "Type",
+                    data: "type",
+                    render: typeRender.render},
                 //{id: "altCodon",
                 //    title: "Alt Common Codon Usage *",
                 //    data: "altCommonCodonUsage"},
@@ -248,25 +268,37 @@ function HotspotTableView(options)
                 //    title: "3D Clusters",
                 //    data: _options.clusterData,
                 //    render: clustersRender.render},
-                {id: "classification",
+                {name: "classification",
                     title: "Class",
                     data: "classification",
                     render: classRender.render},
-                {id: "variant",
+                {name: "variant",
                     title: "Variants <sup>&#8224;</sup>",
                     data: "variantAminoAcid",
                     type: "num",
                     render: variantRender.render,
                     createdCell: variantRender.postRender},
-                {id: "qValue",
+                {name: "qValue",
                     title: noWrapRender.render("Q-value"),
+                    type: "num",
                     data: "qValue",
-                    render: noWrapRender.render},
-                {id: "pValue",
+                    render: qValueRender.render},
+                {name: "qValueCancerType",
+                    title: noWrapRender.render("Q-value Cancer Type"),
+                    type: "num",
+                    data: "qValueCancerType",
+                    render: qValueRender.render},
+                {name: "qValuePancan",
+                    title: noWrapRender.render("Q-value Pancan"),
+                    type: "num",
+                    data: "qValuePancan",
+                    render: qValueRender.render},
+                {name: "pValue",
                     title: noWrapRender.render("P-value"),
+                    type: "num",
                     data: _options.pValueData,
                     render: pValueRender.render},
-                {id: "sampleCount",
+                {name: "sampleCount",
                     title: "Samples <sup>&#8224;</sup>",
                     data: _options.sampleData,
                     render: tumorCountRender.render,
@@ -301,7 +333,7 @@ function HotspotTableView(options)
             }
         };
 
-        ViewUtils.determineVisibility(dataTableOpts.columns, _options.metadata);
+        var columns = ViewUtils.determineVisibility(dataTableOpts.columns, _options.metadata);
 
         if (_.isFunction(_options.ajax))
         {
@@ -312,7 +344,22 @@ function HotspotTableView(options)
             dataTableOpts.data = _options.data;
         }
 
-        $(_options.el).DataTable(dataTableOpts);
+        var table = $(_options.el).DataTable(dataTableOpts);
+
+        // this is to add more buttons to different locations
+        var topButtons = [{
+            extend: "colvis",
+            text: "Show/Hide",
+            className: "btn-sm",
+            // do not include filtered out columns
+            // (those columns should always remain hidden)
+            columns: _.pluck(columns, 'name').join(":name,") + ":name"
+        }];
+
+        new $.fn.dataTable.Buttons(table, {buttons: topButtons});
+
+        table.buttons(1, null).container().appendTo(
+            $(table.table().container()).find(".table-top-button-group"));
 
         //$("div.single-residue-title").html(
         //    _.template($("#single_residue_title").html())({}));

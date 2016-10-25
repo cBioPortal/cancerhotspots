@@ -108,7 +108,7 @@ body {
 
 .cancer-hotspots-tooltip {
     font-size: 0.8em;
-    max-width: 300px;
+    max-width: 480px;
 }
 
 .data-table-title {
@@ -177,6 +177,10 @@ table.about-lab-table {
 
 .table-button-group {
     padding-top: 8px;
+}
+
+.dt-button a {
+    cursor: pointer;
 }
 
 .tumor-type-composition-info {

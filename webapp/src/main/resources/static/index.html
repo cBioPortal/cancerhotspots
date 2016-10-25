@@ -12,6 +12,7 @@
     <link href="lib/css/jquery.qtip.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.pagination.css" type="text/css" rel="stylesheet" />
+    <link href="lib/css/bootstrap.dropdown.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/bootstrap.table.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/buttons.bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="lib/css/dataTables.bootstrap.min.css" type="text/css" rel="stylesheet" />
@@ -36,8 +37,8 @@
     <script type="text/javascript" src="lib/js/dataTables.fnSetFilteringDelay.js"></script>
     <script type="text/javascript" src="lib/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="lib/js/buttons.bootstrap.min.js"></script>
-    <!--script type="text/javascript" src="lib/js/buttons.colVis.min.js"></script>
-    <script type="text/javascript" src="lib/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="lib/js/buttons.colVis.min.js"></script>
+    <!--script type="text/javascript" src="lib/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="lib/js/buttons.print.min.js"></script-->
     <script type="text/javascript" src="lib/js/jquery.qtip.min.js"></script>
     <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
@@ -71,7 +72,7 @@
     <script type="text/javascript" src="src/js/view/CompositionView.js"></script>
     <script type="text/javascript" src="src/js/view/ResidueView.js"></script>
     <script type="text/javascript" src="src/js/render/NoWrapRender.js"></script>
-    <script type="text/javascript" src="src/js/render/PValueRender.js"></script>
+    <script type="text/javascript" src="src/js/render/DecimalValueRender.js"></script>
     <script type="text/javascript" src="src/js/render/VariantRender.js"></script>
     <script type="text/javascript" src="src/js/render/VariantTipRender.js"></script>
     <script type="text/javascript" src="src/js/render/VariantTipCountRender.js"></script>
@@ -84,6 +85,7 @@
     <script type="text/javascript" src="src/js/render/ResidueRender.js"></script>
     <script type="text/javascript" src="src/js/render/GeneRender.js"></script>
     <script type="text/javascript" src="src/js/render/ClusterRender.js"></script>
+    <script type="text/javascript" src="src/js/render/HotspotTypeRender.js"></script>
     <script type="text/javascript" src="src/js/util/DataUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ProxyUtils.js"></script>
     <script type="text/javascript" src="src/js/util/ViewUtils.js"></script>
@@ -226,12 +228,9 @@
 </script>
 
 <script type="text/template" id="internal_mutation_info">
-    Single residue mutation hotspots identified in 24,295 tumor samples by an adaptation of the algorithm described in
+    Single residue and in-frame indel mutation hotspots identified in
+    24,592 tumor samples by an adaptation of the algorithm described in
     [<span class="header-citation"><a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
-    <div class="panel panel-warning internal-note">
-        This analysis incorporates unpublished prospective sequencing data from
-        MSK-IMPACT and is therefore ​<b>internal</b>​ use only at this time
-    </div>
 </script>
 
 <script type="text/template" id="about_page">
@@ -451,7 +450,7 @@
 </script>
 
 <script type="text/template" id="basic_content">
-    <div class="basic-content">{{value}}</div>
+    <div class="basic-content"><span class="basic-content-text">{{value}}</span></div>
 </script>
 
 <script type="text/template" id="tumor_type_composition">

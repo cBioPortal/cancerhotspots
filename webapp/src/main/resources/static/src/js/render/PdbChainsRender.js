@@ -97,7 +97,7 @@ function PdbChainsRender(options)
             dataManager: _options.dataManager
         });
 
-        var pValueRender = new PValueRender({
+        var pValueRender = new DecimalValueRender({
             threshold: _options.pValueThreshold
         });
 

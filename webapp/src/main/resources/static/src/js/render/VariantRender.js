@@ -61,6 +61,7 @@ function VariantRender(options)
 
     function postRender(td, cellData, rowData, row, col) {
         var target = $(td).find(".basic-content");
+        var qTipTarget;
 
         if (_.isEmpty(cellData))
         {
@@ -68,13 +69,25 @@ function VariantRender(options)
             return;
         }
 
-        var stackedBar = new StackedBar({
-            el: target,
-            // assign a fixed color for each amino acid value
-            colors: _options.variantColors
-        });
+        // do not show stacked bar for indel mutations, only show count
+        if (rowData.type != null &&
+            rowData.type.toLowerCase().indexOf("indel") !== -1)
+        {
+            qTipTarget = target.find(".basic-content-text");
+            qTipTarget.text(_.size(cellData));
+        }
+        // show stacked bar for other mutations
+        else
+        {
+            var stackedBar = new StackedBar({
+                el: target,
+                // assign a fixed color for each amino acid value
+                colors: _options.variantColors
+            });
 
-        stackedBar.init(cellData);
+            stackedBar.init(cellData);
+            qTipTarget = target.find('svg');
+        }
 
         var variantTipRender = new VariantTipRender({
             variantColors: _options.variantColors
@@ -108,7 +121,7 @@ function VariantRender(options)
             ]
         };
 
-        cbio.util.addTargetedQTip(target.find('svg'),
+        cbio.util.addTargetedQTip(qTipTarget,
                                   TooltipUtils.tooltipOptions(cellData, viewOpts));
     }
 

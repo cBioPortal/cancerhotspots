@@ -89,6 +89,20 @@ public class ConfigurationService
         return listSeparator;
     }
 
+    private String rangeItemSeparator;
+
+    @Value("${conversion.separator.range}")
+    public void setRangeItemSeparator(String rangeItemSeparator)
+    {
+        this.rangeItemSeparator = rangeItemSeparator;
+        Config.RANGE_ITEM_SEPARATOR = rangeItemSeparator;
+    }
+
+    public String getRangeItemSeparator()
+    {
+        return rangeItemSeparator;
+    }
+
     private String profile;
     @Value("${hotspot.profile}")
     public void setProfile(String profile)

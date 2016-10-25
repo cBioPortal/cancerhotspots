@@ -33,35 +33,21 @@
 /**
  * @author Selcuk Onur Sumer
  */
-function PValueRender(options)
+function HotspotTypeRender(options)
 {
-    var _defaultOpts = {
-        threshold: 0
-    };
+    var _defaultOpts = {};
 
     // merge options with default options to use defaults for missing values
     var _options = jQuery.extend(true, {}, _defaultOpts, options);
 
-    function render (data, type)
+    function render(data, type)
     {
-        var noWrapRender = new NoWrapRender();
+        if (data == null) {
+            return "";
+        }
 
-        // sort value should be the data value
-        if (type === 'sort')
-        {
-            return data;
-        }
-        // type == 'display' || 'filter' || 'type'
-        else if (data < _options.threshold)
-        {
-            return noWrapRender.render("<" + _options.threshold);
-        }
-        else
-        {
-            return noWrapRender.render(data);
-        }
+        return data;
     }
-
 
     this.render = render;
 }

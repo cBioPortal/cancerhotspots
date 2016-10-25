@@ -1,5 +1,6 @@
 package org.cmo.cancerhotspots.service.internal;
 
+import org.cmo.cancerhotspots.data.IntegerRange;
 import org.cmo.cancerhotspots.model.*;
 import org.cmo.cancerhotspots.persistence.*;
 import org.cmo.cancerhotspots.service.MutationAnnotationService;
@@ -64,12 +65,16 @@ public class HotspotDataImportService implements DataImportService
 
         // construct the tumor type instance
         TumorTypeComposition composition = new TumorTypeComposition();
+        String residue = DataUtils.mutationResidue(mutation.getAminoAcidPosition(),
+                                                   mutation.mostFrequentReference(),
+                                                   mutation.getIndelSize());
 
         composition.setHugoSymbol(mutation.getHugoSymbol());
         composition.setAminoAcidPosition(mutation.getAminoAcidPosition());
-        composition.setReferenceAminoAcid(mutation.getReferenceAminoAcid());
+        composition.setReferenceAminoAcid(mutation.mostFrequentReference());
         composition.setVariantAminoAcid(variant);
         composition.setTumorTypeComposition(mutation.getTumorTypeComposition());
+        composition.setResidue(residue);
 
         return composition;
     }
@@ -249,15 +254,18 @@ public class HotspotDataImportService implements DataImportService
         {
             String gene = mutation.getHugoSymbol();
             String residue = mutation.getResidue();
-            String reference = mutation.getReferenceAminoAcid();
-            Integer position = mutation.getAminoAcidPosition();
+            IntegerRange position = mutation.getAminoAcidPosition();
 
             // set residue if null
             if (residue == null &&
-                reference != null &&
                 position != null)
             {
-                mutation.setResidue(reference + position);
+                // update local reference
+                residue = DataUtils.mutationResidue(position,
+                    mutation.mostFrequentReference(),
+                    mutation.getIndelSize());
+
+                mutation.setResidue(residue);
             }
 
             // if residue is still null, then nothing to do...
@@ -427,7 +435,8 @@ public class HotspotDataImportService implements DataImportService
             tumorTypeComposition = new TumorTypeComposition();
 
             // init variant
-            tumorTypeComposition.setAminoAcidPosition(annotation.getAminoAcidPosition());
+            tumorTypeComposition.setAminoAcidPosition(
+                new IntegerRange(annotation.getAminoAcidPosition()));
             tumorTypeComposition.setReferenceAminoAcid(annotation.getReferenceAminoAcid());
             tumorTypeComposition.setVariantAminoAcid(annotation.getVariantAminoAcid());
             tumorTypeComposition.setHugoSymbol(annotation.getHugoSymbol());
@@ -452,7 +461,8 @@ public class HotspotDataImportService implements DataImportService
             variantComposition = new VariantComposition();
 
             // init variant
-            variantComposition.setAminoAcidPosition(annotation.getAminoAcidPosition());
+            variantComposition.setAminoAcidPosition(new IntegerRange(
+                annotation.getAminoAcidPosition()));
             variantComposition.setReferenceAminoAcid(annotation.getReferenceAminoAcid());
             variantComposition.setResidue(this.extractResidue(annotation));
             variantComposition.setHugoSymbol(annotation.getHugoSymbol());

@@ -30,70 +30,49 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.cmo.cancerhotspots.util;
-
-import com.univocity.parsers.conversions.*;
-
-import java.util.*;
+package org.cmo.cancerhotspots.data;
 
 /**
  * @author Selcuk Onur Sumer
  */
-public class ListConversion implements Conversion<String, List<String>>
+public class IntegerRange
 {
-    private final String itemSeparator;
+    private Integer start;
+    private Integer end;
 
-    public ListConversion(String... args) {
-        String itemSeparator = Config.LIST_SEPARATOR;
-
-        if (args.length > 0) {
-            itemSeparator = args[0];
-        }
-
-        this.itemSeparator = itemSeparator;
-    }
-
-    public ListConversion(String itemSeparator)
+    public IntegerRange()
     {
-        this.itemSeparator = itemSeparator;
+        this(null, null);
     }
 
-    @Override
-    public  List<String> execute(String input) {
-        if (input == null) {
-            return Collections.emptyList();
-        }
-        else {
-            return Arrays.asList(input.split(itemSeparator));
-        }
-    }
-
-    @Override
-    public String revert(List<String> input)
+    public IntegerRange(Integer start)
     {
-        if (input == null || input.isEmpty()) {
-            return null;
-        }
+        this(start, null);
+    }
 
-        StringBuilder out = new StringBuilder();
-        String separator = itemSeparator.replaceAll("\\\\", "");
+    public IntegerRange(Integer start, Integer end)
+    {
+        this.start = start;
+        this.end = end;
+    }
 
-        for (String item : input) {
-            if (item == null) {
-                continue;
-            }
+    public Integer getStart()
+    {
+        return start;
+    }
 
-            if (out.length() > 0) {
-                out.append(separator);
-            }
+    public void setStart(Integer start)
+    {
+        this.start = start;
+    }
 
-            out.append(item);
-        }
+    public Integer getEnd()
+    {
+        return end;
+    }
 
-        if (out.length() == 0) {
-            return null;
-        }
-
-        return out.toString();
+    public void setEnd(Integer end)
+    {
+        this.end = end;
     }
 }

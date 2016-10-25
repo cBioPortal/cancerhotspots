@@ -32,62 +32,87 @@
 
 package org.cmo.cancerhotspots.util;
 
+import com.univocity.parsers.conversions.Conversion;
 import org.cmo.cancerhotspots.data.IntegerRange;
-
-import java.util.Map;
 
 /**
  * @author Selcuk Onur Sumer
  */
-public class DataUtils
+public class RangeConversion implements Conversion<String, IntegerRange>
 {
-    public static Map<String, Integer> mergeCompositions(
-        Map<String, Integer> target,
-        Map<String, Integer> source)
-    {
-        for(String key: source.keySet())
-        {
-            Integer value = target.get(key);
+    private final String rangeSeparator;
 
-            // if no value yet, just copy from the source
-            if (value == null)
-            {
-                target.put(key, source.get(key));
-            }
-            // if already exists add to the current value
-            else
-            {
-                target.put(key, value + source.get(key));
-            }
+    public RangeConversion(String... args) {
+        String rangeSeparator = Config.RANGE_ITEM_SEPARATOR;
+
+        if (args.length > 0) {
+            rangeSeparator = args[0];
         }
 
-        return target;
+        this.rangeSeparator = rangeSeparator;
     }
 
-    public static String mutationResidue(IntegerRange position, String reference, Integer indelSize)
+    public RangeConversion(String rangeSeparator)
     {
-        String residue = null;
+        this.rangeSeparator = rangeSeparator;
+    }
 
-        // indel mutation with a range: set residue to the range value
-        if (position.getStart() != null &&
-            position.getEnd() != null)
-        {
-            residue = position.getStart() +
-                      Config.RANGE_ITEM_SEPARATOR +
-                      position.getEnd();
-        }
-        // indel mutation with start position only: set residue to the start pos
-        else if (indelSize != null &&
-                 position.getStart() != null)
-        {
-            residue = position.getStart().toString();
-        }
-        // single residue mutation: set residue to ref + start pos
-        else if (position.getStart() != null)
-        {
-            residue = reference + position.getStart();
+    @Override
+    public  IntegerRange execute(String input) {
+        IntegerRange range = new IntegerRange();
+
+        if (input == null) {
+            return range;
         }
 
-        return residue;
+        String[] parts = input.trim().split(rangeSeparator);
+
+        if (parts.length >= 1)
+        {
+            range.setStart(integerPart(parts[0]));
+        }
+
+        if (parts.length >= 2)
+        {
+            range.setEnd(integerPart(parts[1]));
+        }
+
+        return range;
+    }
+
+    @Override
+    public String revert(IntegerRange input)
+    {
+        if (input == null) {
+            return null;
+        }
+
+        StringBuilder out = new StringBuilder();
+
+        if (input.getStart() != null)
+        {
+            out.append(input.getStart());
+        }
+
+        if (input.getEnd() != null)
+        {
+            out.append(rangeSeparator.replaceAll("\\\\", ""));
+            out.append(input.getEnd());
+        }
+
+        return out.toString();
+    }
+
+    private Integer integerPart(String str)
+    {
+        // just strip anything that is not a digit
+        String stripped = str.replaceAll("\\D+","");
+
+        if (stripped.length() > 0) {
+            return Integer.parseInt(stripped);
+        }
+        else {
+            return null;
+        }
     }
 }
