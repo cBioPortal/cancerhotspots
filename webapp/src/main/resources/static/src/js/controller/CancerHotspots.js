@@ -51,6 +51,8 @@ function CancerHotspots(options)
         homePage: "#home",
         homeTemplateId: "home_page",
         aboutPage: "#about",
+        downloadPage: "#download",
+        downloadTemplateId: "download_page",
         aboutTemplateId: "about_page",
         residuePage: "#residue",
         residueTemplateId: "residue_page",
@@ -58,11 +60,21 @@ function CancerHotspots(options)
             app: {
                 tagline: "A resource for statistically significant mutations in cancer",
                 title: "Cancer Hotspots",
-                logoStyle: "hotspot-fire",
-                downloadFile: "files/hotspots.xls"
+                logoStyle: "hotspot-fire"
             },
             home: {
                 mutationInfo: _.template($("#default_mutation_info").html())()
+            },
+            download: {
+                content:[{
+                    links: [
+                        {href: 'href="files/hotspots.xls"',
+                            text: "Hotspot Results V1"},
+                        {href: 'href="https://github.com/taylor-lab/hotspots/blob/master/LINK_TO_MUTATIONAL_DATA"',
+                            text: "V1 Mutational Data (MAF)"}
+                    ],
+                    info: _.template($("#hotspots_v1_info").html())()
+                }]
             }
         },
         // TODO view & render options...
@@ -155,6 +167,46 @@ function CancerHotspots(options)
         $(_options.homePage).show();
     }
 
+    function download(params)
+    {
+        // init section if not initialized yet
+        if (!$(_options.downloadPage).length)
+        {
+            var templateFn = _.template($("#" + _options.downloadTemplateId).html());
+            $(_options.pageContent).append(templateFn(downloadTemplateVars(params)));
+        }
+
+        $(_options.downloadPage).show();
+    }
+
+    function downloadTemplateVars(params)
+    {
+        var linkTemplateFn = _.template($("#download_link_basic_template").html());
+        var contentTemplateFn = _.template($("#download_basic_content").html());
+        var content = [];
+
+        _.each(params.content, function(item) {
+            var links = [];
+
+            links.push("<ul>");
+
+            _.each(item.links, function(link) {
+                links.push(linkTemplateFn(link));
+            });
+
+            links.push("</ul>");
+
+            content.push(contentTemplateFn({
+                links: links.join("\n"),
+                info: item.info
+            }))
+        });
+
+        return {
+            content: content.join("\n")
+        };
+    }
+
     function about(params)
     {
         // init section if not initialized yet
@@ -226,6 +278,9 @@ function CancerHotspots(options)
             '/about': function() {
                 switchContent(about);
             },
+            '/download': function() {
+                switchContent(download, _options.content.download);
+            },
             '/residue/:hugoSymbol/:residue': function(hugoSymbol, residue) {
                 switchContent(cluster, {hugoSymbol: hugoSymbol, residue: residue});
             },
@@ -254,12 +309,19 @@ function CancerHotspots(options)
                         tagline: "A resource for statistically significant mutations clustering " +
                                  "in 3D protein structures in cancer",
                         title: "3D Hotspots",
-                        downloadFile: "files/3d_hotspots.xls",
                         logoStyle: "hotspot-fire hotspot-3d-fire"
                     },
                     home: {
                         mutationInfo: "Mutations clustering in 3D protein structures identified " +
                                       "in 11,119 tumor samples across 41 tumor types"
+                    },
+                    download: {
+                        content: [{
+                            links: [
+                                {href: 'href="files/3d_hotspots.xls"', text: "3D Hotspot Results"}
+                            ],
+                            info: "Resources for mutations in 3D protein structures:"
+                        }]
                     }
                 };
 
@@ -284,7 +346,16 @@ function CancerHotspots(options)
                     _options.content.home.mutationInfo =
                         _.template($("#internal_mutation_info").html())();
 
-                    _options.content.app.downloadFile = "files/internal_hotspots.xls";
+                    // 2 more internal links in addition to the public ones
+                    _options.content.download.content.unshift({
+                        links: [
+                            {href: 'href="files/internal_hotspots.xls"',
+                                text: "Hotspot Results V2"},
+                            {href: "",
+                                text: "V2 Mutational Data (MAF) will be available upon publication"}
+                        ],
+                        info: _.template($("#hotspots_v2_info").html())()
+                    });
                 }
             }
 

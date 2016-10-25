@@ -150,7 +150,7 @@
                         </li>
                         <li class="download-nav">
                             <!--a href="#">Download</a-->
-                            <a href="{{downloadFile}}" target="_blank">Download</a>
+                            <a href="#/download">Download</a>
                         </li>
                     </ul>
                     <div class="pull-right">
@@ -231,6 +231,45 @@
     Single residue and in-frame indel mutation hotspots identified in
     24,592 tumor samples by an adaptation of the algorithm described in
     [<span class="header-citation"><a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]
+</script>
+
+<script type="text/template" id="download_page">
+    <section id="download">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    {{content}}
+                </div>
+            </div>
+        </div>
+    </section>
+</script>
+
+<script type="text/template" id="download_basic_content">
+    <div class="download-basic-content">
+        <span class="download-info">
+            <p>{{info}}</p>
+        </span>
+        <span class="download-links">
+            {{links}}
+        </span>
+    </div>
+</script>
+
+<script type="text/template" id="hotspots_v1_info">
+    Resources for single residue mutation hotspots identified in 11,119 tumor samples by
+    [<span class="header-citation"><a href="http://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al.</a></span>]:
+</script>
+
+<script type="text/template" id="hotspots_v2_info">
+    Resources for hotspots of single residue mutations and in-frame insertions/deletions
+    identified in 24,592 tumor samples:
+</script>
+
+<script type="text/template" id="download_link_basic_template">
+    <li>
+        <a {{href}} target="_blank">{{text}}</a>
+    </li>
 </script>
 
 <script type="text/template" id="about_page">
