@@ -40,8 +40,8 @@ function ClassificationRender(options)
         displayValue: {
             "LL": "L<sub>L</sub>",
             "LH": "L<sub>H</sub>",
-            "Cluster-exclusive": "3D cluster residue NOT coupled to a single-residue hotspot",
-            "Hotspot-linked": "3D cluster residue coupled to a single-residue hotspot",
+            "Cluster-exclusive": "Not coupled to a hotspot",
+            "Hotspot-linked": "Coupled to a hotspot",
             "Hotspot": "Single-residue hotspot"
         },
         style: {}
