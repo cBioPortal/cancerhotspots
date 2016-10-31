@@ -64,7 +64,7 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
         for (String transcriptId: transcriptIds)
         {
             mutations.addAll(convertToMultiResidue(
-                mutationRepository.findByTranscript(transcriptId)));
+                mutationRepository.findByTranscript(transcriptId.toUpperCase())));
         }
 
         return mutations;

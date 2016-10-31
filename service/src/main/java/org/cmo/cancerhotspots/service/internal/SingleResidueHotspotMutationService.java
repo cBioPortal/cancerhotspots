@@ -95,7 +95,7 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
         for (String transcriptId: transcriptIds)
         {
             mutations.addAll(convertToSingleResidue(
-                mutationRepository.findByTranscript(transcriptId)));
+                mutationRepository.findByTranscript(transcriptId.toUpperCase())));
         }
 
         return mutations;

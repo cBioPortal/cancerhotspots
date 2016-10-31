@@ -107,7 +107,7 @@ public class HotspotController
         method = {RequestMethod.GET},
         produces = "application/json")
     public List<HotspotMutation> getSingleResidueHotspotMutationsByTranscript(
-        @ApiParam(value = "Comma separated list of transcript IDs. For example TODO,TODO",
+        @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
             required = true,
             allowMultiple = true)
         @PathVariable List<String> transcriptIds)
@@ -121,7 +121,7 @@ public class HotspotController
         method = {RequestMethod.POST},
         produces = "application/json")
     public List<HotspotMutation> postSingleResidueHotspotMutationsByTranscript(
-        @ApiParam(value = "Comma separated list of transcript IDs. For example TODO,TODO",
+        @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
             required = true,
             allowMultiple = true)
         @RequestParam(required = true)

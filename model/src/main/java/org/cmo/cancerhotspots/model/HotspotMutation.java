@@ -48,7 +48,7 @@ public class HotspotMutation
     private Integer tumorTypeCount;
     private Integer tumorCount;
     private Map<String, Integer> tumorTypeComposition;
-    private String transcrpitId;
+    private String transcriptId;
     private IntegerRange aminoAcidPosition;
 
     @ApiModelProperty(value = "Hugo gene symbol", required = true)
@@ -118,14 +118,14 @@ public class HotspotMutation
     }
 
     @ApiModelProperty(value = "Ensemble Transcript Id", required = false)
-    public String getTranscrpitId()
+    public String getTranscriptId()
     {
-        return transcrpitId;
+        return transcriptId;
     }
 
-    public void setTranscrpitId(String transcrpitId)
+    public void setTranscriptId(String transcriptId)
     {
-        this.transcrpitId = transcrpitId;
+        this.transcriptId = transcriptId;
     }
 
     @ApiModelProperty(value = "Amino Acid Position", required = false)
@@ -146,7 +146,7 @@ public class HotspotMutation
         setTumorTypeCount(mutation.getTumorTypeCount());
         setResidue(mutation.getResidue());
         setVariantAminoAcid(mutation.getVariantAminoAcid());
-        setTranscrpitId(mutation.getTranscriptId());
+        setTranscriptId(mutation.getTranscriptId());
         setAminoAcidPosition(mutation.getAminoAcidPosition());
     }
 }

@@ -12,4 +12,5 @@ public interface DataImportService
     void createClusterFile(Iterable<Mutation> mutations);
     void generateVariantComposition(Iterable<Mutation> mutations);
     void generateTumorTypeComposition(Iterable<Mutation> mutations);
+    void importTranscript(Iterable<Mutation> mutations);
 }

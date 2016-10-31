@@ -76,4 +76,15 @@ public class PipelineController
 
         return "tumor type composition extraction initialized";
     }
+
+    @RequestMapping(value = "/import/transcript",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public String importTranscript()
+    {
+        dataImportService.importTranscript(
+            mutationRepository.findAll());
+
+        return "transcript import initialized";
+    }
 }
