@@ -70,6 +70,7 @@ public class RangeConversion implements Conversion<String, IntegerRange>
         if (parts.length >= 1)
         {
             range.setStart(integerPart(parts[0]));
+            range.setEnd(integerPart(parts[0]));
         }
 
         if (parts.length >= 2)
@@ -94,7 +95,7 @@ public class RangeConversion implements Conversion<String, IntegerRange>
             out.append(input.getStart());
         }
 
-        if (input.getEnd() != null)
+        if (input.getEnd() != null && !input.getStart().equals(input.getEnd()))
         {
             out.append(rangeSeparator.replaceAll("\\\\", ""));
             out.append(input.getEnd());

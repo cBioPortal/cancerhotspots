@@ -33,6 +33,7 @@
 package org.cmo.cancerhotspots.model;
 
 import io.swagger.annotations.ApiModelProperty;
+import org.cmo.cancerhotspots.data.IntegerRange;
 
 import java.util.Map;
 
@@ -47,6 +48,7 @@ public class HotspotMutation
     private Integer tumorTypeCount;
     private Integer tumorCount;
     private Map<String, Integer> tumorTypeComposition;
+    private IntegerRange aminoAcidPosition;
 
     @ApiModelProperty(value = "Hugo gene symbol", required = true)
     public String getHugoSymbol()
@@ -114,6 +116,15 @@ public class HotspotMutation
         this.tumorTypeCount = tumorTypeCount;
     }
 
+    @ApiModelProperty(value = "Amino Acid Position", required = false)
+    public IntegerRange getAminoAcidPosition() {
+        return aminoAcidPosition;
+    }
+
+    public void setAminoAcidPosition(IntegerRange aminoAcidPosition) {
+        this.aminoAcidPosition = aminoAcidPosition;
+    }
+
     // TODO this is a manual mapping / field copy from Mutation -> HotspotMutation
     public void init(Mutation mutation)
     {
@@ -123,5 +134,6 @@ public class HotspotMutation
         setTumorTypeCount(mutation.getTumorTypeCount());
         setResidue(mutation.getResidue());
         setVariantAminoAcid(mutation.getVariantAminoAcid());
+        setAminoAcidPosition(mutation.getAminoAcidPosition());
     }
 }
