@@ -70,7 +70,8 @@ public class DataUtils
 
         // indel mutation with a range: set residue to the range value
         if (position.getStart() != null &&
-            position.getEnd() != null)
+            position.getEnd() != null &&
+            !position.getStart().equals(position.getEnd()))
         {
             residue = position.getStart() +
                       Config.RANGE_ITEM_SEPARATOR +
