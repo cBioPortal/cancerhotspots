@@ -268,9 +268,13 @@ var ViewUtils = (function() {
                     excluded: ["qValue", "qValueCancerType", "qValuePancan", "type"],
                     hidden: []
                 },
-                "singleresidue": {
+                "multiType": {
                     excluded: ["pValue", "clusters", "classification"],
                     hidden: ["qValueCancerType", "qValuePancan"]
+                },
+                "singleResidue": {
+                    excluded: ["pValue", "clusters", "classification", "qValueCancerType", "qValuePancan"],
+                    hidden: ["type"]
                 },
                 "other" : {
                     excluded: [],
@@ -278,14 +282,17 @@ var ViewUtils = (function() {
                 }
             };
 
-            if (profile.indexOf("singleresidue") != -1) {
-                profileOpts = options["singleresidue"];
+            if (profile.indexOf("multitype") != -1) {
+                profileOpts = options["multiType"];
+            }
+            else if (profile.indexOf("singleresidue") != -1) {
+                profileOpts = options["singleResidue"];
             }
             else if (profile.indexOf("3d") != -1) {
                 profileOpts = options["3d"];
             }
             else {
-                profileOpts = options["hidden"];
+                profileOpts = options["other"];
             }
 
             _.each(columns, function(column) {
