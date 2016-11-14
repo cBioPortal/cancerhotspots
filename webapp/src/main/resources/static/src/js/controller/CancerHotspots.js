@@ -341,7 +341,7 @@ function CancerHotspots(options)
                     }
                 };
 
-                if (metadata.profile.toLowerCase() === "internalsingleresidue")
+                if (metadata.profile.toLowerCase().indexOf("internal") != -1)
                 {
                     _options.content.home.mutationInfo =
                         _.template($("#internal_mutation_info").html())();
