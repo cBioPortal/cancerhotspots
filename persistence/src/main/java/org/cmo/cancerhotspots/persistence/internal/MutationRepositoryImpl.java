@@ -52,7 +52,26 @@ public class MutationRepositoryImpl implements MutationRepository
 
         for (Mutation mutation: mutations)
         {
-            if (mutation.getHugoSymbol().trim().equalsIgnoreCase(hugoSymbol))
+            if (mutation.getHugoSymbol() != null &&
+                mutation.getHugoSymbol().trim().equalsIgnoreCase(hugoSymbol))
+            {
+                result.add(mutation);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public Iterable<Mutation> findByTranscript(String transcriptId)
+    {
+        Iterable<Mutation> mutations = findAll();
+        List<Mutation> result = new ArrayList<>();
+
+        for (Mutation mutation: mutations)
+        {
+            if (mutation.getTranscriptId() != null &&
+                mutation.getTranscriptId().trim().equalsIgnoreCase(transcriptId))
             {
                 result.add(mutation);
             }

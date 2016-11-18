@@ -56,6 +56,20 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
         return mutations;
     }
 
+    @Override
+    public List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds)
+    {
+        List<HotspotMutation> mutations = new ArrayList<>();
+
+        for (String transcriptId: transcriptIds)
+        {
+            mutations.addAll(convertToMultiResidue(
+                mutationRepository.findByTranscript(transcriptId.toUpperCase())));
+        }
+
+        return mutations;
+    }
+
     public List<HotspotMutation> convertToMultiResidue(Iterable<Mutation> mutations)
     {
         Map<String, ClusteredHotspotMutation> mutationMap = new LinkedHashMap<>();

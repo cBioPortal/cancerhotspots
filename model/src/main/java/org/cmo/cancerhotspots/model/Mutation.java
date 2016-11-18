@@ -84,6 +84,10 @@ public class Mutation
     @Parsed(field = "Indel_Size")
     private Integer indelSize;
 
+    @Trim
+    @Parsed(field = "Transcript_Id")
+    private String transcriptId;
+
     public String getHugoSymbol()
     {
         return hugoSymbol;
@@ -242,6 +246,16 @@ public class Mutation
     public void setIndelSize(Integer indelSize)
     {
         this.indelSize = indelSize;
+    }
+
+    public String getTranscriptId()
+    {
+        return transcriptId;
+    }
+
+    public void setTranscriptId(String transcriptId)
+    {
+        this.transcriptId = transcriptId;
     }
 
     public String mostFrequentReference()

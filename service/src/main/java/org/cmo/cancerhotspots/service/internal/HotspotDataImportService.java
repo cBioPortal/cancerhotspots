@@ -38,19 +38,22 @@ public class HotspotDataImportService implements DataImportService
     private MutationRepository mutationRepository;
     private VariantRepository variantRepository;
     private ClusterRepository clusterRepository;
+    private TranscriptRepository transcriptRepository;
 
     @Autowired
     public HotspotDataImportService(MutationAnnotationService mafService,
         MutationFilterService filterService,
         MutationRepository mutationRepository,
         VariantRepository variantRepository,
-        ClusterRepository clusterRepository)
+        ClusterRepository clusterRepository,
+        TranscriptRepository transcriptRepository)
     {
         this.mafService = mafService;
         this.filterService = filterService;
         this.mutationRepository = mutationRepository;
         this.variantRepository = variantRepository;
         this.clusterRepository = clusterRepository;
+        this.transcriptRepository = transcriptRepository;
         // TODO technically we should use database for such large data, not in-memory cache
         this.variantCacheByGeneAndAAChange = null;
         this.variantCacheByAAChange = null;
@@ -241,6 +244,21 @@ public class HotspotDataImportService implements DataImportService
             mutation.setTumorTypeComposition(composition.getTumorTypeComposition());
             mutation.setTumorTypeCount(composition.tumorTypeCount());
             mutation.setTumorCount(composition.tumorCount());
+        }
+    }
+
+    @Override
+    public void importTranscript(Iterable<Mutation> mutations)
+    {
+        for (Mutation mutation : mutations)
+        {
+            Iterable<Transcript> transcripts = transcriptRepository.findByGene(mutation.getHugoSymbol());
+
+            if (transcripts.iterator().hasNext())
+            {
+                mutation.setTranscriptId(
+                    transcripts.iterator().next().getTranscriptId());
+            }
         }
     }
 

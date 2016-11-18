@@ -95,6 +95,41 @@ public class HotspotController
         return singleResidueHotspotMutationService.getAllHotspotMutations();
     }
 
+    @ApiOperation(value = "get hotspot mutations by transcript id",
+        nickname = "getSingleResidueHotspotMutationsByTranscript")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success",
+            response = SingleResidueHotspotMutation.class,
+            responseContainer = "List"),
+        @ApiResponse(code = 400, message = "Bad Request")
+    })
+    @RequestMapping(value = "/hotspots/single/byTranscript/{transcriptIds}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<HotspotMutation> getSingleResidueHotspotMutationsByTranscript(
+        @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
+            required = true,
+            allowMultiple = true)
+        @PathVariable List<String> transcriptIds)
+    {
+        return singleResidueHotspotMutationService.getHotspotMutationsByTranscript(transcriptIds);
+    }
+
+    @ApiOperation(value = "get hotspot mutations by transcript id",
+        nickname = "postSingleResidueHotspotMutationsByTranscript")
+    @RequestMapping(value = "/hotspots/single/byTranscript",
+        method = {RequestMethod.POST},
+        produces = "application/json")
+    public List<HotspotMutation> postSingleResidueHotspotMutationsByTranscript(
+        @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
+            required = true,
+            allowMultiple = true)
+        @RequestParam(required = true)
+        List<String> transcriptIds)
+    {
+        return getSingleResidueHotspotMutationsByTranscript(transcriptIds);
+    }
+
     @ApiOperation(value = "get 3D hotspot mutations",
         nickname = "getAll3dHotspotMutations")
     @ApiResponses(value = {
