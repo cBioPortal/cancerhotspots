@@ -77,8 +77,8 @@ public class HotspotController
         this.configService = configService;
     }
 
-    @ApiOperation(value = "get all hotspot mutations",
-        nickname = "getAllHotspotMutations")
+    @ApiOperation(value = "get all single residue hotspot mutations",
+        nickname = "fetchSingleResidueHotspotMutations")
     @RequestMapping(value = "/hotspots/single",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
