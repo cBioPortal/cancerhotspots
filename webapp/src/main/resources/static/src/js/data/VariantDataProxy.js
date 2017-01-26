@@ -47,13 +47,14 @@ function VariantDataProxy(options)
 
     function getTumorTypeComposition(hugoSymbol, aminoAcidChange, callback)
     {
-        var data = {
-            hugoSymbol: hugoSymbol,
-            aminoAcidChanges: aminoAcidChange
-        };
+        var url = _options.serviceUrl + ProxyUtils.requestParams({
+            hugoSymbol: hugoSymbol
+        });
+
+        var aminoAcidChanges = [].concat(aminoAcidChange);
 
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, data, callback));
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, aminoAcidChanges, callback));
     }
 
     this.getTumorTypeComposition = getTumorTypeComposition;

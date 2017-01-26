@@ -47,13 +47,15 @@ function ClusterDataProxy(options)
 
     function getCluster(hugoSymbol, residue, callback)
     {
-        var data = {
+        var url = _options.serviceUrl + ProxyUtils.requestParams({
             hugoSymbol: hugoSymbol,
             residue: residue
-        };
+        });
+
+        var clusterIds = []; // clusterIds
 
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, data, callback));
+        $.ajax(ProxyUtils.ajaxOpts(url, clusterIds, callback));
     }
 
     this.getCluster = getCluster;

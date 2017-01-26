@@ -41,17 +41,38 @@ var ProxyUtils = (function()
         return {
             type: "POST",
             url: url,
-            data: data,
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
             success: callback,
             error: function() {
                 console.log("Error retrieving data for: " + url);
                 callback([]);
             },
+            processData: false,
             dataType: "json"
         };
     }
 
+    function requestParams(params)
+    {
+        var str = "";
+        var requestParams = [];
+
+        _.each(params, function(value, key) {
+            if (value && value.length > 0) {
+                requestParams.push(key + "=" + value);
+            }
+        });
+
+        if (requestParams.length > 0) {
+            str = "?" + requestParams.join("&");
+        }
+
+        return str;
+    }
+
     return {
+        requestParams: requestParams,
         ajaxOpts: ajaxOpts
     };
 })();

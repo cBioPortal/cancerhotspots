@@ -122,13 +122,14 @@ public class HotspotController
         method = {RequestMethod.POST},
         produces = "application/json")
     public List<HotspotMutation> fetch3dHotspotMutationsPOST(
-        @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
+        @ApiParam(value = "List of hugo symbols. For example [PTEN,BRAF,TP53]",
             required = false,
             allowMultiple = true)
-        @RequestParam(required = false)
+        @RequestBody(required = false)
         List<String> hugoSymbols)
     {
-        if (hugoSymbols == null)
+        if (hugoSymbols == null ||
+            hugoSymbols.size() == 0)
         {
             return multiResidueHotspotMutationService.getAllHotspotMutations();
         }
@@ -222,13 +223,14 @@ public class HotspotController
             required = false)
         @RequestParam(required = false)
         String hugoSymbol,
-        @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
+        @ApiParam(value = "List of amino acid change values. For example [V600E,V600K]",
             required = false,
             allowMultiple = true)
-        @RequestParam(required = false)
+        @RequestBody(required = false)
         List<String> aminoAcidChanges)
     {
-        if (aminoAcidChanges == null)
+        if (aminoAcidChanges == null ||
+            aminoAcidChanges.size() == 0)
         {
             return fetchAllVariantsGET();
         }
@@ -289,7 +291,7 @@ public class HotspotController
         produces = "application/json")
     public List<Cluster> fetchClustersGET(
         @ApiParam(value = "Comma separated list of cluster ids, for example 1,2,3",
-            required = false)
+            required = true)
         @PathVariable List<String> clusterIds)
     {
         return clusterService.getClusters(clusterIds);
@@ -301,9 +303,9 @@ public class HotspotController
         method = {RequestMethod.POST},
         produces = "application/json")
     public List<Cluster> fetchClustersPOST(
-        @ApiParam(value = "Comma separated list of cluster ids, for example 1,2,3",
+        @ApiParam(value = "List of cluster ids, for example [1,2,3]",
             required = false)
-        @RequestParam(required = false)
+        @RequestBody(required=false)
         List<String> clusterIds,
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = false)
@@ -315,7 +317,8 @@ public class HotspotController
         @RequestParam(required = false)
         String residue)
     {
-        if (clusterIds != null)
+        if (clusterIds != null &&
+            clusterIds.size() > 0)
         {
             // if cluster ids are provided get clusters by id by default
             return fetchClustersGET(clusterIds);
