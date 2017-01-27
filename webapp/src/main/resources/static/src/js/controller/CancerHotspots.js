@@ -240,7 +240,7 @@ function CancerHotspots(options)
             dataManager: dataManager,
             ajax: function (data, callback, settings) {
                 _clusterProxy.getCluster(params.hugoSymbol, params.residue, function(clusterData) {
-                    _hotspotProxy.getHotspots([params.hugoSymbol], function(hotspotData) {
+                    _hotspotProxy.getHotspotsByGene([params.hugoSymbol], function(hotspotData) {
                         dataManager.updateData({
                             clusters: clusterData,
                             mutations: hotspotData

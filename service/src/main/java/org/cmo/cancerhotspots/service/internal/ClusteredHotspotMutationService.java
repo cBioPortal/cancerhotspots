@@ -43,14 +43,14 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
     }
 
     @Override
-    public List<HotspotMutation> getHotspotMutations(List<String> hugoSymbols)
+    public List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols)
     {
         List<HotspotMutation> mutations = new ArrayList<>();
 
         for (String hugoSymbol: hugoSymbols)
         {
             mutations.addAll(convertToMultiResidue(
-                mutationRepository.findByGene(hugoSymbol)));
+                mutationRepository.findByGene(hugoSymbol.toUpperCase())));
         }
 
         return mutations;
