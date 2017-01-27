@@ -152,10 +152,10 @@ public class HotspotController
         method = {RequestMethod.POST},
         produces = "application/json")
     public List<HotspotMutation> fetch3dHotspotMutationsPOST(
-        @ApiParam(value = "List of hugo symbols. For example [\"PTEN\",\"BRAF\",\"TP53\"]",
+        @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
             required = false,
             allowMultiple = true)
-        @RequestBody(required = false)
+        @RequestParam(required = false)
         List<String> hugoSymbols)
     {
         if (hugoSymbols == null ||
@@ -167,7 +167,6 @@ public class HotspotController
         {
             return fetch3dHotspotMutationsByGeneGET(hugoSymbols);
         }
-
     }
 
     /**
