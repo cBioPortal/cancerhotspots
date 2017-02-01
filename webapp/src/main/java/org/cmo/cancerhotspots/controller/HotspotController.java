@@ -34,8 +34,6 @@ package org.cmo.cancerhotspots.controller;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.cmo.cancerhotspots.model.*;
 import org.cmo.cancerhotspots.service.ClusterService;
 import org.cmo.cancerhotspots.service.VariantService;
@@ -79,34 +77,51 @@ public class HotspotController
         this.configService = configService;
     }
 
-    @ApiOperation(value = "get all hotspot mutations",
-        nickname = "getAllHotspotMutations")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = SingleResidueHotspotMutation.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+    @ApiOperation(value = "get all single residue hotspot mutations",
+        nickname = "fetchSingleResidueHotspotMutations")
     @RequestMapping(value = "/hotspots/single",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
-    public List<HotspotMutation> getSingleResidueHotspotMutations()
+    public List<HotspotMutation> fetchSingleResidueHotspotMutations()
     {
         return singleResidueHotspotMutationService.getAllHotspotMutations();
     }
 
+    @ApiOperation(value = "get hotspot mutations by hugo gene symbol",
+        nickname = "fetchSingleResidueHotspotMutationsByGeneGET")
+    @RequestMapping(value = "/hotspots/single/byGene/{transcriptIds}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<HotspotMutation> fetchSingleResidueHotspotMutationsByGeneGET(
+        @ApiParam(value = "Comma separated list of hugo gene symbols. For example PTEN,BRAF,TP53",
+            required = true,
+            allowMultiple = true)
+        @PathVariable List<String> hugoSymbols)
+    {
+        return singleResidueHotspotMutationService.getHotspotMutationsByGene(hugoSymbols);
+    }
+
+    @ApiOperation(value = "get hotspot mutations by hugo gene symbol",
+        nickname = "fetchSingleResidueHotspotMutationsByGenePOST")
+    @RequestMapping(value = "/hotspots/single/byGene",
+        method = {RequestMethod.POST},
+        produces = "application/json")
+    public List<HotspotMutation> fetchSingleResidueHotspotMutationsByGenePOST(
+        @ApiParam(value = "List of hugo gene symbols. For example [\"PTEN\",\"BRAF\",\"TP53\"]",
+            required = true,
+            allowMultiple = true)
+        @RequestBody
+        List<String> hugoSymbols)
+    {
+        return this.fetchSingleResidueHotspotMutationsByGeneGET(hugoSymbols);
+    }
+
     @ApiOperation(value = "get hotspot mutations by transcript id",
-        nickname = "getSingleResidueHotspotMutationsByTranscript")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = SingleResidueHotspotMutation.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchSingleResidueHotspotMutationsByTranscriptGET")
     @RequestMapping(value = "/hotspots/single/byTranscript/{transcriptIds}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<HotspotMutation> getSingleResidueHotspotMutationsByTranscript(
+    public List<HotspotMutation> fetchSingleResidueHotspotMutationsByTranscriptGET(
         @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
             required = true,
             allowMultiple = true)
@@ -116,80 +131,97 @@ public class HotspotController
     }
 
     @ApiOperation(value = "get hotspot mutations by transcript id",
-        nickname = "postSingleResidueHotspotMutationsByTranscript")
+        nickname = "fetchSingleResidueHotspotMutationsByTranscriptPOST")
     @RequestMapping(value = "/hotspots/single/byTranscript",
         method = {RequestMethod.POST},
         produces = "application/json")
-    public List<HotspotMutation> postSingleResidueHotspotMutationsByTranscript(
-        @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
+    public List<HotspotMutation> fetchSingleResidueHotspotMutationsByTranscriptPOST(
+        @ApiParam(value = "List of transcript IDs. For example [\"ENST00000288602\",\"ENST00000275493\"]",
             required = true,
             allowMultiple = true)
-        @RequestParam(required = true)
+        @RequestBody
         List<String> transcriptIds)
     {
-        return getSingleResidueHotspotMutationsByTranscript(transcriptIds);
+        return fetchSingleResidueHotspotMutationsByTranscriptGET(transcriptIds);
     }
 
-    @ApiOperation(value = "get 3D hotspot mutations",
-        nickname = "getAll3dHotspotMutations")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = ClusteredHotspotMutation.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+    // TODO add RequestMethod.GET after removing the backward compatible parameter hugoSymbols
+    @ApiOperation(value = "get all 3D hotspot mutations",
+        nickname = "fetch3dHotspotMutationsPOST")
     @RequestMapping(value = "/hotspots/3d",
         method = {RequestMethod.POST},
         produces = "application/json")
-    public List<HotspotMutation> post3dHotspotMutations(
+    public List<HotspotMutation> fetch3dHotspotMutationsPOST(
         @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
             required = false,
             allowMultiple = true)
         @RequestParam(required = false)
         List<String> hugoSymbols)
     {
-        if (hugoSymbols == null)
+        if (hugoSymbols == null ||
+            hugoSymbols.size() == 0)
         {
             return multiResidueHotspotMutationService.getAllHotspotMutations();
         }
         else
         {
-            return get3dHotspotMutations(hugoSymbols);
+            return fetch3dHotspotMutationsByGeneGET(hugoSymbols);
         }
-
     }
 
+    /**
+     * @deprecated keeping this endpoint for backwards compatibility only
+     */
     @ApiOperation(value = "get all hotspot mutations for the specified genes",
-        nickname = "get3dHotspotMutationsByGene")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = ClusteredHotspotMutation.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetch3dHotspotMutationsByGene_Legacy")
     @RequestMapping(value = "/hotspots/3d/{hugoSymbols}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<HotspotMutation> get3dHotspotMutations(
+    public List<HotspotMutation> fetch3dHotspotMutationsByGeneLegacy(
         @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
             required = true,
             allowMultiple = true)
-        @PathVariable List<String> hugoSymbols)
+        @PathVariable
+            List<String> hugoSymbols)
     {
-        return multiResidueHotspotMutationService.getHotspotMutations(hugoSymbols);
+        return fetch3dHotspotMutationsByGeneGET(hugoSymbols);
+    }
+
+    @ApiOperation(value = "get all hotspot mutations for the specified genes",
+        nickname = "fetch3dHotspotMutationsByGeneGET")
+    @RequestMapping(value = "/hotspots/3d/byGene/{hugoSymbols}",
+        method = {RequestMethod.GET},
+        produces = "application/json")
+    public List<HotspotMutation> fetch3dHotspotMutationsByGeneGET(
+        @ApiParam(value = "Comma separated list of hugo symbols. For example PTEN,BRAF,TP53",
+            required = true,
+            allowMultiple = true)
+        @PathVariable
+        List<String> hugoSymbols)
+    {
+        return multiResidueHotspotMutationService.getHotspotMutationsByGene(hugoSymbols);
+    }
+
+    @ApiOperation(value = "get all hotspot mutations for the specified genes",
+        nickname = "fetch3dHotspotMutationsByGenePOST")
+    @RequestMapping(value = "/hotspots/3d/byGene",
+        method = {RequestMethod.POST},
+        produces = "application/json")
+    public List<HotspotMutation> fetch3dHotspotMutationsByGenePOST(
+        @ApiParam(value = "List of hugo symbols. For example [\"PTEN\",\"BRAF\",\"TP53\"]",
+            required = true,
+            allowMultiple = true)
+        @RequestBody
+        List<String> hugoSymbols)
+    {
+        return fetch3dHotspotMutationsByGeneGET(hugoSymbols);
     }
 
     // TODO API disabled for now, enable if needed
     // -- after implementing corresponding service method properly!
 
-//    @ApiOperation(value = "get variant tumor type compositions",
+//    @ApiOperation(value = "get variant tumor type compositions by amino acid change",
 //        nickname = "getVariantsByAminoAcidChange")
-//    @ApiResponses(value = {
-//        @ApiResponse(code = 200, message = "Success",
-//            response = VariantComposition.class,
-//            responseContainer = "List"),
-//        @ApiResponse(code = 400, message = "Bad Request")
-//    })
 //    @RequestMapping(value = "/variants/{aminoAcidChanges}",
 //        method = {RequestMethod.GET, RequestMethod.POST},
 //        produces = "application/json")
@@ -214,18 +246,12 @@ public class HotspotController
         return variants;
     }
 
-    @ApiOperation(value = "get variant tumor type compositions",
-        nickname = "getVariantsByHugoSymbolAndAminoAcidChange")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = TumorTypeComposition.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+    @ApiOperation(value = "get variant tumor type compositions by gene and amino acid change",
+        nickname = "fetchVariantsGET")
     @RequestMapping(value = "/variants/{hugoSymbol}/{aminoAcidChanges}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<TumorTypeComposition> getVariants(
+    public List<TumorTypeComposition> fetchVariantsGET(
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = true)
         @PathVariable String hugoSymbol,
@@ -251,30 +277,25 @@ public class HotspotController
     }
 
     @ApiOperation(value = "get variant tumor type compositions",
-        nickname = "postVariants")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = TumorTypeComposition.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchVariantsPOST")
     @RequestMapping(value = "/variants",
         method = {RequestMethod.POST},
         produces = "application/json")
-    public List<TumorTypeComposition> postVariants(
+    public List<TumorTypeComposition> fetchVariantsPOST(
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = false)
         @RequestParam(required = false)
         String hugoSymbol,
-        @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
+        @ApiParam(value = "List of amino acid change values. For example [\"V600E\",\"V600K\"]",
             required = false,
             allowMultiple = true)
-        @RequestParam(required = false)
+        @RequestBody(required = false)
         List<String> aminoAcidChanges)
     {
-        if (aminoAcidChanges == null)
+        if (aminoAcidChanges == null ||
+            aminoAcidChanges.size() == 0)
         {
-            return getAllVariants();
+            return fetchAllVariantsGET();
         }
         else if (hugoSymbol == null)
         {
@@ -282,38 +303,26 @@ public class HotspotController
         }
         else
         {
-            return getVariants(hugoSymbol, aminoAcidChanges);
+            return fetchVariantsGET(hugoSymbol, aminoAcidChanges);
         }
     }
 
     @ApiOperation(value = "get all variant tumor type composition",
-        nickname = "getAllVariants")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = TumorTypeComposition.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchAllVariantsGET")
     @RequestMapping(value = "/variants",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<TumorTypeComposition> getAllVariants()
+    public List<TumorTypeComposition> fetchAllVariantsGET()
     {
         return variantService.getAllVariantCompositions();
     }
 
     @ApiOperation(value = "get clusters by hugo symbol and residue",
-        nickname = "getClustersByHugoSymbolAndResidue")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = Cluster.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchClustersByHugoSymbolAndResidueGET")
     @RequestMapping(value = "/clusters/{hugoSymbol}/{residue}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<Cluster> getClusters(
+    public List<Cluster> fetchClustersGET(
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = true)
         @PathVariable String hugoSymbol,
@@ -326,17 +335,11 @@ public class HotspotController
     }
 
     @ApiOperation(value = "get clusters by hugo symbol",
-        nickname = "getClustersByHugoSymbol")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = Cluster.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchClustersByHugoSymbolGET")
     @RequestMapping(value = "/clusters/{hugoSymbol}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<Cluster> getClusters(
+    public List<Cluster> fetchClustersGET(
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = true)
         @PathVariable String hugoSymbol)
@@ -345,39 +348,27 @@ public class HotspotController
     }
 
     @ApiOperation(value = "get clusters by cluster id",
-        nickname = "getClustersByClusterId")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = Cluster.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchClustersByClusterIdGET")
     @RequestMapping(value = "/clusters/id/{clusterIds}",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<Cluster> getClusters(
+    public List<Cluster> fetchClustersGET(
         @ApiParam(value = "Comma separated list of cluster ids, for example 1,2,3",
-            required = false)
+            required = true)
         @PathVariable List<String> clusterIds)
     {
         return clusterService.getClusters(clusterIds);
     }
 
     @ApiOperation(value = "get clusters",
-        nickname = "postClusters")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success",
-            response = Cluster.class,
-            responseContainer = "List"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchClustersPOST")
     @RequestMapping(value = "/clusters",
         method = {RequestMethod.POST},
         produces = "application/json")
-    public List<Cluster> postClusters(
-        @ApiParam(value = "Comma separated list of cluster ids, for example 1,2,3",
+    public List<Cluster> fetchClustersPOST(
+        @ApiParam(value = "List of cluster ids, for example [1,2,3]",
             required = false)
-        @RequestParam(required = false)
+        @RequestBody(required=false)
         List<String> clusterIds,
         @ApiParam(value = "Hugo gene symbol, for example BRAF",
             required = false)
@@ -389,22 +380,23 @@ public class HotspotController
         @RequestParam(required = false)
         String residue)
     {
-        if (clusterIds != null)
+        if (clusterIds != null &&
+            clusterIds.size() > 0)
         {
             // if cluster ids are provided get clusters by id by default
-            return getClusters(clusterIds);
+            return fetchClustersGET(clusterIds);
         }
         else if (hugoSymbol != null &&
                  residue != null)
         {
             // this will only be invoked if both hugo symbol and residue provided,
             // and no cluster id provided
-            return getClusters(hugoSymbol, residue);
+            return fetchClustersGET(hugoSymbol, residue);
         }
         else if (hugoSymbol != null)
         {
             // this will only be invoked when only hugo symbol provided
-            return getClusters(hugoSymbol);
+            return fetchClustersGET(hugoSymbol);
         }
         else
         {
@@ -413,15 +405,11 @@ public class HotspotController
     }
 
     @ApiOperation(value = "get metadata",
-        nickname = "getMetadata")
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success"),
-        @ApiResponse(code = 400, message = "Bad Request")
-    })
+        nickname = "fetchMetadata")
     @RequestMapping(value = "/metadata",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
-    public Map<String, String> getMetadata()
+    public Map<String, String> fetchMetadata()
     {
         Map <String, String> map = new LinkedHashMap<>();
 
