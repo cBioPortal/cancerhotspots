@@ -13,4 +13,5 @@ public interface DataImportService
     void generateVariantComposition(Iterable<Mutation> mutations);
     void generateTumorTypeComposition(Iterable<Mutation> mutations);
     void importTranscript(Iterable<Mutation> mutations);
+    void updateHotspotsFile(Iterable<Mutation> mutations);
 }
