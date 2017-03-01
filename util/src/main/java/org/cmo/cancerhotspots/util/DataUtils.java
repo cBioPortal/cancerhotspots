@@ -35,6 +35,8 @@ package org.cmo.cancerhotspots.util;
 import org.cmo.cancerhotspots.data.IntegerRange;
 
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Selcuk Onur Sumer
@@ -45,6 +47,11 @@ public class DataUtils
         Map<String, Integer> target,
         Map<String, Integer> source)
     {
+        if (source == null || target == null)
+        {
+            return target;
+        }
+
         for(String key: source.keySet())
         {
             Integer value = target.get(key);
@@ -90,5 +97,29 @@ public class DataUtils
         }
 
         return residue;
+    }
+
+    public static IntegerRange aminoAcidPosition(String residue)
+    {
+        Pattern mainPattern = Pattern.compile("[A-Za-z][0-9]+");
+        Pattern numericalPattern = Pattern.compile("[0-9]+");
+        Matcher m1 = mainPattern.matcher(residue);
+
+        if (m1.find())
+        {
+            String match = m1.group();
+            Matcher m2 = numericalPattern.matcher(match);
+
+            if (m2.find())
+            {
+                String reference = match.substring(0, 1);
+                String position = m2.group();
+                Integer start = Integer.parseInt(position);
+
+                return new IntegerRange(start, start);
+            }
+        }
+
+        return null;
     }
 }

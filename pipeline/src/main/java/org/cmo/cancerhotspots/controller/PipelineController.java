@@ -55,6 +55,17 @@ public class PipelineController
         return "hotspots file creation initialized";
     }
 
+    @RequestMapping(value = "/update/hotspots",
+        method = {RequestMethod.GET, RequestMethod.POST},
+        produces = "application/json")
+    public String updateHotspots()
+    {
+        dataImportService.importTranscript(mutationRepository.findAll());
+        dataImportService.updateHotspotsFile(mutationRepository.findAll());
+
+        return "hotspots file update initialized";
+    }
+
     @RequestMapping(value = "/create/variant_composition",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")

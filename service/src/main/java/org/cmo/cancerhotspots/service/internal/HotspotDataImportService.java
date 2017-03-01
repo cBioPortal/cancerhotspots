@@ -181,6 +181,13 @@ public class HotspotDataImportService implements DataImportService
     }
 
     @Override
+    public void updateHotspotsFile(Iterable<Mutation> mutations)
+    {
+        this.updateResidueAndPosition(mutations);
+        mutationRepository.saveAll(mutations);
+    }
+
+    @Override
     public void generateVariantComposition(Iterable<Mutation> mutations)
     {
         for (Mutation mutation : mutations)
@@ -260,6 +267,32 @@ public class HotspotDataImportService implements DataImportService
                     transcripts.iterator().next().getTranscriptId());
             }
         }
+    }
+
+    private Iterable<Mutation> updateResidueAndPosition(Iterable<Mutation> mutations)
+    {
+        for (Mutation mutation : mutations)
+        {
+            // set residue if null
+            if (mutation.getResidue() == null &&
+                mutation.getAminoAcidPosition() != null)
+            {
+                mutation.setResidue(DataUtils.mutationResidue(
+                    mutation.getAminoAcidPosition(),
+                    mutation.mostFrequentReference(),
+                    mutation.getIndelSize()));
+            }
+
+            // set position if null
+            if (mutation.getAminoAcidPosition() == null &&
+                mutation.getResidue() != null)
+            {
+                mutation.setAminoAcidPosition(
+                    DataUtils.aminoAcidPosition(mutation.getResidue()));
+            }
+        }
+
+        return mutations;
     }
 
     private Iterable<Mutation> mergeByGeneAndResidue(Iterable<Mutation> mutations)
