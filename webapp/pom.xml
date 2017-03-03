@@ -14,6 +14,11 @@
         <version>0.1.0</version>
     </parent>
 
+    <properties>
+        <single.artifact.name>cancer-hotspots</single.artifact.name>
+        <three.d.artifact.name>3d-hotspots</three.d.artifact.name>
+    </properties>
+
     <profiles>
         <!-- resource filter configuration for public production -->
         <profile>
@@ -78,6 +83,9 @@
                 <activatedProperties>single</activatedProperties>
                 <packaging.type>war</packaging.type>
             </properties>
+            <build>
+                <finalName>${single.artifact.name}</finalName>
+            </build>
         </profile>
         <profile>
             <id>jarSingle</id>
@@ -88,6 +96,9 @@
                 <activatedProperties>single</activatedProperties>
                 <packaging.type>jar</packaging.type>
             </properties>
+            <build>
+                <finalName>${single.artifact.name}</finalName>
+            </build>
         </profile>
         <profile>
             <id>war3d</id>
@@ -95,6 +106,9 @@
                 <activatedProperties>3d</activatedProperties>
                 <packaging.type>war</packaging.type>
             </properties>
+            <build>
+                <finalName>${three.d.artifact.name}</finalName>
+            </build>
         </profile>
         <profile>
             <id>jar3d</id>
@@ -102,12 +116,16 @@
                 <activatedProperties>3d</activatedProperties>
                 <packaging.type>jar</packaging.type>
             </properties>
+            <build>
+                <finalName>${three.d.artifact.name}</finalName>
+            </build>
         </profile>
         <profile>
             <id>warInternal</id>
             <properties>
                 <activatedProperties>internal</activatedProperties>
                 <packaging.type>war</packaging.type>
+                <finalName>${single.artifact.name}-internal</finalName>
             </properties>
         </profile>
         <profile>
@@ -115,7 +133,48 @@
             <properties>
                 <activatedProperties>internal</activatedProperties>
                 <packaging.type>jar</packaging.type>
+                <finalName>${single.artifact.name}-internal</finalName>
             </properties>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.4.13</version>
+                        <configuration>
+                            <imageName>cbioportal/${project.build.finalName}</imageName>
+                            <baseImage>openjdk:alpine</baseImage>
+                            <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                            <resources>
+                                <resource>
+                                    <targetPath>/</targetPath>
+                                    <directory>${project.build.directory}</directory>
+                                    <include>${project.build.finalName}.jar</include>
+                                </resource>
+                            </resources>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>build-image</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>push-image</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>push</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
