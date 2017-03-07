@@ -54,7 +54,7 @@ function VariantDataProxy(options)
         var aminoAcidChanges = [].concat(aminoAcidChange);
 
         // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, aminoAcidChanges, callback));
+        $.ajax(ProxyUtils.ajaxOpts(url, aminoAcidChanges, callback));
     }
 
     this.getTumorTypeComposition = getTumorTypeComposition;
