@@ -146,7 +146,7 @@
                         <version>0.4.13</version>
                         <configuration>
                             <imageName>cbioportal/${project.build.finalName}</imageName>
-                            <baseImage>openjdk:alpine</baseImage>
+                            <baseImage>openjdk:8-alpine</baseImage>
                             <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                             <resources>
                                 <resource>
