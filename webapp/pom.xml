@@ -148,6 +148,10 @@
                             <imageName>cbioportal/${project.build.finalName}</imageName>
                             <baseImage>openjdk:8-alpine</baseImage>
                             <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                            <imageTags>
+                                <imageTag>${project.version}</imageTag>
+                                <imageTag>latest</imageTag>
+                            </imageTags>
                             <resources>
                                 <resource>
                                     <targetPath>/</targetPath>
@@ -162,13 +166,6 @@
                                 <phase>package</phase>
                                 <goals>
                                     <goal>build</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>push-image</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>push</goal>
                                 </goals>
                             </execution>
                         </executions>
