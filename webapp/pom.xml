@@ -15,8 +15,8 @@
     </parent>
 
     <properties>
-        <single.artifact.name>cancer-hotspots</single.artifact.name>
-        <three.d.artifact.name>3d-hotspots</three.d.artifact.name>
+        <single.artifact.name>cancerhotspots</single.artifact.name>
+        <three.d.artifact.name>3dhotspots</three.d.artifact.name>
     </properties>
 
     <profiles>
