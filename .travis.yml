@@ -9,9 +9,8 @@ cache:
 env:
   global:
         - MAVEN_VERSION=3.3.9
-        - secure: "enwFCLCFWnYpfMwaaQT7EXnda6VHZxhHBKHHnFF4bO0TrVUZj2DmkMJAzumCstSo3li9Q0CNIUyTj6+9HnEleOn6zYb0opzS5rsjXXoUKPi8sOGgbTLqIb3cKjGy4244eb9jBsmmlFrRk1u6QDBSx+3KbQ132m8cbGj7BuCfvj9htlVW3gYk0vZ5S8uklfTqyjDY8kmfSty/K3ONeyEROH1Psz/FE9GS4tjT4BmFN0WDVLrFu8zYxTH3hFXOir2tRYbSeHPinpnEDD6EkcnaA/tiGJRGQ5Y/c2iAKKohntTHjo7hCh79YamChGfazQztjHetdv1iGpXFv2YbqLw4ti2sFPltJescSo1kIH78WJZlbX4E57VT17LS0yqC7XlfPaobDe0rh5K9gWL+bIT8ryaKa9T0EsYzPowndtOfsV8c7Po/B2PAQJn1/Y6jGtBlrKu5EStXd+QjIdR5WIulOMZq1IwfudRsGv77hdFC2+UR/MXIl3RElukspnhJUG8H/YzYnKpCZXL6CTte2zJbTiZAXg0VpGc0ODH7iFH+WFJqSHyeXiyfB7ElXmjRgjITG26wxjMQKaXsfT9Qc4l9kmDKAuSBTmLX/URF41KLMWzSjnOCS7ySerUOKc6YaiwFGtoPC2rO4R/NqOQOZMn/OZ2/uvO8BRrFTW8T5+HOAjk="
-        - secure: "kLmDVmj68iqZQ/RfqwY8HU7IjPZFuXR4l19UNZYCavtocso/MuJYIOoJmg6D3uQE7M4A08kUgcsp+RhkVHqwBQqD1FnftXnm59fXHlrHzy6JIoNctQDoBKFuanNeIURAY7siLs0upugaFz44gp2NJETOoWW2X7n4M6rBCrKhw1DDC1H1abeSXrTGd0/bd7utT530YW88jGK1XbySq3Scspu88gEBxMnT1oEYABa/atVY+2DfBLRNku+9aXoNY5iLh/bPLpVAfB3gVVRxGY7F8V6R2BNBCy9tv0jmc9XxpEbuUz9szZeFzbmBdsXpMhdaagWqdzLtu1j2x41JUdeTcV/gotwnKRght06LZxIiIeVjStjIjxlEo7Qm4i6OKdqpBy5Nk8xoAQtWXt9Rcg9dK8wpkyN0CWNUevkQMFTGb+xngo2CImuYOBmuwQfkNxtU0vyc94FlNFmwumpg+Z1gG1YPwjl1h98LoGs1s+gpGyaYaMQe5vSlu8iDOBD5cOPds/nP5LA6e7/jZkfyvGwBNZjrDYofNEAwioT9L0NtOpO/c1RNKdgLgUbYUsIK/HqG+TFcnGurRszxiFbxY0gxvNwpOfyqNDHrquoQg5LsHkJbvhPHSNkBICEAjU5m3LrC/sMAVzyisBQsphM16Pu3XleXYt4Ix3+gkp8DXz85gdc="
-        - secure: "eR334xAoCijtiBlcv7zn+fGauEY86N2qG6p0LM8NzcM6L4/yfEx5pTMtwQ8lEOx4lszJJ70y6e0yY2VsTzJdfAvjpgKpqSly1TibWQu4PC7w2zs/yPUwRTshhZVTi1K600jQZ3OhT/OFVu38btPAnMVN8tnLjJl0KTyChU2nH2LIekRLC1GYTkM6xjnqhxnZiOVVokddpihy4+uZDvxc7ZFgdY+WvToQSKB2e7DjYEB4fPU8krhMrWJczOUpEmQbbeaFja+HrLGDpNnWeMBff2rABnB8ssPf25bVNRr20RuefCEwjM1DpaBL2xyjybg/zspXpIowqsyG6pr9nVmyG7GSD6Imwra9AI7luuojTjo7p4awaCvzeKrcWhtr1GAOCwvS3YgCj5xS/IbuvloBy8G8b2l06LA5YGGAi+igrJhgFKn73s+VRgfAWKCZN2T3JHMPd3ykQKdqprGshQoEZR2Ivye9eb/kZl0CeRh3Q81lHsPKWLsoimddJoPVGD3ILAFMSxvkE2iimsRR6MtoY9DiBZpxzUEIyw0yqLs6T74HVv4FPS9qkjeMtMb3UvBcH4w1IbSfUZ76YKXoePO4NQBM3DofILrdUtuMDG1fmmNim1joC3MEsCldInnNzthjss7tciYvC9zzI4v3Nb11G6psKZoYVPIMKCla6RRKhWQ="
+        - secure: "apWe4XUBqEzMTuh0qVXZBd40h0xYlHoVnHlXk1je0BX1msX5z+k85eS5FSgphjd5Lfp31xD64LnBuvOI1QLfmKoPMeQj3US0IcmgY+/pA8ZRkToEEfuQfeYymA0p2z4tBe1Q2HLAQDB3nJT3NxMpt0wb2NlcGBvahwHr7wlqYTo8SsUbodDFAExRkhp5PvJkVfdz+k+ht4uv2isylLID2WSFZt5cS4gVX/j8Gr8z7EM4oAhbd3TURyEC3r+fWLttqPWxxuitxhV9QECK5MeZxd1V9x6DB30tcb3XgS6mJxPaTUvbHWBW3CHndb3E97TSNJrVYaGpx+GSaS4IdUdIPlByg2qvmN8dop5TeaxEoWNgU9F1P8LynGmMEPGmZ9mFVfcD59PxUd7nk60ghXoZYk7bmWB3knqa9ZCmvSsRQVc+sIwpv87MUAAP8AmJugGUFyK/4tnq60mT9n3gLy9PZ52w7ujBJKLcx56JvWWra0Tu8BKOW/i93jYZYYEct5/qMBKGEnBLziQJggKH9Ovupd8qi74n6YizpCuZ3SFHRMMMLn7u0fqhy8fBhMtxf7sDCPGfsm1PcHAddqdwnpG+d2LBQ0bSQHVwMNSoJgV+fdxpWddASwzdjsxrkruxV+1utL3HYHE8z4UPzrYkb8dSCx91PCOTz1mRVStLZkQV3bw="
+        - secure: "iQxTw3fteQgWW3zdNdoXjyMnutPQYq7ltcMsjdjOIf/3XXgQuJorgWs/LbIuYbbbACI8YWQa4BQLHLw2b6wf4XksJs0FiPHKNTWueux8H2xwTYWFgtGlk/cRzlc/PUbfSmLwpiUi1KYKPZaU76+wZyJLAwLe3GNfxl7I2nN/ZbheLMe0/58w2GvABJh4BKVD5xdoMsRavI60Nj2yxrZWfGlcpo5DVCcxqqWab+0A80/8uJHM+CWo4DyyK9bC5l0Q646rJ30tGrbpGf4VLsa0YT9z0lvqCzW5XpZD+sLAmONaAwTMTPOH0MoqX3RzemUOMRnVuJo71FrXpPTQuepNKDUTg068F3chwrswi90u0bei+KKtHnFYa5xqCaRX2iiWYIdnuAGiBhfbNH+vOZnjoMvk0FoKq4HHi2UdpzJMGqedQIFw6ajz23e1l/rd48NpO9PxxDe2QmlljKy8gvhfDsqEDkH0z33e5p/NjdC1/QwwN367nOj/ciRxdDLjQIUAZ9L3izQDJOsui55rIUIYSBFswnoAH7eb2CNGIGRHBZTJuJniQGBsmv8qy+OU5Lm7NTB3L9vKEWqZ65d69l7CNErl6OPhg11SegKnWF6wNB+u1ZObtYH/tnlghWPAHRUBgJRBC/JKlM5cFRIX89c2phUlg2ygMqy8U1sPWqFSgAw="
 install:
     # install maven
     - |
@@ -28,7 +27,7 @@ after_success:
     - |
         if [[ "$TRAVIS_TAG" ]]
         then
-            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS && \
-            docker push cbioportal/cancerhotspots
+            docker login -u $DOCKER_USER -p $DOCKER_PASS && \
+            docker push cbioportal/cancerhotspots && \
             docker push cbioportal/3dhotspots
         fi
