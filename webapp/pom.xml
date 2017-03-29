@@ -4,14 +4,14 @@
     <name>Cancer Hotspots Web</name>
     <description>Cancer Hotspots Web Module</description>
     <artifactId>webapp</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <!--<packaging>jar</packaging>-->
     <packaging>${packaging.type}</packaging>
 
     <parent>
         <groupId>org.cmo.cancerhotspots</groupId>
         <artifactId>master</artifactId>
-        <version>0.1.0</version>
+        <version>0.1.2</version>
     </parent>
 
     <properties>
@@ -179,12 +179,12 @@
         <dependency>
             <groupId>org.cmo.cancerhotspots</groupId>
             <artifactId>model</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.cmo.cancerhotspots</groupId>
             <artifactId>service</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

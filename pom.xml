@@ -5,7 +5,7 @@
     <artifactId>master</artifactId>
     <packaging>pom</packaging>
     <name>Cancer Hotspots</name>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <description>master maven module</description>
     <url>https://github.com/cBioPortal/cancerhotspots/</url>
 

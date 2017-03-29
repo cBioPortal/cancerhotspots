@@ -5,7 +5,7 @@
     <parent>
         <artifactId>master</artifactId>
         <groupId>org.cmo.cancerhotspots</groupId>
-        <version>0.1.0</version>
+        <version>0.1.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <name>Cancer Hotspots Service</name>
@@ -16,17 +16,17 @@
         <dependency>
             <groupId>org.cmo.cancerhotspots</groupId>
             <artifactId>model</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.cmo.cancerhotspots</groupId>
             <artifactId>util</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.cmo.cancerhotspots</groupId>
             <artifactId>persistence</artifactId>
-            <version>0.1.0</version>
+            <version>0.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
