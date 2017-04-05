@@ -32,6 +32,7 @@
 
 package org.cmo.cancerhotspots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import org.cmo.cancerhotspots.data.IntegerRange;
 
@@ -44,10 +45,10 @@ public class HotspotMutation
 {
     private String hugoSymbol;
     private String residue;
-    private Map<String, Integer> variantAminoAcid;
+    private Map<String, Integer> variantAminoAcidMap;
     private Integer tumorTypeCount;
     private Integer tumorCount;
-    private Map<String, Integer> tumorTypeComposition;
+    private Map<String, Integer> tumorTypeCompositionMap;
     private String transcriptId;
     private IntegerRange aminoAcidPosition;
 
@@ -74,14 +75,20 @@ public class HotspotMutation
     }
 
     @ApiModelProperty(value = "Variant Amino Acid", required = true)
-    public Map<String, Integer> getVariantAminoAcid()
+    public Object getVariantAminoAcid()
     {
-        return variantAminoAcid;
+        return getVariantAminoAcidMap();
     }
 
-    public void setVariantAminoAcid(Map<String, Integer> variantAminoAcid)
+    @JsonIgnore
+    public Map<String, Integer> getVariantAminoAcidMap()
     {
-        this.variantAminoAcid = variantAminoAcid;
+        return variantAminoAcidMap;
+    }
+
+    public void setVariantAminoAcidMap(Map<String, Integer> variantAminoAcidMap)
+    {
+        this.variantAminoAcidMap = variantAminoAcidMap;
     }
 
     @ApiModelProperty(value = "Number of Tumors", required = true)
@@ -96,14 +103,20 @@ public class HotspotMutation
     }
 
     @ApiModelProperty(value = "Tumor Type Composition", required = true)
-    public Map<String, Integer> getTumorTypeComposition()
+    public Object getTumorTypeComposition()
     {
-        return tumorTypeComposition;
+        return getTumorTypeCompositionMap();
     }
 
-    public void setTumorTypeComposition(Map<String, Integer> tumorTypeComposition)
+    @JsonIgnore
+    public Map<String, Integer> getTumorTypeCompositionMap()
     {
-        this.tumorTypeComposition = tumorTypeComposition;
+        return tumorTypeCompositionMap;
+    }
+
+    public void setTumorTypeCompositionMap(Map<String, Integer> tumorTypeCompositionMap)
+    {
+        this.tumorTypeCompositionMap = tumorTypeCompositionMap;
     }
 
     @ApiModelProperty(value = "Number of Distinct Tumor Types", required = false)
@@ -142,10 +155,10 @@ public class HotspotMutation
     {
         setHugoSymbol(mutation.getHugoSymbol());
         setTumorCount(mutation.getTumorCount());
-        setTumorTypeComposition(mutation.getTumorTypeComposition());
+        setTumorTypeCompositionMap(mutation.getTumorTypeComposition());
         setTumorTypeCount(mutation.getTumorTypeCount());
         setResidue(mutation.getResidue());
-        setVariantAminoAcid(mutation.getVariantAminoAcid());
+        setVariantAminoAcidMap(mutation.getVariantAminoAcid());
         setTranscriptId(mutation.getTranscriptId());
         setAminoAcidPosition(mutation.getAminoAcidPosition());
     }
