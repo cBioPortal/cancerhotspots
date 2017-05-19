@@ -1,5 +1,6 @@
 package org.cmo.cancerhotspots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
@@ -26,12 +27,12 @@ public class Cluster
     @Trim
     @Convert(conversionClass = ChainMapConversion.class)
     @Parsed(field = "PDB_Chains")
-    private Map<String, Double> pdbChains;
+    private Map<String, Double> pdbChainMap;
 
     @Trim
     @Convert(conversionClass = CompositionMapConversion.class)
     @Parsed(field = "Residues")
-    private Map<String, Integer> residues;
+    private Map<String, Integer> residueMap;
 
     @Trim
     @Parsed(field = "P-Value")
@@ -39,7 +40,7 @@ public class Cluster
 
     public Cluster()
     {
-        this.residues = new LinkedHashMap<>();
+        this.residueMap = new LinkedHashMap<>();
     }
 
     @ApiModelProperty(value = "Hugo gene symbol", required = true)
@@ -76,29 +77,41 @@ public class Cluster
     }
 
     @ApiModelProperty(value = "PDB chains (with p-value)", required = true)
-    public Map<String, Double> getPdbChains()
+    public Object getPdbChains()
     {
-        return pdbChains;
+        return getPdbChainMap();
     }
 
-    public void setPdbChains(Map<String, Double> pdbChains)
+    @JsonIgnore
+    public Map<String, Double> getPdbChainMap()
     {
-        this.pdbChains = pdbChains;
+        return pdbChainMap;
+    }
+
+    public void setPdbChainMap(Map<String, Double> pdbChainMap)
+    {
+        this.pdbChainMap = pdbChainMap;
     }
 
     @ApiModelProperty(value = "Residues within this cluster (with overall tumor count)", required = true)
-    public Map<String, Integer> getResidues()
+    public Object getResidues()
     {
-        return residues;
+        return getResidueMap();
     }
 
-    public void setResidues(Map<String, Integer> residues)
+    @JsonIgnore
+    public Map<String, Integer> getResidueMap()
     {
-        this.residues = residues;
+        return residueMap;
+    }
+
+    public void setResidueMap(Map<String, Integer> residueMap)
+    {
+        this.residueMap = residueMap;
     }
 
     public void addResidue(String residue, Integer tumorCount)
     {
-        this.residues.put(residue, tumorCount);
+        this.residueMap.put(residue, tumorCount);
     }
 }

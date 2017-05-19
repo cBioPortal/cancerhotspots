@@ -1,5 +1,6 @@
 package org.cmo.cancerhotspots.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.univocity.parsers.annotations.Convert;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
@@ -41,11 +42,11 @@ public class TumorTypeComposition
     @Trim
     @Convert(conversionClass = CompositionMapConversion.class)
     @Parsed(field = "Tumor_Type_Composition")
-    private Map<String, Integer> tumorTypeComposition;
+    private Map<String, Integer> tumorTypeCompositionMap;
 
     public TumorTypeComposition()
     {
-        this.tumorTypeComposition = new LinkedHashMap<>();
+        this.tumorTypeCompositionMap = new LinkedHashMap<>();
     }
 
     public String getHugoSymbol()
@@ -68,9 +69,9 @@ public class TumorTypeComposition
         this.residue = residue;
     }
 
-    public void setTumorTypeComposition(Map<String, Integer> tumorTypeComposition)
+    public void setTumorTypeCompositionMap(Map<String, Integer> tumorTypeCompositionMap)
     {
-        this.tumorTypeComposition = tumorTypeComposition;
+        this.tumorTypeCompositionMap = tumorTypeCompositionMap;
     }
 
     public String getReferenceAminoAcid()
@@ -103,35 +104,41 @@ public class TumorTypeComposition
         this.aminoAcidPosition = aminoAcidPosition;
     }
 
-    public Map<String, Integer> getTumorTypeComposition()
+    public Object getTumorTypeComposition()
     {
-        return tumorTypeComposition;
+        return getTumorTypeCompositionMap();
+    }
+
+    @JsonIgnore
+    public Map<String, Integer> getTumorTypeCompositionMap()
+    {
+        return tumorTypeCompositionMap;
     }
 
     public void updateTumorTypeComposition(String tumorType)
     {
         String key = tumorType.toLowerCase();
-        Integer count = tumorTypeComposition.get(key);
+        Integer count = tumorTypeCompositionMap.get(key);
 
         if (count == null)
         {
             count = 0;
         }
 
-        tumorTypeComposition.put(key, count + 1);
+        tumorTypeCompositionMap.put(key, count + 1);
     }
 
     public void merge(TumorTypeComposition composition)
     {
-        DataUtils.mergeCompositions(this.getTumorTypeComposition(),
-                                    composition.getTumorTypeComposition());
+        DataUtils.mergeCompositions(this.getTumorTypeCompositionMap(),
+                                    composition.getTumorTypeCompositionMap());
     }
 
     public Integer tumorCount()
     {
         Integer total = 0;
 
-        for (Integer value: getTumorTypeComposition().values())
+        for (Integer value: getTumorTypeCompositionMap().values())
         {
             total += value;
         }
@@ -141,6 +148,6 @@ public class TumorTypeComposition
 
     public Integer tumorTypeCount()
     {
-        return getTumorTypeComposition().keySet().size();
+        return getTumorTypeCompositionMap().keySet().size();
     }
 }

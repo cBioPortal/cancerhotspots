@@ -124,7 +124,7 @@ public class ClusterRepositoryImpl implements ClusterRepository
         for (Cluster cluster : clusters)
         {
             // populate cache by gene and residue
-            for (String residue : cluster.getResidues().keySet())
+            for (String residue : cluster.getResidueMap().keySet())
             {
                 String key = (cluster.getHugoSymbol() + "_" + residue).toLowerCase();
 

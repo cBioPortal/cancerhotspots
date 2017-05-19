@@ -76,7 +76,7 @@ public class HotspotDataImportService implements DataImportService
         composition.setAminoAcidPosition(mutation.getAminoAcidPosition());
         composition.setReferenceAminoAcid(mutation.mostFrequentReference());
         composition.setVariantAminoAcid(variant);
-        composition.setTumorTypeComposition(mutation.getTumorTypeComposition());
+        composition.setTumorTypeCompositionMap(mutation.getTumorTypeComposition());
         composition.setResidue(residue);
 
         return composition;
@@ -248,7 +248,7 @@ public class HotspotDataImportService implements DataImportService
                           composition.tumorCount());
             }
 
-            mutation.setTumorTypeComposition(composition.getTumorTypeComposition());
+            mutation.setTumorTypeComposition(composition.getTumorTypeCompositionMap());
             mutation.setTumorTypeCount(composition.tumorTypeCount());
             mutation.setTumorCount(composition.tumorCount());
         }
@@ -403,7 +403,7 @@ public class HotspotDataImportService implements DataImportService
                 cluster = new Cluster();
 
                 cluster.setClusterId(key);
-                cluster.setPdbChains(mutation.getPdbChains());
+                cluster.setPdbChainMap(mutation.getPdbChains());
                 cluster.setpValue(mutation.getpValue());
                 cluster.setHugoSymbol(mutation.getHugoSymbol());
 
