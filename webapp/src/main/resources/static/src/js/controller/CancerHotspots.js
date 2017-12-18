@@ -63,10 +63,18 @@ function CancerHotspots(options)
                 logoStyle: "hotspot-fire"
             },
             home: {
-                mutationInfo: _.template($("#default_mutation_info").html())()
+                mutationInfo: _.template($("#v2_mutation_info").html())()
             },
             download: {
                 content:[{
+                    links: [
+                        {href: 'href="files/hotspots_v2.xls"',
+                            text: "Hotspot Results V2"},
+                        {href: "", // TODO v2 maf link!
+                            text: "V2 Mutational Data (MAF) will be available soon"}
+                    ],
+                    info: _.template($("#hotspots_v2_info").html())()
+                }, {
                     links: [
                         {href: 'href="files/hotspots.xls"',
                             text: "Hotspot Results V1"},
@@ -345,16 +353,16 @@ function CancerHotspots(options)
                     _options.content.home.mutationInfo =
                         _.template($("#internal_mutation_info").html())();
 
-                    // 2 more internal links in addition to the public ones
-                    _options.content.download.content.unshift({
-                        links: [
-                            {href: 'href="files/internal_hotspots.xls"',
-                                text: "Hotspot Results V2"},
-                            {href: "",
-                                text: "V2 Mutational Data (MAF) will be available upon publication"}
-                        ],
-                        info: _.template($("#hotspots_v2_info").html())()
-                    });
+                    // // 2 more internal links in addition to the public ones
+                    // _options.content.download.content.unshift({
+                    //     links: [
+                    //         {href: 'href="files/internal_hotspots.xls"',
+                    //             text: "Hotspot Results V3"},
+                    //         {href: "",
+                    //             text: "V3 Mutational Data (MAF) will be available upon publication"}
+                    //     ],
+                    //     info: _.template($("#hotspots_v3_info").html())()
+                    // });
                 }
             }
 
