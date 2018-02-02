@@ -15,7 +15,8 @@
     </parent>
 
     <properties>
-        <single.artifact.name>cancerhotspots</single.artifact.name>
+        <single.artifact.name>cancerhotspots_v1</single.artifact.name>
+        <multi.artifact.name>cancerhotspots</multi.artifact.name>
         <three.d.artifact.name>3dhotspots</three.d.artifact.name>
     </properties>
 
@@ -98,6 +99,29 @@
             </properties>
             <build>
                 <finalName>${single.artifact.name}</finalName>
+            </build>
+        </profile>
+        <profile>
+            <id>warMulti</id>
+            <properties>
+                <activatedProperties>multi</activatedProperties>
+                <packaging.type>war</packaging.type>
+            </properties>
+            <build>
+                <finalName>${multi.artifact.name}</finalName>
+            </build>
+        </profile>
+        <profile>
+            <id>jarMulti</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <activatedProperties>multi</activatedProperties>
+                <packaging.type>jar</packaging.type>
+            </properties>
+            <build>
+                <finalName>${multi.artifact.name}</finalName>
             </build>
         </profile>
         <profile>

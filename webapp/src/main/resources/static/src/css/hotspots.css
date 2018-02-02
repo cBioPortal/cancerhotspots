@@ -153,6 +153,10 @@ body {
     font-style: italic;
 }
 
+li.about-citation {
+    font-size: large;
+}
+
 .contributor-list {
     padding-bottom: 16px;
 }
