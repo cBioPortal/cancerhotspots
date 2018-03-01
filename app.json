@@ -1,0 +1,33 @@
+{
+  "name": "cancerhotspots",
+  "description":"a resource for statistically significant mutations in cancer",
+  "repository":"https://github.com/cBioPortal/cancerhotspots",
+  "keywords": [
+    "java",
+    "tomcat",
+    "javascript",
+    "cancer",
+    "genomics",
+    "hgvs",
+    "cancerhotspots",
+    "variants",
+    "genes"
+  ],
+  "env": {
+    "JAVA_OPTS": {
+      "description":"options for jvm",
+      "value": "-Xmx300m -Xms300m -XX:+UseCompressedOops"
+    },
+    "MAVEN_CUSTOM_OPTS": {
+        "description":"set options for mvn",
+        "value":"-DskipTests -PproductionPublic,jarSingle"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-java"
+    }
+  ],
+  "addons" : [
+  ]
+}
