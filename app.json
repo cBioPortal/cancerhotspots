@@ -20,7 +20,7 @@
     },
     "MAVEN_CUSTOM_OPTS": {
         "description":"set options for mvn",
-        "value":"-DskipTests -PproductionPublic,jarSingle"
+        "value":"-DskipTests -PproductionPublic,jarMulti"
     }
   },
   "buildpacks": [
