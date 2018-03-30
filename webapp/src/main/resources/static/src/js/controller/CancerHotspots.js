@@ -70,8 +70,8 @@ function CancerHotspots(options)
                     links: [
                         {href: 'href="files/hotspots_v2.xls"',
                             text: "Hotspot Results V2"},
-                        {href: "", // TODO v2 maf link!
-                            text: "V2 Mutational Data (MAF) will be available soon"}
+                        {href: 'href="http://download.cbioportal.org/cancerhotspots/cancerhotspots.v2.maf.gz"',
+                            text: "V2 Mutational Data (MAF)"}
                     ],
                     info: _.template($("#hotspots_v2_info").html())()
                 }, {
