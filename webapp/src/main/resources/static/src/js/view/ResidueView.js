@@ -360,17 +360,17 @@ function ResidueView(options)
                 },
                 pfamProxy: {
                     options: {
-                        servletName: 'http://www.cbioportal.org/getPfamSequence.json'
+                        servletName: 'proxy/www.cbioportal.org/getPfamSequence.json'
                     }
                 },
                 mutationAlignerProxy: {
                     options: {
-                        servletName: 'http://www.cbioportal.org/getMutationAligner.json'
+                        servletName: 'proxy/www.cbioportal.org/getMutationAligner.json'
                     }
                 },
                 pdbProxy: {
                     options: {
-                        servletName: 'http://www.cbioportal.org/get3dPdb.json',
+                        servletName: 'proxy/www.cbioportal.org/get3dPdb.json',
                         subService: false,
                         listJoiner: ' '
                     }
