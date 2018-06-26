@@ -309,6 +309,9 @@ function ResidueView(options)
                 geneList: [_options.dataManager.getData().gene]
             },
             view: {
+                vis3d: {
+                    pdbUri: "https://files.rcsb.org/view/"
+                },
                 mutationDiagram: {
                     lollipopFillColor: _options.classColors
                 },
