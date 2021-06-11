@@ -150,7 +150,7 @@ var ViewUtils = (function() {
         "skin": {"color": "Black", "name": "Skin"},
         "lung": {"color": "Gainsboro", "name": "Lung"},
         "bone": {"color": "White", "name": "Bone"},
-        "myeloid": {"color": "LightSalmon", "name": "Myeloid"},
+        "myeloid": {"color": "White", "name": "Bone"},
         "prostate": {"color": "Cyan", "name": "Prostate"},
         "soft_tissue": {"color": "LightYellow", "name": "Soft Tissue"},
         "softtissue": {"color": "LightYellow", "name": "Soft Tissue"},
