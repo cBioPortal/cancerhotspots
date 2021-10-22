@@ -159,6 +159,7 @@ function HotspotTableView(options)
         var qValueRender = new DecimalValueRender(_options.renderer.qValue);
         var variantRender = new VariantRender(_options.renderer.variant);
         var tumorCountRender = new TumorCountRender(_options.renderer.tumorCount);
+        var foundInRender = new FoundInRender(_options.renderer.tumorCount);
         var classRender = new ClassificationRender(_options.renderer.classification);
         var residueRender = new ResidueRender(_options.renderer.residue);
         var geneRender = new GeneRender(_options.renderer.gene);
@@ -229,7 +230,10 @@ function HotspotTableView(options)
                             data: "tumorCount"},
                         {name: "tumorTypeComposition",
                             title: "Tumor Type Composition",
-                            data: "tumorTypeComposition"}
+                            data: "tumorTypeComposition"},
+                        {name: "Found in",
+                            title: "Found in",
+                            data: "tumorCount"}
                     ];
 
                     columns = ViewUtils.determineDownload(dt, columns);
@@ -303,10 +307,15 @@ function HotspotTableView(options)
                     title: "Samples <sup>&#8224;</sup>",
                     data: _options.sampleData,
                     render: tumorCountRender.render,
-                    createdCell: tumorCountRender.postRender}
+                    createdCell: tumorCountRender.postRender},
                 //{id: "validationLevel"
                 //    title: "Validation Level [a]",
                 //    data: "validationLevel"}
+                        {name: "Found in",
+                            title: "Found in",
+                    data: _options.sampleData,
+                    render: foundInRender.render,
+                    createdCell: foundInRender.postRender}
             ],
             initComplete: function(settings) {
                 var dataTable = this;
