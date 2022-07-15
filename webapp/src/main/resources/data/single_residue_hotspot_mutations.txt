@@ -573,6 +573,7 @@ RB1	R661	661		W:16	3.99684712110929e-07	16			adrenalgland:2|bladder:2|bowel:1|cn
 RB1	Q444	444		H:5|L:2|*:1|R:1	0.0012312939510221	9			bladder:1|esophagusstomach:1|lung:3|pancreas:1|prostate:1|softtissue:1|uterine:1	
 RET	C634	634		R:2|W:1	0.0021522065288701	3			thyroid:3	
 RRAS2	G23	23		D:14|C:8|V:7|S:5|A:1	8.0638899577784665e-47	35			breast:4|cervix:1|cnsbrain:2|esophagusstomach:1|kidney:1|ovaryfallopiantube:1|prostate:2|testis:9|uterine:13|vulvavagina:1	
+RRAS2	G24	24		D:15|V:2|C:1|R:1	2.9711914252235903e-19	19			bowel:2|cnsbrain:1|headandneck:1|lung:1|ovaryfallopiantube:2|uterine:12	
 RUNX1	R204	204		Q:15|*:2|P:1	1.04722150368425e-06	18			bowel:2|breast:3|myeloid:2|ovaryfallopiantube:1|pancreas:1|prostate:1|uterine:8	
 SETD2	R1592	1592		Q:4|*:3|G:1|L:1	0.0021731033225771	9			bladder:1|cnsbrain:1|esophagusstomach:1|kidney:2|liver:1|lung:3	
 SMAD2	D450	450		E:3|G:2|N:2|H:1	5.676711740444089e-05	8			bowel:6|lung:1|prostate:1	
