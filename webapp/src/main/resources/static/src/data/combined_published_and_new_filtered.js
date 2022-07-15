@@ -1248,6 +1248,18 @@ HOTSPOTS_V3 = [
         "Tumor_Type_Composition":"breast:4|cervix:1|cnsbrain:2|esophagusstomach:1|kidney:1|ovaryfallopiantube:1|prostate:2|testis:9|uterine:13|vulvavagina:1"
     },
     {
+        "Hugo_Symbol":"RRAS2",
+        "Residue":"G24",
+        "Reference_Amino_Acid":"G:19",
+        "Amino_Acid_Position":24,
+        "Variant_Amino_Acid":"D:15|V:2|C:1|R:1",
+        "Q-value":2.971191425e-19,
+        "Qvalue_Pancan":2.971191425e-19,
+        "P-value":-21.1302671895,
+        "Tumor_Count":19,
+        "Tumor_Type_Composition":"bowel:2|cnsbrain:1|headandneck:1|lung:1|ovaryfallopiantube:2|uterine:12"
+    },
+    {
         "Hugo_Symbol":"RUNX1",
         "Residue":"R204",
         "Reference_Amino_Acid":"R:18",
