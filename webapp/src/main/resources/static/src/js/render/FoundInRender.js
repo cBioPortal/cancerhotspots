@@ -51,9 +51,9 @@ function FoundInRender(options)
 
 		let hotspotsv3_info = HOTSPOTS_V3.find((x) => x.Hugo_Symbol === row.hugoSymbol && x.Amino_Acid_Position === parseInt(row.residue.substr(1)))
 		if (hotspotsv3_info) {
-			return hotspotsv3_info.origin;	
+			return "MSK-IMPACT 40K"
 		} else {
-			return "ERROR: missing hotspot"
+			return "Chang et al. 2017"
 		}
     }
 
