@@ -29,6 +29,5 @@
     }
   ],
   "addons" : [
-  ],
-  "stack": "heroku-22"
+  ]
 }
