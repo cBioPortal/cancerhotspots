@@ -8,3 +8,11 @@ dependency-reduced-pom.xml
 buildNumber.properties
 *.iml
 .idea
+.project
+.settings/
+model/.classpath
+persistence/.classpath
+pipeline/.classpath
+service/.classpath
+util/.classpath
+webapp/.classpath
