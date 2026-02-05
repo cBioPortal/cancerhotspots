@@ -51,7 +51,7 @@ function FoundInRender(options)
 
 		let hotspotsv3_info = HOTSPOTS_V3.find((x) => x.Hugo_Symbol === row.hugoSymbol && x.Amino_Acid_Position === parseInt(row.residue.substr(1)))
 		if (hotspotsv3_info) {
-			return "MSK-IMPACT 40K"
+			return "Bandlamudi et al., 2026"
 		} else {
 			return "Chang et al. 2017"
 		}

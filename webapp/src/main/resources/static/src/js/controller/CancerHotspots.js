@@ -68,6 +68,12 @@ function CancerHotspots(options)
             download: {
                 content:[{
                     links: [
+                        {href: 'href="TODO_V3_HOTSPOTS_LINK"',
+                            text: "V3 New Hotspots (Table S5)"}
+                    ],
+                    info: _.template($("#hotspots_v3_info").html())()
+                }, {
+                    links: [
                         {href: 'href="files/hotspots_v2.xls"',
                             text: "Hotspot Results V2"},
                         {href: 'href="http://download.cbioportal.org/cancerhotspots/cancerhotspots.v2.maf.gz"',
