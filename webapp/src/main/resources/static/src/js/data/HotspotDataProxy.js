@@ -48,16 +48,16 @@ function HotspotDataProxy(options)
 
     function getAllHotspots(callback)
     {
-        // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl, [], callback));
+        // retrieve data from the server (use v3 data by default for the website)
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl + "?version=v3", [], callback));
     }
 
     function getHotspotsByGene(genes, callback)
     {
         var hugoSymbols = genes == null ? [] : [].concat(genes);
 
-        // retrieve data from the server
-        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl + "/" + _options.byGene,
+        // retrieve data from the server (use v3 data by default for the website)
+        $.ajax(ProxyUtils.ajaxOpts(_options.serviceUrl + "/" + _options.byGene + "?version=v3",
                                    hugoSymbols,
                                    callback));
     }

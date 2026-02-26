@@ -48,7 +48,8 @@ function VariantDataProxy(options)
     function getTumorTypeComposition(hugoSymbol, aminoAcidChange, callback)
     {
         var url = _options.serviceUrl + ProxyUtils.requestParams({
-            hugoSymbol: hugoSymbol
+            hugoSymbol: hugoSymbol,
+            version: "v3"
         });
 
         var aminoAcidChanges = [].concat(aminoAcidChange);

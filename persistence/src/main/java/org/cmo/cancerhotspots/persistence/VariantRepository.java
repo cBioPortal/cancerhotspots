@@ -8,5 +8,6 @@ import org.cmo.cancerhotspots.model.TumorTypeComposition;
 public interface VariantRepository
 {
     Iterable<TumorTypeComposition> findAll();
+    Iterable<TumorTypeComposition> findAllV3();
     void saveAll(Iterable<TumorTypeComposition> compositions);
 }

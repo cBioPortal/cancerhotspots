@@ -43,6 +43,12 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
     }
 
     @Override
+    public List<HotspotMutation> getAllHotspotMutations(String version)
+    {
+        return getAllHotspotMutations();
+    }
+
+    @Override
     public List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols)
     {
         List<HotspotMutation> mutations = new ArrayList<>();
@@ -57,6 +63,12 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
     }
 
     @Override
+    public List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols, String version)
+    {
+        return getHotspotMutationsByGene(hugoSymbols);
+    }
+
+    @Override
     public List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds)
     {
         List<HotspotMutation> mutations = new ArrayList<>();
@@ -68,6 +80,12 @@ public class ClusteredHotspotMutationService implements HotspotMutationService
         }
 
         return mutations;
+    }
+
+    @Override
+    public List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds, String version)
+    {
+        return getHotspotMutationsByTranscript(transcriptIds);
     }
 
     public List<HotspotMutation> convertToMultiResidue(Iterable<Mutation> mutations)

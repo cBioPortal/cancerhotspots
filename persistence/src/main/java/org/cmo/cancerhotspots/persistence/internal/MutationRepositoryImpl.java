@@ -23,7 +23,23 @@ public class MutationRepositoryImpl implements MutationRepository
     @Value("${hotspot.mutation.uri}")
     public void setHotspotMutationUri(String hotspotMutationUri) { this.hotspotMutationUri = hotspotMutationUri; }
 
+    private String hotspotMutationV3Uri;
+    @Value("${hotspot.mutation.v3.uri:}")
+    public void setHotspotMutationV3Uri(String hotspotMutationV3Uri) { this.hotspotMutationV3Uri = hotspotMutationV3Uri; }
+
     private List<Mutation> cache;
+    private List<Mutation> v3Cache;
+
+    private List<Mutation> loadMutations(String uri)
+    {
+        BeanListProcessor<Mutation> rowProcessor =
+            new BeanListProcessor<>(Mutation.class);
+
+        CsvParser hotspotParser = FileIO.initCsvParser(rowProcessor);
+        hotspotParser.parse(FileIO.getReader(uri));
+
+        return rowProcessor.getBeans();
+    }
 
     public Iterable<Mutation> findAll()
     {
@@ -31,23 +47,48 @@ public class MutationRepositoryImpl implements MutationRepository
         if (this.cache == null ||
             this.cache.size() == 0)
         {
-            BeanListProcessor<Mutation> rowProcessor =
-                new BeanListProcessor<>(Mutation.class);
-
-            CsvParser hotspotParser = FileIO.initCsvParser(rowProcessor);
-            hotspotParser.parse(FileIO.getReader(hotspotMutationUri));
-
-            // cache retrieved beans
-            this.cache = rowProcessor.getBeans();
+            this.cache = loadMutations(hotspotMutationUri);
         }
 
         return this.cache;
     }
 
     @Override
+    public Iterable<Mutation> findAllV3()
+    {
+        if (hotspotMutationV3Uri == null || hotspotMutationV3Uri.isEmpty())
+        {
+            return findAll();
+        }
+
+        if (this.v3Cache == null ||
+            this.v3Cache.size() == 0)
+        {
+            this.v3Cache = loadMutations(hotspotMutationV3Uri);
+        }
+
+        return this.v3Cache;
+    }
+
+    private Iterable<Mutation> findAllForVersion(String version)
+    {
+        if ("v3".equals(version))
+        {
+            return findAllV3();
+        }
+        return findAll();
+    }
+
+    @Override
     public Iterable<Mutation> findByGene(String hugoSymbol)
     {
-        Iterable<Mutation> mutations = findAll();
+        return findByGene(hugoSymbol, null);
+    }
+
+    @Override
+    public Iterable<Mutation> findByGene(String hugoSymbol, String version)
+    {
+        Iterable<Mutation> mutations = findAllForVersion(version);
         List<Mutation> result = new ArrayList<>();
 
         for (Mutation mutation: mutations)
@@ -65,7 +106,13 @@ public class MutationRepositoryImpl implements MutationRepository
     @Override
     public Iterable<Mutation> findByTranscript(String transcriptId)
     {
-        Iterable<Mutation> mutations = findAll();
+        return findByTranscript(transcriptId, null);
+    }
+
+    @Override
+    public Iterable<Mutation> findByTranscript(String transcriptId, String version)
+    {
+        Iterable<Mutation> mutations = findAllForVersion(version);
         List<Mutation> result = new ArrayList<>();
 
         for (Mutation mutation: mutations)
