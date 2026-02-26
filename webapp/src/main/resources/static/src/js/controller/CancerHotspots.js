@@ -68,7 +68,7 @@ function CancerHotspots(options)
             download: {
                 content:[{
                     links: [
-                        {href: 'href="TODO_V3_HOTSPOTS_LINK"',
+                        {href: 'href="files/hotspots_v3.xlsx"',
                             text: "V3 New Hotspots (Table S5)"}
                     ],
                     info: _.template($("#hotspots_v3_info").html())()
