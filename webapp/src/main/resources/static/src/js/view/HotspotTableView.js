@@ -151,6 +151,16 @@ function HotspotTableView(options)
         };
     }
 
+    function getTableSearchStringFromUrlParams()
+    {
+        var parts = window.location.href.split("?");
+        if(parts.length == 2) {
+            var params = new URLSearchParams(parts[1]);
+            return params.get("search");
+        }
+        return null;
+    }
+
     function render()
     {
         // TODO allow customization of renderer instances
@@ -352,6 +362,14 @@ function HotspotTableView(options)
         else
         {
             dataTableOpts.data = _options.data;
+        }
+
+        // pre-populate the table search field if URL has ?search=some_search_string
+        var search = getTableSearchStringFromUrlParams();
+        if(search) {
+            dataTableOpts.search = {
+                search: search
+            };
         }
 
         var table = $(_options.el).DataTable(dataTableOpts);
