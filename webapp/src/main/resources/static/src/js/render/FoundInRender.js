@@ -49,7 +49,7 @@ function FoundInRender(options)
         //var templateFn = _.template($("#" + _options.templateId).html());
         //return templateFn(data);
 
-		let hotspotsv3_info = HOTSPOTS_V3.find((x) => x.Hugo_Symbol === row.hugoSymbol && x.Amino_Acid_Position === parseInt(row.residue.substr(1)))
+		let hotspotsv3_info = HOTSPOTS_V3.find((x) => x.Hugo_Symbol === row.hugoSymbol && x.Residue === row.residue)
 		if (hotspotsv3_info) {
 			return "Bandlamudi et al., 2026"
 		} else {
