@@ -22,6 +22,9 @@ public class HotspotVariantService implements VariantService
     // cache of <hugo symbol + amino acid change, variant> pairs
     private Map<String, TumorTypeComposition> variantCacheByGeneAndAAChange;
 
+    // v3 caches
+    private Map<String, TumorTypeComposition> v3VariantCacheByGeneAndAAChange;
+
     @Autowired
     public HotspotVariantService(VariantRepository variantRepository)
     {
@@ -42,9 +45,27 @@ public class HotspotVariantService implements VariantService
     @Override
     public TumorTypeComposition getVariantComposition(String hugoSymbol, String aminoAcidChange)
     {
+        return getVariantComposition(hugoSymbol, aminoAcidChange, null);
+    }
+
+    @Override
+    public TumorTypeComposition getVariantComposition(String hugoSymbol, String aminoAcidChange, String version)
+    {
+        if ("v3".equals(version))
+        {
+            if (this.v3VariantCacheByGeneAndAAChange == null)
+            {
+                this.v3VariantCacheByGeneAndAAChange = constructVariantCacheByGeneAndAAChange(
+                    getAllVariantCompositions("v3"));
+            }
+            return v3VariantCacheByGeneAndAAChange.get(
+                (hugoSymbol + "_" + aminoAcidChange).toUpperCase());
+        }
+
         if (this.variantCacheByGeneAndAAChange == null)
         {
-            this.variantCacheByGeneAndAAChange = constructVariantCacheByGeneAndAAChange();
+            this.variantCacheByGeneAndAAChange = constructVariantCacheByGeneAndAAChange(
+                getAllVariantCompositions());
         }
 
         return variantCacheByGeneAndAAChange.get(
@@ -54,9 +75,25 @@ public class HotspotVariantService implements VariantService
     @Override
     public List<TumorTypeComposition> getAllVariantCompositions()
     {
+        return getAllVariantCompositions(null);
+    }
+
+    @Override
+    public List<TumorTypeComposition> getAllVariantCompositions(String version)
+    {
         List<TumorTypeComposition> list = new ArrayList<>();
 
-        for (TumorTypeComposition composition : variantRepository.findAll())
+        Iterable<TumorTypeComposition> compositions;
+        if ("v3".equals(version))
+        {
+            compositions = variantRepository.findAllV3();
+        }
+        else
+        {
+            compositions = variantRepository.findAll();
+        }
+
+        for (TumorTypeComposition composition : compositions)
         {
             list.add(composition);
         }
@@ -64,11 +101,12 @@ public class HotspotVariantService implements VariantService
         return list;
     }
 
-    private Map<String, TumorTypeComposition> constructVariantCacheByGeneAndAAChange()
+    private Map<String, TumorTypeComposition> constructVariantCacheByGeneAndAAChange(
+        List<TumorTypeComposition> variants)
     {
         Map<String, TumorTypeComposition> variantCache = new HashMap<>();
 
-        for (TumorTypeComposition variant : getAllVariantCompositions())
+        for (TumorTypeComposition variant : variants)
         {
             String key = (variant.getHugoSymbol() + "_" + aminoAcidChange(variant)).toUpperCase();
             variantCache.put(key, variant);

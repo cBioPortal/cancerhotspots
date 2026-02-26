@@ -51,6 +51,7 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
 {
     private final MutationRepository mutationRepository;
     private List<HotspotMutation> hotspotCache;
+    private List<HotspotMutation> v3HotspotCache;
 
     @Autowired
     public SingleResidueHotspotMutationService(MutationRepository mutationRepository)
@@ -60,6 +61,23 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
 
     public List<HotspotMutation> getAllHotspotMutations()
     {
+        return getAllHotspotMutations(null);
+    }
+
+    @Override
+    public List<HotspotMutation> getAllHotspotMutations(String version)
+    {
+        if ("v3".equals(version))
+        {
+            if (this.v3HotspotCache == null ||
+                this.v3HotspotCache.size() == 0)
+            {
+                Iterable<Mutation> mutations = mutationRepository.findAllV3();
+                this.v3HotspotCache = convertToSingleResidue(mutations);
+            }
+            return this.v3HotspotCache;
+        }
+
         // parse the input file only once, and save the result in the hotspot cache
         if (this.hotspotCache == null ||
             this.hotspotCache.size() == 0)
@@ -76,12 +94,18 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
     @Override
     public List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols)
     {
+        return getHotspotMutationsByGene(hugoSymbols, null);
+    }
+
+    @Override
+    public List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols, String version)
+    {
         List<HotspotMutation> mutations = new ArrayList<>();
 
         for (String hugoSymbol: hugoSymbols)
         {
             mutations.addAll(convertToSingleResidue(
-                mutationRepository.findByGene(hugoSymbol.toUpperCase())));
+                mutationRepository.findByGene(hugoSymbol.toUpperCase(), version)));
         }
 
         return mutations;
@@ -90,12 +114,18 @@ public class SingleResidueHotspotMutationService implements HotspotMutationServi
     @Override
     public List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds)
     {
+        return getHotspotMutationsByTranscript(transcriptIds, null);
+    }
+
+    @Override
+    public List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds, String version)
+    {
         List<HotspotMutation> mutations = new ArrayList<>();
 
         for (String transcriptId: transcriptIds)
         {
             mutations.addAll(convertToSingleResidue(
-                mutationRepository.findByTranscript(transcriptId.toUpperCase())));
+                mutationRepository.findByTranscript(transcriptId.toUpperCase(), version)));
         }
 
         return mutations;

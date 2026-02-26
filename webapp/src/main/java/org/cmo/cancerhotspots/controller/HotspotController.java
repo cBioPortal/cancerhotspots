@@ -82,9 +82,13 @@ public class HotspotController
     @RequestMapping(value = "/hotspots/single",
         method = {RequestMethod.GET, RequestMethod.POST},
         produces = "application/json")
-    public List<HotspotMutation> fetchSingleResidueHotspotMutations()
+    public List<HotspotMutation> fetchSingleResidueHotspotMutations(
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
-        return singleResidueHotspotMutationService.getAllHotspotMutations();
+        return singleResidueHotspotMutationService.getAllHotspotMutations(version);
     }
 
     @ApiOperation(value = "get hotspot mutations by hugo gene symbol",
@@ -96,9 +100,13 @@ public class HotspotController
         @ApiParam(value = "Comma separated list of hugo gene symbols. For example PTEN,BRAF,TP53",
             required = true,
             allowMultiple = true)
-        @PathVariable List<String> hugoSymbols)
+        @PathVariable List<String> hugoSymbols,
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
-        return singleResidueHotspotMutationService.getHotspotMutationsByGene(hugoSymbols);
+        return singleResidueHotspotMutationService.getHotspotMutationsByGene(hugoSymbols, version);
     }
 
     @ApiOperation(value = "get hotspot mutations by hugo gene symbol",
@@ -111,9 +119,13 @@ public class HotspotController
             required = true,
             allowMultiple = true)
         @RequestBody
-        List<String> hugoSymbols)
+        List<String> hugoSymbols,
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
-        return this.fetchSingleResidueHotspotMutationsByGeneGET(hugoSymbols);
+        return this.fetchSingleResidueHotspotMutationsByGeneGET(hugoSymbols, version);
     }
 
     @ApiOperation(value = "get hotspot mutations by transcript id",
@@ -125,9 +137,13 @@ public class HotspotController
         @ApiParam(value = "Comma separated list of transcript IDs. For example ENST00000288602,ENST00000275493",
             required = true,
             allowMultiple = true)
-        @PathVariable List<String> transcriptIds)
+        @PathVariable List<String> transcriptIds,
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
-        return singleResidueHotspotMutationService.getHotspotMutationsByTranscript(transcriptIds);
+        return singleResidueHotspotMutationService.getHotspotMutationsByTranscript(transcriptIds, version);
     }
 
     @ApiOperation(value = "get hotspot mutations by transcript id",
@@ -140,9 +156,13 @@ public class HotspotController
             required = true,
             allowMultiple = true)
         @RequestBody
-        List<String> transcriptIds)
+        List<String> transcriptIds,
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
-        return fetchSingleResidueHotspotMutationsByTranscriptGET(transcriptIds);
+        return fetchSingleResidueHotspotMutationsByTranscriptGET(transcriptIds, version);
     }
 
     @ApiOperation(value = "get 3D hotspot mutations by transcript id",
@@ -286,14 +306,18 @@ public class HotspotController
         @ApiParam(value = "Comma separated list of amino acid change values. For example V600E,V600K",
             required = true,
             allowMultiple = true)
-        @PathVariable List<String> aminoAcidChanges)
+        @PathVariable List<String> aminoAcidChanges,
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
         List<TumorTypeComposition> variants = new LinkedList<>();
 
         for (String aminoAcidChange : aminoAcidChanges)
         {
             TumorTypeComposition
-                tumorTypeComposition = variantService.getVariantComposition(hugoSymbol, aminoAcidChange);
+                tumorTypeComposition = variantService.getVariantComposition(hugoSymbol, aminoAcidChange, version);
 
             if (tumorTypeComposition != null)
             {
@@ -318,12 +342,16 @@ public class HotspotController
             required = false,
             allowMultiple = true)
         @RequestBody(required = false)
-        List<String> aminoAcidChanges)
+        List<String> aminoAcidChanges,
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
         if (aminoAcidChanges == null ||
             aminoAcidChanges.size() == 0)
         {
-            return fetchAllVariantsGET();
+            return fetchAllVariantsGET(version);
         }
         else if (hugoSymbol == null)
         {
@@ -331,7 +359,7 @@ public class HotspotController
         }
         else
         {
-            return fetchVariantsGET(hugoSymbol, aminoAcidChanges);
+            return fetchVariantsGET(hugoSymbol, aminoAcidChanges, version);
         }
     }
 
@@ -340,9 +368,13 @@ public class HotspotController
     @RequestMapping(value = "/variants",
         method = {RequestMethod.GET},
         produces = "application/json")
-    public List<TumorTypeComposition> fetchAllVariantsGET()
+    public List<TumorTypeComposition> fetchAllVariantsGET(
+        @ApiParam(value = "Data version. Use 'v3' for v2+v3 combined data.",
+            required = false)
+        @RequestParam(required = false)
+        String version)
     {
-        return variantService.getAllVariantCompositions();
+        return variantService.getAllVariantCompositions(version);
     }
 
     @ApiOperation(value = "get clusters by hugo symbol and residue",

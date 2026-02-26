@@ -77,6 +77,8 @@
     <script type="text/javascript" src="src/js/render/VariantTipRender.js"></script>
     <script type="text/javascript" src="src/js/render/VariantTipCountRender.js"></script>
     <script type="text/javascript" src="src/js/render/TumorCountRender.js"></script>
+    <script type="text/javascript" src="src/js/render/FoundInRender.js"></script>
+    <script type="text/javascript" src="src/data/combined_published_and_new_filtered.js"></script>
     <script type="text/javascript" src="src/js/render/ClustersRender.js"></script>
     <script type="text/javascript" src="src/js/render/PdbChainsRender.js"></script>
     <script type="text/javascript" src="src/js/render/PdbIdRender.js"></script>
@@ -229,10 +231,13 @@
 </script>
 
 <script type="text/template" id="v2_mutation_info">
-    Single residue and in-frame indel mutation hotspots identified in 24,592 tumor samples by the algorithm described in
+    Single residue and in-frame indel mutation hotspots identified in tumor samples.
+    These include 1,165 hotspots reported in
     [<span class="header-citation"><a href="https://www.ncbi.nlm.nih.gov/pubmed/29247016">Chang et al. 2017</a></span>]
     and
-    [<span class="header-citation"><a href="https://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al. 2016</a></span>]
+    [<span class="header-citation"><a href="https://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al. 2016</a></span>],
+    as well as 164 hotspots reported in
+    [<span class="header-citation"><a href="TODO_PUBMED_LINK">Bandlamudi et al., 2026</a></span>].
 </script>
 
 <script type="text/template" id="internal_mutation_info">
@@ -275,6 +280,11 @@
     [<span class="header-citation"><a href="https://www.ncbi.nlm.nih.gov/pubmed/26619011">Chang et al. 2016</a></span>]:
 </script>
 
+<script type="text/template" id="hotspots_v3_info">
+    Resources for 164 newly identified hotspots reported in
+    [<span class="header-citation"><a href="TODO_PUBMED_LINK">Bandlamudi et al., 2026</a></span>]:
+</script>
+
 <script type="text/template" id="hotspots_v2_info">
     Resources for hotspots of single residue mutations and in-frame insertions/deletions identified in 24,592 tumor samples
     [<span class="header-citation"><a href="https://www.ncbi.nlm.nih.gov/pubmed/29247016">Chang et al. 2017</a></span>]:
@@ -298,9 +308,16 @@
                         recurrent mutations identified in large scale cancer genomics data.
                     </p>
                     <p>
-                        With this release, we make available single residue and in-frame indel mutation hotspots
-                        identified in 24,592 tumor samples by the algorithm described in:
+                        With this release, we make available single residue and in-frame indel mutation hotspots,
+                        including 164 newly identified hotspots, described in:
                         <ul>
+                            <li class="about-citation">
+                                <a href="TODO_PAPER_LINK">Bandlamudi et al.,
+                                    Cancer type-specific variation in patterns of driver alterations across 50,000 tumors.
+                                    (2026).</a>
+                                <!--a href="TODO_PUBMED_LINK"
+                                   class="pubmed-link"><img src="lib/images/PubMed.png"></a-->
+                            </li>
                             <li class="about-citation">
                                 <a href="http://cancerdiscovery.aacrjournals.org/content/early/2017/12/15/2159-8290.CD-17-0321">Chang et al.,
                                     Accelerating discovery of functional mutant alleles in cancer.
@@ -318,42 +335,6 @@
                             </li>
                         </ul>
                     </p>
-                    <p>
-                        Look for future updates on larger sample sets, as well as
-                        results from new methods to detect recurrent mutations.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h4>Contributors</h4>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row contributor-list">
-                <div class="col-md-3 col-md-offset-3">
-                    <table class="center-align about-lab-table">
-                        <thead>
-                        <tr><th>Taylor Lab</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Matthew Chang</td></tr>
-                        <tr><td>Barry Taylor</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-3">
-                    <table class="center-align about-lab-table">
-                        <thead>
-                        <tr><th>Schultz Lab</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Jianjiong Gao</td></tr>
-                        <tr><td>Selcuk Onur Sumer</td></tr>
-                        <tr><td>Hongxin Zhang</td></tr>
-                        <tr><td>Nikolaus Schultz</td></tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
             <div class="row funding">

@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2016 Memorial Sloan-Kettering Cancer Center.
  *
@@ -28,23 +29,38 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-package org.cmo.cancerhotspots.service;
-
-import org.cmo.cancerhotspots.model.HotspotMutation;
-
-import java.util.List;
+ */
 
 /**
- * @author Selcuk Onur Sumer
+ * @author Ino de Bruijn
  */
-public interface HotspotMutationService
+
+function FoundInRender(options)
 {
-    List<HotspotMutation> getAllHotspotMutations();
-    List<HotspotMutation> getAllHotspotMutations(String version);
-    List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols);
-    List<HotspotMutation> getHotspotMutationsByGene(List<String> hugoSymbols, String version);
-    List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds);
-    List<HotspotMutation> getHotspotMutationsByTranscript(List<String> transcriptIds, String version);
+    var _defaultOpts = {
+        templateId: "found_in_column"
+    };
+
+    // merge options with default options to use defaults for missing values
+    var _options = jQuery.extend(true, {}, _defaultOpts, options);
+
+    function render (data, type, row, meta)
+    {
+        //var templateFn = _.template($("#" + _options.templateId).html());
+        //return templateFn(data);
+
+		let hotspotsv3_info = HOTSPOTS_V3.find((x) => x.Hugo_Symbol === row.hugoSymbol && x.Amino_Acid_Position === parseInt(row.residue.substr(1)))
+		if (hotspotsv3_info) {
+			return "Bandlamudi et al., 2026"
+		} else {
+			return "Chang et al. 2017"
+		}
+    }
+
+    function postRender(td, cellData, rowData, row, col)
+    {
+    }
+
+    this.render = render;
+    this.postRender = postRender;
 }

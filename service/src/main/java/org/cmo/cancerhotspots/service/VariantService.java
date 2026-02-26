@@ -11,5 +11,7 @@ public interface VariantService
 {
     TumorTypeComposition getVariantComposition(String aminoAcidChange);
     TumorTypeComposition getVariantComposition(String hugoSymbol, String aminoAcidChange);
+    TumorTypeComposition getVariantComposition(String hugoSymbol, String aminoAcidChange, String version);
     List<TumorTypeComposition> getAllVariantCompositions();
+    List<TumorTypeComposition> getAllVariantCompositions(String version);
 }

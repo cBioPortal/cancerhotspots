@@ -1,471 +1,635 @@
 Hugo_Symbol	Residue	Amino_Acid_Position	Alt_Common_Codon_Usage_*	Variant_Amino_Acid	Q-value	Tumor_Count	Tumor_Type_Count	Validation_Level_[a]	Tumor_Type_Composition	Transcript_Id
-BRAF	V600	600	NA	E:520|K:33|R:4|V:1	0	558	10	Level-3	skcm:252|thca:237|coadread:44|luad:9|gbm:6|mmyl:5|hgg:2|lgg:1|kirp:1|hnsc:1	ENST00000288602
-KRAS	G12	12	NA	D:255|V:227|C:115|R:71|A:43|S:23|G:1|F:1	0	736	21	Level-3	paad:290|luad:188|coadread:151|ucec:36|stad:14|mmyl:9|ucs:7|cesc:7|ov:6|brca:6|blca:5|laml:3|esca:3|skcm:2|kirp:2|gbm:2|thca:1|prad:1|npc:1|mds:1|lihc:1	ENST00000256078
-PIK3CA	H1047	1047	NA	R:236|L:37|Y:6|Q:4	0	283	22	Level-3	brca:171|ucec:20|coadread:20|hnsc:19|stad:15|ucs:5|skcm:3|luad:3|lihc:3|cesc:3|prad:2|paad:2|mbl:2|lusc:2|lgg:2|kirc:2|hgg:2|gbm:2|blca:2|ov:1|esca:1|acc:1	ENST00000263967
-IDH1	R132	132	NA	H:250|C:50|G:12|S:8|L:4	0	324	15	Level-3	lgg:243|gbm:20|laml:19|skcm:17|prad:6|lihc:4|mmyl:3|coadread:3|luad:2|hgg:2|mds:1|mbl:1|brca:1|blca:1|acyc:1	ENST00000415913
-NRAS	Q61	61	NA	R:114|K:76|L:27|H:17|P:1	0	235	17	Level-3	skcm:127|thca:34|mmyl:27|coadread:16|laml:6|ucec:4|luad:4|cll:4|blca:3|stad:2|ov:2|npc:1|lihc:1|lgg:1|kich:1|gbm:1|acc:1	ENST00000369535
-PIK3CA	E545	545	NA	K:251|A:9|G:8|Q:6|D:3	0	277	24	Level-3	brca:78|coadread:37|hnsc:31|cesc:26|blca:23|ucec:14|stad:12|lusc:10|luad:9|ucs:5|gbm:5|esca:5|skcm:3|prad:3|lgg:3|kirc:3|hgg:2|gbc:2|paad:1|ov:1|npc:1|lusm:1|lihc:1|kirp:1	ENST00000263967
-PIK3CA	E542	542	NA	K:134|A:4|Q:3|V:2|G:2	1.07E-215	145	16	Level-3	brca:51|hnsc:20|ucec:13|coadread:13|cesc:12|blca:10|stad:5|luad:5|esca:4|lusc:3|prad:2|lgg:2|gbm:2|lusm:1|lihc:1|kirp:1	ENST00000263967
-TP53	R273	273	NA	C:119|H:103|L:22|S:5|P:4	9.66E-139	253	24	Level-3	lgg:47|coadread:30|ov:25|brca:20|stad:19|hnsc:19|luad:16|esca:14|paad:12|ucec:9|gbm:7|lusc:6|ucs:4|prad:4|hgg:4|lusm:3|lihc:3|cll:3|blca:3|skcm:1|mmyl:1|mbl:1|laml:1|acc:1	ENST00000269305
-TP53	R248	248	NA	Q:108|W:90|L:11|P:5|G:2	7.57E-120	216	25	Level-3	coadread:34|hnsc:22|ov:19|gbm:13|esca:13|stad:11|paad:11|blca:11|luad:10|lgg:10|ucec:9|brca:9|ucs:7|cscc:7|skcm:5|prad:5|lihc:5|hgg:5|lusc:4|mmyl:1|mds:1|mbl:1|lusm:1|laml:1|cll:1	ENST00000269305
-KRAS	G13	13	NA	D:75|C:12|V:2|R:1|G:1|A:1	3.74E-119	92	10	Level-3	coadread:38|luad:17|ucec:10|stad:10|mmyl:9|paad:2|cll:2|cesc:2|lihc:1|laml:1	ENST00000256078
-KRAS	Q61	61	NA	H:44|R:11|K:10|L:8|P:1|E:1	1.23E-105	75	13	Level-3	paad:24|mmyl:15|coadread:11|luad:7|ucec:3|thca:3|stad:3|blca:3|skcm:2|lusc:1|lihc:1|laml:1|cll:1	ENST00000256078
-HRAS	Q61	61	NA	R:19|K:10|L:9|H:2	4.77E-76	40	9	Level-3	thca:14|blca:8|hnsc:6|skcm:3|cscc:3|prad:2|lusc:2|luad:1|brca:1	ENST00000451590
-SF3B1	K700	700	NA	E:33|R:1	7.71E-75	34	7	Level-3	brca:14|cll:13|paad:3|mds:1|mbl:1|laml:1|kirc:1	ENST00000335508
-CTNNB1	D32	32	NA	Y:15|G:13|N:10|V:8|H:4|A:2	4.29E-74	52	8	Level-3	lihc:24|ucec:12|mbl:6|prad:4|skcm:2|cesc:2|stad:1|blca:1	ENST00000349496
-CTNNB1	S33	33	NA	C:16|F:13|P:12|Y:8|A:3|T:1	3.57E-72	53	11	Level-3	lihc:19|ucec:16|mbl:8|luad:3|stad:1|skcm:1|prad:1|paad:1|esca:1|coadread:1|blca:1	ENST00000349496
-PIK3CA	Q546	546	NA	R:20|K:15|P:7|E:2|L:1|H:1	1.58E-71	46	13	Level-3	brca:13|ucec:11|coadread:6|lgg:3|stad:2|prad:2|hnsc:2|blca:2|ucs:1|skcm:1|mbl:1|gbm:1|cesc:1	ENST00000263967
-FBXW7	R465	465	NA	C:33|H:26|P:1|L:1|G:1	4.83E-70	62	14	Level-3	coadread:23|stad:10|ucs:7|ucec:7|cesc:4|hnsc:2|brca:2|ov:1|mbl:1|lusc:1|luad:1|esca:1|cll:1|acyc:1	ENST00000281708
-PIK3CA	N345	345	NA	K:36|I:3|T:2|H:1	3.47E-66	42	10	Level-3	brca:21|ucec:5|stad:5|coadread:3|ucs:2|prad:2|luad:1|hnsc:1|gbm:1|acyc:1	ENST00000263967
-CTNNB1	S37	37	NA	F:21|C:16|A:6|P:4|Y:3	1.09E-64	50	9	Level-3	ucec:20|lihc:11|luad:7|stad:3|mbl:3|esca:2|blca:2|prad:1|cesc:1	ENST00000349496
-U2AF1	S34	34	NA	F:34|Y:3	1.24E-61	37	9	Level-3	luad:15|laml:7|paad:5|ucs:2|ucec:2|cesc:2|blca:2|mds:1|hnsc:1	ENST00000291552
-PTEN	R130	130	NA	Q:40|G:28|*:16|L:5|P:4	5.33E-59	93	13	Level-3	ucec:56|gbm:7|brca:7|coadread:7|ucs:3|cesc:3|skcm:2|lusm:2|hnsc:2|stad:1|prad:1|lusc:1|kirc:1	ENST00000371953
-TP53	R175	175	NA	H:143|G:7|C:4	2.24E-58	154	22	Level-3	coadread:36|brca:18|ov:16|hnsc:16|esca:12|stad:11|paad:9|gbm:7|lgg:4|blca:4|prad:3|lusc:3|luad:3|ucs:2|ucec:2|hgg:2|skcm:1|npc:1|mbl:1|lihc:1|gbc:1|cll:1	ENST00000269305
-TP53	Y220	220	NA	C:63|S:4|H:2|N:1|D:1	3.38E-58	71	19	Level-3	ov:13|brca:11|lgg:8|hnsc:7|lihc:5|paad:4|gbm:4|ucec:3|luad:3|stad:2|lusc:2|coadread:2|ucs:1|skcm:1|prad:1|lusm:1|kirp:1|kich:1|blca:1	ENST00000269305
-TP53	H179	179	NA	R:37|Y:16|Q:7|L:5|N:3|D:2|P:1	2.81E-56	71	19	Level-3	hnsc:13|brca:9|lgg:7|ov:6|paad:5|lusc:5|ucs:3|stad:3|luad:3|lihc:3|gbm:3|esca:3|cscc:2|ucec:1|skcm:1|lusm:1|laml:1|gbc:1|coadread:1	ENST00000269305
-TP53	H193	193	NA	R:32|Y:13|L:11|P:7|D:2|N:1	1.37E-55	66	20	Level-3	brca:13|hnsc:9|ov:8|luad:5|lusc:4|lihc:4|lgg:4|ucs:3|esca:3|ucec:2|paad:2|stad:1|prad:1|lusm:1|laml:1|kirp:1|hgg:1|coadread:1|cll:1|blca:1	ENST00000269305
-EGFR	L858	858	NA	R:30	1.96E-54	30	1	Level-3	luad:30	ENST00000275493
-CTNNB1	T41	41	NA	A:21|I:10|N:2	1.39E-51	33	8	Level-3	lihc:11|coadread:6|ucec:5|skcm:5|prad:3|paad:1|luad:1|acc:1	ENST00000349496
-H3F3A	K28	28	K27	M:27	2.24E-50	27	2	Level-3	hgg:26|pias:1	ENST00000366813
-NRAS	G12	12	NA	D:18|C:7|V:3|S:3|A:3|R:2	1.61E-48	36	7	Level-3	coadread:15|skcm:7|laml:6|mmyl:3|ucec:2|mds:2|stad:1	ENST00000369535
-GNAS	R844	844	R201	C:19|H:16|L:1	6.69E-45	36	10	Level-3	paad:10|coadread:9|stad:4|luad:4|lihc:3|brca:2|skcm:1|hnsc:1|cesc:1|acc:1	ENST00000313949
-RAC1	P29	29	NA	S:25|L:5|T:1	1.92E-44	31	4	Level-3	skcm:26|hnsc:3|ucec:1|cscc:1	ENST00000356142
-AKT1	E17	17	NA	K:49	2.66E-41	49	12	Level-3	brca:30|luad:3|coadread:3|thca:2|stad:2|prad:2|cesc:2|skcm:1|lusc:1|lihc:1|hnsc:1|blca:1	ENST00000554581
-EGFR	A289	289	NA	V:17|T:6|D:3|N:1|I:1	7.33E-41	28	3	Level-3	gbm:24|lgg:3|hnsc:1	ENST00000275493
-FBXW7	R505	505	NA	G:19|C:16|L:2|H:2|S:1	3.86E-40	40	12	Level-3	coadread:8|hnsc:7|ucec:6|blca:4|ucs:3|lusc:3|cesc:3|skcm:2|stad:1|ov:1|esca:1|cll:1	ENST00000281708
-CTNNB1	G34	34	NA	R:16|V:8|E:7|A:1|*:1	2.08E-39	33	8	Level-3	ucec:10|lihc:8|mbl:4|luad:3|acc:3|stad:2|skcm:2|hnsc:1	ENST00000349496
-APC	R1450	1450	NA	*:37	5.96E-39	37	3	Level-3	coadread:34|stad:2|ucec:1	ENST00000457016
-TP53	C176	176	NA	F:26|Y:21|S:3|G:2|*:2|W:1|R:1|C:1	8.54E-38	57	15	Level-3	ov:10|hnsc:6|coadread:6|brca:6|stad:5|esca:5|paad:4|luad:4|lgg:4|lusc:2|prad:1|lihc:1|laml:1|kich:1|blca:1	ENST00000269305
-TP53	G245	245	NA	S:46|D:22|V:16|C:9|R:2|A:2	1.16E-37	97	16	Level-3	hnsc:14|ov:13|coadread:12|luad:11|paad:8|stad:6|esca:6|prad:5|brca:5|lusc:4|lgg:4|gbm:3|lihc:2|blca:2|ucs:1|hgg:1	ENST00000269305
-CDKN2A	R80	80	NA	*:50|Q:1	3.73E-34	51	11	Level-3	hnsc:24|skcm:8|esca:6|paad:5|luad:2|stad:1|prad:1|lusc:1|kirp:1|coadread:1|blca:1	ENST00000498124
-ERBB2	S310	310	NA	F:25|Y:1	4.27E-34	26	9	Level-3	blca:7|stad:5|cesc:4|brca:3|ov:2|cscc:2|luad:1|hnsc:1|coadread:1	ENST00000269571
-DNMT3A	R882	882	NA	H:22|C:8|P:1	3.44E-33	31	3	Level-3	laml:29|mds:1|luad:1	ENST00000264709
-CTNNB1	S45	45	NA	F:11|P:10|Y:3|C:3|S:1	1.25E-31	28	8	Level-3	lihc:10|acc:6|skcm:4|ucec:3|coadread:2|prad:1|luad:1|blca:1	ENST00000349496
-SMAD4	R361	361	NA	H:20|C:18|G:2|P:1	6.93E-31	41	8	Level-3	coadread:20|paad:8|stad:5|esca:3|cesc:2|luad:1|hnsc:1|brca:1	ENST00000342988
-SPOP	F133	133	NA	L:9|V:4|C:4|S:3|I:2	2.16E-30	22	1	Level-3	prad:22	ENST00000393331
-TP53	I195	195	NA	T:25|F:11|N:5|S:2|M:2	4.79E-30	45	16	Level-3	ov:11|brca:7|hnsc:4|coadread:4|lihc:3|lgg:3|mmyl:2|gbm:2|esca:2|ucs:1|stad:1|paad:1|lusc:1|luad:1|laml:1|cll:1	ENST00000269305
-IDH2	R172	172	NA	K:12|S:3|W:2|M:1|G:1	8.43E-30	19	5	Level-3	lgg:12|laml:3|lihc:2|hgg:1|coadread:1	ENST00000330062
-HRAS	G13	13	NA	R:11|V:9|D:2|C:2|S:1|I:1	3.19E-29	26	7	Level-3	hnsc:13|blca:4|skcm:3|lusc:3|luad:1|cscc:1|brca:1	ENST00000451590
-HRAS	G12	12	NA	S:10|D:8|C:3|A:2|V:1|N:1	8.34E-28	25	4	Level-3	hnsc:16|blca:6|cscc:2|acyc:1	ENST00000451590
-PIK3CA	M1043	1043	NA	V:13|I:11|T:2|L:2	9.83E-28	28	11	Level-3	ucec:6|brca:6|lgg:3|hnsc:3|gbm:3|coadread:2|thca:1|stad:1|paad:1|blca:1|acyc:1	ENST00000263967
-MYD88	L273	273	L265	P:15	1.93E-26	15	3	Level-3	cll:12|dlbc:2|mmyl:1	ENST00000417037
-ERBB3	V104	104	NA	M:19|L:7	1.23E-25	26	8	Level-3	stad:8|coadread:6|cesc:4|blca:3|gbc:2|ucs:1|ucec:1|brca:1	ENST00000267101
-NRAS	G13	13	NA	D:11|R:10|V:1	1.84E-25	22	9	Level-3	mmyl:5|laml:5|skcm:3|coadread:3|mds:2|stad:1|mbl:1|dlbc:1|blca:1	ENST00000369535
-PIK3CA	G118	118	NA	D:24	2.89E-25	24	11	Level-3	ucec:6|brca:5|lgg:4|stad:2|thca:1|prad:1|paad:1|lusc:1|hnsc:1|gbm:1|cesc:1	ENST00000263967
-BRAF	G469	469	NA	A:9|V:6|R:4|E:2|S:1|*:1	3.47E-25	23	8	Level-3	luad:9|skcm:5|mmyl:3|prad:2|lusc:1|cscc:1|coadread:1|blca:1	ENST00000288602
-BRAF	K601	601	NA	E:12|N:2|T:1	1.12E-24	15	7	Level-3	skcm:6|luad:3|stad:2|ucec:1|thca:1|prad:1|cll:1	ENST00000288602
-KRAS	A146	146	NA	T:24|V:3|P:1	1.19E-24	28	6	Level-3	coadread:19|mmyl:4|stad:2|luad:1|laml:1|cesc:1	ENST00000256078
-ERBB2	L755	755	NA	S:9|M:3|W:1|P:1	1.74E-24	14	7	Level-3	brca:7|coadread:2|ucec:1|stad:1|skcm:1|kirp:1|blca:1	ENST00000269571
-IDH2	R140	140	NA	Q:19|W:1|L:1	3.70E-24	21	5	Level-3	laml:17|mmyl:1|mds:1|hnsc:1|coadread:1	ENST00000330062
-APC	R876	876	NA	*:26|Q:1	4.54E-24	27	2	Level-3	coadread:26|ucec:1	ENST00000457016
-TP53	Y126_splice	126	NA		9.39E-24	41	16	Level-2	ov:7|paad:5|luad:5|stad:4|brca:4|gbm:3|skcm:2|prad:2|lihc:2|ucs:1|mmyl:1|lusm:1|lusc:1|laml:1|hnsc:1|coadread:1	ENST00000269305
-TP53	R249	249	NA	S:25|M:9|G:6|W:5|T:2|K:1	4.92E-23	48	15	Level-3	luad:12|lihc:10|lusm:4|hnsc:4|prad:3|lusc:3|ucec:2|paad:2|gbm:2|ucs:1|stad:1|ov:1|mbl:1|esca:1|cscc:1	ENST00000269305
-TP53	R282	282	NA	W:83|G:4|Q:2|R:1|P:1	9.90E-23	91	19	Level-3	coadread:21|hnsc:14|stad:9|paad:9|esca:7|ov:6|gbm:5|lgg:4|lusc:3|luad:3|skcm:2|ucec:1|prad:1|lymbc:1|lihc:1|kich:1|cscc:1|brca:1|blca:1	ENST00000269305
-B2M	M1	1	NA	I:6|V:5|L:4|T:2|R:1	3.91E-22	18	10	Level-2	skcm:3|luad:3|stad:2|ov:2|lusm:2|hnsc:2|mmyl:1|lusc:1|dlbc:1|coadread:1	ENST00000558401
-PIK3CA	C420	420	NA	R:17|G:1	5.69E-22	18	7	Level-3	brca:5|ucec:4|coadread:4|stad:2|prad:1|lusc:1|acyc:1	ENST00000263967
-TP53	Y163	163	NA	C:27|N:4|H:4|D:2|*:1	1.85E-21	38	14	Level-3	hnsc:8|ov:7|luad:5|brca:4|lusc:3|lihc:2|esca:2|ucs:1|skcm:1|paad:1|lusm:1|lgg:1|hgg:1|coadread:1	ENST00000269305
-STK19	D89	89	NA	N:16|D:2	3.48E-21	18	2	Level-3	skcm:13|cscc:5	ENST00000375333
-POLE	P286	286	NA	R:14|S:1|H:1	4.08E-21	16	5	Level-3	ucec:8|coadread:5|ucs:1|paad:1|brca:1	ENST00000320574
-FGFR3	S249	249	NA	C:18	1.07E-20	18	4	Level-3	blca:11|hnsc:4|lusc:2|kirp:1	ENST00000340107
-CDKN2A	W110	110	NA	*:26	1.17E-20	26	8	Level-3	hnsc:12|skcm:4|paad:2|lusc:2|gbm:2|cscc:2|ucec:1|esca:1	ENST00000498124
-FGFR2	N550	550	N549	K:11|H:2	1.85E-20	13	4	Level-3	ucec:6|brca:5|npc:1|luad:1	ENST00000457416
-SLC27A5	T554	554	NA	I:8|T:6	5.90E-20	14	3	Level-1	skcm:12|hnsc:1|cscc:1	ENST00000263093
-EZH2	Y646	646	Y641	N:6|F:4|S:2|H:2	6.39E-20	14	2	Level-3	skcm:7|dlbc:7	ENST00000320356
-SMTNL2	E244_splice	244	NA		2.26E-19	12	2	Level-1	ucec:7|brca:5	ENST00000389313
-NFE2L2	E79	79	NA	Q:9|K:6|V:2|*:2|D:1	2.31E-19	20	6	Level-3	hnsc:7|lusc:4|blca:3|luad:2|lihc:2|cesc:2	ENST00000397062
-RIMS2	S423	423	S201	S:15	2.97E-18	15	3	Level-1	stad:11|esca:3|brca:1	ENST00000406091
-NFE2L2	D29	29	NA	H:11|Y:4|N:2|G:2	3.26E-18	19	7	Level-3	hnsc:6|lusc:5|cesc:3|luad:2|ucec:1|kirc:1|blca:1	ENST00000397062
-PIK3CA	K111	111	NA	E:12|N:8|R:1	2.61E-17	21	11	Level-3	ucec:4|coadread:4|brca:3|stad:2|hnsc:2|nbl:1|mmyl:1|luad:1|lgg:1|gbm:1|cesc:1	ENST00000263967
-TP53	C238	238	NA	Y:15|F:12|S:3|R:3|G:1	2.81E-17	34	17	Level-3	ov:4|gbm:4|brca:4|hnsc:3|coadread:3|ucs:2|ucec:2|paad:2|esca:2|stad:1|mmyl:1|luad:1|lihc:1|lgg:1|cll:1|cesc:1|blca:1	ENST00000269305
-PIK3CA	R88	88	NA	Q:40	5.17E-17	40	10	Level-3	coadread:16|ucec:11|stad:4|gbm:2|brca:2|ucs:1|prad:1|hnsc:1|hgg:1|blca:1	ENST00000263967
-PIK3CA	E726	726	NA	K:22|A:2	6.73E-17	24	8	Level-2	brca:9|coadread:4|cesc:3|lusc:2|hnsc:2|blca:2|luad:1|hgg:1	ENST00000263967
-EGFR	G598	598	NA	V:17|A:2	5.03E-16	19	3	Level-3	gbm:15|lgg:3|hgg:1	ENST00000275493
-RQCD1	P131	131	NA	L:13|S:1	5.53E-16	14	1	Level-3	skcm:14	ENST00000273064
-FLT3	D835	835	NA	Y:11|E:3|H:2|V:1	7.51E-16	17	1	Level-3	laml:17	ENST00000241453
-CDKN2A	H83	83	NA	Y:12|R:3|D:3|Q:1	9.29E-16	19	8	Level-3	paad:5|skcm:4|hnsc:3|stad:2|luad:2|lihc:1|cscc:1|blca:1	ENST00000498124
-BRAF	N581	581	NA	S:7|T:2|I:1|H:1	1.11E-15	11	6	Level-3	skcm:4|luad:3|ov:1|mmyl:1|kirp:1|coadread:1	ENST00000288602
-TP53	V173	173	NA	L:15|M:12|G:2|A:2|E:1	1.82E-15	32	15	Level-3	hnsc:7|brca:4|luad:3|lgg:3|stad:2|paad:2|ov:2|coadread:2|ucec:1|skcm:1|lusm:1|lihc:1|hgg:1|esca:1|acc:1	ENST00000269305
-TP53	C275	275	NA	Y:15|F:10|S:4|*:2|R:1	1.87E-15	32	16	Level-3	ov:4|luad:4|hnsc:3|esca:3|coadread:3|skcm:2|lihc:2|lgg:2|gbm:2|paad:1|mmyl:1|kich:1|cll:1|brca:1|blca:1|acc:1	ENST00000269305
-BRAF	G466	466	NA	V:10|E:6|A:1	2.31E-15	17	6	Level-3	luad:7|mmyl:4|skcm:3|lusc:1|hnsc:1|coadread:1	ENST00000288602
-TP53	Y205	205	NA	C:19|F:3|S:2|N:2|H:2|D:2|*:1	6.95E-15	31	16	Level-3	luad:5|lihc:4|coadread:4|paad:2|ov:2|hnsc:2|esca:2|brca:2|ucs:1|ucec:1|mmyl:1|lymbc:1|lusc:1|lgg:1|kich:1|gbm:1	ENST00000269305
-RRAS2	Q72	72	NA	L:7|H:2	8.00E-15	9	6	Level-1	ucec:3|luad:2|ucs:1|prad:1|lusc:1|hnsc:1	ENST00000256196
-TP53	Y234	234	NA	C:23|S:2|H:2|*:2|N:1|D:1	1.35E-14	31	14	Level-3	ov:5|brca:5|lusc:3|hnsc:3|gbm:3|stad:2|lihc:2|esca:2|prad:1|paad:1|lusm:1|coadread:1|blca:1|acc:1	ENST00000269305
-APC	R1114	1114	NA	*:24	1.48E-14	24	3	Level-3	coadread:22|ucec:1|stad:1	ENST00000457016
-APC	R213	213	NA	*:20	1.49E-14	20	2	Level-3	coadread:19|thca:1	ENST00000457016
-PPP2R1A	R183	183	NA	W:14|Q:4|G:1	3.71E-14	19	9	Level-2	coadread:5|ucs:3|ov:3|ucec:2|luad:2|stad:1|prad:1|hnsc:1|brca:1	ENST00000322088
-NFE2L2	E82	82	NA	D:7|A:2|Q:1|G:1	1.60E-13	11	7	Level-1	lihc:3|ucec:2|luad:2|kirp:1|kirc:1|cesc:1|blca:1	ENST00000397062
-RXRA	S427	427	NA	F:11|Y:3	2.18E-13	14	3	Level-2	blca:12|paad:1|lihc:1	ENST00000481739
-MTOR	S2215	2215	NA	Y:8|F:5|T:1	3.24E-13	14	7	Level-3	coadread:4|ucec:3|skcm:2|cesc:2|kirp:1|kirc:1|gbm:1	ENST00000361445
-HIST1H3B	K28	28	NA	M:11|E:1	3.41E-13	12	2	Level-2	hgg:11|hnsc:1	ENST00000244661
-APC	Q1378	1378	NA	*:15	6.08E-13	15	1	Level-3	coadread:15	ENST00000457016
-CDKN2A	R58	58	NA	*:27|R:1	8.48E-13	28	8	Level-3	hnsc:14|skcm:4|paad:4|luad:2|lusc:1|kirp:1|esca:1|cscc:1	ENST00000498124
-PPP2R1A	P179	179	NA	R:12|L:1	1.56E-12	13	2	Level-3	ucec:8|ucs:5	ENST00000322088
-CREBBP	R1446	1446	NA	C:9|L:3|H:3|G:1	1.67E-12	16	11	Level-3	hnsc:3|mbl:2|lihc:2|blca:2|stad:1|skcm:1|lusc:1|gbm:1|coadread:1|cesc:1|acyc:1	ENST00000262367
-POLE	V411	411	NA	L:10	1.76E-12	10	4	Level-3	ucec:5|coadread:3|stad:1|gbm:1	ENST00000320574
-EP300	D1399	1399	NA	N:16|Y:2	5.93E-12	18	6	Level-3	hnsc:6|cesc:5|lusc:2|esca:2|blca:2|mbl:1	ENST00000263253
-BRAF	D594	594	NA	G:6|N:5|H:1	6.61E-12	12	9	Level-3	luad:3|mmyl:2|skcm:1|lgg:1|hnsc:1|coadread:1|cll:1|blca:1|acc:1	ENST00000288602
-RHOA	Y42	42	NA	C:7|S:2|I:1|F:1	1.26E-11	11	3	Level-2	stad:9|lymbc:1|hnsc:1	ENST00000418115
-FBXW7	R479	479	NA	Q:13|*:4|P:2|L:2|G:2|R:1	1.53E-11	24	12	Level-3	coadread:4|ucs:3|stad:3|hnsc:3|cesc:3|lusc:2|ucec:1|skcm:1|kirp:1|gbm:1|brca:1|blca:1	ENST00000281708
-MAP2K1	P124	124	NA	S:11|L:2|Q:1|P:1	2.05E-11	15	4	Level-3	skcm:12|ucec:1|coadread:1|blca:1	ENST00000307102
-MAP2K1	K57	57	NA	N:7|T:3	2.98E-11	10	6	Level-3	luad:4|skcm:2|stad:1|prad:1|hnsc:1|dlbc:1	ENST00000307102
-TP53	C135	135	NA	Y:9|F:9|R:3|W:2|S:2|*:2|G:1	4.65E-11	28	13	Level-3	esca:5|brca:5|coadread:3|stad:2|prad:2|paad:2|ov:2|luad:2|lusc:1|lihc:1|lgg:1|blca:1|acc:1	ENST00000269305
-PIK3CA	E453	453	NA	K:16|Q:3|D:1	6.40E-11	20	10	Level-3	brca:8|lgg:3|stad:2|ucec:1|lusc:1|luad:1|lihc:1|hnsc:1|gbm:1|blca:1	ENST00000263967
-CDKN2A	V51_splice	51	NA		1.11E-10	15	5	Level-3	skcm:5|hnsc:4|lihc:3|luad:2|blca:1	ENST00000498124
-NOTCH2	R5	5	NA	R:10	1.19E-10	10	3	Level-1	acc:8|ov:1|kirc:1	ENST00000256646
-ERBB2	V842	842	NA	I:14	1.31E-10	14	7	Level-3	coadread:4|stad:3|ucec:2|paad:2|ucs:1|gbc:1|brca:1	ENST00000269571
-DCAF13	T118	118	NA	T:8	1.56E-10	8	4	Level-1	stad:3|esca:3|kich:1|brca:1	ENST00000297579
-NUP93	E14	14	NA	K:10|G:1	1.59E-10	11	6	Level-1	brca:6|thca:1|luad:1|lihc:1|hnsc:1|blca:1	ENST00000308159
-NFE2L2	T80	80	NA	K:3|R:2|P:2|A:2	1.96E-10	9	7	Level-1	ucec:3|lusc:1|luad:1|lihc:1|kirp:1|hnsc:1|esca:1	ENST00000397062
-FGFR3	Y375	375	Y373	C:8	2.78E-10	8	2	Level-3	blca:7|kirp:1	ENST00000340107
-ATM	R337	337	NA	C:13|H:5	5.19E-10	18	8	Level-1	coadread:7|stad:2|skcm:2|paad:2|luad:2|hnsc:1|brca:1|blca:1	ENST00000278616
-KNSTRN	S24	24	NA	F:13	7.71E-10	13	2	Level-3	skcm:11|cscc:2	ENST00000249776
-NFE2L2	G81	81	NA	V:3|S:3|D:2|C:2	1.34E-09	10	7	Level-1	lusc:3|lihc:2|ucec:1|kirp:1|kirc:1|hnsc:1|brca:1	ENST00000397062
-CTNNB1	K335	335	NA	I:8|T:1	1.60E-09	9	1	Level-1	lihc:9	ENST00000349496
-TP53	M237	237	NA	I:17|K:4|V:3	1.88E-09	24	12	Level-3	ov:4|luad:3|lgg:3|hnsc:3|esca:3|stad:2|ucec:1|paad:1|lusc:1|hgg:1|coadread:1|brca:1	ENST00000269305
-GPRIN2	A50	50	NA	A:11	2.54E-09	11	3	Level-1	coadread:8|lihc:2|brca:1	ENST00000374314
-SOS1	N233	233	NA	Y:7	2.80E-09	7	2	Level-3	luad:4|ucec:3	ENST00000426016
-SMAD4	G386	386	NA	D:5|V:3|S:1|C:1|A:1	3.31E-09	11	6	Level-2	esca:3|coadread:3|stad:2|prad:1|paad:1|luad:1	ENST00000342988
-PTEN	R233	233	NA	*:27|Q:1	3.67E-09	28	8	Level-3	ucec:14|gbm:5|stad:3|coadread:2|ucs:1|prad:1|cesc:1|blca:1	ENST00000371953
-MAPK1	E322	322	NA	K:15|*:1	4.00E-09	16	3	Level-3	hnsc:8|cesc:7|blca:1	ENST00000215832
-INPPL1	A1185	1185	NA	D:8	5.91E-09	8	5	Level-1	acc:4|prad:1|lihc:1|hnsc:1|blca:1	ENST00000298229
-TP53	R196	196	NA	*:61|P:6	6.92E-09	67	16	Level-3	hnsc:13|brca:10|coadread:7|paad:6|esca:6|skcm:4|gbm:4|stad:3|ov:3|luad:3|lgg:3|mmyl:1|lusm:1|lusc:1|kich:1|cscc:1	ENST00000269305
-TP53	G266	266	NA	V:16|E:14|R:12|*:4	7.47E-09	46	18	Level-3	hnsc:7|ov:5|paad:4|coadread:4|luad:3|lgg:3|brca:3|skcm:2|lihc:2|gbm:2|esca:2|cscc:2|cll:2|ucs:1|ucec:1|lusm:1|lusc:1|blca:1	ENST00000269305
-TP53	C242	242	NA	F:13|S:5|Y:3|W:1|G:1|C:1	8.62E-09	24	11	Level-3	hnsc:5|luad:4|lusc:3|lihc:3|stad:2|cll:2|ucs:1|gbm:1|esca:1|brca:1|blca:1	ENST00000269305
-ERBB3	D297	297	NA	Y:9|V:1|N:1	9.18E-09	11	5	Level-2	ucec:3|stad:3|brca:2|blca:2|ucs:1	ENST00000267101
-CDKN2A	Q50	50	NA	*:12|H:2|R:1|Q:1	9.77E-09	16	7	Level-3	skcm:6|paad:3|cscc:3|stad:1|lusc:1|hnsc:1|coadread:1	ENST00000498124
-MYCN	P44	44	NA	L:9	1.09E-08	9	5	Level-2	nbl:4|ucec:2|paad:1|mbl:1|gbm:1	ENST00000281043
-POM121	N94	94	N359	S:7	1.23E-08	7	4	Level-1	paad:4|skcm:1|prad:1|gbm:1	ENST00000395270
-TP53	R213	213	NA	*:86|Q:8|L:7|P:1|G:1	1.29E-08	103	23	Level-3	coadread:16|hnsc:14|esca:9|brca:9|skcm:8|stad:6|luad:5|paad:4|ov:4|lusc:4|lihc:4|ucec:3|kich:3|lgg:2|gbm:2|cscc:2|blca:2|ucs:1|prad:1|npc:1|kirc:1|acyc:1|acc:1	ENST00000269305
-TP53	Y236	236	NA	C:16|*:3|N:2|D:2	2.01E-08	23	11	Level-3	hnsc:6|luad:3|lgg:3|paad:2|ov:2|coadread:2|stad:1|prad:1|lusc:1|cscc:1|brca:1	ENST00000269305
-ARID1A	R1989	1989	NA	*:17	2.45E-08	17	5	Level-1	ucec:9|coadread:5|stad:1|lymbc:1|cesc:1	ENST00000324856
-APC	R216	216	NA	*:14	3.51E-08	14	1	Level-3	coadread:14	ENST00000457016
-XPO1	E571	571	NA	K:12|V:1|A:1	4.11E-08	14	5	Level-2	cll:7|ucec:2|coadread:2|brca:2|prad:1	ENST00000401558
-CDKN2A	P114	114	NA	L:13|T:1|H:1	5.43E-08	15	4	Level-3	skcm:11|hnsc:2|lusc:1|cscc:1	ENST00000498124
-MYO18A	G979	979	NA	G:6|A:1	5.52E-08	7	4	Level-1	acc:3|lihc:2|kirp:1|cscc:1	ENST00000527372
-TP53	P151	151	NA	S:10|H:7|T:4|R:4|A:4|F:1	7.03E-08	30	17	Level-3	hnsc:5|ov:3|coadread:3|brca:3|ucs:2|paad:2|lihc:2|ucec:1|stad:1|skcm:1|mmyl:1|lusc:1|luad:1|lgg:1|esca:1|blca:1|acyc:1	ENST00000269305
-GNAQ	T96	96	NA	S:7	7.04E-08	7	5	Level-1	lihc:2|kich:2|prad:1|luad:1|gbc:1	ENST00000286548
-BNC2	S575	575	NA	R:7|I:1	7.82E-08	8	3	Level-1	stad:5|coadread:2|luad:1	ENST00000380672
-NFE2L2	Q26	26	NA	P:2|K:2|R:1|L:1|H:1	9.26E-08	7	5	Level-1	lusc:2|lihc:2|ucec:1|luad:1|esca:1	ENST00000397062
-CDK4	R24	24	NA	L:5|H:3|C:2|S:1	1.03E-07	11	3	Level-3	skcm:7|luad:3|mmyl:1	ENST00000257904
-LRP1	P1058	1058	NA	T:7|L:1	1.05E-07	8	3	Level-1	prad:3|kirp:3|skcm:2	ENST00000243077
-DTD2	R6	6	NA	W:11	1.10E-07	11	6	Level-1	kirp:5|lihc:2|prad:1|kich:1|coadread:1|acc:1	ENST00000310850
-SMAD2	S464	464	NA	*:11	1.19E-07	11	5	Level-1	coadread:5|stad:2|brca:2|paad:1|kirc:1	ENST00000402690
-TP53	A187_splice	187	NA		1.70E-07	25	13	Level-2	ov:6|hnsc:3|coadread:3|brca:3|stad:2|skcm:1|paad:1|lusc:1|luad:1|lgg:1|kich:1|cll:1|blca:1	ENST00000269305
-RHEB	Y35	35	NA	N:5|C:1	1.71E-07	6	4	Level-3	ucec:2|kirc:2|kirp:1|blca:1	ENST00000262187
-HOXB2	P335	335	NA	P:6	2.27E-07	6	4	Level-1	luad:3|skcm:1|prad:1|kirp:1	ENST00000330070
-TP53	R280	280	NA	K:15|T:10|G:6|I:5|S:4|*:1	2.47E-07	41	17	Level-3	hnsc:7|blca:7|luad:5|brca:4|lgg:3|skcm:2|ov:2|lihc:2|ucs:1|stad:1|npc:1|lusm:1|lusc:1|laml:1|esca:1|cscc:1|cesc:1	ENST00000269305
-SNRPD3	G96	96	NA	V:4|S:1|R:1|C:1	2.59E-07	7	3	Level-1	luad:5|ucec:1|cesc:1	ENST00000215829
-GPRIN2	T100	100	NA	P:7	2.77E-07	7	4	Level-1	coadread:3|cesc:2|lihc:1|brca:1	ENST00000374314
-ALK	F1174	1174	NA	L:6|C:2|V:1	3.00E-07	9	1	Level-3	nbl:9	ENST00000389048
-MED12	L1224	1224	NA	F:9|V:1	3.01E-07	10	5	Level-2	prad:6|stad:1|paad:1|lusc:1|brca:1	ENST00000374080
-ARL16	G6	6	NA	R:7	3.03E-07	7	1	Level-1	skcm:7	ENST00000397498
-MAGOH	I137	137	NA	T:6	3.03E-07	6	4	Level-1	paad:3|nbl:1|hnsc:1|gbm:1	ENST00000371470
-CCT8	I86	86	NA	T:6	3.15E-07	6	5	Level-1	paad:2|prad:1|lihc:1|lgg:1|hnsc:1	ENST00000286788
-CCND1	Y44	44	NA	D:2|S:1|H:1|F:1|C:1|*:1	3.48E-07	7	2	Level-1	mcl:6|mmyl:1	ENST00000227507
-CRNKL1	S128	128	NA	F:8|S:2	3.99E-07	10	2	Level-2	skcm:8|cscc:2	ENST00000377340
-TP53	K132	132	NA	N:16|R:7|E:6|T:3|Q:1|M:1	4.00E-07	34	16	Level-3	ov:6|brca:6|blca:4|paad:3|luad:3|coadread:2|ucs:1|stad:1|mmyl:1|lusc:1|lgg:1|hnsc:1|gbm:1|esca:1|cesc:1|acc:1	ENST00000269305
-NT5C3A	D322	322	NA	G:6	4.75E-07	6	5	Level-1	acc:2|lihc:1|kich:1|gbc:1|brca:1	ENST00000242210
-EGFR	L861	861	NA	Q:7	5.42E-07	7	2	Level-3	luad:5|lusc:2	ENST00000275493
-PIK3R1	M582_splice	582	NA		5.68E-07	7	5	Level-3	ucec:2|gbm:2|prad:1|mbl:1|coadread:1	ENST00000521381
-TP53	C141	141	NA	Y:10|W:6|R:2|G:2|S:1|F:1|*:1	5.85E-07	23	12	Level-3	brca:5|prad:3|coadread:3|luad:2|lgg:2|hnsc:2|ucec:1|paad:1|mmyl:1|lusc:1|laml:1|kich:1	ENST00000269305
-RIMS1	R71	71	NA	G:5|R:2	7.62E-07	7	4	Level-1	stad:4|prad:1|paad:1|coadread:1	ENST00000521978
-OXA1L	L57	57	NA	F:9	7.73E-07	9	3	Level-1	skcm:7|hnsc:1|cscc:1	ENST00000285848
-LENG8	G377	377	G340	G:6	9.64E-07	6	5	Level-1	lihc:2|mbl:1|luad:1|gbm:1|blca:1	ENST00000326764
-APC	R499	499	NA	*:13	1.04E-06	13	3	Level-3	coadread:11|stad:1|paad:1	ENST00000457016
-APC	Q1429	1429	NA	*:6|R:1	1.04E-06	7	2	Level-3	coadread:6|ov:1	ENST00000457016
-ING1	R339	339	R196	*:11	1.06E-06	11	5	Level-1	coadread:4|ucec:3|stad:2|lgg:1|blca:1	ENST00000375774
-SPOP	W131	131	NA	G:4|S:1|R:1|C:1	1.15E-06	7	2	Level-2	prad:6|ucec:1	ENST00000393331
-TPTE2	M41	41	NA	V:8	1.36E-06	8	6	Level-1	skcm:2|acc:2|stad:1|paad:1|luad:1|kich:1	ENST00000400230
-TRUB1	T34	34	NA	P:6	1.42E-06	6	4	Level-1	luad:3|paad:1|kirc:1|blca:1	ENST00000298746
-ACADS	R330	330	NA	H:8|C:2	1.50E-06	10	7	Level-1	prad:2|kirc:2|gbm:2|ucec:1|stad:1|lgg:1|coadread:1	ENST00000242592
-ACSBG2	I250	250	NA	M:5	1.53E-06	5	2	Level-1	kirp:4|kirc:1	ENST00000586696
-SPTA1	K1732	1732	NA	T:7	1.61E-06	7	2	Level-1	stad:5|esca:2	ENST00000368147
-TP53	V274	274	NA	F:7|D:5|G:4|A:4|L:1	1.69E-06	21	11	Level-3	luad:4|lihc:3|brca:3|paad:2|ov:2|coadread:2|stad:1|skcm:1|prad:1|lusm:1|lgg:1	ENST00000269305
-PTPN11	Q510	510	NA	L:3|H:3|E:1	1.84E-06	7	4	Level-1	skcm:2|laml:2|gbm:2|all:1	ENST00000351677
-SF3B1	N626	626	NA	Y:3|H:2|D:1	2.06E-06	6	4	Level-1	cll:3|skcm:1|luad:1|brca:1	ENST00000335508
-RAC1	A178	178	A159	V:10	2.27E-06	10	5	Level-1	hnsc:6|luad:1|hgg:1|coadread:1|cesc:1	ENST00000356142
-ARIH1	A409	409	NA	E:6	2.28E-06	6	6	Level-1	skcm:1|prad:1|luad:1|kirc:1|kich:1|acc:1	ENST00000379887
-KRAS	G60	60	NA	G:10|D:1	2.28E-06	11	7	Level-1	coadread:4|thca:2|skcm:1|paad:1|mmyl:1|cscc:1|blca:1	ENST00000256078
-TP53	V216	216	NA	M:15|L:2|G:2|E:1	2.64E-06	20	11	Level-3	ov:4|brca:4|lgg:3|gbm:2|ucs:1|paad:1|lusc:1|luad:1|hnsc:1|esca:1|cscc:1	ENST00000269305
-PIK3R1	N564	564	NA	D:6	2.89E-06	6	4	Level-3	lgg:2|coadread:2|ucec:1|skcm:1	ENST00000521381
-PIK3R1	G376	376	NA	R:9	2.90E-06	9	4	Level-3	gbm:5|lgg:2|ucs:1|skcm:1	ENST00000521381
-PIK3CA	Y1021	1021	NA	C:7|H:2	3.18E-06	9	6	Level-1	ucec:2|stad:2|coadread:2|ucs:1|prad:1|brca:1	ENST00000263967
-C5orf49	K130	130	NA	T:6	3.65E-06	6	2	Level-1	stad:4|luad:2	ENST00000399810
-NPAS1	F159	159	NA	F:6|L:1	3.89E-06	7	2	Level-1	skcm:6|blca:1	ENST00000602212
-APC	R564	564	NA	*:12	4.00E-06	12	1	Level-3	coadread:12	ENST00000457016
-NFE2L2	L30	30	NA	F:3|P:2|H:2|R:1	4.52E-06	8	5	Level-1	hnsc:3|lusc:2|lihc:1|kirp:1|kirc:1	ENST00000397062
-RAF1	S257	257	NA	L:11|W:1	4.76E-06	12	4	Level-3	coadread:6|luad:3|stad:2|skcm:1	ENST00000251849
-TP53	Q331_splice	331	NA		4.87E-06	23	9	Level-2	ov:7|brca:4|luad:3|coadread:3|hnsc:2|paad:1|lusc:1|lihc:1|cll:1	ENST00000269305
-KIAA1468	Q579	579	NA	K:6	5.44E-06	6	5	Level-1	luad:2|prad:1|kirp:1|hnsc:1|acc:1	ENST00000398130
-BCL2L12	F8	8	NA	F:8	5.99E-06	8	2	Level-1	skcm:6|cscc:2	ENST00000246785
-SF3B1	R625	625	NA	H:4|C:4|L:2|G:1	6.52E-06	11	4	Level-2	skcm:6|cll:2|acyc:2|blca:1	ENST00000335508
-AHI1	Q294	294	NA	R:5	6.91E-06	5	4	Level-1	luad:2|skcm:1|kirp:1|hnsc:1	ENST00000367800
-KDM6A	Q555	555	NA	*:9	7.26E-06	9	1	Level-1	blca:9	ENST00000377967
-FGFR1	K687	687	K656	E:4|N:1|K:1|*:1	7.52E-06	7	6	Level-2	pias:2|mbl:1|lihc:1|gbm:1|blca:1|all:1	ENST00000425967
-KIT	K642	642	NA	E:5|N:1	7.66E-06	6	2	Level-3	skcm:5|stad:1	ENST00000288135
-TP53	S241	241	NA	F:19|Y:10|C:6|P:3|A:2	7.75E-06	40	20	Level-3	ov:7|skcm:5|ucs:3|ucec:3|luad:2|hgg:2|gbm:2|gbc:2|brca:2|blca:2|paad:1|lymbc:1|lgg:1|kirp:1|kirc:1|kich:1|hnsc:1|esca:1|cscc:1|coadread:1	ENST00000269305
-OBP2B	S133	133	NA	P:5	7.91E-06	5	4	Level-1	paad:2|mbl:1|luad:1|hnsc:1	ENST00000372034
-APC	R232	232	NA	*:12	9.02E-06	12	2	Level-2	coadread:11|ucec:1	ENST00000457016
-TP53	L194	194	NA	R:15|H:3|F:3|P:2	9.05E-06	23	11	Level-3	brca:6|ov:3|luad:3|hnsc:2|coadread:2|blca:2|paad:1|lihc:1|lgg:1|gbm:1|cesc:1	ENST00000269305
-MAP2K1	F53	53	NA	L:4|V:1|I:1	9.12E-06	6	4	Level-3	coadread:3|stad:1|skcm:1|luad:1	ENST00000307102
-GNA11	Q209	209	NA	L:5	9.33E-06	5	1	Level-3	skcm:5	ENST00000078429
-MAPK7	A501	501	NA	D:6	9.50E-06	6	4	Level-1	kirp:2|acc:2|luad:1|lihc:1	ENST00000308406
-TP53	S33_splice	33	NA		1.03E-05	19	11	Level-2	lihc:4|coadread:3|ov:2|lusm:2|hnsc:2|ucs:1|paad:1|luad:1|esca:1|cscc:1|brca:1	ENST00000269305
-PRSS27	V246	246	NA	G:5	1.03E-05	5	3	Level-1	acc:3|lgg:1|kirp:1	ENST00000302641
-PCDHA10	G539	539	NA	A:8|V:1	1.08E-05	9	7	Level-1	paad:2|luad:2|lgg:1|kirp:1|hnsc:1|gbm:1|blca:1	ENST00000307360
-MAP2K2	F57	57	NA	L:3|V:2	1.29E-05	5	4	Level-3	skcm:2|stad:1|paad:1|hnsc:1	ENST00000262948
-PTPN11	A72	72	NA	T:3|V:2|D:2	1.33E-05	7	4	Level-2	nbl:2|lgg:2|cll:2|laml:1	ENST00000351677
-TP53	V272	272	NA	M:17|G:4|V:1|L:1|K:1|E:1	1.43E-05	25	13	Level-3	ov:4|paad:3|luad:3|hnsc:3|stad:2|coadread:2|brca:2|ucec:1|mmyl:1|mbl:1|kirc:1|cscc:1|blca:1	ENST00000269305
-SYT13	P228	228	NA	S:7|T:1	1.43E-05	8	3	Level-1	skcm:6|lusc:1|cscc:1	ENST00000020926
-FAM46D	S69	69	NA	R:4|G:2	1.43E-05	6	2	Level-1	stad:5|esca:1	ENST00000538312
-PTN	K44	44	NA	T:6|M:1	1.46E-05	7	4	Level-1	esca:3|stad:2|lusc:1|coadread:1	ENST00000348225
-TP53	P278	278	NA	S:11|L:7|T:6|R:5|A:5|H:3	1.50E-05	37	13	Level-3	hnsc:7|ov:5|coadread:5|lusc:4|brca:4|skcm:2|luad:2|esca:2|cscc:2|ucec:1|paad:1|mmyl:1|lgg:1	ENST00000269305
-HEXDC	T482	482	H452	P:5	1.59E-05	5	3	Level-1	lusc:2|kirc:2|skcm:1	ENST00000337014
-ZBTB7A	K424	424	NA	T:4|N:1	1.69E-05	5	3	Level-1	stad:3|kirc:1|coadread:1	ENST00000322357
-EVPL	C322	322	NA	C:6	1.76E-05	6	5	Level-1	paad:2|luad:1|kich:1|coadread:1|blca:1	ENST00000301607
-FGFR1	N577	577	N546	K:5|D:1	1.92E-05	6	5	Level-2	pias:2|stad:1|nbl:1|mbl:1|hgg:1	ENST00000425967
-TP53	V225_splice	225	NA		2.06E-05	22	11	Level-2	brca:5|ov:3|luad:3|hnsc:3|gbm:2|stad:1|lusc:1|lihc:1|laml:1|kich:1|cscc:1	ENST00000269305
-TP53	H214	214	NA	R:15|L:1	2.08E-05	16	11	Level-2	stad:2|paad:2|lusc:2|lihc:2|esca:2|ov:1|kich:1|gbm:1|coadread:1|cll:1|blca:1	ENST00000269305
-ERBB2	R678	678	NA	Q:9	2.20E-05	9	6	Level-3	stad:4|ucec:1|prad:1|coadread:1|brca:1|blca:1	ENST00000269571
-PTEN	C136	136	NA	R:4|Y:2|F:2|*:1	2.27E-05	9	5	Level-1	ucec:3|gbm:3|skcm:1|hnsc:1|coadread:1	ENST00000371953
-CTNNB1	N387	387	NA	K:4|Y:1|I:1	2.31E-05	6	3	Level-1	lihc:4|prad:1|coadread:1	ENST00000349496
-ERBB2	D769	769	NA	Y:5|H:2|N:1	2.69E-05	8	5	Level-3	brca:3|esca:2|stad:1|cesc:1|blca:1	ENST00000269571
-MEF2A	P99	99	NA	S:7	2.91E-05	7	6	Level-1	kirp:2|paad:1|mbl:1|lusc:1|lihc:1|cscc:1	ENST00000354410
-FGFR3	R248	248	NA	C:9	3.55E-05	9	4	Level-3	blca:6|mmyl:1|lusc:1|hnsc:1	ENST00000340107
-MYO18B	P1018	1018	NA	S:3|P:3|L:2|T:1	3.67E-05	9	2	Level-1	skcm:8|hnsc:1	ENST00000335473
-TP53	T125_splice	125	NA	SS:23	3.85E-05	23	12	Level-2	hnsc:4|stad:3|lgg:3|ov:2|lusc:2|luad:2|brca:2|skcm:1|paad:1|esca:1|cscc:1|acc:1	ENST00000269305
-CDKN2A	E88	88	NA	*:10|K:5	4.24E-05	15	5	Level-1	skcm:5|hnsc:5|paad:2|cscc:2|cesc:1	ENST00000498124
-COBL	E480	480	NA	D:6	4.36E-05	6	1	Level-1	lihc:6	ENST00000265136
-ATM	N2875	2875	NA	S:3|T:2|K:1	4.66E-05	6	4	Level-1	lihc:2|coadread:2|prad:1|brca:1	ENST00000278616
-ZHX3	N249	249	NA	K:6	4.76E-05	6	3	Level-1	stad:3|coadread:2|blca:1	ENST00000309060
-APC	Y935	935	NA	*:6	4.90E-05	6	1	Level-3	coadread:6	ENST00000457016
-PLCB3	T909	909	NA	P:5	5.76E-05	5	2	Level-1	prad:3|luad:2	ENST00000540288
-CHIT1	W358	358	NA	*:7	5.86E-05	7	4	Level-1	lihc:2|coadread:2|acc:2|kich:1	ENST00000367229
-FRMD4B	P368	368	NA	S:5|L:1|F:1	6.05E-05	7	2	Level-1	skcm:6|cscc:1	ENST00000398540
-PCSK5	W924	924	NA	*:7|L:1	6.25E-05	8	3	Level-1	skcm:6|lihc:1|cscc:1	ENST00000545128
-KRAS	K117	117	NA	N:9	6.60E-05	9	6	Level-3	coadread:3|mmyl:2|stad:1|skcm:1|lihc:1|esca:1	ENST00000256078
-C3orf70	S6	6	NA	L:9|W:2|*:1	7.54E-05	12	4	Level-1	blca:6|cesc:4|lusc:1|brca:1	ENST00000335012
-APC	Q1338	1338	NA	*:6	7.56E-05	6	1	Level-3	coadread:6	ENST00000457016
-CHD3	I293	293	I234	L:5	7.69E-05	5	4	Level-1	luad:2|paad:1|lgg:1|hnsc:1	ENST00000380358
-OVGP1	S536	536	NA	G:5	8.06E-05	5	3	Level-1	lihc:2|coadread:2|kich:1	ENST00000369732
-INMT	S212	212	NA	F:8|S:1	8.30E-05	9	2	Level-1	skcm:8|cesc:1	ENST00000013222
-LAMC1	P641	641	NA	P:4|L:2	9.33E-05	6	5	Level-1	lusc:2|thca:1|skcm:1|lgg:1|gbm:1	ENST00000258341
-LCE1A	K28	28	NA	T:2|R:2|M:1	0.0001	5	2	Level-1	stad:4|esca:1	ENST00000335123
-PPP6C	R301	301	R264	C:14	0.0001	14	2	Level-2	skcm:13|lusc:1	ENST00000451402
-NFE2L2	G31	31	NA	A:4|R:2|V:1|E:1	0.0001	8	5	Level-1	lusc:2|esca:2|blca:2|luad:1|lihc:1	ENST00000397062
-U2AF1	Q157	157	NA	R:2|P:2	0.0001	4	2	Level-3	mds:3|laml:1	ENST00000291552
-CDH1	Q23	23	NA	*:7	0.0001	7	1	Level-1	brca:7	ENST00000261769
-SF3B1	G742	742	NA	D:6	0.0001	6	2	Level-2	cll:5|kirc:1	ENST00000335508
-KAT8	R98	98	NA	W:7|Q:1	0.0001	8	4	Level-1	stad:3|prad:2|coadread:2|skcm:1	ENST00000448516
-SEMA4B	S231	231	NA	S:4|F:2	0.0001	6	2	Level-1	skcm:3|cscc:3	ENST00000411539
-CTNNB1	H36	36	NA	P:5|Y:1	0.0001	6	2	Level-1	lihc:5|skcm:1	ENST00000349496
-ERBB2	V777	777	NA	L:4|M:1	0.0001	5	3	Level-3	coadread:2|brca:2|stad:1	ENST00000269571
-PNLIPRP3	K431	431	NA	T:5|R:1	0.0001	6	2	Level-1	stad:3|esca:3	ENST00000369230
-NFE2L2	R34	34	NA	G:7|Q:4|P:2	0.0001	13	6	Level-1	lusc:5|ucec:2|hnsc:2|blca:2|kirc:1|cesc:1	ENST00000397062
-FGFR2	S252	252	NA	W:10|S:2	0.0001	12	3	Level-2	ucec:9|stad:2|ucs:1	ENST00000457416
-FBXW7	R367	367	NA	*:12	0.0001	12	6	Level-2	coadread:7|ucs:1|stad:1|paad:1|hnsc:1|cesc:1	ENST00000281708
-FOXA1	I176	176	NA	M:4|V:3	0.0002	7	2	Level-1	brca:6|luad:1	ENST00000250448
-SLC4A11	V718	718	V691	G:5	0.0002	5	3	Level-1	brca:3|prad:1|lihc:1	ENST00000380059
-H3F3A	G35	35	G34	R:6	0.0002	6	4	Level-3	hgg:3|lgg:1|gbm:1|acc:1	ENST00000366813
-FGFR2	C383	383	C382	R:4|Y:1	0.0002	5	3	Level-3	ucec:3|stad:1|esca:1	ENST00000457416
-KIAA0020	K63	63	NA	R:5	0.0002	5	4	Level-1	paad:2|skcm:1|luad:1|gbm:1	ENST00000397885
-TP53	F270	270	NA	S:5|L:4|I:4|C:2|V:1	0.0002	16	9	Level-3	stad:3|brca:3|ov:2|luad:2|lgg:2|lusc:1|hnsc:1|esca:1|cscc:1	ENST00000269305
-SF3B1	K666	666	NA	T:2|E:2|Q:1	0.0002	5	4	Level-2	cll:2|skcm:1|lihc:1|brca:1	ENST00000335508
-PIK3R1	R348	348	NA	*:14	0.0002	14	3	Level-3	ucec:8|coadread:5|brca:1	ENST00000521381
-PIK3R1	K567	567	NA	E:5	0.0002	5	4	Level-1	ucec:2|stad:1|lymbc:1|esca:1	ENST00000521381
-ALK	R1275	1275	NA	Q:10|L:1|*:1	0.0002	12	2	Level-3	nbl:11|brca:1	ENST00000389048
-U2AF1	I24	24	NA	T:3|V:1	0.0002	4	4	Level-1	ucec:1|stad:1|paad:1|acc:1	ENST00000291552
-DNAJB1	L190	190	NA	L:4	0.0002	4	4	Level-1	prad:1|lihc:1|hnsc:1|gbm:1	ENST00000254322
-STAT3	H410	410	NA	R:3|P:2	0.0002	5	3	Level-1	lihc:3|luad:1|brca:1	ENST00000264657
-PIK3CA	E81	81	NA	K:12|*:1	0.0002	13	9	Level-2	coadread:3|brca:3|ucec:1|mbl:1|luad:1|kirc:1|hnsc:1|gbm:1|cesc:1	ENST00000263967
-TP53	E225_splice	225	NA	SS:19	0.0002	19	12	Level-2	hnsc:5|ov:3|luad:2|stad:1|skcm:1|paad:1|mmyl:1|lusc:1|lgg:1|kich:1|esca:1|brca:1	ENST00000269305
-PTPN11	E76	76	NA	K:4|A:2|G:1	0.0002	7	5	Level-2	mmyl:2|coadread:2|pias:1|nbl:1|lusc:1	ENST00000351677
-EGFR	G719	719	NA	A:5|D:1|C:1	0.0003	7	2	Level-3	luad:6|gbm:1	ENST00000275493
-EHMT1	V280	280	NA	F:5	0.0003	5	2	Level-1	paad:3|lihc:2	ENST00000460843
-WDR73	G316	316	NA	R:5	0.0003	5	4	Level-1	lihc:2|kirc:1|coadread:1|brca:1	ENST00000434634
-TMEM131	E1319	1319	NA	Q:4|*:2|K:1	0.0003	7	5	Level-1	cesc:2|brca:2|luad:1|hnsc:1|blca:1	ENST00000186436
-WDR52	V1227	1227	V408	G:5	0.0003	5	1	Level-1	kirc:5	ENST00000393845
-SMAD4	D351	351	NA	G:3|Y:2|H:2|A:1	0.0003	8	6	Level-1	paad:2|coadread:2|stad:1|prad:1|luad:1|esca:1	ENST00000342988
-DICER1	E1813	1813	NA	G:3|Q:2|A:1	0.0003	6	4	Level-1	ucec:2|coadread:2|thca:1|gbm:1	ENST00000526495
-HOOK2	S630	630	NA	S:3|F:2|A:1	0.0003	6	3	Level-1	skcm:4|prad:1|cscc:1	ENST00000397668
-KLF5	E419	419	NA	Q:4|K:3	0.0003	7	4	Level-1	luad:3|lusc:2|cesc:1|blca:1	ENST00000377687
-LST3	R709	709	NA	R:4|T:1|K:1	0.0003	6	3	Level-1	cscc:4|skcm:1|luad:1	ENST00000540229
-HSD11B1	G45	45	NA	V:2|R:2|W:1|G:1|E:1	0.0003	7	3	Level-1	skcm:3|luad:3|brca:1	ENST00000367028
-RBM39	T353	353	NA	I:4|T:1	0.0004	5	3	Level-1	ucec:3|luad:1|hnsc:1	ENST00000253363
-PCBP1	L102	102	NA	Q:2|R:1|P:1	0.0004	4	1	Level-1	coadread:4	ENST00000303577
-BCL2L12	F17	17	NA	F:7	0.0004	7	2	Level-3	skcm:4|cscc:3	ENST00000246785
-SPOP	Y87	87	NA	S:2|N:2|C:1	0.0004	5	1	Level-2	prad:5	ENST00000393331
-MYC	T73	73	T58	P:3|I:2	0.0004	5	5	Level-3	skcm:1|nbl:1|lymbc:1|luad:1|esca:1	ENST00000377970
-TROAP	S562	562	NA	I:5	0.0004	5	2	Level-1	paad:3|lgg:2	ENST00000257909
-PTPN11	G503	503	NA	V:6|G:1	0.0004	7	5	Level-3	stad:2|luad:2|mmyl:1|lusc:1|coadread:1	ENST00000351677
-ACVR1	R258	258	NA	G:4|M:1	0.0005	5	2	Level-2	hgg:4|stad:1	ENST00000263640
-PIK3CA	V344	344	NA	G:5|M:4|A:2	0.0005	11	8	Level-3	ucec:3|coadread:2|skcm:1|lymbc:1|hnsc:1|gbm:1|cesc:1|brca:1	ENST00000263967
-ARID3A	S557	557	NA	G:4	0.0005	4	2	Level-1	stad:3|ucec:1	ENST00000263620
-THBD	C554	554	NA	C:7	0.0005	7	3	Level-1	stad:4|coadread:2|ucec:1	ENST00000377103
-TP53	G244	244	NA	D:9|C:8|S:5|V:2|R:1|G:1	0.0005	26	13	Level-3	ov:5|esca:3|coadread:3|ucec:2|stad:2|lusc:2|luad:2|gbm:2|ucs:1|lusm:1|lihc:1|lgg:1|hnsc:1	ENST00000269305
-SMARCA4	G1232	1232	NA	S:6|C:2|V:1	0.0006	9	6	Level-1	luad:3|mbl:2|stad:1|skcm:1|lymbc:1|kirc:1	ENST00000429416
-RARA	F286	286	NA	S:2|I:1|C:1	0.0006	4	3	Level-1	luad:2|cscc:1|brca:1	ENST00000254066
-CCND1	P287	287	NA	L:3|S:2|T:1	0.0006	6	5	Level-1	ucec:2|ucs:1|skcm:1|hnsc:1|cesc:1	ENST00000227507
-CYP4A11	I491	491	NA	M:3|T:1	0.0006	4	2	Level-1	lihc:3|brca:1	ENST00000310638
-MAX	R60	60	NA	Q:9	0.0006	9	6	Level-1	ucec:2|lgg:2|coadread:2|stad:1|mbl:1|laml:1	ENST00000341653
-ARAF	S214	214	NA	F:3|S:1|C:1|A:1	0.0006	6	3	Level-2	luad:3|skcm:2|kirp:1	ENST00000377045
-RQCD1	S87	87	NA	P:3|C:3	0.0006	6	5	Level-2	skcm:2|stad:1|prad:1|lihc:1|blca:1	ENST00000273064
-ABCC10	R570	570	NA	W:5|Q:2|L:1	0.0006	8	7	Level-1	gbm:2|prad:1|lusc:1|lgg:1|kirp:1|hnsc:1|brca:1	ENST00000372530
-FRMD6	S17	17	NA	S:3|I:1|C:1	0.0006	5	3	Level-1	ucec:2|lihc:2|acc:1	ENST00000344768
-NCR1	E42	42	NA	K:6|G:1|E:1	0.0007	8	2	Level-1	skcm:7|stad:1	ENST00000291890
-CELSR1	W1958	1958	NA	G:4|C:1	0.0007	5	4	Level-1	coadread:2|ov:1|luad:1|gbm:1	ENST00000262738
-LRP5	S1609	1609	NA	P:4|S:1	0.0007	5	4	Level-1	prad:2|paad:1|luad:1|cscc:1	ENST00000294304
-MYO9A	P1300	1300	NA	S:5|P:1|L:1	0.0007	7	3	Level-1	skcm:5|luad:1|lihc:1	ENST00000356056
-CYP2C8	P402	402	NA	S:7|L:2	0.0008	9	2	Level-1	skcm:7|cscc:2	ENST00000371270
-PIK3CA	N1044	1044	NA	K:4|Y:2	0.0008	6	3	Level-1	ucec:2|kirc:2|brca:2	ENST00000263967
-CDK4	K22	22	NA	Q:2|M:2	0.0008	4	2	Level-1	skcm:3|mmyl:1	ENST00000257904
-HIST1H3C	K37	37	NA	M:5	0.0008	5	2	Level-1	hnsc:4|skcm:1	ENST00000540144
-TP53	N239	239	NA	S:8|D:6|T:1	0.0009	15	12	Level-3	ucec:2|luad:2|hnsc:2|ucs:1|stad:1|prad:1|ov:1|lihc:1|kirc:1|kich:1|coadread:1|brca:1	ENST00000269305
-LRRC71	K324	324	NA	K:4	0.0009	4	4	Level-1	paad:1|lihc:1|kirp:1|hnsc:1	ENST00000337428
-CRB1	F630	630	NA	V:5|S:1	0.0009	6	3	Level-1	stad:4|paad:1|esca:1	ENST00000367400
-AMPD1	L631	631	L598	F:4|V:1	0.0009	5	3	Level-1	ucec:2|paad:2|esca:1	ENST00000520113
-EBF2	G444	444	NA	E:8|V:1	0.0009	9	4	Level-1	skcm:6|ucec:1|gbm:1|cscc:1	ENST00000520164
-TUBGCP4	A8	8	NA	D:4|T:1	0.0010	5	4	Level-1	hnsc:2|prad:1|luad:1|esca:1	ENST00000564079
-CIZ1	L59	59	NA	P:4	0.0010	4	3	Level-1	gbm:2|lgg:1|kirp:1	ENST00000393608
-TP53	I255	255	NA	F:7|S:3|N:2|T:1	0.0010	13	7	Level-2	esca:3|brca:3|paad:2|luad:2|lgg:1|gbm:1|cll:1	ENST00000269305
-PASD1	M338	338	NA	I:5	0.0010	5	1	Level-1	skcm:5	ENST00000370357
-TP53	E286	286	NA	K:17|*:7|G:4|Q:3|V:1|A:1	0.0011	33	15	Level-3	luad:6|brca:5|stad:3|hnsc:3|skcm:2|lusm:2|lihc:2|cscc:2|coadread:2|paad:1|ov:1|lgg:1|laml:1|esca:1|blca:1	ENST00000269305
-IL7R	K395	395	NA	T:3|R:2|N:1|M:1|K:1	0.0011	8	5	Level-1	esca:3|skcm:2|ucec:1|stad:1|luad:1	ENST00000303115
-SSBP3	K6	6	NA	R:4	0.0011	4	3	Level-1	acc:2|lihc:1|cesc:1	ENST00000371320
-PARP1	G500	500	NA	G:6	0.0012	6	1	Level-1	stad:6	ENST00000366794
-SLCO1B7	E27	27	NA	K:9	0.0012	9	6	Level-1	skcm:3|coadread:2|gbm:1|cscc:1|cesc:1|brca:1	ENST00000421593
-ACVR1	G328	328	NA	E:4|V:2	0.0013	6	1	Level-3	hgg:6	ENST00000263640
-PCMTD1	P342	342	NA	L:6|T:1|P:1	0.0013	8	6	Level-1	kich:2|hnsc:2|skcm:1|prad:1|paad:1|luad:1	ENST00000360540
-BCL2L12	R18	18	NA	W:7	0.0013	7	2	Level-3	skcm:5|cscc:2	ENST00000246785
-TGFBR2	R553	553	R528	C:5|H:4|L:1	0.0013	10	5	Level-1	coadread:4|paad:2|hnsc:2|stad:1|luad:1	ENST00000359013
-VPS37B	Y191	191	NA	S:4	0.0014	4	4	Level-1	skcm:1|ov:1|mbl:1|luad:1	ENST00000267202
-C16orf80	R100	100	NA	C:6|H:1	0.0014	7	4	Level-1	stad:3|coadread:2|cesc:1|brca:1	ENST00000262498
-TRIM65	H383	383	NA	N:3|L:1	0.0014	4	4	Level-1	lusc:1|luad:1|lihc:1|hnsc:1	ENST00000269383
-VHL	N78	78	NA	S:3|D:2|Y:1	0.0014	6	2	Level-1	kirc:5|paad:1	ENST00000256474
-MTOR	C1483	1483	NA	F:2|Y:1|W:1|R:1	0.0015	5	3	Level-3	kirc:3|gbm:1|brca:1	ENST00000361445
-DDX28	S442	442	NA	S:3|F:2	0.0015	5	1	Level-1	skcm:5	ENST00000332395
-S100A8	K49	49	NA	R:5	0.0015	5	5	Level-1	thca:1|prad:1|luad:1|hnsc:1|gbm:1	ENST00000368733
-BTBD11	K1003	1003	NA	T:3|R:1|M:1	0.0015	5	3	Level-1	stad:3|paad:1|esca:1	ENST00000280758
-TARBP2	E191	191	NA	*:5|E:1	0.0016	6	3	Level-1	coadread:3|ucec:2|skcm:1	ENST00000266987
-ZNF623	T500	500	NA	K:5	0.0016	5	2	Level-1	hnsc:4|luad:1	ENST00000501748
-SLC16A13	F158	158	NA	L:4	0.0016	4	4	Level-1	stad:1|paad:1|luad:1|hnsc:1	ENST00000308027
-TP53	S215	215	NA	I:6|R:5|G:3|N:1	0.0016	15	9	Level-3	lihc:3|paad:2|ov:2|luad:2|brca:2|stad:1|lusm:1|laml:1|esca:1	ENST00000269305
-PIK3CA	G106	106	NA	V:7|R:1	0.0017	8	6	Level-3	ucs:2|coadread:2|ucec:1|lusc:1|cesc:1|blca:1	ENST00000263967
-UCHL1	H161	161	NA	Y:5	0.0017	5	1	Level-1	skcm:5	ENST00000284440
-TPSD1	P22	22	NA	R:6|P:3	0.0017	9	5	Level-1	acc:4|blca:2|lihc:1|lgg:1|coadread:1	ENST00000211076
-INTS12	M1	1	NA	V:2|T:1|L:1	0.0017	4	2	Level-1	mmyl:2|luad:2	ENST00000451321
-FRMD6	F6	6	NA	F:4	0.0017	4	2	Level-1	lihc:3|acc:1	ENST00000344768
-UBXN11	S494	494	NA	C:4	0.0018	4	2	Level-1	coadread:3|lihc:1	ENST00000374222
-SPOP	F102	102	NA	V:2|C:2|L:1	0.0018	5	1	Level-3	prad:5	ENST00000393331
-PIK3CA	C378	378	NA	R:3|Y:2|F:1	0.0018	6	5	Level-1	ucec:2|stad:1|lgg:1|gbm:1|brca:1	ENST00000263967
-NFIC	S339	339	NA	P:4	0.0019	4	3	Level-1	paad:2|luad:1|lihc:1	ENST00000443272
-FBXW7	R658	658	NA	*:10|Q:3|R:1	0.0020	14	8	Level-2	coadread:4|ucec:3|cesc:2|ucs:1|skcm:1|hnsc:1|gbm:1|blca:1	ENST00000281708
-MICA	I236	236	NA	T:4	0.0020	4	2	Level-1	lihc:3|coadread:1	ENST00000449934
-PODXL	S22	22	NA	P:4	0.0020	4	3	Level-1	acc:2|kirp:1|kirc:1	ENST00000378555
-XPO6	I274	274	NA	T:3|V:1	0.0020	4	3	Level-1	paad:2|skcm:1|luad:1	ENST00000304658
-CLECL1	Y50	50	NA	N:4	0.0020	4	1	Level-1	lihc:4	ENST00000327839
-MXRA5	G792	792	NA	G:9	0.0021	9	1	Level-1	skcm:9	ENST00000217939
-TSC22D2	S735	735	NA	Y:4|F:2	0.0022	6	5	Level-1	ucec:2|stad:1|skcm:1|coadread:1|brca:1	ENST00000361875
-KIF26B	R2024	2024	NA	H:5|C:2|S:1	0.0023	8	7	Level-1	stad:2|ov:1|luad:1|lgg:1|hnsc:1|gbm:1|coadread:1	ENST00000407071
-TP53	T125	125	NA	T:36|M:7|P:2|R:1|K:1	0.0024	47	20	Level-2	luad:10|hnsc:6|coadread:5|lusc:4|stad:3|ov:2|lihc:2|esca:2|brca:2|skcm:1|paad:1|lusm:1|lgg:1|laml:1|kich:1|hgg:1|gbm:1|cscc:1|blca:1|acc:1	ENST00000269305
-S100A3	P97	97	NA	S:3|P:2	0.0024	5	3	Level-1	skcm:3|stad:1|luad:1	ENST00000368713
-TMEM200C	R19	19	NA	C:5|S:1|H:1	0.0025	7	4	Level-1	stad:3|skcm:2|paad:1|coadread:1	ENST00000581347
-SWI5	P34	34	NA	S:7	0.0026	7	2	Level-1	skcm:6|cscc:1	ENST00000320188
-TUBGCP6	S1192	1192	NA	S:4	0.0026	4	3	Level-1	lgg:2|prad:1|hnsc:1	ENST00000248846
-CSPG5	R365	365	NA	R:3|Q:2|W:1	0.0026	6	4	Level-1	paad:3|prad:1|ov:1|hnsc:1	ENST00000383738
-METTL14	R298	298	NA	P:4|H:4	0.0027	8	3	Level-1	ucec:4|paad:3|npc:1	ENST00000388822
-BRD7	Y455	455	NA	*:4	0.0027	4	1	Level-1	lihc:4	ENST00000394689
-ARID2	S297	297	NA	F:8	0.0029	8	1	Level-1	skcm:8	ENST00000334344
-LTN1	S19	19	NA	F:6|Y:1	0.0029	7	2	Level-1	skcm:5|cscc:2	ENST00000389194
-TP53	L111	111	NA	P:5|R:4|Q:3	0.0029	12	8	Level-2	lihc:3|lusc:2|brca:2|stad:1|skcm:1|gbm:1|esca:1|cll:1	ENST00000269305
-PANK3	I301	301	NA	F:4	0.0029	4	4	Level-1	lihc:1|kich:1|coadread:1|acc:1	ENST00000239231
-RSBN1L	L432	432	NA	V:4	0.0030	4	1	Level-1	brca:4	ENST00000334955
-MYT1L	K203	203	NA	T:3|R:1	0.0030	4	3	Level-1	esca:2|ucs:1|paad:1	ENST00000428368
-TMEM147	A92	92	NA	V:4|A:1	0.0030	5	4	Level-1	gbm:2|ucec:1|prad:1|lihc:1	ENST00000222284
-EGFR	R108	108	NA	K:7|G:1	0.0031	8	3	Level-3	gbm:5|lgg:2|hgg:1	ENST00000275493
-SMAD4	D537	537	NA	H:4|E:2|Y:1|V:1|G:1	0.0033	9	3	Level-1	coadread:7|paad:1|lusc:1	ENST00000342988
-PSG4	E263	263	NA	K:7	0.0034	7	2	Level-1	skcm:5|hnsc:2	ENST00000405312
-PDHA1	G145	145	G107	D:5	0.0035	5	4	Level-1	paad:2|lgg:1|hnsc:1|gbm:1	ENST00000379806
-LSM14A	R272	272	NA	C:7|H:1	0.0035	8	5	Level-1	coadread:4|ucec:1|paad:1|gbm:1|esca:1	ENST00000544216
-THRA	R79	79	NA	H:7	0.0036	7	4	Level-1	paad:4|lgg:1|hnsc:1|gbm:1	ENST00000264637
-FANK1	Q4	4	NA	*:5	0.0036	5	3	Level-1	acc:3|lihc:1|gbc:1	ENST00000368693
-ASF1B	P21	21	NA	L:3|P:2	0.0038	5	2	Level-1	skcm:3|cscc:2	ENST00000263382
-MAX	H28	28	NA	R:4	0.0040	4	1	Level-1	ucec:4	ENST00000341653
-APC	Q1406	1406	NA	*:7	0.0040	7	2	Level-3	coadread:6|skcm:1	ENST00000457016
-APC	E1408	1408	NA	*:7	0.0040	7	1	Level-3	coadread:7	ENST00000457016
-UBE2D3	M32	32	M30	I:3|V:1	0.0042	4	4	Level-1	skcm:1|luad:1|hnsc:1|blca:1	ENST00000357194
-MET	D1010_splice	1010	NA		0.0042	5	2	Level-3	luad:4|lgg:1	ENST00000318493
-TBX2	S192	192	NA	I:4	0.0043	4	3	Level-1	lihc:2|lgg:1|acc:1	ENST00000240328
-ANKZF1	A650	650	NA	V:4|A:1	0.0043	5	5	Level-1	ucs:1|skcm:1|paad:1|luad:1|lgg:1	ENST00000323348
-PIK3CA	R38	38	NA	H:7|C:4|S:1|L:1|G:1	0.0044	14	6	Level-3	ucec:6|stad:2|gbm:2|coadread:2|lusc:1|cesc:1	ENST00000263967
-ELTD1	S11	11	NA	F:5|S:3|P:1	0.0044	9	4	Level-1	skcm:5|cscc:2|lusc:1|luad:1	ENST00000370742
-RPL10L	K156	156	NA	R:3|T:1|M:1	0.0044	5	4	Level-1	luad:2|stad:1|esca:1|coadread:1	ENST00000298283
-MTOR	I2500	2500	NA	M:3|F:1	0.0045	4	4	Level-3	ucec:1|stad:1|kirc:1|brca:1	ENST00000361445
-RHOA	E40	40	NA	Q:6|K:1|*:1	0.0045	8	4	Level-3	hnsc:5|stad:1|luad:1|brca:1	ENST00000418115
-RHOA	R5	5	NA	W:5|Q:4|L:1	0.0045	10	5	Level-3	lymbc:3|stad:2|esca:2|brca:2|coadread:1	ENST00000418115
-PCED1B	S343	343	NA	F:6|Y:1|P:1	0.0045	8	3	Level-1	skcm:5|cscc:2|hnsc:1	ENST00000546455
-MYC	S161	161	S146	L:6	0.0046	6	4	Level-1	hnsc:3|skcm:1|luad:1|coadread:1	ENST00000377970
-NOL4	L423	423	NA	L:3|V:1|M:1	0.0047	5	2	Level-1	esca:4|luad:1	ENST00000261592
-DNAH9	E2368	2368	NA	K:7|D:1	0.0047	8	2	Level-1	skcm:7|esca:1	ENST00000262442
-CHST12	V12	12	NA	G:4	0.0049	4	2	Level-1	luad:2|hnsc:2	ENST00000258711
-KCNQ5	G273	273	NA	E:7|R:1	0.0049	8	1	Level-1	skcm:8	ENST00000342056
-ZNF516	A256	256	NA	D:5	0.0051	5	3	Level-1	kirp:2|kirc:2|acc:1	ENST00000443185
-CR1	R1842	1842	R1392	C:5|H:4	0.0052	9	7	Level-1	skcm:3|ucec:1|luad:1|kirc:1|cscc:1|coadread:1|blca:1	ENST00000367049
-RINT1	K85	85	NA	T:2|N:2	0.0052	4	2	Level-1	lgg:2|cesc:2	ENST00000257700
-TGFBRAP1	P824	824	NA	S:2|L:2|P:1|F:1	0.0052	6	2	Level-1	skcm:4|cscc:2	ENST00000393359
-TOP2B	R651	651	R656	H:7	0.0053	7	5	Level-1	coadread:3|ucec:1|stad:1|paad:1|mbl:1	ENST00000435706
-PACS2	Q87	87	NA	H:3|Q:1	0.0053	4	3	Level-1	esca:2|stad:1|lihc:1	ENST00000458164
-ZNF649	R198	198	NA	I:5|S:1|K:1	0.0054	7	4	Level-1	ucec:3|coadread:2|stad:1|paad:1	ENST00000354957
-TP53	Q144	144	NA	*:12|P:1|L:1|H:1	0.0054	15	8	Level-3	luad:7|hnsc:2|ucec:1|stad:1|ov:1|lihc:1|brca:1|blca:1	ENST00000269305
-VHL	V155_splice	155	NA		0.0055	6	1	Level-3	kirc:6	ENST00000256474
-TACC3	P417	417	NA	S:4|P:2	0.0056	6	3	Level-1	skcm:4|luad:1|acc:1	ENST00000313288
-ATP6V1B2	P352	352	NA	S:4|P:1	0.0056	5	3	Level-1	skcm:3|nbl:1|cscc:1	ENST00000276390
-KCNJ8	G417	417	NA	E:5|R:1|D:1	0.0058	7	2	Level-1	skcm:6|cscc:1	ENST00000240662
-TP53	D281	281	NA	Y:8|N:7|V:4|E:4|H:2|D:2|P:1|G:1|A:1	0.0059	30	18	Level-3	luad:6|ov:4|gbm:3|brca:3|ucs:1|ucec:1|stad:1|skcm:1|paad:1|nbl:1|mmyl:1|lusc:1|lihc:1|kirc:1|hnsc:1|cscc:1|cll:1|blca:1	ENST00000269305
-ARHGAP28	L277	277	L259	R:3|P:2	0.0061	5	3	Level-1	stad:2|coadread:2|esca:1	ENST00000262227
-MEF2A	Y105	105	NA	C:4	0.0061	4	4	Level-1	mbl:1|lihc:1|kirc:1|cscc:1	ENST00000354410
-TCF20	P815	815	NA	L:4|S:2	0.0061	6	2	Level-1	skcm:4|cscc:2	ENST00000359486
-BRAF	L597	597	NA	Q:2|S:1|R:1	0.0062	4	3	Level-3	skcm:2|prad:1|mmyl:1	ENST00000288602
-CANT1	K131	131	NA	R:4	0.0062	4	3	Level-1	prad:2|lgg:1|hnsc:1	ENST00000302345
-ARID1A	R1335	1335	NA	*:9	0.0062	9	6	Level-1	ucec:4|stad:1|lgg:1|esca:1|coadread:1|brca:1	ENST00000324856
-LCE1F	P27	27	NA	P:7|Q:2|L:1	0.0063	10	2	Level-1	skcm:9|hnsc:1	ENST00000334371
-ACP6	V29	29	NA	G:4	0.0063	4	3	Level-1	kirp:2|lihc:1|acc:1	ENST00000369238
-MAGEC1	K1046	1046	NA	N:6	0.0064	6	3	Level-1	coadread:3|stad:2|esca:1	ENST00000285879
-ACVR1B	R485	485	R444	*:8	0.0065	8	2	Level-1	stad:4|coadread:4	ENST00000541224
-BRAF	G596	596	NA	R:2|V:1|S:1|D:1	0.0065	5	4	Level-3	luad:2|mmyl:1|gbm:1|blca:1	ENST00000288602
-CEP63	S153	153	NA	L:5|S:4	0.0068	9	5	Level-1	skcm:4|stad:2|prad:1|lihc:1|coadread:1	ENST00000337090
-PIK3CB	D1067	1067	NA	V:3|Y:1|A:1	0.0068	5	5	Level-1	ucec:1|thca:1|skcm:1|hnsc:1|gbm:1	ENST00000477593
-ARHGAP33	S964	964	NA	S:4	0.0069	4	2	Level-1	paad:3|stad:1	ENST00000314737
-KCNH5	T147	147	NA	T:13	0.0069	13	2	Level-1	skcm:11|cscc:2	ENST00000322893
-DUSP16	R483	483	NA	*:7	0.0069	7	4	Level-1	coadread:3|stad:2|ucec:1|brca:1	ENST00000228862
-CDKN2A	L130	130	NA	R:3|Q:2|V:1	0.0070	6	3	Level-1	paad:3|cscc:2|skcm:1	ENST00000498124
-FAM58A	K141_splice	141	NA		0.0071	4	3	Level-1	skcm:2|luad:1|brca:1	ENST00000406277
-C6	K817	817	NA	T:5|R:1	0.0071	6	3	Level-1	stad:3|coadread:2|ov:1	ENST00000263413
-MED28	G7	7	NA	G:3|C:1	0.0073	4	2	Level-1	luad:3|hnsc:1	ENST00000237380
-PROCR	R98	98	NA	L:8	0.0075	8	7	Level-1	acc:2|prad:1|luad:1|kirp:1|kirc:1|cesc:1|brca:1	ENST00000216968
-MARCH10	G241	241	NA	E:4|R:1|G:1	0.0078	6	2	Level-1	skcm:4|cscc:2	ENST00000311269
-FZD10	S22	22	NA	R:5	0.0080	5	4	Level-1	acc:2|prad:1|luad:1|kirp:1	ENST00000229030
-RTKN2	R33	33	NA	*:8|Q:2	0.0080	10	6	Level-1	ucec:3|skcm:2|coadread:2|hnsc:1|gbm:1|brca:1	ENST00000315289
-EP300	H1451	1451	NA	R:1|P:1|L:1|H:1	0.0080	4	4	Level-1	ucec:1|lgg:1|brca:1|blca:1	ENST00000263253
-ARID1A	R693	693	NA	*:8	0.0080	8	5	Level-3	ucec:4|stad:1|lgg:1|esca:1|coadread:1	ENST00000324856
-THSD7B	E1181	1181	E1149	K:9	0.0081	9	1	Level-1	skcm:9	ENST00000272643
-THSD7B	G557	557	G526	R:5|E:2|V:1	0.0081	8	4	Level-1	skcm:5|luad:1|lihc:1|gbm:1	ENST00000272643
-SHROOM1	P300	300	NA	T:4	0.0081	4	3	Level-1	lihc:2|kirp:1|acc:1	ENST00000378679
-NUP93	Q15	15	NA	*:4	0.0082	4	2	Level-1	thca:3|ucec:1	ENST00000308159
-ERBB3	M60	60	NA	K:3|R:1	0.0083	4	4	Level-1	ucec:1|esca:1|coadread:1|blca:1	ENST00000267101
-CLEC14A	R193	193	NA	C:5|H:3|R:2	0.0086	10	6	Level-1	skcm:3|paad:2|coadread:2|prad:1|luad:1|gbm:1	ENST00000342213
-EYA4	L152	152	NA	R:2|I:2|V:1|P:1|H:1	0.0086	7	3	Level-1	ucec:3|stad:3|luad:1	ENST00000367895
-CEP89	S153	153	NA	G:3|I:1	0.0086	4	4	Level-1	lihc:1|kich:1|hnsc:1|acc:1	ENST00000305768
-SHB	A460	460	NA	T:4	0.0087	4	2	Level-1	hnsc:2|gbm:2	ENST00000377707
-APOBR	E361	361	E352	D:5	0.0088	5	4	Level-1	brca:2|ucec:1|ov:1|cesc:1	ENST00000564831
-SF3B1	D894	894	NA	N:2|G:2|A:1	0.0090	5	4	Level-1	mmyl:2|skcm:1|cscc:1|cll:1	ENST00000335508
-BRINP1	G713	713	NA	G:9	0.0090	9	1	Level-1	skcm:9	ENST00000265922
-RIPPLY2	S110	110	NA	L:5|*:1	0.0090	6	3	Level-1	skcm:3|cscc:2|hnsc:1	ENST00000369689
-TCEB1	Y79	79	NA	S:1|N:1|F:1|*:1	0.0090	4	1	Level-3	kirc:4	ENST00000518127
-KCNJ12	E430	430	NA	G:5|*:1	0.0092	6	4	Level-1	brca:2|acc:2|lihc:1|coadread:1	ENST00000583088
-NAP1L3	K502	502	NA	R:2|T:1|N:1|M:1|K:1	0.0093	6	4	Level-1	stad:3|esca:1|coadread:1|blca:1	ENST00000373079
-CYP7B1	K332	332	NA	T:5	0.0096	5	2	Level-1	stad:4|paad:1	ENST00000310193
-HNMT	L145	145	NA	L:4	0.0096	4	4	Level-1	ucec:1|stad:1|lusc:1|lihc:1	ENST00000280097
-NHS	L215	215	NA	P:4	0.0098	4	3	Level-1	brca:2|stad:1|cll:1	ENST00000380060
-DHRS4	T102	102	NA	M:6	0.0098	6	5	Level-1	mbl:2|prad:1|paad:1|luad:1|kirc:1	ENST00000313250
-MAGI2	L603	603	NA	R:3|P:2	0.0098	5	2	Level-1	stad:3|esca:2	ENST00000354212
+BRAF	V600	600		E:520|K:33|R:4|V:1	0.0	558	10.0	Level-3	skcm:252|thca:237|coadread:44|luad:9|gbm:6|mmyl:5|hgg:2|lgg:1|kirp:1|hnsc:1	ENST00000288602
+KRAS	G12	12		D:255|V:227|C:115|R:71|A:43|S:23|G:1|F:1	0.0	736	21.0	Level-3	paad:290|luad:188|coadread:151|ucec:36|stad:14|mmyl:9|ucs:7|cesc:7|ov:6|brca:6|blca:5|laml:3|esca:3|skcm:2|kirp:2|gbm:2|thca:1|prad:1|npc:1|mds:1|lihc:1	ENST00000256078
+PIK3CA	H1047	1047		R:236|L:37|Y:6|Q:4	0.0	283	22.0	Level-3	brca:171|ucec:20|coadread:20|hnsc:19|stad:15|ucs:5|skcm:3|luad:3|lihc:3|cesc:3|prad:2|paad:2|mbl:2|lusc:2|lgg:2|kirc:2|hgg:2|gbm:2|blca:2|ov:1|esca:1|acc:1	ENST00000263967
+IDH1	R132	132		H:250|C:50|G:12|S:8|L:4	0.0	324	15.0	Level-3	lgg:243|gbm:20|laml:19|skcm:17|prad:6|lihc:4|mmyl:3|coadread:3|luad:2|hgg:2|mds:1|mbl:1|brca:1|blca:1|acyc:1	ENST00000415913
+NRAS	Q61	61		R:114|K:76|L:27|H:17|P:1	0.0	235	17.0	Level-3	skcm:127|thca:34|mmyl:27|coadread:16|laml:6|ucec:4|luad:4|cll:4|blca:3|stad:2|ov:2|npc:1|lihc:1|lgg:1|kich:1|gbm:1|acc:1	ENST00000369535
+PIK3CA	E545	545		K:251|A:9|G:8|Q:6|D:3	0.0	277	24.0	Level-3	brca:78|coadread:37|hnsc:31|cesc:26|blca:23|ucec:14|stad:12|lusc:10|luad:9|ucs:5|gbm:5|esca:5|skcm:3|prad:3|lgg:3|kirc:3|hgg:2|gbc:2|paad:1|ov:1|npc:1|lusm:1|lihc:1|kirp:1	ENST00000263967
+PIK3CA	E542	542		K:134|A:4|Q:3|V:2|G:2	1.07e-215	145	16.0	Level-3	brca:51|hnsc:20|ucec:13|coadread:13|cesc:12|blca:10|stad:5|luad:5|esca:4|lusc:3|prad:2|lgg:2|gbm:2|lusm:1|lihc:1|kirp:1	ENST00000263967
+TP53	R273	273		C:119|H:103|L:22|S:5|P:4	9.66e-139	253	24.0	Level-3	lgg:47|coadread:30|ov:25|brca:20|stad:19|hnsc:19|luad:16|esca:14|paad:12|ucec:9|gbm:7|lusc:6|ucs:4|prad:4|hgg:4|lusm:3|lihc:3|cll:3|blca:3|skcm:1|mmyl:1|mbl:1|laml:1|acc:1	ENST00000269305
+TP53	R248	248		Q:108|W:90|L:11|P:5|G:2	7.57e-120	216	25.0	Level-3	coadread:34|hnsc:22|ov:19|gbm:13|esca:13|stad:11|paad:11|blca:11|luad:10|lgg:10|ucec:9|brca:9|ucs:7|cscc:7|skcm:5|prad:5|lihc:5|hgg:5|lusc:4|mmyl:1|mds:1|mbl:1|lusm:1|laml:1|cll:1	ENST00000269305
+KRAS	G13	13		D:75|C:12|V:2|R:1|G:1|A:1	3.74e-119	92	10.0	Level-3	coadread:38|luad:17|ucec:10|stad:10|mmyl:9|paad:2|cll:2|cesc:2|lihc:1|laml:1	ENST00000256078
+KRAS	Q61	61		H:44|R:11|K:10|L:8|P:1|E:1	1.23e-105	75	13.0	Level-3	paad:24|mmyl:15|coadread:11|luad:7|ucec:3|thca:3|stad:3|blca:3|skcm:2|lusc:1|lihc:1|laml:1|cll:1	ENST00000256078
+HRAS	Q61	61		R:19|K:10|L:9|H:2	4.77e-76	40	9.0	Level-3	thca:14|blca:8|hnsc:6|skcm:3|cscc:3|prad:2|lusc:2|luad:1|brca:1	ENST00000451590
+SF3B1	K700	700		E:33|R:1	7.71e-75	34	7.0	Level-3	brca:14|cll:13|paad:3|mds:1|mbl:1|laml:1|kirc:1	ENST00000335508
+CTNNB1	D32	32		Y:15|G:13|N:10|V:8|H:4|A:2	4.29e-74	52	8.0	Level-3	lihc:24|ucec:12|mbl:6|prad:4|skcm:2|cesc:2|stad:1|blca:1	ENST00000349496
+CTNNB1	S33	33		C:16|F:13|P:12|Y:8|A:3|T:1	3.5700000000000004e-72	53	11.0	Level-3	lihc:19|ucec:16|mbl:8|luad:3|stad:1|skcm:1|prad:1|paad:1|esca:1|coadread:1|blca:1	ENST00000349496
+PIK3CA	Q546	546		R:20|K:15|P:7|E:2|L:1|H:1	1.58e-71	46	13.0	Level-3	brca:13|ucec:11|coadread:6|lgg:3|stad:2|prad:2|hnsc:2|blca:2|ucs:1|skcm:1|mbl:1|gbm:1|cesc:1	ENST00000263967
+FBXW7	R465	465		C:33|H:26|P:1|L:1|G:1	4.8300000000000006e-70	62	14.0	Level-3	coadread:23|stad:10|ucs:7|ucec:7|cesc:4|hnsc:2|brca:2|ov:1|mbl:1|lusc:1|luad:1|esca:1|cll:1|acyc:1	ENST00000281708
+PIK3CA	N345	345		K:36|I:3|T:2|H:1	3.4700000000000004e-66	42	10.0	Level-3	brca:21|ucec:5|stad:5|coadread:3|ucs:2|prad:2|luad:1|hnsc:1|gbm:1|acyc:1	ENST00000263967
+CTNNB1	S37	37		F:21|C:16|A:6|P:4|Y:3	1.0900000000000001e-64	50	9.0	Level-3	ucec:20|lihc:11|luad:7|stad:3|mbl:3|esca:2|blca:2|prad:1|cesc:1	ENST00000349496
+U2AF1	S34	34		F:34|Y:3	1.24e-61	37	9.0	Level-3	luad:15|laml:7|paad:5|ucs:2|ucec:2|cesc:2|blca:2|mds:1|hnsc:1	ENST00000291552
+PTEN	R130	130		Q:40|G:28|*:16|L:5|P:4	5.33e-59	93	13.0	Level-3	ucec:56|gbm:7|brca:7|coadread:7|ucs:3|cesc:3|skcm:2|lusm:2|hnsc:2|stad:1|prad:1|lusc:1|kirc:1	ENST00000371953
+TP53	R175	175		H:143|G:7|C:4	2.2400000000000002e-58	154	22.0	Level-3	coadread:36|brca:18|ov:16|hnsc:16|esca:12|stad:11|paad:9|gbm:7|lgg:4|blca:4|prad:3|lusc:3|luad:3|ucs:2|ucec:2|hgg:2|skcm:1|npc:1|mbl:1|lihc:1|gbc:1|cll:1	ENST00000269305
+TP53	Y220	220		C:63|S:4|H:2|N:1|D:1	3.38e-58	71	19.0	Level-3	ov:13|brca:11|lgg:8|hnsc:7|lihc:5|paad:4|gbm:4|ucec:3|luad:3|stad:2|lusc:2|coadread:2|ucs:1|skcm:1|prad:1|lusm:1|kirp:1|kich:1|blca:1	ENST00000269305
+TP53	H179	179		R:37|Y:16|Q:7|L:5|N:3|D:2|P:1	2.81e-56	71	19.0	Level-3	hnsc:13|brca:9|lgg:7|ov:6|paad:5|lusc:5|ucs:3|stad:3|luad:3|lihc:3|gbm:3|esca:3|cscc:2|ucec:1|skcm:1|lusm:1|laml:1|gbc:1|coadread:1	ENST00000269305
+TP53	H193	193		R:32|Y:13|L:11|P:7|D:2|N:1	1.37e-55	66	20.0	Level-3	brca:13|hnsc:9|ov:8|luad:5|lusc:4|lihc:4|lgg:4|ucs:3|esca:3|ucec:2|paad:2|stad:1|prad:1|lusm:1|laml:1|kirp:1|hgg:1|coadread:1|cll:1|blca:1	ENST00000269305
+EGFR	L858	858		R:30	1.9599999999999999e-54	30	1.0	Level-3	luad:30	ENST00000275493
+CTNNB1	T41	41		A:21|I:10|N:2	1.39e-51	33	8.0	Level-3	lihc:11|coadread:6|ucec:5|skcm:5|prad:3|paad:1|luad:1|acc:1	ENST00000349496
+H3F3A	K28	28	K27	M:27	2.24e-50	27	2.0	Level-3	hgg:26|pias:1	ENST00000366813
+NRAS	G12	12		D:18|C:7|V:3|S:3|A:3|R:2	1.61e-48	36	7.0	Level-3	coadread:15|skcm:7|laml:6|mmyl:3|ucec:2|mds:2|stad:1	ENST00000369535
+GNAS	R844	844	R201	C:19|H:16|L:1	6.69e-45	36	10.0	Level-3	paad:10|coadread:9|stad:4|luad:4|lihc:3|brca:2|skcm:1|hnsc:1|cesc:1|acc:1	ENST00000313949
+RAC1	P29	29		S:25|L:5|T:1	1.92e-44	31	4.0	Level-3	skcm:26|hnsc:3|ucec:1|cscc:1	ENST00000356142
+AKT1	E17	17		K:49	2.66e-41	49	12.0	Level-3	brca:30|luad:3|coadread:3|thca:2|stad:2|prad:2|cesc:2|skcm:1|lusc:1|lihc:1|hnsc:1|blca:1	ENST00000554581
+EGFR	A289	289		V:17|T:6|D:3|N:1|I:1	7.33e-41	28	3.0	Level-3	gbm:24|lgg:3|hnsc:1	ENST00000275493
+FBXW7	R505	505		G:19|C:16|L:2|H:2|S:1	3.86e-40	40	12.0	Level-3	coadread:8|hnsc:7|ucec:6|blca:4|ucs:3|lusc:3|cesc:3|skcm:2|stad:1|ov:1|esca:1|cll:1	ENST00000281708
+CTNNB1	G34	34		R:16|V:8|E:7|A:1|*:1	2.08e-39	33	8.0	Level-3	ucec:10|lihc:8|mbl:4|luad:3|acc:3|stad:2|skcm:2|hnsc:1	ENST00000349496
+APC	R1450	1450		*:37	5.96e-39	37	3.0	Level-3	coadread:34|stad:2|ucec:1	ENST00000457016
+TP53	C176	176		F:26|Y:21|S:3|G:2|*:2|W:1|R:1|C:1	8.54e-38	57	15.0	Level-3	ov:10|hnsc:6|coadread:6|brca:6|stad:5|esca:5|paad:4|luad:4|lgg:4|lusc:2|prad:1|lihc:1|laml:1|kich:1|blca:1	ENST00000269305
+TP53	G245	245		S:46|D:22|V:16|C:9|R:2|A:2	1.16e-37	97	16.0	Level-3	hnsc:14|ov:13|coadread:12|luad:11|paad:8|stad:6|esca:6|prad:5|brca:5|lusc:4|lgg:4|gbm:3|lihc:2|blca:2|ucs:1|hgg:1	ENST00000269305
+CDKN2A	R80	80		*:50|Q:1	3.7299999999999997e-34	51	11.0	Level-3	hnsc:24|skcm:8|esca:6|paad:5|luad:2|stad:1|prad:1|lusc:1|kirp:1|coadread:1|blca:1	ENST00000498124
+ERBB2	S310	310		F:25|Y:1	4.27e-34	26	9.0	Level-3	blca:7|stad:5|cesc:4|brca:3|ov:2|cscc:2|luad:1|hnsc:1|coadread:1	ENST00000269571
+DNMT3A	R882	882		H:22|C:8|P:1	3.44e-33	31	3.0	Level-3	laml:29|mds:1|luad:1	ENST00000264709
+CTNNB1	S45	45		F:11|P:10|Y:3|C:3|S:1	1.25e-31	28	8.0	Level-3	lihc:10|acc:6|skcm:4|ucec:3|coadread:2|prad:1|luad:1|blca:1	ENST00000349496
+SMAD4	R361	361		H:20|C:18|G:2|P:1	6.93e-31	41	8.0	Level-3	coadread:20|paad:8|stad:5|esca:3|cesc:2|luad:1|hnsc:1|brca:1	ENST00000342988
+SPOP	F133	133		L:9|V:4|C:4|S:3|I:2	2.1599999999999998e-30	22	1.0	Level-3	prad:22	ENST00000393331
+TP53	I195	195		T:25|F:11|N:5|S:2|M:2	4.7899999999999994e-30	45	16.0	Level-3	ov:11|brca:7|hnsc:4|coadread:4|lihc:3|lgg:3|mmyl:2|gbm:2|esca:2|ucs:1|stad:1|paad:1|lusc:1|luad:1|laml:1|cll:1	ENST00000269305
+IDH2	R172	172		K:12|S:3|W:2|M:1|G:1	8.43e-30	19	5.0	Level-3	lgg:12|laml:3|lihc:2|hgg:1|coadread:1	ENST00000330062
+HRAS	G13	13		R:11|V:9|D:2|C:2|S:1|I:1	3.19e-29	26	7.0	Level-3	hnsc:13|blca:4|skcm:3|lusc:3|luad:1|cscc:1|brca:1	ENST00000451590
+HRAS	G12	12		S:10|D:8|C:3|A:2|V:1|N:1	8.34e-28	25	4.0	Level-3	hnsc:16|blca:6|cscc:2|acyc:1	ENST00000451590
+PIK3CA	M1043	1043		V:13|I:11|T:2|L:2	9.83e-28	28	11.0	Level-3	ucec:6|brca:6|lgg:3|hnsc:3|gbm:3|coadread:2|thca:1|stad:1|paad:1|blca:1|acyc:1	ENST00000263967
+MYD88	L273	273	L265	P:15	1.93e-26	15	3.0	Level-3	cll:12|dlbc:2|mmyl:1	ENST00000417037
+ERBB3	V104	104		M:19|L:7	1.23e-25	26	8.0	Level-3	stad:8|coadread:6|cesc:4|blca:3|gbc:2|ucs:1|ucec:1|brca:1	ENST00000267101
+NRAS	G13	13		D:11|R:10|V:1	1.84e-25	22	9.0	Level-3	mmyl:5|laml:5|skcm:3|coadread:3|mds:2|stad:1|mbl:1|dlbc:1|blca:1	ENST00000369535
+PIK3CA	G118	118		D:24	2.89e-25	24	11.0	Level-3	ucec:6|brca:5|lgg:4|stad:2|thca:1|prad:1|paad:1|lusc:1|hnsc:1|gbm:1|cesc:1	ENST00000263967
+BRAF	G469	469		A:9|V:6|R:4|E:2|S:1|*:1	3.47e-25	23	8.0	Level-3	luad:9|skcm:5|mmyl:3|prad:2|lusc:1|cscc:1|coadread:1|blca:1	ENST00000288602
+BRAF	K601	601		E:12|N:2|T:1	1.12e-24	15	7.0	Level-3	skcm:6|luad:3|stad:2|ucec:1|thca:1|prad:1|cll:1	ENST00000288602
+KRAS	A146	146		T:24|V:3|P:1	1.19e-24	28	6.0	Level-3	coadread:19|mmyl:4|stad:2|luad:1|laml:1|cesc:1	ENST00000256078
+ERBB2	L755	755		S:9|M:3|W:1|P:1	1.74e-24	14	7.0	Level-3	brca:7|coadread:2|ucec:1|stad:1|skcm:1|kirp:1|blca:1	ENST00000269571
+IDH2	R140	140		Q:19|W:1|L:1	3.7e-24	21	5.0	Level-3	laml:17|mmyl:1|mds:1|hnsc:1|coadread:1	ENST00000330062
+APC	R876	876		*:26|Q:1	4.54e-24	27	2.0	Level-3	coadread:26|ucec:1	ENST00000457016
+TP53	Y126_splice	126			9.39e-24	41	16.0	Level-2	ov:7|paad:5|luad:5|stad:4|brca:4|gbm:3|skcm:2|prad:2|lihc:2|ucs:1|mmyl:1|lusm:1|lusc:1|laml:1|hnsc:1|coadread:1	ENST00000269305
+TP53	R249	249		S:25|M:9|G:6|W:5|T:2|K:1	4.9199999999999993e-23	48	15.0	Level-3	luad:12|lihc:10|lusm:4|hnsc:4|prad:3|lusc:3|ucec:2|paad:2|gbm:2|ucs:1|stad:1|ov:1|mbl:1|esca:1|cscc:1	ENST00000269305
+TP53	R282	282		W:83|G:4|Q:2|R:1|P:1	9.899999999999999e-23	91	19.0	Level-3	coadread:21|hnsc:14|stad:9|paad:9|esca:7|ov:6|gbm:5|lgg:4|lusc:3|luad:3|skcm:2|ucec:1|prad:1|lymbc:1|lihc:1|kich:1|cscc:1|brca:1|blca:1	ENST00000269305
+B2M	M1	1		I:6|V:5|L:4|T:2|R:1	3.91e-22	18	10.0	Level-2	skcm:3|luad:3|stad:2|ov:2|lusm:2|hnsc:2|mmyl:1|lusc:1|dlbc:1|coadread:1	ENST00000558401
+PIK3CA	C420	420		R:17|G:1	5.69e-22	18	7.0	Level-3	brca:5|ucec:4|coadread:4|stad:2|prad:1|lusc:1|acyc:1	ENST00000263967
+TP53	Y163	163		C:27|N:4|H:4|D:2|*:1	1.85e-21	38	14.0	Level-3	hnsc:8|ov:7|luad:5|brca:4|lusc:3|lihc:2|esca:2|ucs:1|skcm:1|paad:1|lusm:1|lgg:1|hgg:1|coadread:1	ENST00000269305
+STK19	D89	89		N:16|D:2	3.4800000000000006e-21	18	2.0	Level-3	skcm:13|cscc:5	ENST00000375333
+POLE	P286	286		R:14|S:1|H:1	4.08e-21	16	5.0	Level-3	ucec:8|coadread:5|ucs:1|paad:1|brca:1	ENST00000320574
+FGFR3	S249	249		C:18	1.07e-20	18	4.0	Level-3	blca:11|hnsc:4|lusc:2|kirp:1	ENST00000340107
+CDKN2A	W110	110		*:26	1.17e-20	26	8.0	Level-3	hnsc:12|skcm:4|paad:2|lusc:2|gbm:2|cscc:2|ucec:1|esca:1	ENST00000498124
+FGFR2	N550	550	N549	K:11|H:2	1.85e-20	13	4.0	Level-3	ucec:6|brca:5|npc:1|luad:1	ENST00000457416
+SLC27A5	T554	554		I:8|T:6	5.9e-20	14	3.0	Level-1	skcm:12|hnsc:1|cscc:1	ENST00000263093
+EZH2	Y646	646	Y641	N:6|F:4|S:2|H:2	6.39e-20	14	2.0	Level-3	skcm:7|dlbc:7	ENST00000320356
+SMTNL2	E244_splice	244			2.26e-19	12	2.0	Level-1	ucec:7|brca:5	ENST00000389313
+NFE2L2	E79	79		Q:9|K:6|V:2|*:2|D:1	2.31e-19	20	6.0	Level-3	hnsc:7|lusc:4|blca:3|luad:2|lihc:2|cesc:2	ENST00000397062
+RIMS2	S423	423	S201	S:15	2.97e-18	15	3.0	Level-1	stad:11|esca:3|brca:1	ENST00000406091
+NFE2L2	D29	29		H:11|Y:4|N:2|G:2	3.26e-18	19	7.0	Level-3	hnsc:6|lusc:5|cesc:3|luad:2|ucec:1|kirc:1|blca:1	ENST00000397062
+PIK3CA	K111	111		E:12|N:8|R:1	2.61e-17	21	11.0	Level-3	ucec:4|coadread:4|brca:3|stad:2|hnsc:2|nbl:1|mmyl:1|luad:1|lgg:1|gbm:1|cesc:1	ENST00000263967
+TP53	C238	238		Y:15|F:12|S:3|R:3|G:1	2.81e-17	34	17.0	Level-3	ov:4|gbm:4|brca:4|hnsc:3|coadread:3|ucs:2|ucec:2|paad:2|esca:2|stad:1|mmyl:1|luad:1|lihc:1|lgg:1|cll:1|cesc:1|blca:1	ENST00000269305
+PIK3CA	R88	88		Q:40	5.17e-17	40	10.0	Level-3	coadread:16|ucec:11|stad:4|gbm:2|brca:2|ucs:1|prad:1|hnsc:1|hgg:1|blca:1	ENST00000263967
+PIK3CA	E726	726		K:22|A:2	6.73e-17	24	8.0	Level-2	brca:9|coadread:4|cesc:3|lusc:2|hnsc:2|blca:2|luad:1|hgg:1	ENST00000263967
+EGFR	G598	598		V:17|A:2	5.03e-16	19	3.0	Level-3	gbm:15|lgg:3|hgg:1	ENST00000275493
+RQCD1	P131	131		L:13|S:1	5.53e-16	14	1.0	Level-3	skcm:14	ENST00000273064
+FLT3	D835	835		Y:11|E:3|H:2|V:1	7.51e-16	17	1.0	Level-3	laml:17	ENST00000241453
+CDKN2A	H83	83		Y:12|R:3|D:3|Q:1	9.29e-16	19	8.0	Level-3	paad:5|skcm:4|hnsc:3|stad:2|luad:2|lihc:1|cscc:1|blca:1	ENST00000498124
+BRAF	N581	581		S:7|T:2|I:1|H:1	1.11e-15	11	6.0	Level-3	skcm:4|luad:3|ov:1|mmyl:1|kirp:1|coadread:1	ENST00000288602
+TP53	V173	173		L:15|M:12|G:2|A:2|E:1	1.82e-15	32	15.0	Level-3	hnsc:7|brca:4|luad:3|lgg:3|stad:2|paad:2|ov:2|coadread:2|ucec:1|skcm:1|lusm:1|lihc:1|hgg:1|esca:1|acc:1	ENST00000269305
+TP53	C275	275		Y:15|F:10|S:4|*:2|R:1	1.87e-15	32	16.0	Level-3	ov:4|luad:4|hnsc:3|esca:3|coadread:3|skcm:2|lihc:2|lgg:2|gbm:2|paad:1|mmyl:1|kich:1|cll:1|brca:1|blca:1|acc:1	ENST00000269305
+BRAF	G466	466		V:10|E:6|A:1	2.31e-15	17	6.0	Level-3	luad:7|mmyl:4|skcm:3|lusc:1|hnsc:1|coadread:1	ENST00000288602
+TP53	Y205	205		C:19|F:3|S:2|N:2|H:2|D:2|*:1	6.95e-15	31	16.0	Level-3	luad:5|lihc:4|coadread:4|paad:2|ov:2|hnsc:2|esca:2|brca:2|ucs:1|ucec:1|mmyl:1|lymbc:1|lusc:1|lgg:1|kich:1|gbm:1	ENST00000269305
+RRAS2	Q72	72		L:7|H:2	8e-15	9	6.0	Level-1	ucec:3|luad:2|ucs:1|prad:1|lusc:1|hnsc:1	ENST00000256196
+TP53	Y234	234		C:23|S:2|H:2|*:2|N:1|D:1	1.35e-14	31	14.0	Level-3	ov:5|brca:5|lusc:3|hnsc:3|gbm:3|stad:2|lihc:2|esca:2|prad:1|paad:1|lusm:1|coadread:1|blca:1|acc:1	ENST00000269305
+APC	R1114	1114		*:24	1.48e-14	24	3.0	Level-3	coadread:22|ucec:1|stad:1	ENST00000457016
+APC	R213	213		*:20	1.49e-14	20	2.0	Level-3	coadread:19|thca:1	ENST00000457016
+PPP2R1A	R183	183		W:14|Q:4|G:1	3.71e-14	19	9.0	Level-2	coadread:5|ucs:3|ov:3|ucec:2|luad:2|stad:1|prad:1|hnsc:1|brca:1	ENST00000322088
+NFE2L2	E82	82		D:7|A:2|Q:1|G:1	1.6e-13	11	7.0	Level-1	lihc:3|ucec:2|luad:2|kirp:1|kirc:1|cesc:1|blca:1	ENST00000397062
+RXRA	S427	427		F:11|Y:3	2.18e-13	14	3.0	Level-2	blca:12|paad:1|lihc:1	ENST00000481739
+MTOR	S2215	2215		Y:8|F:5|T:1	3.24e-13	14	7.0	Level-3	coadread:4|ucec:3|skcm:2|cesc:2|kirp:1|kirc:1|gbm:1	ENST00000361445
+HIST1H3B	K28	28		M:11|E:1	3.41e-13	12	2.0	Level-2	hgg:11|hnsc:1	ENST00000244661
+APC	Q1378	1378		*:15	6.08e-13	15	1.0	Level-3	coadread:15	ENST00000457016
+CDKN2A	R58	58		*:27|R:1	8.48e-13	28	8.0	Level-3	hnsc:14|skcm:4|paad:4|luad:2|lusc:1|kirp:1|esca:1|cscc:1	ENST00000498124
+PPP2R1A	P179	179		R:12|L:1	1.56e-12	13	2.0	Level-3	ucec:8|ucs:5	ENST00000322088
+CREBBP	R1446	1446		C:9|L:3|H:3|G:1	1.67e-12	16	11.0	Level-3	hnsc:3|mbl:2|lihc:2|blca:2|stad:1|skcm:1|lusc:1|gbm:1|coadread:1|cesc:1|acyc:1	ENST00000262367
+POLE	V411	411		L:10	1.76e-12	10	4.0	Level-3	ucec:5|coadread:3|stad:1|gbm:1	ENST00000320574
+EP300	D1399	1399		N:16|Y:2	5.93e-12	18	6.0	Level-3	hnsc:6|cesc:5|lusc:2|esca:2|blca:2|mbl:1	ENST00000263253
+BRAF	D594	594		G:6|N:5|H:1	6.61e-12	12	9.0	Level-3	luad:3|mmyl:2|skcm:1|lgg:1|hnsc:1|coadread:1|cll:1|blca:1|acc:1	ENST00000288602
+RHOA	Y42	42		C:7|S:2|I:1|F:1	1.26e-11	11	3.0	Level-2	stad:9|lymbc:1|hnsc:1	ENST00000418115
+FBXW7	R479	479		Q:13|*:4|P:2|L:2|G:2|R:1	1.53e-11	24	12.0	Level-3	coadread:4|ucs:3|stad:3|hnsc:3|cesc:3|lusc:2|ucec:1|skcm:1|kirp:1|gbm:1|brca:1|blca:1	ENST00000281708
+MAP2K1	P124	124		S:11|L:2|Q:1|P:1	2.05e-11	15	4.0	Level-3	skcm:12|ucec:1|coadread:1|blca:1	ENST00000307102
+MAP2K1	K57	57		N:7|T:3	2.98e-11	10	6.0	Level-3	luad:4|skcm:2|stad:1|prad:1|hnsc:1|dlbc:1	ENST00000307102
+TP53	C135	135		Y:9|F:9|R:3|W:2|S:2|*:2|G:1	4.65e-11	28	13.0	Level-3	esca:5|brca:5|coadread:3|stad:2|prad:2|paad:2|ov:2|luad:2|lusc:1|lihc:1|lgg:1|blca:1|acc:1	ENST00000269305
+PIK3CA	E453	453		K:16|Q:3|D:1	6.4e-11	20	10.0	Level-3	brca:8|lgg:3|stad:2|ucec:1|lusc:1|luad:1|lihc:1|hnsc:1|gbm:1|blca:1	ENST00000263967
+CDKN2A	V51_splice	51			1.11e-10	15	5.0	Level-3	skcm:5|hnsc:4|lihc:3|luad:2|blca:1	ENST00000498124
+NOTCH2	R5	5		R:10	1.19e-10	10	3.0	Level-1	acc:8|ov:1|kirc:1	ENST00000256646
+ERBB2	V842	842		I:14	1.31e-10	14	7.0	Level-3	coadread:4|stad:3|ucec:2|paad:2|ucs:1|gbc:1|brca:1	ENST00000269571
+DCAF13	T118	118		T:8	1.56e-10	8	4.0	Level-1	stad:3|esca:3|kich:1|brca:1	ENST00000297579
+NUP93	E14	14		K:10|G:1	1.59e-10	11	6.0	Level-1	brca:6|thca:1|luad:1|lihc:1|hnsc:1|blca:1	ENST00000308159
+NFE2L2	T80	80		K:3|R:2|P:2|A:2	1.96e-10	9	7.0	Level-1	ucec:3|lusc:1|luad:1|lihc:1|kirp:1|hnsc:1|esca:1	ENST00000397062
+FGFR3	Y375	375	Y373	C:8	2.78e-10	8	2.0	Level-3	blca:7|kirp:1	ENST00000340107
+ATM	R337	337		C:13|H:5	5.19e-10	18	8.0	Level-1	coadread:7|stad:2|skcm:2|paad:2|luad:2|hnsc:1|brca:1|blca:1	ENST00000278616
+KNSTRN	S24	24		F:13	7.71e-10	13	2.0	Level-3	skcm:11|cscc:2	ENST00000249776
+NFE2L2	G81	81		V:3|S:3|D:2|C:2	1.34e-09	10	7.0	Level-1	lusc:3|lihc:2|ucec:1|kirp:1|kirc:1|hnsc:1|brca:1	ENST00000397062
+CTNNB1	K335	335		I:8|T:1	1.6e-09	9	1.0	Level-1	lihc:9	ENST00000349496
+TP53	M237	237		I:17|K:4|V:3	1.88e-09	24	12.0	Level-3	ov:4|luad:3|lgg:3|hnsc:3|esca:3|stad:2|ucec:1|paad:1|lusc:1|hgg:1|coadread:1|brca:1	ENST00000269305
+GPRIN2	A50	50		A:11	2.54e-09	11	3.0	Level-1	coadread:8|lihc:2|brca:1	ENST00000374314
+SOS1	N233	233		Y:7	2.8e-09	7	2.0	Level-3	luad:4|ucec:3	ENST00000426016
+SMAD4	G386	386		D:5|V:3|S:1|C:1|A:1	3.31e-09	11	6.0	Level-2	esca:3|coadread:3|stad:2|prad:1|paad:1|luad:1	ENST00000342988
+PTEN	R233	233		*:27|Q:1	3.67e-09	28	8.0	Level-3	ucec:14|gbm:5|stad:3|coadread:2|ucs:1|prad:1|cesc:1|blca:1	ENST00000371953
+MAPK1	E322	322		K:15|*:1	4e-09	16	3.0	Level-3	hnsc:8|cesc:7|blca:1	ENST00000215832
+INPPL1	A1185	1185		D:8	5.91e-09	8	5.0	Level-1	acc:4|prad:1|lihc:1|hnsc:1|blca:1	ENST00000298229
+TP53	R196	196		*:61|P:6	6.92e-09	67	16.0	Level-3	hnsc:13|brca:10|coadread:7|paad:6|esca:6|skcm:4|gbm:4|stad:3|ov:3|luad:3|lgg:3|mmyl:1|lusm:1|lusc:1|kich:1|cscc:1	ENST00000269305
+TP53	G266	266		V:16|E:14|R:12|*:4	7.47e-09	46	18.0	Level-3	hnsc:7|ov:5|paad:4|coadread:4|luad:3|lgg:3|brca:3|skcm:2|lihc:2|gbm:2|esca:2|cscc:2|cll:2|ucs:1|ucec:1|lusm:1|lusc:1|blca:1	ENST00000269305
+TP53	C242	242		F:13|S:5|Y:3|W:1|G:1|C:1	8.62e-09	24	11.0	Level-3	hnsc:5|luad:4|lusc:3|lihc:3|stad:2|cll:2|ucs:1|gbm:1|esca:1|brca:1|blca:1	ENST00000269305
+ERBB3	D297	297		Y:9|V:1|N:1	9.18e-09	11	5.0	Level-2	ucec:3|stad:3|brca:2|blca:2|ucs:1	ENST00000267101
+CDKN2A	Q50	50		*:12|H:2|R:1|Q:1	9.77e-09	16	7.0	Level-3	skcm:6|paad:3|cscc:3|stad:1|lusc:1|hnsc:1|coadread:1	ENST00000498124
+MYCN	P44	44		L:9	1.09e-08	9	5.0	Level-2	nbl:4|ucec:2|paad:1|mbl:1|gbm:1	ENST00000281043
+POM121	N94	94	N359	S:7	1.23e-08	7	4.0	Level-1	paad:4|skcm:1|prad:1|gbm:1	ENST00000395270
+TP53	R213	213		*:86|Q:8|L:7|P:1|G:1	1.29e-08	103	23.0	Level-3	coadread:16|hnsc:14|esca:9|brca:9|skcm:8|stad:6|luad:5|paad:4|ov:4|lusc:4|lihc:4|ucec:3|kich:3|lgg:2|gbm:2|cscc:2|blca:2|ucs:1|prad:1|npc:1|kirc:1|acyc:1|acc:1	ENST00000269305
+TP53	Y236	236		C:16|*:3|N:2|D:2	2.01e-08	23	11.0	Level-3	hnsc:6|luad:3|lgg:3|paad:2|ov:2|coadread:2|stad:1|prad:1|lusc:1|cscc:1|brca:1	ENST00000269305
+ARID1A	R1989	1989		*:17	2.45e-08	17	5.0	Level-1	ucec:9|coadread:5|stad:1|lymbc:1|cesc:1	ENST00000324856
+APC	R216	216		*:14	3.51e-08	14	1.0	Level-3	coadread:14	ENST00000457016
+XPO1	E571	571		K:12|V:1|A:1	4.11e-08	14	5.0	Level-2	cll:7|ucec:2|coadread:2|brca:2|prad:1	ENST00000401558
+CDKN2A	P114	114		L:13|T:1|H:1	5.43e-08	15	4.0	Level-3	skcm:11|hnsc:2|lusc:1|cscc:1	ENST00000498124
+MYO18A	G979	979		G:6|A:1	5.52e-08	7	4.0	Level-1	acc:3|lihc:2|kirp:1|cscc:1	ENST00000527372
+TP53	P151	151		S:10|H:7|T:4|R:4|A:4|F:1	7.03e-08	30	17.0	Level-3	hnsc:5|ov:3|coadread:3|brca:3|ucs:2|paad:2|lihc:2|ucec:1|stad:1|skcm:1|mmyl:1|lusc:1|luad:1|lgg:1|esca:1|blca:1|acyc:1	ENST00000269305
+GNAQ	T96	96		S:7	7.04e-08	7	5.0	Level-1	lihc:2|kich:2|prad:1|luad:1|gbc:1	ENST00000286548
+BNC2	S575	575		R:7|I:1	7.82e-08	8	3.0	Level-1	stad:5|coadread:2|luad:1	ENST00000380672
+NFE2L2	Q26	26		P:2|K:2|R:1|L:1|H:1	9.26e-08	7	5.0	Level-1	lusc:2|lihc:2|ucec:1|luad:1|esca:1	ENST00000397062
+CDK4	R24	24		L:5|H:3|C:2|S:1	1.03e-07	11	3.0	Level-3	skcm:7|luad:3|mmyl:1	ENST00000257904
+LRP1	P1058	1058		T:7|L:1	1.05e-07	8	3.0	Level-1	prad:3|kirp:3|skcm:2	ENST00000243077
+DTD2	R6	6		W:11	1.1e-07	11	6.0	Level-1	kirp:5|lihc:2|prad:1|kich:1|coadread:1|acc:1	ENST00000310850
+SMAD2	S464	464		*:11	1.19e-07	11	5.0	Level-1	coadread:5|stad:2|brca:2|paad:1|kirc:1	ENST00000402690
+TP53	A187_splice	187			1.7e-07	25	13.0	Level-2	ov:6|hnsc:3|coadread:3|brca:3|stad:2|skcm:1|paad:1|lusc:1|luad:1|lgg:1|kich:1|cll:1|blca:1	ENST00000269305
+RHEB	Y35	35		N:5|C:1	1.71e-07	6	4.0	Level-3	ucec:2|kirc:2|kirp:1|blca:1	ENST00000262187
+HOXB2	P335	335		P:6	2.27e-07	6	4.0	Level-1	luad:3|skcm:1|prad:1|kirp:1	ENST00000330070
+TP53	R280	280		K:15|T:10|G:6|I:5|S:4|*:1	2.47e-07	41	17.0	Level-3	hnsc:7|blca:7|luad:5|brca:4|lgg:3|skcm:2|ov:2|lihc:2|ucs:1|stad:1|npc:1|lusm:1|lusc:1|laml:1|esca:1|cscc:1|cesc:1	ENST00000269305
+SNRPD3	G96	96		V:4|S:1|R:1|C:1	2.59e-07	7	3.0	Level-1	luad:5|ucec:1|cesc:1	ENST00000215829
+GPRIN2	T100	100		P:7	2.77e-07	7	4.0	Level-1	coadread:3|cesc:2|lihc:1|brca:1	ENST00000374314
+ALK	F1174	1174		L:6|C:2|V:1	3e-07	9	1.0	Level-3	nbl:9	ENST00000389048
+MED12	L1224	1224		F:9|V:1	3.01e-07	10	5.0	Level-2	prad:6|stad:1|paad:1|lusc:1|brca:1	ENST00000374080
+ARL16	G6	6		R:7	3.03e-07	7	1.0	Level-1	skcm:7	ENST00000397498
+MAGOH	I137	137		T:6	3.03e-07	6	4.0	Level-1	paad:3|nbl:1|hnsc:1|gbm:1	ENST00000371470
+CCT8	I86	86		T:6	3.15e-07	6	5.0	Level-1	paad:2|prad:1|lihc:1|lgg:1|hnsc:1	ENST00000286788
+CCND1	Y44	44		D:2|S:1|H:1|F:1|C:1|*:1	3.48e-07	7	2.0	Level-1	mcl:6|mmyl:1	ENST00000227507
+CRNKL1	S128	128		F:8|S:2	3.99e-07	10	2.0	Level-2	skcm:8|cscc:2	ENST00000377340
+TP53	K132	132		N:16|R:7|E:6|T:3|Q:1|M:1	4e-07	34	16.0	Level-3	ov:6|brca:6|blca:4|paad:3|luad:3|coadread:2|ucs:1|stad:1|mmyl:1|lusc:1|lgg:1|hnsc:1|gbm:1|esca:1|cesc:1|acc:1	ENST00000269305
+NT5C3A	D322	322		G:6	4.75e-07	6	5.0	Level-1	acc:2|lihc:1|kich:1|gbc:1|brca:1	ENST00000242210
+EGFR	L861	861		Q:7	5.42e-07	7	2.0	Level-3	luad:5|lusc:2	ENST00000275493
+PIK3R1	M582_splice	582			5.68e-07	7	5.0	Level-3	ucec:2|gbm:2|prad:1|mbl:1|coadread:1	ENST00000521381
+TP53	C141	141		Y:10|W:6|R:2|G:2|S:1|F:1|*:1	5.85e-07	23	12.0	Level-3	brca:5|prad:3|coadread:3|luad:2|lgg:2|hnsc:2|ucec:1|paad:1|mmyl:1|lusc:1|laml:1|kich:1	ENST00000269305
+RIMS1	R71	71		G:5|R:2	7.62e-07	7	4.0	Level-1	stad:4|prad:1|paad:1|coadread:1	ENST00000521978
+OXA1L	L57	57		F:9	7.73e-07	9	3.0	Level-1	skcm:7|hnsc:1|cscc:1	ENST00000285848
+LENG8	G377	377	G340	G:6	9.64e-07	6	5.0	Level-1	lihc:2|mbl:1|luad:1|gbm:1|blca:1	ENST00000326764
+APC	R499	499		*:13	1.04e-06	13	3.0	Level-3	coadread:11|stad:1|paad:1	ENST00000457016
+APC	Q1429	1429		*:6|R:1	1.04e-06	7	2.0	Level-3	coadread:6|ov:1	ENST00000457016
+ING1	R339	339	R196	*:11	1.06e-06	11	5.0	Level-1	coadread:4|ucec:3|stad:2|lgg:1|blca:1	ENST00000375774
+SPOP	W131	131		G:4|S:1|R:1|C:1	1.15e-06	7	2.0	Level-2	prad:6|ucec:1	ENST00000393331
+TPTE2	M41	41		V:8	1.36e-06	8	6.0	Level-1	skcm:2|acc:2|stad:1|paad:1|luad:1|kich:1	ENST00000400230
+TRUB1	T34	34		P:6	1.42e-06	6	4.0	Level-1	luad:3|paad:1|kirc:1|blca:1	ENST00000298746
+ACADS	R330	330		H:8|C:2	1.5e-06	10	7.0	Level-1	prad:2|kirc:2|gbm:2|ucec:1|stad:1|lgg:1|coadread:1	ENST00000242592
+ACSBG2	I250	250		M:5	1.53e-06	5	2.0	Level-1	kirp:4|kirc:1	ENST00000586696
+SPTA1	K1732	1732		T:7	1.61e-06	7	2.0	Level-1	stad:5|esca:2	ENST00000368147
+TP53	V274	274		F:7|D:5|G:4|A:4|L:1	1.69e-06	21	11.0	Level-3	luad:4|lihc:3|brca:3|paad:2|ov:2|coadread:2|stad:1|skcm:1|prad:1|lusm:1|lgg:1	ENST00000269305
+PTPN11	Q510	510		L:3|H:3|E:1	1.84e-06	7	4.0	Level-1	skcm:2|laml:2|gbm:2|all:1	ENST00000351677
+SF3B1	N626	626		Y:3|H:2|D:1	2.06e-06	6	4.0	Level-1	cll:3|skcm:1|luad:1|brca:1	ENST00000335508
+RAC1	A178	178	A159	V:10	2.27e-06	10	5.0	Level-1	hnsc:6|luad:1|hgg:1|coadread:1|cesc:1	ENST00000356142
+ARIH1	A409	409		E:6	2.28e-06	6	6.0	Level-1	skcm:1|prad:1|luad:1|kirc:1|kich:1|acc:1	ENST00000379887
+KRAS	G60	60		G:10|D:1	2.28e-06	11	7.0	Level-1	coadread:4|thca:2|skcm:1|paad:1|mmyl:1|cscc:1|blca:1	ENST00000256078
+TP53	V216	216		M:15|L:2|G:2|E:1	2.64e-06	20	11.0	Level-3	ov:4|brca:4|lgg:3|gbm:2|ucs:1|paad:1|lusc:1|luad:1|hnsc:1|esca:1|cscc:1	ENST00000269305
+PIK3R1	N564	564		D:6	2.89e-06	6	4.0	Level-3	lgg:2|coadread:2|ucec:1|skcm:1	ENST00000521381
+PIK3R1	G376	376		R:9	2.9e-06	9	4.0	Level-3	gbm:5|lgg:2|ucs:1|skcm:1	ENST00000521381
+PIK3CA	Y1021	1021		C:7|H:2	3.18e-06	9	6.0	Level-1	ucec:2|stad:2|coadread:2|ucs:1|prad:1|brca:1	ENST00000263967
+C5orf49	K130	130		T:6	3.65e-06	6	2.0	Level-1	stad:4|luad:2	ENST00000399810
+NPAS1	F159	159		F:6|L:1	3.89e-06	7	2.0	Level-1	skcm:6|blca:1	ENST00000602212
+APC	R564	564		*:12	4e-06	12	1.0	Level-3	coadread:12	ENST00000457016
+NFE2L2	L30	30		F:3|P:2|H:2|R:1	4.52e-06	8	5.0	Level-1	hnsc:3|lusc:2|lihc:1|kirp:1|kirc:1	ENST00000397062
+RAF1	S257	257		L:11|W:1	4.76e-06	12	4.0	Level-3	coadread:6|luad:3|stad:2|skcm:1	ENST00000251849
+TP53	Q331_splice	331			4.87e-06	23	9.0	Level-2	ov:7|brca:4|luad:3|coadread:3|hnsc:2|paad:1|lusc:1|lihc:1|cll:1	ENST00000269305
+KIAA1468	Q579	579		K:6	5.44e-06	6	5.0	Level-1	luad:2|prad:1|kirp:1|hnsc:1|acc:1	ENST00000398130
+BCL2L12	F8	8		F:8	5.99e-06	8	2.0	Level-1	skcm:6|cscc:2	ENST00000246785
+SF3B1	R625	625		H:4|C:4|L:2|G:1	6.52e-06	11	4.0	Level-2	skcm:6|cll:2|acyc:2|blca:1	ENST00000335508
+AHI1	Q294	294		R:5	6.91e-06	5	4.0	Level-1	luad:2|skcm:1|kirp:1|hnsc:1	ENST00000367800
+KDM6A	Q555	555		*:9	7.26e-06	9	1.0	Level-1	blca:9	ENST00000377967
+FGFR1	K687	687	K656	E:4|N:1|K:1|*:1	7.52e-06	7	6.0	Level-2	pias:2|mbl:1|lihc:1|gbm:1|blca:1|all:1	ENST00000425967
+KIT	K642	642		E:5|N:1	7.66e-06	6	2.0	Level-3	skcm:5|stad:1	ENST00000288135
+TP53	S241	241		F:19|Y:10|C:6|P:3|A:2	7.75e-06	40	20.0	Level-3	ov:7|skcm:5|ucs:3|ucec:3|luad:2|hgg:2|gbm:2|gbc:2|brca:2|blca:2|paad:1|lymbc:1|lgg:1|kirp:1|kirc:1|kich:1|hnsc:1|esca:1|cscc:1|coadread:1	ENST00000269305
+OBP2B	S133	133		P:5	7.91e-06	5	4.0	Level-1	paad:2|mbl:1|luad:1|hnsc:1	ENST00000372034
+APC	R232	232		*:12	9.02e-06	12	2.0	Level-2	coadread:11|ucec:1	ENST00000457016
+TP53	L194	194		R:15|H:3|F:3|P:2	9.05e-06	23	11.0	Level-3	brca:6|ov:3|luad:3|hnsc:2|coadread:2|blca:2|paad:1|lihc:1|lgg:1|gbm:1|cesc:1	ENST00000269305
+MAP2K1	F53	53		L:4|V:1|I:1	9.12e-06	6	4.0	Level-3	coadread:3|stad:1|skcm:1|luad:1	ENST00000307102
+GNA11	Q209	209		L:5	9.33e-06	5	1.0	Level-3	skcm:5	ENST00000078429
+MAPK7	A501	501		D:6	9.5e-06	6	4.0	Level-1	kirp:2|acc:2|luad:1|lihc:1	ENST00000308406
+TP53	S33_splice	33			1.03e-05	19	11.0	Level-2	lihc:4|coadread:3|ov:2|lusm:2|hnsc:2|ucs:1|paad:1|luad:1|esca:1|cscc:1|brca:1	ENST00000269305
+PRSS27	V246	246		G:5	1.03e-05	5	3.0	Level-1	acc:3|lgg:1|kirp:1	ENST00000302641
+PCDHA10	G539	539		A:8|V:1	1.08e-05	9	7.0	Level-1	paad:2|luad:2|lgg:1|kirp:1|hnsc:1|gbm:1|blca:1	ENST00000307360
+MAP2K2	F57	57		L:3|V:2	1.29e-05	5	4.0	Level-3	skcm:2|stad:1|paad:1|hnsc:1	ENST00000262948
+PTPN11	A72	72		T:3|V:2|D:2	1.33e-05	7	4.0	Level-2	nbl:2|lgg:2|cll:2|laml:1	ENST00000351677
+TP53	V272	272		M:17|G:4|V:1|L:1|K:1|E:1	1.43e-05	25	13.0	Level-3	ov:4|paad:3|luad:3|hnsc:3|stad:2|coadread:2|brca:2|ucec:1|mmyl:1|mbl:1|kirc:1|cscc:1|blca:1	ENST00000269305
+SYT13	P228	228		S:7|T:1	1.43e-05	8	3.0	Level-1	skcm:6|lusc:1|cscc:1	ENST00000020926
+FAM46D	S69	69		R:4|G:2	1.43e-05	6	2.0	Level-1	stad:5|esca:1	ENST00000538312
+PTN	K44	44		T:6|M:1	1.46e-05	7	4.0	Level-1	esca:3|stad:2|lusc:1|coadread:1	ENST00000348225
+TP53	P278	278		S:11|L:7|T:6|R:5|A:5|H:3	1.5e-05	37	13.0	Level-3	hnsc:7|ov:5|coadread:5|lusc:4|brca:4|skcm:2|luad:2|esca:2|cscc:2|ucec:1|paad:1|mmyl:1|lgg:1	ENST00000269305
+HEXDC	T482	482	H452	P:5	1.59e-05	5	3.0	Level-1	lusc:2|kirc:2|skcm:1	ENST00000337014
+ZBTB7A	K424	424		T:4|N:1	1.69e-05	5	3.0	Level-1	stad:3|kirc:1|coadread:1	ENST00000322357
+EVPL	C322	322		C:6	1.76e-05	6	5.0	Level-1	paad:2|luad:1|kich:1|coadread:1|blca:1	ENST00000301607
+FGFR1	N577	577	N546	K:5|D:1	1.92e-05	6	5.0	Level-2	pias:2|stad:1|nbl:1|mbl:1|hgg:1	ENST00000425967
+TP53	V225_splice	225			2.06e-05	22	11.0	Level-2	brca:5|ov:3|luad:3|hnsc:3|gbm:2|stad:1|lusc:1|lihc:1|laml:1|kich:1|cscc:1	ENST00000269305
+TP53	H214	214		R:15|L:1	2.08e-05	16	11.0	Level-2	stad:2|paad:2|lusc:2|lihc:2|esca:2|ov:1|kich:1|gbm:1|coadread:1|cll:1|blca:1	ENST00000269305
+ERBB2	R678	678		Q:9	2.2e-05	9	6.0	Level-3	stad:4|ucec:1|prad:1|coadread:1|brca:1|blca:1	ENST00000269571
+PTEN	C136	136		R:4|Y:2|F:2|*:1	2.27e-05	9	5.0	Level-1	ucec:3|gbm:3|skcm:1|hnsc:1|coadread:1	ENST00000371953
+CTNNB1	N387	387		K:4|Y:1|I:1	2.31e-05	6	3.0	Level-1	lihc:4|prad:1|coadread:1	ENST00000349496
+ERBB2	D769	769		Y:5|H:2|N:1	2.69e-05	8	5.0	Level-3	brca:3|esca:2|stad:1|cesc:1|blca:1	ENST00000269571
+MEF2A	P99	99		S:7	2.91e-05	7	6.0	Level-1	kirp:2|paad:1|mbl:1|lusc:1|lihc:1|cscc:1	ENST00000354410
+FGFR3	R248	248		C:9	3.55e-05	9	4.0	Level-3	blca:6|mmyl:1|lusc:1|hnsc:1	ENST00000340107
+MYO18B	P1018	1018		S:3|P:3|L:2|T:1	3.67e-05	9	2.0	Level-1	skcm:8|hnsc:1	ENST00000335473
+TP53	T125_splice	125		SS:23	3.85e-05	23	12.0	Level-2	hnsc:4|stad:3|lgg:3|ov:2|lusc:2|luad:2|brca:2|skcm:1|paad:1|esca:1|cscc:1|acc:1	ENST00000269305
+CDKN2A	E88	88		*:10|K:5	4.24e-05	15	5.0	Level-1	skcm:5|hnsc:5|paad:2|cscc:2|cesc:1	ENST00000498124
+COBL	E480	480		D:6	4.36e-05	6	1.0	Level-1	lihc:6	ENST00000265136
+ATM	N2875	2875		S:3|T:2|K:1	4.66e-05	6	4.0	Level-1	lihc:2|coadread:2|prad:1|brca:1	ENST00000278616
+ZHX3	N249	249		K:6	4.76e-05	6	3.0	Level-1	stad:3|coadread:2|blca:1	ENST00000309060
+APC	Y935	935		*:6	4.9e-05	6	1.0	Level-3	coadread:6	ENST00000457016
+PLCB3	T909	909		P:5	5.76e-05	5	2.0	Level-1	prad:3|luad:2	ENST00000540288
+CHIT1	W358	358		*:7	5.86e-05	7	4.0	Level-1	lihc:2|coadread:2|acc:2|kich:1	ENST00000367229
+FRMD4B	P368	368		S:5|L:1|F:1	6.05e-05	7	2.0	Level-1	skcm:6|cscc:1	ENST00000398540
+PCSK5	W924	924		*:7|L:1	6.25e-05	8	3.0	Level-1	skcm:6|lihc:1|cscc:1	ENST00000545128
+KRAS	K117	117		N:9	6.6e-05	9	6.0	Level-3	coadread:3|mmyl:2|stad:1|skcm:1|lihc:1|esca:1	ENST00000256078
+C3orf70	S6	6		L:9|W:2|*:1	7.54e-05	12	4.0	Level-1	blca:6|cesc:4|lusc:1|brca:1	ENST00000335012
+APC	Q1338	1338		*:6	7.56e-05	6	1.0	Level-3	coadread:6	ENST00000457016
+CHD3	I293	293	I234	L:5	7.69e-05	5	4.0	Level-1	luad:2|paad:1|lgg:1|hnsc:1	ENST00000380358
+OVGP1	S536	536		G:5	8.06e-05	5	3.0	Level-1	lihc:2|coadread:2|kich:1	ENST00000369732
+INMT	S212	212		F:8|S:1	8.3e-05	9	2.0	Level-1	skcm:8|cesc:1	ENST00000013222
+LAMC1	P641	641		P:4|L:2	9.33e-05	6	5.0	Level-1	lusc:2|thca:1|skcm:1|lgg:1|gbm:1	ENST00000258341
+LCE1A	K28	28		T:2|R:2|M:1	0.0001	5	2.0	Level-1	stad:4|esca:1	ENST00000335123
+PPP6C	R301	301	R264	C:14	0.0001	14	2.0	Level-2	skcm:13|lusc:1	ENST00000451402
+NFE2L2	G31	31		A:4|R:2|V:1|E:1	0.0001	8	5.0	Level-1	lusc:2|esca:2|blca:2|luad:1|lihc:1	ENST00000397062
+U2AF1	Q157	157		R:2|P:2	0.0001	4	2.0	Level-3	mds:3|laml:1	ENST00000291552
+CDH1	Q23	23		*:7	0.0001	7	1.0	Level-1	brca:7	ENST00000261769
+SF3B1	G742	742		D:6	0.0001	6	2.0	Level-2	cll:5|kirc:1	ENST00000335508
+KAT8	R98	98		W:7|Q:1	0.0001	8	4.0	Level-1	stad:3|prad:2|coadread:2|skcm:1	ENST00000448516
+SEMA4B	S231	231		S:4|F:2	0.0001	6	2.0	Level-1	skcm:3|cscc:3	ENST00000411539
+CTNNB1	H36	36		P:5|Y:1	0.0001	6	2.0	Level-1	lihc:5|skcm:1	ENST00000349496
+ERBB2	V777	777		L:4|M:1	0.0001	5	3.0	Level-3	coadread:2|brca:2|stad:1	ENST00000269571
+PNLIPRP3	K431	431		T:5|R:1	0.0001	6	2.0	Level-1	stad:3|esca:3	ENST00000369230
+NFE2L2	R34	34		G:7|Q:4|P:2	0.0001	13	6.0	Level-1	lusc:5|ucec:2|hnsc:2|blca:2|kirc:1|cesc:1	ENST00000397062
+FGFR2	S252	252		W:10|S:2	0.0001	12	3.0	Level-2	ucec:9|stad:2|ucs:1	ENST00000457416
+FBXW7	R367	367		*:12	0.0001	12	6.0	Level-2	coadread:7|ucs:1|stad:1|paad:1|hnsc:1|cesc:1	ENST00000281708
+FOXA1	I176	176		M:4|V:3	0.0002	7	2.0	Level-1	brca:6|luad:1	ENST00000250448
+SLC4A11	V718	718	V691	G:5	0.0002	5	3.0	Level-1	brca:3|prad:1|lihc:1	ENST00000380059
+H3F3A	G35	35	G34	R:6	0.0002	6	4.0	Level-3	hgg:3|lgg:1|gbm:1|acc:1	ENST00000366813
+FGFR2	C383	383	C382	R:4|Y:1	0.0002	5	3.0	Level-3	ucec:3|stad:1|esca:1	ENST00000457416
+KIAA0020	K63	63		R:5	0.0002	5	4.0	Level-1	paad:2|skcm:1|luad:1|gbm:1	ENST00000397885
+TP53	F270	270		S:5|L:4|I:4|C:2|V:1	0.0002	16	9.0	Level-3	stad:3|brca:3|ov:2|luad:2|lgg:2|lusc:1|hnsc:1|esca:1|cscc:1	ENST00000269305
+SF3B1	K666	666		T:2|E:2|Q:1	0.0002	5	4.0	Level-2	cll:2|skcm:1|lihc:1|brca:1	ENST00000335508
+PIK3R1	R348	348		*:14	0.0002	14	3.0	Level-3	ucec:8|coadread:5|brca:1	ENST00000521381
+PIK3R1	K567	567		E:5	0.0002	5	4.0	Level-1	ucec:2|stad:1|lymbc:1|esca:1	ENST00000521381
+ALK	R1275	1275		Q:10|L:1|*:1	0.0002	12	2.0	Level-3	nbl:11|brca:1	ENST00000389048
+U2AF1	I24	24		T:3|V:1	0.0002	4	4.0	Level-1	ucec:1|stad:1|paad:1|acc:1	ENST00000291552
+DNAJB1	L190	190		L:4	0.0002	4	4.0	Level-1	prad:1|lihc:1|hnsc:1|gbm:1	ENST00000254322
+STAT3	H410	410		R:3|P:2	0.0002	5	3.0	Level-1	lihc:3|luad:1|brca:1	ENST00000264657
+PIK3CA	E81	81		K:12|*:1	0.0002	13	9.0	Level-2	coadread:3|brca:3|ucec:1|mbl:1|luad:1|kirc:1|hnsc:1|gbm:1|cesc:1	ENST00000263967
+TP53	E225_splice	225		SS:19	0.0002	19	12.0	Level-2	hnsc:5|ov:3|luad:2|stad:1|skcm:1|paad:1|mmyl:1|lusc:1|lgg:1|kich:1|esca:1|brca:1	ENST00000269305
+PTPN11	E76	76		K:4|A:2|G:1	0.0002	7	5.0	Level-2	mmyl:2|coadread:2|pias:1|nbl:1|lusc:1	ENST00000351677
+EGFR	G719	719		A:5|D:1|C:1	0.0003	7	2.0	Level-3	luad:6|gbm:1	ENST00000275493
+EHMT1	V280	280		F:5	0.0003	5	2.0	Level-1	paad:3|lihc:2	ENST00000460843
+WDR73	G316	316		R:5	0.0003	5	4.0	Level-1	lihc:2|kirc:1|coadread:1|brca:1	ENST00000434634
+TMEM131	E1319	1319		Q:4|*:2|K:1	0.0003	7	5.0	Level-1	cesc:2|brca:2|luad:1|hnsc:1|blca:1	ENST00000186436
+WDR52	V1227	1227	V408	G:5	0.0003	5	1.0	Level-1	kirc:5	ENST00000393845
+SMAD4	D351	351		G:3|Y:2|H:2|A:1	0.0003	8	6.0	Level-1	paad:2|coadread:2|stad:1|prad:1|luad:1|esca:1	ENST00000342988
+DICER1	E1813	1813		G:3|Q:2|A:1	0.0003	6	4.0	Level-1	ucec:2|coadread:2|thca:1|gbm:1	ENST00000526495
+HOOK2	S630	630		S:3|F:2|A:1	0.0003	6	3.0	Level-1	skcm:4|prad:1|cscc:1	ENST00000397668
+KLF5	E419	419		Q:4|K:3	0.0003	7	4.0	Level-1	luad:3|lusc:2|cesc:1|blca:1	ENST00000377687
+LST3	R709	709		R:4|T:1|K:1	0.0003	6	3.0	Level-1	cscc:4|skcm:1|luad:1	ENST00000540229
+HSD11B1	G45	45		V:2|R:2|W:1|G:1|E:1	0.0003	7	3.0	Level-1	skcm:3|luad:3|brca:1	ENST00000367028
+RBM39	T353	353		I:4|T:1	0.0004	5	3.0	Level-1	ucec:3|luad:1|hnsc:1	ENST00000253363
+PCBP1	L102	102		Q:2|R:1|P:1	0.0004	4	1.0	Level-1	coadread:4	ENST00000303577
+BCL2L12	F17	17		F:7	0.0004	7	2.0	Level-3	skcm:4|cscc:3	ENST00000246785
+SPOP	Y87	87		S:2|N:2|C:1	0.0004	5	1.0	Level-2	prad:5	ENST00000393331
+MYC	T73	73	T58	P:3|I:2	0.0004	5	5.0	Level-3	skcm:1|nbl:1|lymbc:1|luad:1|esca:1	ENST00000377970
+TROAP	S562	562		I:5	0.0004	5	2.0	Level-1	paad:3|lgg:2	ENST00000257909
+PTPN11	G503	503		V:6|G:1	0.0004	7	5.0	Level-3	stad:2|luad:2|mmyl:1|lusc:1|coadread:1	ENST00000351677
+ACVR1	R258	258		G:4|M:1	0.0005	5	2.0	Level-2	hgg:4|stad:1	ENST00000263640
+PIK3CA	V344	344		G:5|M:4|A:2	0.0005	11	8.0	Level-3	ucec:3|coadread:2|skcm:1|lymbc:1|hnsc:1|gbm:1|cesc:1|brca:1	ENST00000263967
+ARID3A	S557	557		G:4	0.0005	4	2.0	Level-1	stad:3|ucec:1	ENST00000263620
+THBD	C554	554		C:7	0.0005	7	3.0	Level-1	stad:4|coadread:2|ucec:1	ENST00000377103
+TP53	G244	244		D:9|C:8|S:5|V:2|R:1|G:1	0.0005	26	13.0	Level-3	ov:5|esca:3|coadread:3|ucec:2|stad:2|lusc:2|luad:2|gbm:2|ucs:1|lusm:1|lihc:1|lgg:1|hnsc:1	ENST00000269305
+SMARCA4	G1232	1232		S:6|C:2|V:1	0.0006	9	6.0	Level-1	luad:3|mbl:2|stad:1|skcm:1|lymbc:1|kirc:1	ENST00000429416
+RARA	F286	286		S:2|I:1|C:1	0.0006	4	3.0	Level-1	luad:2|cscc:1|brca:1	ENST00000254066
+CCND1	P287	287		L:3|S:2|T:1	0.0006	6	5.0	Level-1	ucec:2|ucs:1|skcm:1|hnsc:1|cesc:1	ENST00000227507
+CYP4A11	I491	491		M:3|T:1	0.0006	4	2.0	Level-1	lihc:3|brca:1	ENST00000310638
+MAX	R60	60		Q:9	0.0006	9	6.0	Level-1	ucec:2|lgg:2|coadread:2|stad:1|mbl:1|laml:1	ENST00000341653
+ARAF	S214	214		F:3|S:1|C:1|A:1	0.0006	6	3.0	Level-2	luad:3|skcm:2|kirp:1	ENST00000377045
+RQCD1	S87	87		P:3|C:3	0.0006	6	5.0	Level-2	skcm:2|stad:1|prad:1|lihc:1|blca:1	ENST00000273064
+ABCC10	R570	570		W:5|Q:2|L:1	0.0006	8	7.0	Level-1	gbm:2|prad:1|lusc:1|lgg:1|kirp:1|hnsc:1|brca:1	ENST00000372530
+FRMD6	S17	17		S:3|I:1|C:1	0.0006	5	3.0	Level-1	ucec:2|lihc:2|acc:1	ENST00000344768
+NCR1	E42	42		K:6|G:1|E:1	0.0007	8	2.0	Level-1	skcm:7|stad:1	ENST00000291890
+CELSR1	W1958	1958		G:4|C:1	0.0007	5	4.0	Level-1	coadread:2|ov:1|luad:1|gbm:1	ENST00000262738
+LRP5	S1609	1609		P:4|S:1	0.0007	5	4.0	Level-1	prad:2|paad:1|luad:1|cscc:1	ENST00000294304
+MYO9A	P1300	1300		S:5|P:1|L:1	0.0007	7	3.0	Level-1	skcm:5|luad:1|lihc:1	ENST00000356056
+CYP2C8	P402	402		S:7|L:2	0.0008	9	2.0	Level-1	skcm:7|cscc:2	ENST00000371270
+PIK3CA	N1044	1044		K:4|Y:2	0.0008	6	3.0	Level-1	ucec:2|kirc:2|brca:2	ENST00000263967
+CDK4	K22	22		Q:2|M:2	0.0008	4	2.0	Level-1	skcm:3|mmyl:1	ENST00000257904
+HIST1H3C	K37	37		M:5	0.0008	5	2.0	Level-1	hnsc:4|skcm:1	ENST00000540144
+TP53	N239	239		S:8|D:6|T:1	0.0009	15	12.0	Level-3	ucec:2|luad:2|hnsc:2|ucs:1|stad:1|prad:1|ov:1|lihc:1|kirc:1|kich:1|coadread:1|brca:1	ENST00000269305
+LRRC71	K324	324		K:4	0.0009	4	4.0	Level-1	paad:1|lihc:1|kirp:1|hnsc:1	ENST00000337428
+CRB1	F630	630		V:5|S:1	0.0009	6	3.0	Level-1	stad:4|paad:1|esca:1	ENST00000367400
+AMPD1	L631	631	L598	F:4|V:1	0.0009	5	3.0	Level-1	ucec:2|paad:2|esca:1	ENST00000520113
+EBF2	G444	444		E:8|V:1	0.0009	9	4.0	Level-1	skcm:6|ucec:1|gbm:1|cscc:1	ENST00000520164
+TUBGCP4	A8	8		D:4|T:1	0.001	5	4.0	Level-1	hnsc:2|prad:1|luad:1|esca:1	ENST00000564079
+CIZ1	L59	59		P:4	0.001	4	3.0	Level-1	gbm:2|lgg:1|kirp:1	ENST00000393608
+TP53	I255	255		F:7|S:3|N:2|T:1	0.001	13	7.0	Level-2	esca:3|brca:3|paad:2|luad:2|lgg:1|gbm:1|cll:1	ENST00000269305
+PASD1	M338	338		I:5	0.001	5	1.0	Level-1	skcm:5	ENST00000370357
+TP53	E286	286		K:17|*:7|G:4|Q:3|V:1|A:1	0.0011	33	15.0	Level-3	luad:6|brca:5|stad:3|hnsc:3|skcm:2|lusm:2|lihc:2|cscc:2|coadread:2|paad:1|ov:1|lgg:1|laml:1|esca:1|blca:1	ENST00000269305
+IL7R	K395	395		T:3|R:2|N:1|M:1|K:1	0.0011	8	5.0	Level-1	esca:3|skcm:2|ucec:1|stad:1|luad:1	ENST00000303115
+SSBP3	K6	6		R:4	0.0011	4	3.0	Level-1	acc:2|lihc:1|cesc:1	ENST00000371320
+PARP1	G500	500		G:6	0.0012	6	1.0	Level-1	stad:6	ENST00000366794
+SLCO1B7	E27	27		K:9	0.0012	9	6.0	Level-1	skcm:3|coadread:2|gbm:1|cscc:1|cesc:1|brca:1	ENST00000421593
+ACVR1	G328	328		E:4|V:2	0.0013	6	1.0	Level-3	hgg:6	ENST00000263640
+PCMTD1	P342	342		L:6|T:1|P:1	0.0013	8	6.0	Level-1	kich:2|hnsc:2|skcm:1|prad:1|paad:1|luad:1	ENST00000360540
+BCL2L12	R18	18		W:7	0.0013	7	2.0	Level-3	skcm:5|cscc:2	ENST00000246785
+TGFBR2	R553	553	R528	C:5|H:4|L:1	0.0013	10	5.0	Level-1	coadread:4|paad:2|hnsc:2|stad:1|luad:1	ENST00000359013
+VPS37B	Y191	191		S:4	0.0014	4	4.0	Level-1	skcm:1|ov:1|mbl:1|luad:1	ENST00000267202
+C16orf80	R100	100		C:6|H:1	0.0014	7	4.0	Level-1	stad:3|coadread:2|cesc:1|brca:1	ENST00000262498
+TRIM65	H383	383		N:3|L:1	0.0014	4	4.0	Level-1	lusc:1|luad:1|lihc:1|hnsc:1	ENST00000269383
+VHL	N78	78		S:3|D:2|Y:1	0.0014	6	2.0	Level-1	kirc:5|paad:1	ENST00000256474
+MTOR	C1483	1483		F:2|Y:1|W:1|R:1	0.0015	5	3.0	Level-3	kirc:3|gbm:1|brca:1	ENST00000361445
+DDX28	S442	442		S:3|F:2	0.0015	5	1.0	Level-1	skcm:5	ENST00000332395
+S100A8	K49	49		R:5	0.0015	5	5.0	Level-1	thca:1|prad:1|luad:1|hnsc:1|gbm:1	ENST00000368733
+BTBD11	K1003	1003		T:3|R:1|M:1	0.0015	5	3.0	Level-1	stad:3|paad:1|esca:1	ENST00000280758
+TARBP2	E191	191		*:5|E:1	0.0016	6	3.0	Level-1	coadread:3|ucec:2|skcm:1	ENST00000266987
+ZNF623	T500	500		K:5	0.0016	5	2.0	Level-1	hnsc:4|luad:1	ENST00000501748
+SLC16A13	F158	158		L:4	0.0016	4	4.0	Level-1	stad:1|paad:1|luad:1|hnsc:1	ENST00000308027
+TP53	S215	215		I:6|R:5|G:3|N:1	0.0016	15	9.0	Level-3	lihc:3|paad:2|ov:2|luad:2|brca:2|stad:1|lusm:1|laml:1|esca:1	ENST00000269305
+PIK3CA	G106	106		V:7|R:1	0.0017	8	6.0	Level-3	ucs:2|coadread:2|ucec:1|lusc:1|cesc:1|blca:1	ENST00000263967
+UCHL1	H161	161		Y:5	0.0017	5	1.0	Level-1	skcm:5	ENST00000284440
+TPSD1	P22	22		R:6|P:3	0.0017	9	5.0	Level-1	acc:4|blca:2|lihc:1|lgg:1|coadread:1	ENST00000211076
+INTS12	M1	1		V:2|T:1|L:1	0.0017	4	2.0	Level-1	mmyl:2|luad:2	ENST00000451321
+FRMD6	F6	6		F:4	0.0017	4	2.0	Level-1	lihc:3|acc:1	ENST00000344768
+UBXN11	S494	494		C:4	0.0018	4	2.0	Level-1	coadread:3|lihc:1	ENST00000374222
+SPOP	F102	102		V:2|C:2|L:1	0.0018	5	1.0	Level-3	prad:5	ENST00000393331
+PIK3CA	C378	378		R:3|Y:2|F:1	0.0018	6	5.0	Level-1	ucec:2|stad:1|lgg:1|gbm:1|brca:1	ENST00000263967
+NFIC	S339	339		P:4	0.0019	4	3.0	Level-1	paad:2|luad:1|lihc:1	ENST00000443272
+FBXW7	R658	658		*:10|Q:3|R:1	0.002	14	8.0	Level-2	coadread:4|ucec:3|cesc:2|ucs:1|skcm:1|hnsc:1|gbm:1|blca:1	ENST00000281708
+MICA	I236	236		T:4	0.002	4	2.0	Level-1	lihc:3|coadread:1	ENST00000449934
+PODXL	S22	22		P:4	0.002	4	3.0	Level-1	acc:2|kirp:1|kirc:1	ENST00000378555
+XPO6	I274	274		T:3|V:1	0.002	4	3.0	Level-1	paad:2|skcm:1|luad:1	ENST00000304658
+CLECL1	Y50	50		N:4	0.002	4	1.0	Level-1	lihc:4	ENST00000327839
+MXRA5	G792	792		G:9	0.0021	9	1.0	Level-1	skcm:9	ENST00000217939
+TSC22D2	S735	735		Y:4|F:2	0.0022	6	5.0	Level-1	ucec:2|stad:1|skcm:1|coadread:1|brca:1	ENST00000361875
+KIF26B	R2024	2024		H:5|C:2|S:1	0.0023	8	7.0	Level-1	stad:2|ov:1|luad:1|lgg:1|hnsc:1|gbm:1|coadread:1	ENST00000407071
+TP53	T125	125		T:36|M:7|P:2|R:1|K:1	0.0024	47	20.0	Level-2	luad:10|hnsc:6|coadread:5|lusc:4|stad:3|ov:2|lihc:2|esca:2|brca:2|skcm:1|paad:1|lusm:1|lgg:1|laml:1|kich:1|hgg:1|gbm:1|cscc:1|blca:1|acc:1	ENST00000269305
+S100A3	P97	97		S:3|P:2	0.0024	5	3.0	Level-1	skcm:3|stad:1|luad:1	ENST00000368713
+TMEM200C	R19	19		C:5|S:1|H:1	0.0025	7	4.0	Level-1	stad:3|skcm:2|paad:1|coadread:1	ENST00000581347
+SWI5	P34	34		S:7	0.0026	7	2.0	Level-1	skcm:6|cscc:1	ENST00000320188
+TUBGCP6	S1192	1192		S:4	0.0026	4	3.0	Level-1	lgg:2|prad:1|hnsc:1	ENST00000248846
+CSPG5	R365	365		R:3|Q:2|W:1	0.0026	6	4.0	Level-1	paad:3|prad:1|ov:1|hnsc:1	ENST00000383738
+METTL14	R298	298		P:4|H:4	0.0027	8	3.0	Level-1	ucec:4|paad:3|npc:1	ENST00000388822
+BRD7	Y455	455		*:4	0.0027	4	1.0	Level-1	lihc:4	ENST00000394689
+ARID2	S297	297		F:8	0.0029	8	1.0	Level-1	skcm:8	ENST00000334344
+LTN1	S19	19		F:6|Y:1	0.0029	7	2.0	Level-1	skcm:5|cscc:2	ENST00000389194
+TP53	L111	111		P:5|R:4|Q:3	0.0029	12	8.0	Level-2	lihc:3|lusc:2|brca:2|stad:1|skcm:1|gbm:1|esca:1|cll:1	ENST00000269305
+PANK3	I301	301		F:4	0.0029	4	4.0	Level-1	lihc:1|kich:1|coadread:1|acc:1	ENST00000239231
+RSBN1L	L432	432		V:4	0.003	4	1.0	Level-1	brca:4	ENST00000334955
+MYT1L	K203	203		T:3|R:1	0.003	4	3.0	Level-1	esca:2|ucs:1|paad:1	ENST00000428368
+TMEM147	A92	92		V:4|A:1	0.003	5	4.0	Level-1	gbm:2|ucec:1|prad:1|lihc:1	ENST00000222284
+EGFR	R108	108		K:7|G:1	0.0031	8	3.0	Level-3	gbm:5|lgg:2|hgg:1	ENST00000275493
+SMAD4	D537	537		H:4|E:2|Y:1|V:1|G:1	0.0033	9	3.0	Level-1	coadread:7|paad:1|lusc:1	ENST00000342988
+PSG4	E263	263		K:7	0.0034	7	2.0	Level-1	skcm:5|hnsc:2	ENST00000405312
+PDHA1	G145	145	G107	D:5	0.0035	5	4.0	Level-1	paad:2|lgg:1|hnsc:1|gbm:1	ENST00000379806
+LSM14A	R272	272		C:7|H:1	0.0035	8	5.0	Level-1	coadread:4|ucec:1|paad:1|gbm:1|esca:1	ENST00000544216
+THRA	R79	79		H:7	0.0036	7	4.0	Level-1	paad:4|lgg:1|hnsc:1|gbm:1	ENST00000264637
+FANK1	Q4	4		*:5	0.0036	5	3.0	Level-1	acc:3|lihc:1|gbc:1	ENST00000368693
+ASF1B	P21	21		L:3|P:2	0.0038	5	2.0	Level-1	skcm:3|cscc:2	ENST00000263382
+MAX	H28	28		R:4	0.004	4	1.0	Level-1	ucec:4	ENST00000341653
+APC	Q1406	1406		*:7	0.004	7	2.0	Level-3	coadread:6|skcm:1	ENST00000457016
+APC	E1408	1408		*:7	0.004	7	1.0	Level-3	coadread:7	ENST00000457016
+UBE2D3	M32	32	M30	I:3|V:1	0.0042	4	4.0	Level-1	skcm:1|luad:1|hnsc:1|blca:1	ENST00000357194
+MET	D1010_splice	1010			0.0042	5	2.0	Level-3	luad:4|lgg:1	ENST00000318493
+TBX2	S192	192		I:4	0.0043	4	3.0	Level-1	lihc:2|lgg:1|acc:1	ENST00000240328
+ANKZF1	A650	650		V:4|A:1	0.0043	5	5.0	Level-1	ucs:1|skcm:1|paad:1|luad:1|lgg:1	ENST00000323348
+PIK3CA	R38	38		H:7|C:4|S:1|L:1|G:1	0.0044	14	6.0	Level-3	ucec:6|stad:2|gbm:2|coadread:2|lusc:1|cesc:1	ENST00000263967
+ELTD1	S11	11		F:5|S:3|P:1	0.0044	9	4.0	Level-1	skcm:5|cscc:2|lusc:1|luad:1	ENST00000370742
+RPL10L	K156	156		R:3|T:1|M:1	0.0044	5	4.0	Level-1	luad:2|stad:1|esca:1|coadread:1	ENST00000298283
+MTOR	I2500	2500		M:3|F:1	0.0045	4	4.0	Level-3	ucec:1|stad:1|kirc:1|brca:1	ENST00000361445
+RHOA	E40	40		Q:6|K:1|*:1	0.0045	8	4.0	Level-3	hnsc:5|stad:1|luad:1|brca:1	ENST00000418115
+RHOA	R5	5		W:5|Q:4|L:1	0.0045	10	5.0	Level-3	lymbc:3|stad:2|esca:2|brca:2|coadread:1	ENST00000418115
+PCED1B	S343	343		F:6|Y:1|P:1	0.0045	8	3.0	Level-1	skcm:5|cscc:2|hnsc:1	ENST00000546455
+MYC	S161	161	S146	L:6	0.0046	6	4.0	Level-1	hnsc:3|skcm:1|luad:1|coadread:1	ENST00000377970
+NOL4	L423	423		L:3|V:1|M:1	0.0047	5	2.0	Level-1	esca:4|luad:1	ENST00000261592
+DNAH9	E2368	2368		K:7|D:1	0.0047	8	2.0	Level-1	skcm:7|esca:1	ENST00000262442
+CHST12	V12	12		G:4	0.0049	4	2.0	Level-1	luad:2|hnsc:2	ENST00000258711
+KCNQ5	G273	273		E:7|R:1	0.0049	8	1.0	Level-1	skcm:8	ENST00000342056
+ZNF516	A256	256		D:5	0.0051	5	3.0	Level-1	kirp:2|kirc:2|acc:1	ENST00000443185
+CR1	R1842	1842	R1392	C:5|H:4	0.0052	9	7.0	Level-1	skcm:3|ucec:1|luad:1|kirc:1|cscc:1|coadread:1|blca:1	ENST00000367049
+RINT1	K85	85		T:2|N:2	0.0052	4	2.0	Level-1	lgg:2|cesc:2	ENST00000257700
+TGFBRAP1	P824	824		S:2|L:2|P:1|F:1	0.0052	6	2.0	Level-1	skcm:4|cscc:2	ENST00000393359
+TOP2B	R651	651	R656	H:7	0.0053	7	5.0	Level-1	coadread:3|ucec:1|stad:1|paad:1|mbl:1	ENST00000435706
+PACS2	Q87	87		H:3|Q:1	0.0053	4	3.0	Level-1	esca:2|stad:1|lihc:1	ENST00000458164
+ZNF649	R198	198		I:5|S:1|K:1	0.0054	7	4.0	Level-1	ucec:3|coadread:2|stad:1|paad:1	ENST00000354957
+TP53	Q144	144		*:12|P:1|L:1|H:1	0.0054	15	8.0	Level-3	luad:7|hnsc:2|ucec:1|stad:1|ov:1|lihc:1|brca:1|blca:1	ENST00000269305
+VHL	V155_splice	155			0.0055	6	1.0	Level-3	kirc:6	ENST00000256474
+TACC3	P417	417		S:4|P:2	0.0056	6	3.0	Level-1	skcm:4|luad:1|acc:1	ENST00000313288
+ATP6V1B2	P352	352		S:4|P:1	0.0056	5	3.0	Level-1	skcm:3|nbl:1|cscc:1	ENST00000276390
+KCNJ8	G417	417		E:5|R:1|D:1	0.0058	7	2.0	Level-1	skcm:6|cscc:1	ENST00000240662
+TP53	D281	281		Y:8|N:7|V:4|E:4|H:2|D:2|P:1|G:1|A:1	0.0059	30	18.0	Level-3	luad:6|ov:4|gbm:3|brca:3|ucs:1|ucec:1|stad:1|skcm:1|paad:1|nbl:1|mmyl:1|lusc:1|lihc:1|kirc:1|hnsc:1|cscc:1|cll:1|blca:1	ENST00000269305
+ARHGAP28	L277	277	L259	R:3|P:2	0.0061	5	3.0	Level-1	stad:2|coadread:2|esca:1	ENST00000262227
+MEF2A	Y105	105		C:4	0.0061	4	4.0	Level-1	mbl:1|lihc:1|kirc:1|cscc:1	ENST00000354410
+TCF20	P815	815		L:4|S:2	0.0061	6	2.0	Level-1	skcm:4|cscc:2	ENST00000359486
+BRAF	L597	597		Q:2|S:1|R:1	0.0062	4	3.0	Level-3	skcm:2|prad:1|mmyl:1	ENST00000288602
+CANT1	K131	131		R:4	0.0062	4	3.0	Level-1	prad:2|lgg:1|hnsc:1	ENST00000302345
+ARID1A	R1335	1335		*:9	0.0062	9	6.0	Level-1	ucec:4|stad:1|lgg:1|esca:1|coadread:1|brca:1	ENST00000324856
+LCE1F	P27	27		P:7|Q:2|L:1	0.0063	10	2.0	Level-1	skcm:9|hnsc:1	ENST00000334371
+ACP6	V29	29		G:4	0.0063	4	3.0	Level-1	kirp:2|lihc:1|acc:1	ENST00000369238
+MAGEC1	K1046	1046		N:6	0.0064	6	3.0	Level-1	coadread:3|stad:2|esca:1	ENST00000285879
+ACVR1B	R485	485	R444	*:8	0.0065	8	2.0	Level-1	stad:4|coadread:4	ENST00000541224
+BRAF	G596	596		R:2|V:1|S:1|D:1	0.0065	5	4.0	Level-3	luad:2|mmyl:1|gbm:1|blca:1	ENST00000288602
+CEP63	S153	153		L:5|S:4	0.0068	9	5.0	Level-1	skcm:4|stad:2|prad:1|lihc:1|coadread:1	ENST00000337090
+PIK3CB	D1067	1067		V:3|Y:1|A:1	0.0068	5	5.0	Level-1	ucec:1|thca:1|skcm:1|hnsc:1|gbm:1	ENST00000477593
+ARHGAP33	S964	964		S:4	0.0069	4	2.0	Level-1	paad:3|stad:1	ENST00000314737
+KCNH5	T147	147		T:13	0.0069	13	2.0	Level-1	skcm:11|cscc:2	ENST00000322893
+DUSP16	R483	483		*:7	0.0069	7	4.0	Level-1	coadread:3|stad:2|ucec:1|brca:1	ENST00000228862
+CDKN2A	L130	130		R:3|Q:2|V:1	0.007	6	3.0	Level-1	paad:3|cscc:2|skcm:1	ENST00000498124
+FAM58A	K141_splice	141			0.0071	4	3.0	Level-1	skcm:2|luad:1|brca:1	ENST00000406277
+C6	K817	817		T:5|R:1	0.0071	6	3.0	Level-1	stad:3|coadread:2|ov:1	ENST00000263413
+MED28	G7	7		G:3|C:1	0.0073	4	2.0	Level-1	luad:3|hnsc:1	ENST00000237380
+PROCR	R98	98		L:8	0.0075	8	7.0	Level-1	acc:2|prad:1|luad:1|kirp:1|kirc:1|cesc:1|brca:1	ENST00000216968
+MARCH10	G241	241		E:4|R:1|G:1	0.0078	6	2.0	Level-1	skcm:4|cscc:2	ENST00000311269
+FZD10	S22	22		R:5	0.008	5	4.0	Level-1	acc:2|prad:1|luad:1|kirp:1	ENST00000229030
+RTKN2	R33	33		*:8|Q:2	0.008	10	6.0	Level-1	ucec:3|skcm:2|coadread:2|hnsc:1|gbm:1|brca:1	ENST00000315289
+EP300	H1451	1451		R:1|P:1|L:1|H:1	0.008	4	4.0	Level-1	ucec:1|lgg:1|brca:1|blca:1	ENST00000263253
+ARID1A	R693	693		*:8	0.008	8	5.0	Level-3	ucec:4|stad:1|lgg:1|esca:1|coadread:1	ENST00000324856
+THSD7B	E1181	1181	E1149	K:9	0.0081	9	1.0	Level-1	skcm:9	ENST00000272643
+THSD7B	G557	557	G526	R:5|E:2|V:1	0.0081	8	4.0	Level-1	skcm:5|luad:1|lihc:1|gbm:1	ENST00000272643
+SHROOM1	P300	300		T:4	0.0081	4	3.0	Level-1	lihc:2|kirp:1|acc:1	ENST00000378679
+NUP93	Q15	15		*:4	0.0082	4	2.0	Level-1	thca:3|ucec:1	ENST00000308159
+ERBB3	M60	60		K:3|R:1	0.0083	4	4.0	Level-1	ucec:1|esca:1|coadread:1|blca:1	ENST00000267101
+CLEC14A	R193	193		C:5|H:3|R:2	0.0086	10	6.0	Level-1	skcm:3|paad:2|coadread:2|prad:1|luad:1|gbm:1	ENST00000342213
+EYA4	L152	152		R:2|I:2|V:1|P:1|H:1	0.0086	7	3.0	Level-1	ucec:3|stad:3|luad:1	ENST00000367895
+CEP89	S153	153		G:3|I:1	0.0086	4	4.0	Level-1	lihc:1|kich:1|hnsc:1|acc:1	ENST00000305768
+SHB	A460	460		T:4	0.0087	4	2.0	Level-1	hnsc:2|gbm:2	ENST00000377707
+APOBR	E361	361	E352	D:5	0.0088	5	4.0	Level-1	brca:2|ucec:1|ov:1|cesc:1	ENST00000564831
+SF3B1	D894	894		N:2|G:2|A:1	0.009	5	4.0	Level-1	mmyl:2|skcm:1|cscc:1|cll:1	ENST00000335508
+BRINP1	G713	713		G:9	0.009	9	1.0	Level-1	skcm:9	ENST00000265922
+RIPPLY2	S110	110		L:5|*:1	0.009	6	3.0	Level-1	skcm:3|cscc:2|hnsc:1	ENST00000369689
+TCEB1	Y79	79		S:1|N:1|F:1|*:1	0.009	4	1.0	Level-3	kirc:4	ENST00000518127
+KCNJ12	E430	430		G:5|*:1	0.0092	6	4.0	Level-1	brca:2|acc:2|lihc:1|coadread:1	ENST00000583088
+NAP1L3	K502	502		R:2|T:1|N:1|M:1|K:1	0.0093	6	4.0	Level-1	stad:3|esca:1|coadread:1|blca:1	ENST00000373079
+CYP7B1	K332	332		T:5	0.0096	5	2.0	Level-1	stad:4|paad:1	ENST00000310193
+HNMT	L145	145		L:4	0.0096	4	4.0	Level-1	ucec:1|stad:1|lusc:1|lihc:1	ENST00000280097
+NHS	L215	215		P:4	0.0098	4	3.0	Level-1	brca:2|stad:1|cll:1	ENST00000380060
+DHRS4	T102	102		M:6	0.0098	6	5.0	Level-1	mbl:2|prad:1|paad:1|luad:1|kirc:1	ENST00000313250
+MAGI2	L603	603		R:3|P:2	0.0098	5	2.0	Level-1	stad:3|esca:2	ENST00000354212
+AKT1	W80	80		R:11	2.55653235095282e-12	11			bowel:2|lymphoid:1|prostate:3|unk:1|uterine:4	
+AKT1	E40	40		K:8|A:1	5.15261605803937e-05	9			bowel:2|breast:1|kidney:1|lymphoid:1|ovaryfallopiantube:1|prostate:1|thymus:1|unk:1	
+ATM	Y2019	2019		C:8|H:1	2.37274478632093e-07	9			bladder:2|esophagusstomach:1|lung:1|lymphoid:3|unk:2	
+ATM	E2039	2039		K:10|*:2|G:1	6.503179954128571e-05	13			bladder:1|bowel:3|breast:1|cnsbrain:1|lung:4|lymphoid:1|pancreas:1|peripheralnervoussystem:1	
+ATM	R2526	2526		G:4|K:3|S:3	0.0007338353863124	10			bladder:2|breast:1|lung:3|lymphoid:1|prostate:1|skin:1|thyroid:1	
+BAP1	F170	170		C:5|V:4|L:1|S:1	4.415824904470891e-09	11			biliarytract:2|bladder:1|eye:1|kidney:3|liver:1|lung:1|prostate:1|uterine:1	
+BAP1	C91	91		F:3|G:3|R:1	0.0004743660307697	7			biliarytract:1|bladder:1|kidney:3|pleura:2	
+BRAF	F595	595		L:10|I:1	2.2122366791988297e-12	11			bladder:1|bowel:5|lymphoid:3|skin:2	
+BRAF	G464	464		V:9|E:3|R:2|A:1	7.5227138283354e-10	15			bowel:1|breast:2|esophagusstomach:1|headandneck:1|lung:5|lymphoid:2|testis:1|uterine:2	
+CBFB	Q67	67		H:5|*:1|K:1	0.0010831488016303	7			breast:6|lymphoid:1	
+CDH1	D257	257		Y:3|G:2|N:2|A:1|V:1	7.84357915561454e-06	9			bowel:2|breast:2|esophagusstomach:4|uterine:1	
+CDH1	R732	732		Q:9|W:3	0.0012697127326597	12			bowel:3|breast:3|esophagusstomach:1|uterine:5	
+CDH1	W156	156		R:4|C:1|G:1	0.0061836327212545	6			bowel:1|breast:3|esophagusstomach:2	
+CDK12	R882	882		W:9|Q:3|G:1|L:1	1.32798979136243e-05	14			bowel:2|breast:1|esophagusstomach:1|myeloid:1|ovaryfallopiantube:2|prostate:5|skin:2	
+CDKN2A	P81	81		L:18|H:2|R:2|S:1|T:1	1.841671392433061e-11	24			biliarytract:1|breast:3|esophagusstomach:1|liver:2|lung:3|pancreas:3|skin:10|unk:1	
+CDKN2A	R112	112		C:12|H:4|P:4|G:1|S:1	2.00742352854399e-10	22			bowel:2|breast:1|esophagusstomach:3|headandneck:3|lung:4|lymphoid:5|skin:2|unk:1|uterine:1	
+DICER1	E1705	1705		K:12|Q:3|A:1|V:1	1.27708583832538e-07	17			bowel:2|cnsbrain:1|lymphoid:3|thyroid:3|uterine:8	
+DICER1	G1809	1809		R:9|W:2|V:1	1.21472485036542e-06	12			breast:1|lung:3|softtissue:5|unk:1|uterine:2	
+DNMT3A	R736	736		H:9|C:6|L:1	2.90079991441275e-06	16			bowel:1|breast:1|cnsbrain:1|lung:1|lymphoid:2|myeloid:5|peritoneum:1|prostate:1|thyroid:1|unk:1|uterine:1	
+EGFR	C797	797		S:13	5.55417953932295e-18	13			lung:13	
+EGFR	R776	776		H:6|C:5|G:1|L:1	4.91378792512742e-08	13			bladder:1|bowel:2|lung:8|lymphoid:1|softtissue:1	
+EGFR	V834	834		L:7	8.306140783633621e-07	7			lung:7	
+EGFR	A755	755		G:4|D:1	0.0022299969731389	5			lung:5	
+ERBB3	G337	337		R:8	1.31625883859806e-06	8			bladder:3|bowel:2|esophagusstomach:1|uterine:2	
+ERBB3	P262	262		H:5|S:2|A:1|L:1|R:1	9.51712510483098e-06	10			bladder:1|bowel:3|esophagusstomach:2|headandneck:1|ovaryfallopiantube:1|unk:1|uterine:1	
+ERBB3	T389	389		K:3|I:2|R:1	0.0004546577384556	6			ampullaofvater:1|bladder:1|bowel:4	
+ERBB3	G325	325		R:6	0.0018495652935557	6			bowel:4|pancreas:1|uterine:1	
+ERCC2	S44	44		L:11	3.73863383002761e-08	11			bladder:11	
+ERCC2	S74	74		L:5|P:1	0.0058919177604576	6			bladder:6	
+ESR1	S463	463		P:7|F:1	0.0005941069761832	8			breast:3|skin:1|uterine:4	
+FBXW7	A503	503		V:7|T:1	0.0001122754260369	8			bowel:1|esophagusstomach:1|ovaryfallopiantube:1|uterine:5	
+FBXW7	D600	600		Y:4|N:2|E:1	0.0067780620795622	7			bowel:7	
+FGFR2	K659	659		E:13|N:6|M:1|Q:1	1.10970024299734e-14	21			bladder:3|bowel:1|breast:4|cervix:1|cnsbrain:1|esophagusstomach:1|lung:3|ovaryfallopiantube:1|uterine:6	
+FGFR2	W290	290		C:1|L:1|R:1	0.003546166142713	3			biliarytract:3	
+FOXA1	D249	249		V:3|A:1|G:1|N:1|Y:1	8.948566481804759e-05	7			bladder:1|breast:1|kidney:1|prostate:4	
+KDR	T771	771		R:5|A:2|K:2	0.0003630257286868	9			breast:5|lymphoid:2|softtissue:2	
+KEAP1	R362	362		Q:18|P:1|W:1	4.19855989746715e-12	20			biliarytract:1|bowel:1|breast:1|esophagusstomach:1|headandneck:1|lung:11|unk:2|uterine:2	
+KEAP1	V271	271		L:13|M:4	8.91509690990649e-12	17			esophagusstomach:1|kidney:2|liver:2|lung:11|unk:1	
+KEAP1	R413	413		L:7|C:5|H:3|S:1	2.12615419088428e-09	16			esophagusstomach:1|lung:10|skin:1|unk:2|uterine:2	
+KEAP1	H274	274		R:5|L:2|P:1|Q:1	2.02190694306499e-08	9			lung:9	
+KEAP1	G332	332		C:8|D:2|S:2|R:1|V:1	2.01702272456213e-07	14			lung:12|unk:1|uterine:1	
+KEAP1	D422	422		N:12|Y:2|H:1	6.73878810712106e-07	15			biliarytract:1|bladder:1|esophagusstomach:1|headandneck:2|lung:6|pancreas:1|unk:2|uterine:1	
+KEAP1	P278	278		L:6|S:5|R:2|Q:1	8.89671647826602e-07	14			bowel:1|headandneck:1|kidney:1|liver:1|lung:8|unk:1|uterine:1	
+KEAP1	G186	186		C:6|S:6|D:1|V:1	1.04018395463998e-06	14			bowel:2|esophagusstomach:1|liver:1|lung:10	
+KEAP1	H311	311		R:5|Y:2|L:1|P:1|Q:1	1.71266910473257e-06	10			esophagusstomach:1|liver:1|lung:8	
+KEAP1	D236	236		N:7|E:2|V:2|H:1|Y:1	5.6267490520912e-06	13			bladder:1|eye:1|lung:6|unk:2|uterine:3	
+KEAP1	R234	234		W:8|G:2|P:2	1.36563257171265e-05	12			bladder:1|cervix:1|headandneck:1|lung:9	
+KEAP1	G509	509		W:4|V:3|R:2|A:1|E:1	7.66250500750912e-05	11			lung:9|unk:1|uterine:1	
+KEAP1	G603	603		V:4|W:3|E:2	0.000189084763061	9			lung:9	
+KEAP1	G364	364		C:7|D:1	0.0002942190703955	8			lung:8	
+KEAP1	E488	488		K:4|V:3|*:2|D:1	0.0006027442602716	10			lung:8|ovaryfallopiantube:1|uterine:1	
+KEAP1	M161	161		I:6|V:2	0.0012931980307233	8			headandneck:1|liver:1|lung:5|unk:1	
+KEAP1	R71	71		L:6|Q:2|W:1	0.0022102203062696	9			kidney:1|liver:1|lung:7	
+KRAS	V14	14		I:17|A:1	8.39625628760232e-10	18			bowel:7|breast:1|cervix:1|cnsbrain:2|esophagusstomach:1|lung:1|lymphoid:2|pancreas:1|prostate:1|uterine:1	
+MAP2K1	D67	67		N:15|Y:1	2.67605802531597e-08	16			bladder:1|bowel:7|breast:2|esophagusstomach:1|prostate:2|uterine:3	
+MED12	D23	23		Y:17|N:1	1.2024174774915501e-10	18			cervix:2|esophagusstomach:1|ovaryfallopiantube:2|uterine:13	
+MED12	R521	521		H:7|C:6	2.9344863075475104e-05	13			breast:1|lung:1|lymphoid:1|skin:1|unk:1|uterine:8	
+MET	D1228	1228		H:4|N:4|A:1|Y:1	0.0047669844288456	10			biliarytract:2|kidney:2|lung:4|uterine:2	
+MTOR	Y1450	1450		D:7	1.93936255882023e-05	7			bowel:5|kidney:1|skin:1	
+MTOR	I1973	1973		F:5|M:1|V:1	0.0001562075420057	7			bladder:1|bowel:2|breast:1|esophagusstomach:1|kidney:1|testis:1	
+MTOR	E2419	2419		K:5|D:2|A:1|G:1	0.0022352914808796	9			bladder:1|bowel:3|breast:1|cervix:1|kidney:1|skin:1|thyroid:1	
+MYC	A59	59		V:13|T:1	8.36168398694585e-09	14			lymphoid:4|ovaryfallopiantube:1|uterine:9	
+NOTCH1	A465	465		T:17	9.253292521878852e-07	17			bone:1|bowel:1|cnsbrain:6|esophagusstomach:4|headandneck:2|lung:1|uterine:1|vulvavagina:1	
+NOTCH1	G394	394		D:3|V:2|C:1|S:1	0.005114922050396	7			bowel:1|cnsbrain:4|esophagusstomach:1|skin:1	
+NRAS	A146	146		V:3|S:2|T:2	0.0091925298984136	7			cervix:1|esophagusstomach:1|lung:1|myeloid:1|pleura:1|skin:2	
+PDGFRB	N666	666		K:6|H:1	0.0057250398173091	7			breast:1|prostate:1|softtissue:1|thyroid:1|uterine:3	
+PIK3CA	E418	418		K:24|D:1	1.13802402056285e-20	25			bladder:3|bowel:2|breast:10|cervix:1|cnsbrain:1|headandneck:1|lung:2|softtissue:1|uterine:4	
+PIK3CA	D725	725		G:7|N:4|E:1	1.20079384820189e-10	12			bowel:3|breast:3|skin:1|uterine:5	
+PIK3CA	I112	112		F:8|T:1	8.338983797037663e-10	9			bowel:1|breast:4|lung:1|uterine:3	
+PIK3CA	P449	449		S:6|R:2|A:1|L:1	4.842666513616971e-07	10			bowel:2|breast:1|cnsbrain:1|ovaryfallopiantube:1|uterine:5	
+PIK3CA	G914	914		R:8|E:1	3.02801037325792e-06	9			bowel:1|cnsbrain:2|lung:1|softtissue:2|uterine:3	
+PIK3CA	Q75	75		E:10|H:1|L:1|P:1	4.14074262276213e-06	13			bladder:2|bowel:5|cervix:1|cnsbrain:1|headandneck:1|liver:1|pancreas:1|uterine:1	
+PIK3CA	A1066	1066		V:5|T:1	0.0017250126588901	6			bladder:1|breast:2|cnsbrain:1|lung:1|uterine:1	
+PIK3CB	E470	470		K:14	4.5520285628288895e-05	14			bowel:3|cnsbrain:3|esophagusstomach:2|prostate:2|uterine:4	
+PIK3R2	N561	561		D:5|T:1|Y:1	3.22157812672297e-06	7			lung:3|prostate:3|uterine:1	
+PPP2R1A	W257	257		L:12|C:6|S:3|*:1	7.99466696941904e-29	22			bowel:1|cervix:1|liver:1|ovaryfallopiantube:2|uterine:17	
+PPP2R1A	S219	219		L:12|A:1	2.36774600562266e-05	13			esophagusstomach:1|ovaryfallopiantube:2|skin:1|uterine:9	
+PTEN	G36	36		R:15|E:4|*:3|V:1	5.897122692855911e-17	23			bladder:1|breast:1|cnsbrain:7|esophagusstomach:2|headandneck:1|lung:1|lymphoid:1|prostate:2|softtissue:1|uterine:6	
+PTEN	I135	135		V:7|K:2|R:2	4.312307890589449e-10	11			bowel:1|breast:2|headandneck:1|uterine:7	
+PTEN	N48	48		K:7|Y:2|I:1|S:1	1.02641616015345e-07	11			breast:1|cervix:1|cnsbrain:1|lung:2|prostate:1|softtissue:1|unk:1|uterine:3	
+PTEN	N276	276		K:6|T:2|D:1|H:1|S:1	1.0662625817787401e-07	11			bowel:1|cnsbrain:2|kidney:1|lung:1|lymphoid:1|prostate:1|uterine:4	
+PTEN	K128	128		N:9|M:2|Q:2|T:1	4.624463478473191e-07	14			bladder:1|breast:2|headandneck:1|lung:3|prostate:2|skin:1|uterine:4	
+PTEN	K125	125		T:4|E:3|N:2|*:1	6.1931671169423e-07	10			bowel:1|breast:1|lung:1|skin:1|uterine:6	
+PTEN	R15	15		K:6|*:4|S:3|I:2|T:2|G:1	1.28795861106498e-06	18			bowel:2|breast:2|cervix:1|cnsbrain:3|headandneck:1|liver:1|lymphoid:1|softtissue:1|thyroid:1|uterine:5	
+PTEN	H123	123		Y:6|D:3|R:3|L:2|Q:1	2.92236376653922e-06	15			bowel:1|breast:3|cnsbrain:2|lung:2|ovaryfallopiantube:1|penis:1|prostate:1|uterine:4	
+PTEN	D326	326		G:6|H:4|V:1|Y:1	4.34791085096334e-06	12			cnsbrain:4|kidney:1|lung:2|ovaryfallopiantube:1|prostate:1|uterine:3	
+PTEN	Y138	138		C:6|S:1	2.798269800349551e-05	7			kidney:1|ovaryfallopiantube:1|pancreas:1|uterine:4	
+PTEN	P204	204		L:7|R:2|S:1	5.240459074625561e-05	10			bowel:2|cnsbrain:3|skin:1|uterine:4	
+PTEN	P96	96		Q:3|S:2|T:2|A:1|L:1|R:1	5.42444368903802e-05	10			bowel:2|cnsbrain:1|esophagusstomach:1|kidney:1|lung:1|uterine:4	
+PTEN	L23	23		V:4|*:2|S:1	0.0001206090677898	7			breast:1|cnsbrain:1|peripheralnervoussystem:1|prostate:1|unk:2|uterine:1	
+PTEN	P95	95		L:8|S:3	0.0001838258703194	11			bowel:1|cnsbrain:4|skin:2|testis:1|uterine:3	
+PTEN	R159	159		S:6|G:2|K:2	0.0011577303252437	10			bone:1|cnsbrain:3|esophagusstomach:1|headandneck:1|lymphoid:1|thyroid:1|uterine:2	
+PTEN	D107	107		Y:8|E:2|H:2|G:1|N:1|V:1	0.0026200928688952	15			bowel:1|breast:2|cervix:1|cnsbrain:6|lung:3|uterine:2	
+PTEN	D252	252		V:4|G:3|Y:2|N:1	0.0029916920834122	10			breast:1|cervix:1|cnsbrain:3|headandneck:1|thyroid:1|uterine:3	
+PTEN	V119	119		F:4|A:1|G:1|L:1	0.0066782873134018	7			cnsbrain:2|prostate:2|skin:1|unk:1|uterine:1	
+PTEN	L108	108		R:4|F:2|H:1|P:1	0.008148013646967	8			bowel:1|breast:2|cnsbrain:1|pancreas:1|skin:2|uterine:1	
+PTPN11	S502	502		L:7|P:7|A:1	7.519067372474442e-13	15			bowel:1|cnsbrain:4|esophagusstomach:1|headandneck:1|lung:1|lymphoid:4|myeloid:2|testis:1	
+PTPRT	R721	721		C:8|H:8|S:1	6.095770910571129e-05	17			bowel:2|cervix:1|cnsbrain:2|esophagusstomach:3|lung:1|ovaryfallopiantube:1|prostate:1|skin:3|softtissue:1|uterine:2	
+PTPRT	R1220	1220		Q:10|L:3|W:1	0.0059703264892173	14			bowel:6|headandneck:1|lung:3|lymphoid:1|skin:1|uterine:2	
+RAF1	P261	261		R:5|L:3|H:1|S:1	2.70075576168034e-05	10			ampullaofvater:1|biliarytract:1|bladder:1|bowel:1|liver:1|lung:2|skin:1|unk:1|uterine:1	
+RB1	R661	661		W:16	3.99684712110929e-07	16			adrenalgland:2|bladder:2|bowel:1|cnsbrain:1|esophagusstomach:1|eye:1|kidney:1|lung:1|lymphoid:1|pancreas:1|prostate:1|softtissue:1|unk:2	
+RB1	Q444	444		H:5|L:2|*:1|R:1	0.0012312939510221	9			bladder:1|esophagusstomach:1|lung:3|pancreas:1|prostate:1|softtissue:1|uterine:1	
+RET	C634	634		R:2|W:1	0.0021522065288701	3			thyroid:3	
+RRAS2	G23	23		D:14|C:8|V:7|S:5|A:1	8.0638899577784665e-47	35			breast:4|cervix:1|cnsbrain:2|esophagusstomach:1|kidney:1|ovaryfallopiantube:1|prostate:2|testis:9|uterine:13|vulvavagina:1	
+RRAS2	G24	24		D:15|V:2|C:1|R:1	2.9711914252235903e-19	19			bowel:2|cnsbrain:1|headandneck:1|lung:1|ovaryfallopiantube:2|uterine:12	
+RUNX1	R204	204		Q:15|*:2|P:1	1.04722150368425e-06	18			bowel:2|breast:3|myeloid:2|ovaryfallopiantube:1|pancreas:1|prostate:1|uterine:8	
+SETD2	R1592	1592		Q:4|*:3|G:1|L:1	0.0021731033225771	9			bladder:1|cnsbrain:1|esophagusstomach:1|kidney:2|liver:1|lung:3	
+SMAD2	D450	450		E:3|G:2|N:2|H:1	5.676711740444089e-05	8			bowel:6|lung:1|prostate:1	
+SMAD2	S465	465		N:6|R:1	6.25956679500868e-05	7			bowel:7	
+SMAD2	C312	312		G:3|R:1|S:1|W:1	0.0033521036315206	6			bowel:5|skin:1	
+SMAD3	S423	423		N:3|R:3|G:1|I:1|T:1	7.82278466199621e-06	9			bowel:4|lung:1|ovaryfallopiantube:1|pancreas:2|uterine:1	
+SMAD4	I383	383		K:4|R:4|T:2|M:1	6.991626160485889e-11	11			ampullaofvater:1|biliarytract:1|bowel:1|esophagusstomach:2|lung:1|pancreas:4|uterine:1	
+SMAD4	G365	365		D:7|V:2|R:1|S:1	5.450544231898301e-07	11			bowel:6|breast:1|lung:1|lymphoid:1|pancreas:1|unk:1	
+SMAD4	R496	496		H:15|P:2	2.9256647863549307e-06	17			bowel:10|cervix:1|pancreas:4|uterine:2	
+SMAD4	A406	406		V:13|T:4|E:1	5.35629101856138e-05	18			bowel:11|esophagusstomach:2|kidney:1|lung:1|lymphoid:1|pancreas:1|uterine:1	
+SMAD4	L533	533		I:3|P:3|F:1|R:1|V:1	0.0003005177185441	9			ampullaofvater:1|bowel:4|lung:1|pancreas:2|unk:1	
+SMAD4	C115	115		S:3|Y:2|G:1	0.0019001119145372	6			biliarytract:2|bowel:4	
+SMAD4	G508	508		D:6|V:2|S:1	0.0034378759275618	9			bowel:4|breast:2|lung:1|pancreas:2	
+SMAD4	K428	428		M:3|N:3|T:3	0.0054059218138781	9			bowel:4|breast:1|lung:3|uterine:1	
+SMARCA4	E920	920		K:14	9.71774258898038e-06	14			cnsbrain:2|esophagusstomach:2|lung:3|pancreas:1|skin:1|uterine:5	
+SMARCA4	E780	780		K:9|*:1	0.0015302454417842	10			bowel:1|esophagusstomach:2|lung:5|skin:1|uterine:1	
+SMARCA4	F1102	1102		L:8|S:1	0.0016559444836594	9			biliarytract:1|esophagusstomach:1|lung:5|ovaryfallopiantube:1|pancreas:1	
+SOS1	M269	269		K:6|T:2|V:2|I:1|R:1	2.3884435057631302e-09	12			bladder:1|bowel:1|cnsbrain:1|esophagusstomach:1|lung:2|pancreas:1|skin:1|uterine:4	
+SPOP	E50	50		K:16|D:1	1.32821875362239e-13	17			breast:2|esophagusstomach:1|headandneck:1|ovaryfallopiantube:2|thyroid:1|unk:1|uterine:9	
+SPOP	E47	47		K:11|A:2|*:1|Q:1	3.6658296182275503e-10	15			adrenalgland:1|bladder:1|breast:1|cervix:1|lymphoid:1|ovaryfallopiantube:6|uterine:4	
+SPOP	D130	130		H:9|N:3|E:2|V:2	8.967429251306048e-10	16			bladder:4|breast:1|lymphoid:2|pancreas:1|prostate:6|skin:1|softtissue:1	
+SPOP	F104	104		I:3|C:2|L:2|S:1	1.61449224848364e-06	8			lymphoid:1|prostate:4|unk:1|uterine:2	
+SPOP	S80	80		R:7	4.269900963059849e-05	7			ovaryfallopiantube:1|unk:1|uterine:5	
+STK11	D237	237		Y:10|H:4|N:1	6.41548176859785e-09	15			cervix:1|lung:12|pancreas:1|unk:1	
+STK11	R304	304		W:11|P:1	6.88703133288158e-07	12			biliarytract:1|breast:1|cervix:2|lung:7|unk:1	
+STK11	R297	297		K:4|M:2|S:2|T:1	0.0002377808109098	9			cervix:1|lung:7|unk:1	
+TCF7L2	R448	448		Q:11|W:10|L:1	1.74354033598205e-15	22			bowel:21|lung:1	
+TCF7L2	W459	459		R:3|*:1|C:1|L:1	3.70773237479326e-05	6			bowel:6	
+TCF7L2	G452	452		R:13	6.35971917959021e-05	13			bowel:11|lymphoid:2	
+TCF7L2	R420	420		W:13|L:1	7.723804393547941e-05	14			biliarytract:1|bowel:12|esophagusstomach:1	
+TCF7L2	C469	469		Y:6|W:1	0.0063150116522679	7			bowel:6|uterine:1	
+TGFBR2	D549	549		N:8|G:4|Y:1	0.000525481438947	13			biliarytract:1|bowel:6|esophagusstomach:3|lung:1|pancreas:1|unk:1	
+TP53	G199	199		V:32|E:15|*:6	2.017817027298389e-50	53			bladder:2|bowel:7|breast:8|cnsbrain:4|headandneck:1|liver:1|lung:13|lymphoid:1|myeloid:1|ovaryfallopiantube:2|pancreas:2|prostate:4|skin:2|softtissue:2|testis:1|unk:1|uterine:1	
+TP53	E224	224		D:28|*:14	6.363075034985277e-38	42			bladder:2|bowel:5|breast:4|cnsbrain:3|esophagusstomach:2|headandneck:2|kidney:1|liver:1|lung:12|lymphoid:1|ovaryfallopiantube:1|pancreas:2|skin:1|softtissue:3|unk:1|uterine:1	
+TP53	A138	138		V:22|P:12|T:3	3.239738187739e-35	37			bowel:5|breast:4|cnsbrain:4|esophagusstomach:2|headandneck:1|kidney:1|liver:1|lung:7|ovaryfallopiantube:2|pancreas:2|prostate:1|skin:2|softtissue:2|unk:1|uterine:1|vulvavagina:1	
+TP53	L145	145		P:11|Q:10|R:9	1.5388696477737296e-34	30			bladder:1|bone:1|bowel:6|breast:3|cervix:1|cnsbrain:1|esophagusstomach:2|liver:2|lung:4|myeloid:1|ovaryfallopiantube:2|pancreas:2|prostate:2|unk:1|uterine:1	
+TP53	R156	156		P:24|G:6|H:4|C:1|L:1|S:1	1.0730675829727999e-32	37			biliarytract:1|bladder:3|bowel:2|breast:4|cnsbrain:4|headandneck:1|liver:2|lung:14|ovaryfallopiantube:2|pancreas:1|softtissue:2|uterine:1	
+TP53	A276	276		D:10|P:10|G:7|V:3|T:2|S:1	1.3277326884573502e-31	33			ampullaofvater:1|bowel:1|breast:2|cnsbrain:2|esophagusstomach:1|headandneck:2|liver:2|lung:12|lymphoid:1|ovaryfallopiantube:2|pleura:1|thyroid:1|unk:1|uterine:3|vulvavagina:1	
+TP53	R283	283		P:27|H:5|C:4|G:1|L:1	1.118280245077e-30	38			ampullaofvater:1|bladder:3|bowel:3|breast:2|cnsbrain:1|esophagusstomach:1|headandneck:5|lung:11|ovaryfallopiantube:1|pancreas:2|unk:4|uterine:3|vulvavagina:1	
+TP53	T253	253		A:9|P:7|I:4|N:4|S:1	8.407231149468499e-28	25			bladder:1|bowel:2|breast:1|esophagusstomach:3|headandneck:1|liver:3|lung:3|lymphoid:1|ovaryfallopiantube:2|prostate:3|skin:1|uterine:4	
+TP53	S240	240		G:13|R:8|C:2	6.821235117748399e-25	23			bowel:2|cnsbrain:3|lung:5|lymphoid:1|myeloid:1|pancreas:2|prostate:5|unk:1|uterine:3	
+TP53	G279	279		E:26|R:1|V:1	1.1380384822434601e-24	28			bladder:3|breast:2|cnsbrain:4|esophagusstomach:1|lung:4|ovaryfallopiantube:5|prostate:2|skin:3|uterine:3|vulvavagina:1	
+TP53	I162	162		N:8|F:7|S:6	1.70896463670878e-24	21			bowel:2|esophagusstomach:3|liver:1|lung:5|lymphoid:3|pancreas:2|prostate:1|skin:1|thyroid:1|unk:1|uterine:1	
+TP53	E180	180		K:22|*:14|D:2	2.1590027190882402e-23	38			bladder:7|bowel:1|breast:9|esophagusstomach:1|headandneck:1|lung:13|ovaryfallopiantube:2|pancreas:1|prostate:2|testis:1	
+TP53	T211	211		I:13|A:4|N:1|P:1	7.179311187384247e-20	19			bladder:1|bowel:6|cnsbrain:1|headandneck:1|liver:1|lung:4|pancreas:1|skin:1|softtissue:1|uterine:2	
+TP53	P177	177		R:9|L:7|S:5|H:3|T:1	3.32811779722967e-18	25			breast:2|cnsbrain:3|esophagusstomach:1|lung:4|lymphoid:1|ovaryfallopiantube:2|pancreas:1|prostate:2|skin:6|unk:3	
+TP53	R174	174		W:11|G:3|K:1|S:1	6.37491175015446e-15	16			biliarytract:1|bowel:1|breast:2|esophagusstomach:2|liver:4|lung:2|lymphoid:1|softtissue:1|unk:1|uterine:1	
+TP53	G334	334		V:13|W:6|A:1	2.5901191774888502e-14	20			breast:2|esophagusstomach:2|kidney:1|lung:12|testis:1|unk:1|uterine:1	
+TP53	S106	106		R:15|I:1	1.2248837766807501e-12	16			biliarytract:1|bladder:1|bowel:1|breast:1|esophagusstomach:1|headandneck:2|liver:1|lung:5|ovaryfallopiantube:1|pancreas:1|skin:1	
+TP53	K139	139		N:12|*:5|E:2|Q:1|T:1	2.0364310996051104e-12	21			bladder:2|bone:1|breast:2|esophagusstomach:2|headandneck:1|liver:3|lung:5|lymphoid:3|prostate:1|uterine:1	
+TP53	V147	147		G:6|D:5|I:1	7.507183771504802e-11	12			biliarytract:1|bladder:1|bowel:1|cnsbrain:2|esophagusstomach:1|lung:2|ovaryfallopiantube:1|pancreas:1|uterine:2	
+TP53	R290	290		H:12|C:3|L:1	4.9053382030779905e-09	16			bladder:2|bowel:1|breast:3|lung:1|lymphoid:3|skin:3|thyroid:2|unk:1	
+TP53	L330	330		P:4|R:4|H:2|I:1	6.599157829345079e-09	11			breast:1|liver:1|lung:5|skin:4	
+TP53	F341	341		Y:3|C:2|L:1|S:1|V:1	3.7218334786405895e-05	8			cnsbrain:1|headandneck:1|liver:1|lung:1|pleura:1|testis:1|unk:1|uterine:1	
+TP53	L344	344		P:3|R:2|M:1|Q:1	0.0005713392898264	7			bowel:2|breast:1|lung:2|pancreas:1|prostate:1	
+TP53	A347	347		D:3|P:2|T:2|V:1	0.0040643903662397	8			bowel:2|breast:2|cnsbrain:1|lung:1|unk:1|uterine:1	
+U2AF1	R156	156		H:10|C:3	1.35224941230428e-07	13			bladder:1|bowel:1|breast:1|cervix:1|lung:1|lymphoid:1|myeloid:2|ovaryfallopiantube:2|pancreas:1|skin:1|uterine:1	
+VHL	L188	188		P:4|Q:3|R:1	1.3599182926043002e-06	8			kidney:8	
+VHL	R167	167		Q:4|W:4|G:3	0.0003850017619303	11			adrenalgland:1|kidney:4|pancreas:2|prostate:1|softtissue:1|thyroid:1|uterine:1	
