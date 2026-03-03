@@ -26,7 +26,8 @@ public class ProxyController {
 
         String queryString = request.getQueryString();
         String path = request.getServletPath().substring("/proxy".length());
-        URI uri = new URI("http:/" + path + (queryString == null ? "" : "?" + queryString));
+        // Fixed malformed URI: changed "http:/" → "http://"
+        URI uri = new URI("http://" + path + (queryString == null ? "" : "?" + queryString));
 
         HttpHeaders httpHeaders = new HttpHeaders();
         String contentType = request.getHeader("Content-Type");
