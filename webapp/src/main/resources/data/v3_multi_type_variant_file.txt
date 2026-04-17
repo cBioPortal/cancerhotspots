@@ -3574,7 +3574,7 @@ ERBB3	P262	P	A	262	bowel:1
 ERBB3	P262	P	L	262	head_neck:1
 ERBB3	P262	P	R	262	uterus:1
 ERBB3	T389	T	K	389	bowel:3
-ERBB3	T389	T	I	389	ampullaofvater:1|bowel:1
+ERBB3	T389	T	I	389	ampulla_of_vater:1|bowel:1
 ERBB3	T389	T	R	389	bladder:1
 ERBB3	G325	G	R	325	bowel:4|pancreas:1|uterus:1
 ERCC2	S44	S	L	44	bladder:11
@@ -3812,7 +3812,7 @@ PTPRT	R1220	R	W	1220	skin:1
 RAF1	P261	P	R	261	biliary_tract:1|bladder:1|bowel:1|liver:1|unk:1
 RAF1	P261	P	L	261	lung:2|skin:1
 RAF1	P261	P	H	261	uterus:1
-RAF1	P261	P	S	261	ampullaofvater:1
+RAF1	P261	P	S	261	ampulla_of_vater:1
 RB1	R661	R	W	661	adrenal_gland:2|bladder:2|bowel:1|brain:1|stomach:1|eye:1|kidney:1|lung:1|blood:1|pancreas:1|prostate:1|soft_tissue:1|unk:2
 RB1	Q444	Q	H	444	lung:3|prostate:1|soft_tissue:1
 RB1	Q444	Q	L	444	bladder:1|stomach:1
@@ -3848,7 +3848,7 @@ SMAD3	S423	S	G	423	ovary:1
 SMAD3	S423	S	I	423	pancreas:1
 SMAD3	S423	S	T	423	bowel:1
 SMAD4	I383	I	K	383	stomach:1|pancreas:3
-SMAD4	I383	I	R	383	ampullaofvater:1|biliary_tract:1|stomach:1|lung:1
+SMAD4	I383	I	R	383	ampulla_of_vater:1|biliary_tract:1|stomach:1|lung:1
 SMAD4	I383	I	T	383	pancreas:1|uterus:1
 SMAD4	I383	I	M	383	bowel:1
 SMAD4	G365	G	D	365	bowel:4|lung:1|pancreas:1|unk:1
@@ -3861,7 +3861,7 @@ SMAD4	A406	A	V	406	bowel:9|stomach:1|kidney:1|lung:1|pancreas:1
 SMAD4	A406	A	T	406	bowel:1|stomach:1|blood:1|uterus:1
 SMAD4	A406	A	E	406	bowel:1
 SMAD4	L533	L	I	533	bowel:2|pancreas:1
-SMAD4	L533	L	P	533	ampullaofvater:1|pancreas:1|unk:1
+SMAD4	L533	L	P	533	ampulla_of_vater:1|pancreas:1|unk:1
 SMAD4	L533	L	F	533	lung:1
 SMAD4	L533	L	R	533	bowel:1
 SMAD4	L533	L	V	533	bowel:1
@@ -3940,13 +3940,13 @@ TP53	R156	R	H	156	bladder:2|brain:1|lung:1
 TP53	R156	R	C	156	brain:1
 TP53	R156	R	L	156	pancreas:1
 TP53	R156	R	S	156	breast:1
-TP53	A276	A	D	276	ampullaofvater:1|breast:1|brain:1|head_neck:1|lung:4|pleura:1|thyroid:1
+TP53	A276	A	D	276	ampulla_of_vater:1|breast:1|brain:1|head_neck:1|lung:4|pleura:1|thyroid:1
 TP53	A276	A	P	276	breast:1|stomach:1|lung:3|blood:1|ovary:2|unk:1|vulva:1
 TP53	A276	A	G	276	bowel:1|liver:1|lung:4|uterus:1
 TP53	A276	A	V	276	liver:1|uterus:2
 TP53	A276	A	T	276	brain:1|head_neck:1
 TP53	A276	A	S	276	lung:1
-TP53	R283	R	P	283	ampullaofvater:1|bladder:2|bowel:1|breast:1|head_neck:4|lung:11|ovary:1|pancreas:2|unk:2|uterus:2
+TP53	R283	R	P	283	ampulla_of_vater:1|bladder:2|bowel:1|breast:1|head_neck:4|lung:11|ovary:1|pancreas:2|unk:2|uterus:2
 TP53	R283	R	H	283	bladder:1|bowel:1|stomach:1|head_neck:1|unk:1
 TP53	R283	R	C	283	bowel:1|breast:1|brain:1|uterus:1
 TP53	R283	R	G	283	vulva:1
@@ -4098,7 +4098,7 @@ ERBB3	P262	P	A	262	bowel:1
 ERBB3	P262	P	L	262	head_neck:1
 ERBB3	P262	P	R	262	uterus:1
 ERBB3	T389	T	K	389	bowel:3
-ERBB3	T389	T	I	389	ampullaofvater:1|bowel:1
+ERBB3	T389	T	I	389	ampulla_of_vater:1|bowel:1
 ERBB3	T389	T	R	389	bladder:1
 ERBB3	G325	G	R	325	bowel:4|pancreas:1|uterus:1
 ERCC2	S44	S	L	44	bladder:11
@@ -4336,7 +4336,7 @@ PTPRT	R1220	R	W	1220	skin:1
 RAF1	P261	P	R	261	biliary_tract:1|bladder:1|bowel:1|liver:1|unk:1
 RAF1	P261	P	L	261	lung:2|skin:1
 RAF1	P261	P	H	261	uterus:1
-RAF1	P261	P	S	261	ampullaofvater:1
+RAF1	P261	P	S	261	ampulla_of_vater:1
 RB1	R661	R	W	661	adrenal_gland:2|bladder:2|bowel:1|brain:1|stomach:1|eye:1|kidney:1|lung:1|blood:1|pancreas:1|prostate:1|soft_tissue:1|unk:2
 RB1	Q444	Q	H	444	lung:3|prostate:1|soft_tissue:1
 RB1	Q444	Q	L	444	bladder:1|stomach:1
@@ -4372,7 +4372,7 @@ SMAD3	S423	S	G	423	ovary:1
 SMAD3	S423	S	I	423	pancreas:1
 SMAD3	S423	S	T	423	bowel:1
 SMAD4	I383	I	K	383	stomach:1|pancreas:3
-SMAD4	I383	I	R	383	ampullaofvater:1|biliary_tract:1|stomach:1|lung:1
+SMAD4	I383	I	R	383	ampulla_of_vater:1|biliary_tract:1|stomach:1|lung:1
 SMAD4	I383	I	T	383	pancreas:1|uterus:1
 SMAD4	I383	I	M	383	bowel:1
 SMAD4	G365	G	D	365	bowel:4|lung:1|pancreas:1|unk:1
@@ -4385,7 +4385,7 @@ SMAD4	A406	A	V	406	bowel:9|stomach:1|kidney:1|lung:1|pancreas:1
 SMAD4	A406	A	T	406	bowel:1|stomach:1|blood:1|uterus:1
 SMAD4	A406	A	E	406	bowel:1
 SMAD4	L533	L	I	533	bowel:2|pancreas:1
-SMAD4	L533	L	P	533	ampullaofvater:1|pancreas:1|unk:1
+SMAD4	L533	L	P	533	ampulla_of_vater:1|pancreas:1|unk:1
 SMAD4	L533	L	F	533	lung:1
 SMAD4	L533	L	R	533	bowel:1
 SMAD4	L533	L	V	533	bowel:1
@@ -4464,13 +4464,13 @@ TP53	R156	R	H	156	bladder:2|brain:1|lung:1
 TP53	R156	R	C	156	brain:1
 TP53	R156	R	L	156	pancreas:1
 TP53	R156	R	S	156	breast:1
-TP53	A276	A	D	276	ampullaofvater:1|breast:1|brain:1|head_neck:1|lung:4|pleura:1|thyroid:1
+TP53	A276	A	D	276	ampulla_of_vater:1|breast:1|brain:1|head_neck:1|lung:4|pleura:1|thyroid:1
 TP53	A276	A	P	276	breast:1|stomach:1|lung:3|blood:1|ovary:2|unk:1|vulva:1
 TP53	A276	A	G	276	bowel:1|liver:1|lung:4|uterus:1
 TP53	A276	A	V	276	liver:1|uterus:2
 TP53	A276	A	T	276	brain:1|head_neck:1
 TP53	A276	A	S	276	lung:1
-TP53	R283	R	P	283	ampullaofvater:1|bladder:2|bowel:1|breast:1|head_neck:4|lung:11|ovary:1|pancreas:2|unk:2|uterus:2
+TP53	R283	R	P	283	ampulla_of_vater:1|bladder:2|bowel:1|breast:1|head_neck:4|lung:11|ovary:1|pancreas:2|unk:2|uterus:2
 TP53	R283	R	H	283	bladder:1|bowel:1|stomach:1|head_neck:1|unk:1
 TP53	R283	R	C	283	bowel:1|breast:1|brain:1|uterus:1
 TP53	R283	R	G	283	vulva:1
@@ -4622,7 +4622,7 @@ ERBB3	P262	P	A	262	bowel:1
 ERBB3	P262	P	L	262	head_neck:1
 ERBB3	P262	P	R	262	uterus:1
 ERBB3	T389	T	K	389	bowel:3
-ERBB3	T389	T	I	389	ampullaofvater:1|bowel:1
+ERBB3	T389	T	I	389	ampulla_of_vater:1|bowel:1
 ERBB3	T389	T	R	389	bladder:1
 ERBB3	G325	G	R	325	bowel:4|pancreas:1|uterus:1
 ERCC2	S44	S	L	44	bladder:11
@@ -4860,7 +4860,7 @@ PTPRT	R1220	R	W	1220	skin:1
 RAF1	P261	P	R	261	biliary_tract:1|bladder:1|bowel:1|liver:1|unk:1
 RAF1	P261	P	L	261	lung:2|skin:1
 RAF1	P261	P	H	261	uterus:1
-RAF1	P261	P	S	261	ampullaofvater:1
+RAF1	P261	P	S	261	ampulla_of_vater:1
 RB1	R661	R	W	661	adrenal_gland:2|bladder:2|bowel:1|brain:1|stomach:1|eye:1|kidney:1|lung:1|blood:1|pancreas:1|prostate:1|soft_tissue:1|unk:2
 RB1	Q444	Q	H	444	lung:3|prostate:1|soft_tissue:1
 RB1	Q444	Q	L	444	bladder:1|stomach:1
@@ -4900,7 +4900,7 @@ SMAD3	S423	S	G	423	ovary:1
 SMAD3	S423	S	I	423	pancreas:1
 SMAD3	S423	S	T	423	bowel:1
 SMAD4	I383	I	K	383	stomach:1|pancreas:3
-SMAD4	I383	I	R	383	ampullaofvater:1|biliary_tract:1|stomach:1|lung:1
+SMAD4	I383	I	R	383	ampulla_of_vater:1|biliary_tract:1|stomach:1|lung:1
 SMAD4	I383	I	T	383	pancreas:1|uterus:1
 SMAD4	I383	I	M	383	bowel:1
 SMAD4	G365	G	D	365	bowel:4|lung:1|pancreas:1|unk:1
@@ -4913,7 +4913,7 @@ SMAD4	A406	A	V	406	bowel:9|stomach:1|kidney:1|lung:1|pancreas:1
 SMAD4	A406	A	T	406	bowel:1|stomach:1|blood:1|uterus:1
 SMAD4	A406	A	E	406	bowel:1
 SMAD4	L533	L	I	533	bowel:2|pancreas:1
-SMAD4	L533	L	P	533	ampullaofvater:1|pancreas:1|unk:1
+SMAD4	L533	L	P	533	ampulla_of_vater:1|pancreas:1|unk:1
 SMAD4	L533	L	F	533	lung:1
 SMAD4	L533	L	R	533	bowel:1
 SMAD4	L533	L	V	533	bowel:1
@@ -4992,13 +4992,13 @@ TP53	R156	R	H	156	bladder:2|brain:1|lung:1
 TP53	R156	R	C	156	brain:1
 TP53	R156	R	L	156	pancreas:1
 TP53	R156	R	S	156	breast:1
-TP53	A276	A	D	276	ampullaofvater:1|breast:1|brain:1|head_neck:1|lung:4|pleura:1|thyroid:1
+TP53	A276	A	D	276	ampulla_of_vater:1|breast:1|brain:1|head_neck:1|lung:4|pleura:1|thyroid:1
 TP53	A276	A	P	276	breast:1|stomach:1|lung:3|blood:1|ovary:2|unk:1|vulva:1
 TP53	A276	A	G	276	bowel:1|liver:1|lung:4|uterus:1
 TP53	A276	A	V	276	liver:1|uterus:2
 TP53	A276	A	T	276	brain:1|head_neck:1
 TP53	A276	A	S	276	lung:1
-TP53	R283	R	P	283	ampullaofvater:1|bladder:2|bowel:1|breast:1|head_neck:4|lung:11|ovary:1|pancreas:2|unk:2|uterus:2
+TP53	R283	R	P	283	ampulla_of_vater:1|bladder:2|bowel:1|breast:1|head_neck:4|lung:11|ovary:1|pancreas:2|unk:2|uterus:2
 TP53	R283	R	H	283	bladder:1|bowel:1|stomach:1|head_neck:1|unk:1
 TP53	R283	R	C	283	bowel:1|breast:1|brain:1|uterus:1
 TP53	R283	R	G	283	vulva:1

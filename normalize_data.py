@@ -29,6 +29,7 @@ TUMOR_TYPE_MAP = {
     "adrenalgland": "adrenal_gland",
     "peripheralnervoussystem": "soft_tissue",
     "vulvavagina": "vulva",
+    "ampullaofvater": "ampulla_of_vater",
 }
 
 
