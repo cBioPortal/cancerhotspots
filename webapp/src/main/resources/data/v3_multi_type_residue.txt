@@ -1189,7 +1189,7 @@ EGFR	V834	V:7	834				L:7	8.306140783633621e-07	0.0205168350999269		-4.2578702126
 EGFR	A755	A:5	755				G:4|D:1	0.0022299969731389	1.0		-5.47348828002625	5		lung:5		
 ERBB3	G337	G:8	337				R:8	1.31625883859806e-06	1.31625883859806e-06		-8.720233664553339	8		bladder:3|bowel:2|stomach:1|uterus:2		
 ERBB3	P262	P:10	262				H:5|S:2|A:1|L:1|R:1	9.51712510483098e-06	9.51712510483098e-06		-7.784926169633441	10		bladder:1|bowel:3|stomach:2|head_neck:1|ovary:1|unk:1|uterus:1		
-ERBB3	T389	T:6	389				K:3|I:2|R:1	0.0004546577384556	0.0004546577384556		-6.05998986997296	6		ampullaofvater:1|bladder:1|bowel:4		
+ERBB3	T389	T:6	389				K:3|I:2|R:1	0.0004546577384556	0.0004546577384556		-6.05998986997296	6		ampulla_of_vater:1|bladder:1|bowel:4		
 ERBB3	G325	G:6	325				R:6	0.0018495652935557	0.0019787360824214		-5.40009728501358	6		bowel:4|pancreas:1|uterus:1		
 ERCC2	S44	S:11	44				L:11	3.73863383002761e-08	1.0		-10.3879564602225	11		bladder:11		
 ERCC2	S74	S:6	74				L:5|P:1	0.0058919177604576	1.0		-4.88938271972525	6		bladder:6		
@@ -1263,7 +1263,7 @@ PTEN	L108	L:8	108				R:4|F:2|H:1|P:1	0.008148013646967	0.008148013646967		-3.567
 PTPN11	S502	S:15	502				L:7|P:7|A:1	7.519067372474442e-13	7.519067372474442e-13		-14.8946048519033	15		bowel:1|brain:4|stomach:1|head_neck:1|lung:1|blood:6|testis:1		
 PTPRT	R721	R:17	721				C:8|H:8|S:1	6.095770910571129e-05	6.095770910571129e-05		-7.76055016222476	17		bowel:2|cervix:1|brain:2|stomach:3|lung:1|ovary:1|prostate:1|skin:3|soft_tissue:1|uterus:2		
 PTPRT	R1220	R:14	1220				Q:10|L:3|W:1	0.0059703264892173	0.0059703264892173		-5.4388864219519695	14		bowel:6|head_neck:1|lung:3|blood:1|skin:1|uterus:2		
-RAF1	P261	P:10	261				R:5|L:3|H:1|S:1	2.70075576168034e-05	2.70075576168034e-05		-7.6263344792116925	10		ampullaofvater:1|biliary_tract:1|bladder:1|bowel:1|liver:1|lung:2|skin:1|unk:1|uterus:1		
+RAF1	P261	P:10	261				R:5|L:3|H:1|S:1	2.70075576168034e-05	2.70075576168034e-05		-7.6263344792116925	10		ampulla_of_vater:1|biliary_tract:1|bladder:1|bowel:1|liver:1|lung:2|skin:1|unk:1|uterus:1		
 RB1	R661	R:16	661				W:16	3.99684712110929e-07	3.99684712110929e-07		-8.85548347554831	16		adrenal_gland:2|bladder:2|bowel:1|brain:1|stomach:1|eye:1|kidney:1|lung:1|blood:1|pancreas:1|prostate:1|soft_tissue:1|unk:2		
 RB1	Q444	Q:9	444				H:5|L:2|*:1|R:1	0.0012312939510221	0.0012312939510221		-5.17884878414396	9		bladder:1|stomach:1|lung:3|pancreas:1|prostate:1|soft_tissue:1|uterus:1		
 RET	C634	C:3	634				R:2|W:1	0.0021522065288701	0.5080656781009449		-6.293406204638388	3		thyroid:3		
@@ -1275,11 +1275,11 @@ SMAD2	D450	D:8	450				E:3|G:2|N:2|H:1	5.676711740444089e-05	0.000651385829855		-
 SMAD2	S465	S:7	465				N:6|R:1	6.25956679500868e-05	0.0188990601071708		-4.22054411249857	7		bowel:7		
 SMAD2	C312	C:6	312				G:3|R:1|S:1|W:1	0.0033521036315206	0.0122541210921257		-4.45445964172133	6		bowel:5|skin:1		
 SMAD3	S423	S:9	423				N:3|R:3|G:1|I:1|T:1	7.82278466199621e-06	7.82278466199621e-06		-8.07945132437681	9		bowel:4|lung:1|ovary:1|pancreas:2|uterus:1		
-SMAD4	I383	I:11	383				K:4|R:4|T:2|M:1	6.991626160485889e-11	6.991626160485889e-11		-12.5315653217233	11		ampullaofvater:1|biliary_tract:1|bowel:1|stomach:2|lung:1|pancreas:4|uterus:1		
+SMAD4	I383	I:11	383				K:4|R:4|T:2|M:1	6.991626160485889e-11	6.991626160485889e-11		-12.5315653217233	11		ampulla_of_vater:1|biliary_tract:1|bowel:1|stomach:2|lung:1|pancreas:4|uterus:1		
 SMAD4	G365	G:11	365				D:7|V:2|R:1|S:1	5.450544231898301e-07	5.450544231898301e-07		-8.46361239300697	11		bowel:6|breast:1|lung:1|blood:1|pancreas:1|unk:1		
 SMAD4	R496	R:17	496				H:15|P:2	2.9256647863549307e-06	2.9256647863549307e-06		-7.69906559058172	17		bowel:10|cervix:1|pancreas:4|uterus:2		
 SMAD4	A406	A:18	406				V:13|T:4|E:1	5.35629101856138e-05	5.35629101856138e-05		-6.38900134005745	18		bowel:11|stomach:2|kidney:1|lung:1|blood:1|pancreas:1|uterus:1		
-SMAD4	L533	L:9	533				I:3|P:3|F:1|R:1|V:1	0.0003005177185441	0.0003005177185441		-5.58387948006803	9		ampullaofvater:1|bowel:4|lung:1|pancreas:2|unk:1		
+SMAD4	L533	L:9	533				I:3|P:3|F:1|R:1|V:1	0.0003005177185441	0.0003005177185441		-5.58387948006803	9		ampulla_of_vater:1|bowel:4|lung:1|pancreas:2|unk:1		
 SMAD4	C115	C:6	115				S:3|Y:2|G:1	0.0019001119145372	0.0019001119145372		-4.73328259782188	6		biliary_tract:2|bowel:4		
 SMAD4	G508	G:9	508				D:6|V:2|S:1	0.0034378759275618	0.0034378759275618		-4.44191331273278	9		bowel:4|breast:2|lung:1|pancreas:2		
 SMAD4	K428	K:9	428				M:3|N:3|T:3	0.0054059218138781	0.0054059218138781		-4.21392528730587	9		bowel:4|breast:1|lung:3|uterus:1		
@@ -1306,8 +1306,8 @@ TP53	E224	E:42	224				D:28|*:14	6.363075034985277e-38	6.363075034985277e-38		-38
 TP53	A138	A:37	138				V:22|P:12|T:3	3.239738187739e-35	3.239738187739e-35		-35.862849712210604	37		bowel:5|breast:4|brain:4|stomach:2|head_neck:1|kidney:1|liver:1|lung:7|ovary:2|pancreas:2|prostate:1|skin:2|soft_tissue:2|unk:1|uterus:1|vulva:1		
 TP53	L145	L:30	145				P:11|Q:10|R:9	1.5388696477737296e-34	1.5388696477737296e-34		-35.1782613126093	30		bladder:1|bone:1|bowel:6|breast:3|cervix:1|brain:1|stomach:2|liver:2|lung:4|blood:1|ovary:2|pancreas:2|prostate:2|unk:1|uterus:1		
 TP53	R156	R:37	156				P:24|G:6|H:4|C:1|L:1|S:1	1.0730675829727999e-32	1.0730675829727999e-32		-33.3270806065766	37		biliary_tract:1|bladder:3|bowel:2|breast:4|brain:4|head_neck:1|liver:2|lung:14|ovary:2|pancreas:1|soft_tissue:2|uterus:1		
-TP53	A276	A:33	276				D:10|P:10|G:7|V:3|T:2|S:1	1.3277326884573502e-31	1.3277326884573502e-31		-32.2307706262812	33		ampullaofvater:1|bowel:1|breast:2|brain:2|stomach:1|head_neck:2|liver:2|lung:12|blood:1|ovary:2|pleura:1|thyroid:1|unk:1|uterus:3|vulva:1		
-TP53	R283	R:38	283				P:27|H:5|C:4|G:1|L:1	1.118280245077e-30	1.118280245077e-30		-31.29777748304389	38		ampullaofvater:1|bladder:3|bowel:3|breast:2|brain:1|stomach:1|head_neck:5|lung:11|ovary:1|pancreas:2|unk:4|uterus:3|vulva:1		
+TP53	A276	A:33	276				D:10|P:10|G:7|V:3|T:2|S:1	1.3277326884573502e-31	1.3277326884573502e-31		-32.2307706262812	33		ampulla_of_vater:1|bowel:1|breast:2|brain:2|stomach:1|head_neck:2|liver:2|lung:12|blood:1|ovary:2|pleura:1|thyroid:1|unk:1|uterus:3|vulva:1		
+TP53	R283	R:38	283				P:27|H:5|C:4|G:1|L:1	1.118280245077e-30	1.118280245077e-30		-31.29777748304389	38		ampulla_of_vater:1|bladder:3|bowel:3|breast:2|brain:1|stomach:1|head_neck:5|lung:11|ovary:1|pancreas:2|unk:4|uterus:3|vulva:1		
 TP53	T253	T:25	253				A:9|P:7|I:4|N:4|S:1	8.407231149468499e-28	8.407231149468499e-28		-28.40334776678511	25		bladder:1|bowel:2|breast:1|stomach:3|head_neck:1|liver:3|lung:3|blood:1|ovary:2|prostate:3|skin:1|uterus:4		
 TP53	S240	S:23	240				G:13|R:8|C:2	6.821235117748399e-25	6.821235117748399e-25		-25.480013092953	23		bowel:2|brain:3|lung:5|blood:2|pancreas:2|prostate:5|unk:1|uterus:3		
 TP53	G279	G:28	279				E:26|R:1|V:1	1.1380384822434601e-24	1.1380384822434601e-24		-25.2542586323385	28		bladder:3|breast:2|brain:4|stomach:1|lung:4|ovary:5|prostate:2|skin:3|uterus:3|vulva:1		
