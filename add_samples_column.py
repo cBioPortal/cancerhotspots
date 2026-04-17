@@ -36,8 +36,9 @@ def main():
     lookup = build_lookup()
     wb = openpyxl.load_workbook(XLSX)
 
-    # Sheet: (Hugo_Symbol, Codon) are columns 1, 2; add 'Samples' after last real column
-    sheet = wb["Sheet"]
+    # Hotspot_Residues: (Hugo_Symbol, Codon) are columns 1, 2; add 'Samples'
+    # after last real column.
+    sheet = wb["Hotspot_Residues"]
     samples_col_sheet = 25  # after 'adj_pval_MSK_vs_TCGA' (col 24)
     sheet.cell(row=1, column=samples_col_sheet, value="Samples").font = Font(bold=True)
 
@@ -56,10 +57,11 @@ def main():
         pos = sheet.cell(row=r, column=3).value
         position_to_samples[(hugo, int(pos))] = samples
 
-    # Old: Codon_Position is col 2 (numeric). Append Samples matched by (Hugo, pos).
-    old = wb["Old"]
-    # Place right after last real column ('Is_hotspot_annotated_in_OncoKB (V3.14)?' at col 6).
-    # Column 7 holds a stray truncated header 'Is_h' with no data; overwrite it.
+    # Hotspot_Residues_Summary: Codon_Position is col 2 (numeric). Append
+    # Samples matched by (Hugo, pos). Place right after last real column
+    # ('Is_hotspot_annotated_in_OncoKB (V3.14)?' at col 6). Column 7 holds a
+    # stray truncated header 'Is_h' with no data; overwrite it.
+    old = wb["Hotspot_Residues_Summary"]
     samples_col_old = 7
     old.cell(row=1, column=samples_col_old, value="Samples").font = Font(bold=True)
 

@@ -22,7 +22,7 @@ Source files:
 
 v3-ness heuristic: the v3 residue file is built as [v2 rows (1165)] + [v3-only
 rows (164)], in order. Rows after line 1165 are the new-in-v3 hotspots. This
-matches the 164 (Hugo, Residue) pairs already populated on the 'Sheet' tab.
+matches the 164 (Hugo, Residue) pairs populated on the 'Hotspot_Residues' tab.
 """
 import os
 from collections import OrderedDict
