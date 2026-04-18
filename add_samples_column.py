@@ -25,6 +25,8 @@ def build_lookup():
         header = f.readline().rstrip("\n").split("\t")
         ci = {h: i for i, h in enumerate(header)}
         for line in f:
+            if not line.strip():
+                continue
             fields = line.rstrip("\n").split("\t")
             key = (fields[ci["Hugo_Symbol"]], fields[ci["Residue"]])
             lookup[key] = fields[ci["Tumor_Type_Composition"]]

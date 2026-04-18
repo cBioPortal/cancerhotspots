@@ -56,6 +56,8 @@ def load_residues():
         hdr = f.readline().rstrip("\n").split("\t")
         ci = {h: i for i, h in enumerate(hdr)}
         for i, line in enumerate(f, start=1):
+            if not line.strip():
+                continue
             fs = line.rstrip("\n").split("\t")
             kind = "INDEL" if fs[ci["Indel_Size"]].strip() else "SNV"
             version = "v2" if i <= V2_ROW_COUNT else "v3"
@@ -79,6 +81,8 @@ def load_variants():
         hdr = f.readline().rstrip("\n").split("\t")
         ci = {h: i for i, h in enumerate(hdr)}
         for line in f:
+            if not line.strip():
+                continue
             if line in seen:
                 continue
             seen.add(line)
