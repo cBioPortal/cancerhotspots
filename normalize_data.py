@@ -5,12 +5,19 @@ Normalize v3 data and split into v2-only and v3 (v2+v3 combined) files.
 Steps:
 1. For residue file: restore v2 rows from old file, normalize v3 rows, create split files
 2. For variant file: restore v2 rows from git master, normalize v3 rows, create split files
+3. Drop exact duplicate variant rows (keep the first occurrence) so a repeated
+   data drop cannot be written through into v3_multi_type_variant_file.txt
+
+Check the published tables without rewriting them:
+
+    python3 normalize_data.py --check
 """
 
 import re
 import shutil
 import subprocess
 import os
+import sys
 
 DATA_DIR = "webapp/src/main/resources/data"
 BACKUP_DIR = os.path.join(DATA_DIR, "v3_original_backup")
@@ -77,6 +84,23 @@ def normalize_qvalue(val):
     if val == "0.0":
         return "0"
     return val
+
+
+def dedupe_preserve_order(lines):
+    """Drop exact duplicate records, keeping the first occurrence.
+
+    Blank lines are skipped. The trailing newline is not part of the
+    comparison, and every returned line ends with a newline.
+    """
+    seen = set()
+    unique = []
+    for line in lines:
+        key = line.rstrip("\r\n")
+        if key == "" or key in seen:
+            continue
+        seen.add(key)
+        unique.append(key + "\n")
+    return unique
 
 
 def fix_integer_field(val):
@@ -202,10 +226,9 @@ def process_variant_file():
     col_idx = {name: i for i, name in enumerate(header_cols)}
     composition_col = col_idx["Tumor_Type_Composition"]
 
-    # Find v3-only rows: rows in current file that are NOT in old file
-    # Since the old file has 3499 data rows and current has 5075 data rows,
-    # the v3 rows are the additional ones.
-    # We need to identify them - they contain v3 tumor type names
+    # v3-only rows are lines in the current file that are not exact v2 rows.
+    # The original v3 drop repeated most of those lines; exact copies are
+    # removed below, keeping the first occurrence.
     old_data_set = set(line.strip() for line in old_data_lines)
 
     v3_only_lines = []
@@ -228,7 +251,17 @@ def process_variant_file():
 
         normalized_v3_lines.append("\t".join(fields) + "\n")
 
+    # The pre-normalization variant drop repeated 524 v3-only rows three
+    # times (exact copies). Keep the first copy so the published file
+    # matches one listing of each variant.
+    before = len(normalized_v3_lines)
+    old_data_lines = dedupe_preserve_order(old_data_lines)
+    normalized_v3_lines = dedupe_preserve_order(normalized_v3_lines)
+    num_v2_rows = len(old_data_lines)
+    dropped = before - len(normalized_v3_lines)
     print(f"  Normalized {len(normalized_v3_lines)} v3 rows")
+    if dropped:
+        print(f"  Dropped {dropped} exact duplicate v3-only rows (kept first occurrence)")
 
     # Write v2-only file (restore from master)
     v2_output = os.path.join(DATA_DIR, "v2_multi_type_variant_file.txt")
@@ -294,6 +327,120 @@ def verify_qvalues(filepath):
         print(f"  OK - No '0.0' q-values in {filepath}")
 
 
+# Published tables loaded by the multi-type webapp. The v3 original backup
+# is the pre-normalization drop and is not part of this check.
+CHECKED_FILES = [
+    "v2_multi_type_residue.txt",
+    "v3_multi_type_residue.txt",
+    "v2_multi_type_variant_file.txt",
+    "v3_multi_type_variant_file.txt",
+]
+
+VARIANT_KEY = [
+    "Hugo_Symbol",
+    "Residue",
+    "Reference_Amino_Acid",
+    "Variant_Amino_Acid",
+    "Amino_Acid_Position",
+]
+RESIDUE_KEY = ["Hugo_Symbol", "Residue"]
+
+
+def identity_key_columns(header_cols):
+    """Columns that identify one record. The other columns are the payload."""
+    if all(name in header_cols for name in VARIANT_KEY) and "Q-value" not in header_cols:
+        return VARIANT_KEY
+    if all(name in header_cols for name in RESIDUE_KEY):
+        return RESIDUE_KEY
+    return None
+
+
+def check_duplicate_rows(filepath):
+    """Report exact duplicate lines and same-key rows that are not identical.
+
+    Exact duplicates are repeated full lines. Near-duplicates share the
+    identity columns but differ in some other field; this check only reports
+    them. Returns a list of problem strings (empty when the file is clean).
+    """
+    problems = []
+    with open(filepath, "r") as f:
+        raw_lines = f.read().splitlines()
+
+    if not raw_lines:
+        message = f"{filepath}: empty file"
+        print(f"  WARNING - {message}")
+        return [message]
+
+    header_cols = raw_lines[0].split("\t")
+    data = [line for line in raw_lines[1:] if line.strip()]
+
+    counts = {}
+    order = []
+    for line in data:
+        if line not in counts:
+            order.append(line)
+            counts[line] = 0
+        counts[line] += 1
+
+    exact = [(line, n) for line, n in counts.items() if n > 1]
+    if exact:
+        extra = sum(n - 1 for _, n in exact)
+        message = (
+            f"{filepath}: {len(exact)} exact duplicate rows "
+            f"({extra} extra copies); first: {exact[0][0][:120]}"
+        )
+        problems.append(message)
+
+    key_names = identity_key_columns(header_cols)
+    if key_names is None:
+        message = f"{filepath}: could not determine identity columns"
+        problems.append(message)
+    else:
+        index = [header_cols.index(name) for name in key_names]
+        groups = {}
+        for line in order:
+            fields = line.split("\t")
+            if len(fields) != len(header_cols):
+                message = (
+                    f"{filepath}: row has {len(fields)} fields, "
+                    f"header has {len(header_cols)}: {line[:120]}"
+                )
+                problems.append(message)
+                continue
+            key = tuple(fields[i] for i in index)
+            groups.setdefault(key, []).append(line)
+        near = [(key, rows) for key, rows in groups.items() if len(rows) > 1]
+        if near:
+            key, _rows = near[0]
+            message = (
+                f"{filepath}: {len(near)} near-duplicate groups share "
+                f"{key_names} but differ in another column; example key {key}"
+            )
+            problems.append(message)
+
+    if problems:
+        for problem in problems:
+            print(f"  WARNING - {problem}")
+    else:
+        print(f"  OK - no exact or near-duplicate rows in {filepath} ({len(data)} data rows)")
+    return problems
+
+
+def check_published_data_files():
+    """Check the multi-type tables the webapp ships. Returns problem strings."""
+    print("Checking hotspot tables for duplicate rows...")
+    problems = []
+    for name in CHECKED_FILES:
+        path = os.path.join(DATA_DIR, name)
+        if not os.path.exists(path):
+            message = f"missing {path}"
+            print(f"  WARNING - {message}")
+            problems.append(message)
+            continue
+        problems.extend(check_duplicate_rows(path))
+    return problems
+
+
 def backup_original_files():
     """Back up the original (non-normalized) v3 data files before any modifications."""
     os.makedirs(BACKUP_DIR, exist_ok=True)
@@ -313,6 +460,14 @@ def backup_original_files():
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--check":
+        found = check_published_data_files()
+        if found:
+            print(f"FAILED: {len(found)} duplicate-row problem(s)")
+            sys.exit(1)
+        print("OK")
+        sys.exit(0)
 
     print("=" * 60)
     print("Backing up original (non-normalized) v3 data...")
@@ -364,3 +519,8 @@ if __name__ == "__main__":
             with open(path, "r") as fh:
                 count = sum(1 for line in fh if line.strip())
             print(f"  {f}: {count} lines (header + {count - 1} data rows)")
+
+    print()
+    problems = check_published_data_files()
+    if problems:
+        sys.exit(1)
