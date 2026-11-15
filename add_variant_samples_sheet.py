@@ -18,13 +18,14 @@ whose analysis the per-tumor-type counts came from: v2 rows reflect the
 Source files:
   webapp/src/main/resources/data/v3_multi_type_residue.txt
   webapp/src/main/resources/data/v3_multi_type_variant_file.txt
-    (variant file contains each row 3x; we dedupe on read)
+    (exact duplicate lines are skipped so a repeated row cannot be counted twice)
 
 v3-ness heuristic: the v3 residue file is built as [v2 rows (1165)] + [v3-only
 rows (164)], in order. Rows after line 1165 are the new-in-v3 hotspots. This
 matches the 164 (Hugo, Residue) pairs populated on the 'Hotspot_Residues' tab.
 """
 import os
+import sys
 from collections import OrderedDict
 
 import openpyxl
@@ -77,6 +78,7 @@ def load_variants():
     """(hugo, residue) -> list[(ref, alt, composition, count)], deduped, stable order."""
     by_residue = OrderedDict()
     seen = set()
+    skipped = 0
     with open(VARIANT_FILE) as f:
         hdr = f.readline().rstrip("\n").split("\t")
         ci = {h: i for i, h in enumerate(hdr)}
@@ -84,6 +86,7 @@ def load_variants():
             if not line.strip():
                 continue
             if line in seen:
+                skipped += 1
                 continue
             seen.add(line)
             fs = line.rstrip("\n").split("\t")
@@ -93,6 +96,11 @@ def load_variants():
             comp = fs[ci["Tumor_Type_Composition"]]
             count = sum(int(p.rsplit(":", 1)[1]) for p in comp.split("|") if ":" in p)
             by_residue.setdefault(key, []).append((ref, alt, comp, count))
+    if skipped:
+        print(
+            f"WARNING: skipped {skipped} exact duplicate variant rows in {VARIANT_FILE}",
+            file=sys.stderr,
+        )
     return by_residue
 
 
